@@ -1,0 +1,28 @@
+<ion-view hide-menu-button="true">
+    <ion-nav-title>
+        Latest Polls
+    </ion-nav-title>
+    <ion-content class="has-footer">
+        <div class="list card custom-poll-card" ng-repeat="poll in polls">
+            <div class="item item-avatar">
+                <img ng-src="{{poll.author.img}}" class="poll-img" >
+                <h2 class="pull-left">{{ poll.author.display_name}}</h2>
+            </div>
+            <div class="item item-body p0">
+
+                <div class="poll-img-wrapper" ng-if="poll.img != ''" ui-sref="app.polldetails({id:poll.id})"><img ng-src="{{poll.img}}" alt=""></div>
+                <p class="poll-question bold" ng-bind-html="poll.title" ui-sref="app.polldetails({id:poll.id})"></p>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left action-button-wrapper">
+                <a class="tab-item" href="#">
+                    <i class="icon ion-chatbox"></i>
+                    Participate
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
