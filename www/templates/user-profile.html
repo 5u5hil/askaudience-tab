@@ -3,14 +3,64 @@
        ASK AUDIENCE
  </ion-nav-title>
     <ion-content >
-        <div class="hero custom-hero" style="background-image: url('img/bgp.png'); background-color: #0A0A0A; background-size: initial">
-            <div class="content user-content">
-                <div class="avatar user-avatar" style="background-image: url('img/user-icon.png');"></div>
-                <div class="user-title">
-                <h3><a class="light">{{userInfo.user_meta.first_name[0]}}  {{userInfo.user_meta.last_name[0]}}</a></h3>
-                <h4>{{userInfo.user_email}}</h4>
+     <div class="cover-item-wrapper cover-detail-wrapper">
+            <div class="cover-item cover-item-detail" style="background-image:url(' img/bgp.png')">
+                <div class=" ">
+                    <div class="celeb-img-detail profile-img-detail">
+                        <img ng-src="img/user-icon.png">
+                    </div>
+                    <div class="celeb-info-detail profile-user-detail">
+                        <h2 class="mb0 fs20">Swapnil Patwa</h2>
+                        
+                    </div>
+                     <div class="wrapp-count mt10 row text-center">
+            <div class="col">
+              <div class="title">
+                0
+              </div>
+              <div class="title-cat">
+                Polls
+              </div>
+            </div>
+            <div class="col">
+              <div class="title">
+                17
+              </div>
+              <div class="title-cat">
+                Following
+              </div>
+            </div>
+            <div class="col">
+              <div class="title">
+                43
+              </div>
+              <div class="title-cat">
+                Friends
+              </div>
+            </div>
+            <div class="col">
+              <div class="title">
+                18
+              </div>
+              <div class="title-cat">
+                Other
+              </div>
+            </div>
+        </div>
                 </div>
             </div>
+           
+        </div>
+ 
+        <div>
+            <ion-scroll direction="x" class="item ion-sc">
+                <span ng-class="activePan == 'tab1' ? 'active-item' : 'sub-menu-item'"  ng-click="updatePan('tab1')">Tab 1</span>
+                <span ng-class="activePan == 'tab2' ? 'active-item' : 'sub-menu-item'"    ng-click="updatePan('tab2')">Tab 2</span>
+                <span ng-class="activePan == 'tab3' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('tab3')">Tab 3</span>
+                <span ng-class="activePan == 'tab4' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('tab4')">Tab 4</span>
+            
+    
+            </ion-scroll>
         </div>
 
     <span>

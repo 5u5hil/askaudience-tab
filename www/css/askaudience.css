@@ -215,7 +215,7 @@ span.active-item {
 .ion-sc{
     width: 101%;
     height: 53px;
-    background-color: #000000;
+    background-color: #000000 !important;
 }
 h3.listing-title{
     font-size: 20px;
@@ -247,11 +247,11 @@ a.celeb-name {
     background-size: cover;
 }
 .cover-detail-wrapper.cover-item-wrapper {
-    max-height: 330px;
+    max-height: 200px;
 }
 .celeb-img-detail img{
-    height: 130px;
-    width: 130px; 
+    height: 80px;
+    width: 80px; 
     border: 3px solid #DCDCDC;
     border-radius: 2px;
 }
@@ -1582,3 +1582,27 @@ a.autolinker {
 .toClone{
     display: none;
 }
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+.title-cat {
+    font-size: 14px;
+    color: #ababab;
+}
+.cover-item-detail { 
+    background-color: #000 !important;
+}
+.fs20 {
+    font-size: 20px !important;
+}
+/*.profile-img-detail {
+        width: 28%;
+    float: left;
+}
+.profile-user-detail {
+    width: 100%;  
+    padding-top: 23px;
+    text-align: left;
+}*/

@@ -310,56 +310,55 @@ angular.module('askaudience.controllers', [])
 
         .controller('userProfileCtrl', ['$scope', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
-                if (!$rootScope.isLoggedIn) {
-                    $rootScope.$broadcast('showLoginModal', $scope, function () {
-                        $ionicHistory.goBack(-1);
-                    }, function () {
-                        getUserData();
-                    });
-                } else {
-                    getUserData();
-                }
+                // if (!$rootScope.isLoggedIn) {
+                //     $rootScope.$broadcast('showLoginModal', $scope, function () {
+                //         $ionicHistory.goBack(-1);
+                //     }, function () {
+                //         getUserData();
+                //     });
+                // } else {
+                //     getUserData();
+                // }
 
-                function getUserData() {
-                    Loader.show();
-                    APIFactory.userData($rootScope.user.ID).then(function (response) {
-                        Loader.hide();
-                        $scope.userInfo = response.data;
-                    }, function (data) {
-                        /* body... */
-                        Loader.hide();
-                        Loader.toast('Oops! something went wrong');
-                    })
-                }
-                ;
-                $scope.updateUser = function (data) {
-                    var password = {
-                        pass: '',
-                        repass: ''
-                    };
-                    Loader.show();
-                    APIFactory.updateUser(data, password, $rootScope.user.ID).then(function (response) {
-                        console.log(response);
-                        Loader.hide();
-                        Loader.toast('Profile updated successfuly');
-                    }, function (error) {
-                        console.log(error);
-                        Loader.hide();
-                        Loader.toast('Oops! something went wrong. Please try later again');
-                    })
-                }
-                $scope.changePassword = function (data, password) {
-                    Loader.show();
-                    APIFactory.updateUser(data, password, $rootScope.user.ID).then(function (response) {
-                        console.log(response);
-                        Loader.hide();
-                        Loader.toast('Password updated successfuly');
-                    }, function (error) {
-                        console.log(error);
-                        Loader.hide();
-                        Loader.toast('Oops! something went wrong. Please try later again');
-                    })
-                }
+                // function getUserData() {
+                //     Loader.show();
+                //     APIFactory.userData($rootScope.user.ID).then(function (response) {
+                //         Loader.hide();
+                //         $scope.userInfo = response.data;
+                //     }, function (data) {
+                //         /* body... */
+                //         Loader.hide();
+                //         Loader.toast('Oops! something went wrong');
+                //     })
+                // };
+                // $scope.updateUser = function (data) {
+                //     var password = {
+                //         pass: '',
+                //         repass: ''
+                //     };
+                //     Loader.show();
+                //     APIFactory.updateUser(data, password, $rootScope.user.ID).then(function (response) {
+                //         console.log(response);
+                //         Loader.hide();
+                //         Loader.toast('Profile updated successfuly');
+                //     }, function (error) {
+                //         console.log(error);
+                //         Loader.hide();
+                //         Loader.toast('Oops! something went wrong. Please try later again');
+                //     })
+                // }
+                // $scope.changePassword = function (data, password) {
+                //     Loader.show();
+                //     APIFactory.updateUser(data, password, $rootScope.user.ID).then(function (response) {
+                //         console.log(response);
+                //         Loader.hide();
+                //         Loader.toast('Password updated successfuly');
+                //     }, function (error) {
+                //         console.log(error);
+                //         Loader.hide();
+                //         Loader.toast('Oops! something went wrong. Please try later again');
+                //     })
+                // }
             }
         ])
 
