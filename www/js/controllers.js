@@ -416,13 +416,13 @@ angular.module('askaudience.controllers', [])
 //                    console.log(participated);
                     angular.forEach(response.data.options, function (value, key) {
                         $scope.chart.push({'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key]});
-                    });
+                    }); 
                     Loader.hide();
+                    window.dispatchEvent(new Event('resize'));
                 }, function (error) {
                     Loader.hide();
                     Loader.toast('Oops! something went wrong. Please try later again');
-                });
-
+                }); 
                 $scope.vote = function () {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {

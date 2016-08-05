@@ -407,7 +407,7 @@ img.profile-pic.right {
 }
 
 input, textarea, .item-input, .item-input-wrapper {
-    background-color: #f4f4f4 !important;
+    background-color: #f4f4f4 ;
 }
 
 .bold {
@@ -1606,3 +1606,21 @@ a.autolinker {
     padding-top: 23px;
     text-align: left;
 }*/
+.item-checkbox-img {
+  vertical-align: middle;
+  position: absolute !important;
+  top: 0px;
+  right: 15px;
+  height:100%;
+}
+.option-checkbox { 
+    position: absolute !important; 
+    right: 1px !important; 
+    top: 26px !important; 
+}
+.custom-poll-card .item.item-avatar { 
+    padding: 32px 10px 0px 88px !important;
+}
+.pl16 {
+    padding-left: 16px;
+}

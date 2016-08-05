@@ -13,26 +13,31 @@
                 <div class="poll-img-wrapper" ng-if="poll.img != ''"><img ng-src="{{poll.img}}" class="full-image" alt=""></div>
                 <p class="poll-question bold" ng-bind-html="poll.title"></p>
 
-                <h4>Choose Your Option</h4>
+                <h4 class="pl16">Choose Your Option</h4>
                 <form class="vote">
 
-
+       
                     <ul class="options">
+                     
                         <li ng-repeat="opt in poll.options">
-                            <label class="checkbox">
+                            <label class="checkbox w100">
                                 <ion-item class="item item-avatar">
-                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image !== ''" class="thumbnail-image"/>
+                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image !== ''" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
+                               <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
                                 </ion-item>
-                                <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}"> 
-                            </label>{{ opt.option}}
+                                 
+                            </label>
 
                         </li>
                     </ul>
                     <input type="hidden" name="pollid" value="{{ poll.id}}" />
+                    <div class="padding-top txt-center">
                     <button class="button button-balanced" ng-click="vote()">Submit</button>
+                        
+                    </div>
                 </form>
 
-                <pie-chart data="chart" options="options"></pie-chart>
+                <pie-chart data="chart" id="chart" options="options"></pie-chart>
             </div>
             <div class="item tabs tabs-secondary tabs-icon-left action-button-wrapper">
                 <a class="tab-item" href="#">
