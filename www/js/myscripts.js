@@ -1,7 +1,7 @@
 jQuery(function ($) {
 
     $("body").on("click", ".deleteOption", function () {
-        $(this).parent().parent().remove();
+        $(this).parent().parent().parent().remove();
         indexOptions();
     })
 });

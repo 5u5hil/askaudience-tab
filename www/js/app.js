@@ -2,7 +2,7 @@
 var domain = 'http://ask-audience.cruxservers.in/api/?method=';
 angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives'])
 
-        .run(function ($ionicPlatform) {
+        .run(function ($ionicPlatform, $cordovaStatusbar) {
             $ionicPlatform.ready(function () {
                 setTimeout(function () {
                     try {
@@ -20,8 +20,10 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                     }
                 } catch (e) {
                 }
+              $cordovaStatusbar.styleHex('#FF9800');
+
             });
-        })
+        }) 
         .config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
             $ionicConfigProvider.tabs.position('bottom');
             $ionicConfigProvider.views.maxCache(0);

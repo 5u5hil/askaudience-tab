@@ -6,14 +6,14 @@
         <form class="createPoll" >
             <ul class="list">
 
-                <li class="item item-input">
+                <li class="item item-input item-floating-label">
                     <span class="input-label">Question *</span>
-                    <input type="text" name="pollname" max="140" placeholder="Max 140 Characters" required>
+                    <input type="text" name="pollname" max="140" placeholder="Question, Max 140 Characters" required>
                 </li>
-
+             
                 <li class="item item-input">
                     <span class="input-label">Poll Image</span>
-                    <input type="file" placeholder="Image" name="pollimg" style="float: right;">
+                    <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
                 </li>
 
                 <li  class="item item-toggle">
@@ -26,7 +26,20 @@
                         </div>
                     </label>
                 </li>
-
+                <li  class="item item-toggle">
+                    Post Anonymously 
+                    <label class="toggle toggle-assertive">
+                        <input type="hidden" name="anonymous" value="No">
+                        <input type="checkbox" name="anonymous" value="Yes">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+                <ion-list ng-init="choice = 'A'">
+                  <ion-radio ng-model="choice" ng-value="'A'">Reveal Name</ion-radio>
+                  <ion-radio ng-model="choice" ng-value="'B'">Reveal Pin</ion-radio>
+                </ion-list>
                 <li class="item item-toggle">
                     Multiple Answers
                     <label class="toggle toggle-balanced">
@@ -51,23 +64,32 @@
                     Interest Areas
 
                     <div ng-repeat="interest in interests">
-                        <label class="checkbox">
+                        <label class="checkbox vlm">
                             <input type="checkbox" name="interests[]" value="{{ interest.term_id}}"> 
-                        </label>{{ interest.name}}
+                        </label>
+                        <span class="label vlm" ng-bind-html="interest.name"> </span>
                     </div>
 
                 </li>
 
             </ul>
-            <button class="button button-balanced" ng-click="createPoll()">Submit Poll</button>
+            <button class="button button-balanced button-block" ng-click="createPoll()">Submit Poll</button>
         </form>
 
         <div class="toClone">
-            <div class="row option">
-                <div class="col"><input type="file" name="option[1][image]" /></div>
-                <div class="col"><input type="text" name="option[1][text]" placeholder="Option Text"/></div>
+        <ul class="list">
+    <li class="item">
+         <div class="  option">
+                <div class=" "><input type="file" name="option[1][image]" class="custom-file-input" /></div>
+                 <label class="item item-input">
+    <input type="text"  name="option[1][text]" placeholder="Option Text">
+  </label>
+             
                 <div class="col"> <i class="icon ion-minus pull-right deleteOption"  ></i></div>
             </div>
         </div>
+    </li>
+</ul>
+         
     </ion-content>
 </ion-view>

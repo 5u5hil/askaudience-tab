@@ -198,13 +198,13 @@ button.radiuz-button {
 } 
 span.sub-menu-item {
     padding: 14px 15px;
-    background-color: #000000;
+    background-color: #0c0c0c;
     color: white; 
     font-weight: normal;
 }
 span.active-item {
     padding: 14px 15px; 
-    background-color: #000000;
+    background-color: #151515;
     color: white; 
     border-bottom: 2px solid #fff;
     font-weight: bold; 
@@ -253,7 +253,7 @@ a.celeb-name {
     height: 80px;
     width: 80px; 
     border: 3px solid #DCDCDC;
-    border-radius: 2px;
+    border-radius: 50%;
 }
 .celeb-img-detail{
     text-align: center;
@@ -1222,7 +1222,8 @@ a.autolinker {
     background-color: #3F5C9A !important;
 }
 .login-bg{ 
-    background: url('../img/login-bg.jpg') no-repeat;
+    /*background: url('../img/login-bg.jpg') no-repeat;*/
+    background-color: #d4d4d4;
     -webkit-background-size: 120% auto;;
 }
 .mb10{
@@ -1619,8 +1620,62 @@ a.autolinker {
     top: 26px !important; 
 }
 .custom-poll-card .item.item-avatar { 
-    padding: 32px 10px 0px 88px !important;
+    padding: 27px 10px 0px 88px !important;
 }
 .pl16 {
     padding-left: 16px;
 }
+.vlm {
+    vertical-align: middle;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+    content: 'Select an image';
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 5px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 8pt;
+    margin-right: 1px !important;
+    line-height: 19px;
+    vertical-align: middle;
+    margin-bottom: 4px;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.poll-listing-img img {
+    border-radius: 0px !important;
+}
+.no-one-line {
+    white-space: normal !important; 
+}
+.poll-listing-img h2  {
+    font-size: 14px !important;
+}
+.action-button {
+        height: 27px !important;
+    padding: 7px 10px !important;
+    line-height: 18px !important;
+    min-height: 30px !important;
+    font-size: 12px !important;
+ }
+ .edit-icon {
+    color: #ddd;
+    margin-left: 10px  !important;
+ }
+ .ml5 {
+    margin-left: 5px !important; 
+ }

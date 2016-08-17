@@ -310,6 +310,26 @@ angular.module('askaudience.controllers', [])
 
         .controller('userProfileCtrl', ['$scope', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
+                $scope.activePanCat = 'polls';
+                $scope.activePan =  'openPolls';
+
+                $scope.updatePan = function (tab) {
+                    $scope.activePan = tab; 
+                   if (tab == 'following' || tab == 'followers' || tab == 'profile') {
+                    $scope.activePanCat =  '';
+
+                   }
+                }
+                $scope.updateCat = function (tab) {
+                    if(tab == 'friends') {   
+                      $scope.activePan = 'allfrnd';
+                    }
+                    else if (tab == 'polls')  {
+
+                      $scope.activePan = 'openPolls';
+                    }
+                    $scope.activePanCat = tab;
+                }
                 // if (!$rootScope.isLoggedIn) {
                 //     $rootScope.$broadcast('showLoginModal', $scope, function () {
                 //         $ionicHistory.goBack(-1);

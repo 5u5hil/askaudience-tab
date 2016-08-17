@@ -1,7 +1,8 @@
 <ion-view>
  <ion-nav-title>
-       ASK AUDIENCE
+   
  </ion-nav-title>
+ 
     <ion-content >
      <div class="cover-item-wrapper cover-detail-wrapper">
             <div class="cover-item cover-item-detail" style="background-image:url(' img/bgp.png')">
@@ -10,60 +11,267 @@
                         <img ng-src="img/user-icon.png">
                     </div>
                     <div class="celeb-info-detail profile-user-detail">
-                        <h2 class="mb0 fs20">Swapnil Patwa</h2>
+                        <h2 class="mb0 fs20">Jigar Shah (1234) <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span></h2>
                         
                     </div>
                      <div class="wrapp-count mt10 row text-center">
-            <div class="col">
+            <a class="col" ng-click="updateCat('polls')">
               <div class="title">
-                0
+                2
               </div>
               <div class="title-cat">
                 Polls
               </div>
-            </div>
-            <div class="col">
+            </a>
+            <a class="col" ng-click="updatePan('following')">
               <div class="title">
                 17
               </div>
               <div class="title-cat">
                 Following
               </div>
-            </div>
-            <div class="col">
+            </a>
+            <a class="col" ng-click="updatePan('followers')">
               <div class="title">
                 43
               </div>
               <div class="title-cat">
-                Friends
+                Followers 
               </div>
-            </div>
-            <div class="col">
+            </a>
+            <a class="col" ng-click="updateCat('friends')">
               <div class="title">
                 18
               </div>
               <div class="title-cat">
-                Other
+                Friends
               </div>
-            </div>
+            </a>
         </div>
                 </div>
             </div>
            
-        </div>
- 
-        <div>
+        </div> 
+        <div ng-if="activePanCat == 'polls' " >
             <ion-scroll direction="x" class="item ion-sc">
-                <span ng-class="activePan == 'tab1' ? 'active-item' : 'sub-menu-item'"  ng-click="updatePan('tab1')">Tab 1</span>
-                <span ng-class="activePan == 'tab2' ? 'active-item' : 'sub-menu-item'"    ng-click="updatePan('tab2')">Tab 2</span>
-                <span ng-class="activePan == 'tab3' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('tab3')">Tab 3</span>
-                <span ng-class="activePan == 'tab4' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('tab4')">Tab 4</span>
+                <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'"  ng-click="updatePan('openPolls')">All Open</span>
+                <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('closedPolls')">Closed Polls</span>
+                <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"    ng-click="updatePan('privatePolls')">Private Polls</span>
+                <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('Anonymous')">Anonymous</span>
+                <span ng-class="activePan == 'nameRevealed' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('nameRevealed')">Name Revealed</span>
+            
+                <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('pinRevealed')">Pin Revealed</span>
+            
             
     
             </ion-scroll>
         </div>
+                <div ng-if="activePanCat == 'friends'" >
+            <ion-scroll direction="x" class="item ion-sc">
+      
+                <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('allfrnd')">Friends</span>
+            
+                <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('PendingRequest')">Pending Request</span>
+            
+                <span ng-class="activePan == 'rejected' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('rejected')">Rejected</span>
 
-    <span>
+                <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('myRequest')">My Requests</span>
+            
+    
+            </ion-scroll>
+        </div>
+        <div ng-if="activePan == 'openPolls'">
+                      <div class="list">
+
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
+                  <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
+                  <p>Started at: 12 Aug 2016</p>
+                </a> 
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
+                  <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
+                  <p>Started at: 14 Aug 2016</p>
+                   
+                </a> 
+            </div>
+        </div>
+        <div ng-if="activePan == 'privatePolls'">
+                      <div class="list">
+
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
+                  <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
+                  <p>Started at: 12 Aug 2016</p>
+                </a> 
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
+                  <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
+                  <p>Started at: 14 Aug 2016</p>
+                   
+                </a> 
+            </div>
+        </div>
+          <div ng-if="activePan == 'Anonymous'">
+                      <div class="list">
+
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
+                  <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
+                  <p>Started at: 12 Aug 2016</p>
+                </a> 
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
+                  <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
+                  <p>Started at: 14 Aug 2016</p>
+                   
+                </a> 
+            </div>
+        </div>
+          <div ng-if="activePan == 'nameRevealed'">
+                      <div class="list">
+
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
+                  <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
+                  <p>Started at: 12 Aug 2016</p>
+                </a> 
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
+                  <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
+                  <p>Started at: 14 Aug 2016</p>
+                   
+                </a> 
+            </div>
+        </div>
+          <div ng-if="activePan == 'pinRevealed'">
+                      <div class="list">
+
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
+                  <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
+                  <p>Started at: 12 Aug 2016</p>
+                </a> 
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
+                  <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
+                  <p>Started at: 14 Aug 2016</p>
+                   
+                </a> 
+            </div>
+        </div>
+          <div ng-if="activePan == 'closedPolls'">
+                      <div class="list">
+
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
+                  <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
+                  <p>Started at: 12 Aug 2016</p>
+                </a> 
+                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
+                  <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
+                  <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
+                  <p>Started at: 14 Aug 2016</p>
+                   
+                </a> 
+            </div>
+        </div>
+        <div ng-if="activePan == 'following'">
+ 
+
+              <div class="list">
+
+    <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Swapnil Patwa</h2>
+      <p class="mt10"> <input type="button" value="Unfollow" class=" button action-button button-positive"><input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+
+       
+    </a>
+
+        <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Chintan Lad</h2>
+      <p class="mt10"> <input type="button" value="Unfollow" class=" button action-button button-positive"><input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+
+       
+    </a>
+ 
+    
+</div>         
+        </div>
+        <div ng-if="activePan == 'followers'">
+             <div class="list">
+
+    <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Venkman</h2>
+      <p class="mt10"> <input type="button" value="View Poll" class=" button action-button button-positive"></p>
+       
+    </a>
+
+        <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Sushil Sudhakaran</h2>
+      <p class="mt10"> <input type="button" value="View Poll" class=" button action-button button-positive"></p>
+       
+    </a>
+</div>        
+        </div>
+        <div ng-if="activePan == 'allfrnd'">
+              <div class="list">
+
+    <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Venkman</h2>
+      <p class="mt10"> <input type="button" value="Unfriend" class=" button action-button button-positive"><input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+       
+    </a>
+
+    
+</div>       
+        </div>
+        <div ng-if="activePan == 'PendingRequest'">
+              <div class="list">
+
+    <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Venkman</h2>
+      <p class="mt10"> <input type="button" value="Confirm Friend" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-stable">
+      <input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+     
+    </a>
+
+    
+</div>       
+        </div>
+        <div ng-if="activePan == 'myRequest'">
+              <div class="list">
+
+    <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Swapnil Patwa</h2>
+      <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-stable">
+      <input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+     
+    </a>
+
+    
+</div>       
+        </div>
+        <div ng-if="activePan == 'rejected'">
+              <div class="list">
+
+    <a class="item item-avatar">
+      <img src="img/user-icon.png">
+      <h2>Venkman</h2>
+    <p class="mt10"><input type="button" value="View Poll" class=" button action-button button-positive  "></p>
+    </a>
+
+    
+</div>       
+        </div>
+    <div ng-if="activePan == 'profile'">
         <h4 class="content  profile-head double-padding-x">My Profile</h4>
       <form name="userProfile" id="updateUserForm" ng-submit="updateUser(userInfo)">
           <div class="list">
@@ -127,7 +335,7 @@
   <button class="button  w100 radiuz-primary line-h50" ng-disabled="changePwdForm.$invalid" >Change Password</button>
 </div> 
  </form>
-    </span>
+    </div>
  
     </ion-content>
 </ion-view>
