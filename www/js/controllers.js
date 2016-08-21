@@ -299,6 +299,7 @@ angular.module('askaudience.controllers', [])
                 };
             }
         ])
+
         .controller('HomeCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
             function ($scope, APIFactory, Loader, $rootScope) {
 
@@ -306,27 +307,39 @@ angular.module('askaudience.controllers', [])
             }
         ])
 
-
-
-        .controller('userProfileCtrl', ['$scope', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
-            function ($scope, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
+        .controller('userProfileCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
+            function ($scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
                 $scope.activePanCat = 'polls';
-                $scope.activePan =  'openPolls';
+                $scope.activePan = 'openPolls';
+                $scope.reveal = $stateParams.reveal;
+                $scope.uid = $stateParams.id;
+                if (!$rootScope.isLoggedIn)
+                    $scope.cid = -1;
+                else
+                    $scope.cid = LSFactory.get('user').ID;
+
+                APIFactory.getUser($stateParams.id).then(function (response) {
+                    Loader.hide();
+                    $scope.userInfo = response.data;
+                }, function (data) {
+                    Loader.hide();
+                    Loader.toast('Oops! something went wrong');
+                });
+
 
                 $scope.updatePan = function (tab) {
-                    $scope.activePan = tab; 
-                   if (tab == 'following' || tab == 'followers' || tab == 'profile') {
-                    $scope.activePanCat =  '';
+                    $scope.activePan = tab;
+                    if (tab == 'following' || tab == 'followers' || tab == 'profile') {
+                        $scope.activePanCat = '';
 
-                   }
+                    }
                 }
                 $scope.updateCat = function (tab) {
-                    if(tab == 'friends') {   
-                      $scope.activePan = 'allfrnd';
-                    }
-                    else if (tab == 'polls')  {
+                    if (tab == 'friends') {
+                        $scope.activePan = 'allfrnd';
+                    } else if (tab == 'polls') {
 
-                      $scope.activePan = 'openPolls';
+                        $scope.activePan = 'openPolls';
                     }
                     $scope.activePanCat = tab;
                 }
@@ -403,6 +416,7 @@ angular.module('askaudience.controllers', [])
                 }
             }
         ])
+
         .controller('pollsCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
                 Loader.show();
@@ -418,31 +432,41 @@ angular.module('askaudience.controllers', [])
                     Loader.hide();
                     Loader.toast('Oops! something went wrong. Please try later again');
                 })
-            }])
-        .controller('pollDetailsCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
-            function ($scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
-                Loader.show();
+            }
+        ])
 
+        .controller('pollDetailsCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$filter',
+            function ($scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $filter) {
+                $scope.participated = 'No';
+                Loader.show();
                 $scope.chart = [];
                 $scope.options = {thickness: 10};
                 APIFactory.pollDetails({'pid': $stateParams.id}).then(function (response) {
                     $scope.poll = response.data;
                     var participants = response.data.participants;
-//                    if (LSFactory.get('user'))
-//                        var participated = participants.filter({ID: LSFactory.get('user').ID});
-//                    else
-//                        var participated = 'No';
-//                    
-//                    console.log(participated);
+                    if (LSFactory.get('user')) {
+                        var found = jQuery.grep(participants, function (element, index) {
+                            return element.ID == LSFactory.get('user').ID;
+                        });
+                        if (found.length || (participants.indexOf(LSFactory.get('user').ID) > -1)) {
+                            $scope.participated = 'Yes';
+                        } else {
+                            $scope.participated = 'No';
+                        }
+                    } else {
+                        $scope.participated = 'No';
+                    }
+
                     angular.forEach(response.data.options, function (value, key) {
+                        value.number_of_votes = (value.number_of_votes == "" ? 0 : value.number_of_votes);
                         $scope.chart.push({'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key]});
-                    }); 
+                    });
                     Loader.hide();
                     window.dispatchEvent(new Event('resize'));
                 }, function (error) {
                     Loader.hide();
                     Loader.toast('Oops! something went wrong. Please try later again');
-                }); 
+                });
                 $scope.vote = function () {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -460,27 +484,33 @@ angular.module('askaudience.controllers', [])
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Submitting Your Vote ...');
                     APIFactory.vote(data).then(function (response) {
-
                         if (response.data.error) {
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
-
                             jQuery("form.vote").hide();
+                            angular.forEach(response.data, function (value, key) {
+                                value.number_of_votes = (value.number_of_votes == "" ? 0 : value.number_of_votes);
+                                $scope.chart.push({'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key]});
+                                $scope.$digest;
+                                window.dispatchEvent(new Event('resize'));
 
-
+                            });
                         }
-
                     });
                 }
 
-            }])
+            }
+        ])
+
         .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
 
                 Loader.show();
                 APIFactory.getInterests().then(function (response) {
                     $scope.interests = response.data;
+                    $scope.addOption();
+                    $scope.addOption();
                     Loader.hide();
                 }, function (error) {
                     Loader.hide();
@@ -524,4 +554,5 @@ angular.module('askaudience.controllers', [])
                     indexOptions();
                 }
 
-            }])
+            }
+        ])

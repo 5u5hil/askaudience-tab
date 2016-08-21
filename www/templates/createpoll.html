@@ -8,46 +8,30 @@
 
                 <li class="item item-input item-floating-label">
                     <span class="input-label">Question *</span>
-                    <input type="text" name="pollname" max="140" placeholder="Question, Max 140 Characters" required>
+                    <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
                 </li>
-             
+
                 <li class="item item-input">
                     <span class="input-label">Poll Image</span>
                     <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
                 </li>
 
-                <li  class="item item-toggle">
-                    Private Poll
-                    <label class="toggle toggle-assertive">
-                        <input type="hidden" name="private" value="No">
-                        <input type="checkbox" name="private" value="Yes">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
+                <li class="item item-input">
+                    <span class="input-label">Post As *</span>
+                    <select name="posted_as" required>
+                        <option value="1">Public</option>
+                        <option value="2">Private (Only Friends Can View)</option>
+                        <option value="3">Reveal Only Pin (Only Your Pin will be Revealed)</option>
+                        <option value="4">Anonymously</option>
+                    </select>
                 </li>
-                <li  class="item item-toggle">
-                    Post Anonymously 
-                    <label class="toggle toggle-assertive">
-                        <input type="hidden" name="anonymous" value="No">
-                        <input type="checkbox" name="anonymous" value="Yes">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </li>
-                <ion-list ng-init="choice = 'A'">
-                  <ion-radio ng-model="choice" ng-value="'A'">Reveal Name</ion-radio>
-                  <ion-radio ng-model="choice" ng-value="'B'">Reveal Pin</ion-radio>
-                </ion-list>
-                <li class="item item-toggle">
+
+
+
+                <li class="item">
                     Multiple Answers
-                    <label class="toggle toggle-balanced">
-                        <input type="hidden" name="multiple_answers" value="No">
+                    <label class="checkbox vlm pull-right">
                         <input type="checkbox" name="multiple_answers" value="Yes">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
                     </label>
                 </li>
                 <li class="item item-input">
@@ -55,10 +39,13 @@
                     <input type="date" name="valid_till" />
                 </li>
 
+
+
                 <li class="item options">
                     Add Options * (Minimum Two)
-                    <i class="icon ion-plus-round pull-right addOptions" ng-click="addOption()" ></i>
+                    <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()" ></i>
                 </li>
+
 
                 <li class="item">
                     Interest Areas
@@ -77,19 +64,18 @@
         </form>
 
         <div class="toClone">
-        <ul class="list">
-    <li class="item">
-         <div class="  option">
-                <div class=" "><input type="file" name="option[1][image]" class="custom-file-input" /></div>
-                 <label class="item item-input">
-    <input type="text"  name="option[1][text]" placeholder="Option Text">
-  </label>
-             
-                <div class="col"> <i class="icon ion-minus pull-right deleteOption"  ></i></div>
-            </div>
+            <ul class="list">
+                <li class="item">
+                    <div class="  option">
+                        <div class=" "><input type="file" name="option[1][image]" class="custom-file-input" /></div>
+                        <label class="item item-input">
+                            <input type="text"  name="option[1][text]" placeholder="Option Text">
+                        </label>
+                        <div class="col"> <i class="icon ion-ios-minus-outline pull-right deleteOption"  ></i></div>
+                    </div>   
+                </li>
+            </ul>
         </div>
-    </li>
-</ul>
-         
+
     </ion-content>
 </ion-view>

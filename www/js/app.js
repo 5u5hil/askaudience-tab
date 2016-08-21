@@ -20,14 +20,14 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                     }
                 } catch (e) {
                 }
-              $cordovaStatusbar.styleHex('#FF9800');
+                $cordovaStatusbar.styleHex('#FF9800');
 
             });
-        }) 
+        })
         .config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
             $ionicConfigProvider.tabs.position('bottom');
             $ionicConfigProvider.views.maxCache(0);
-            $ionicConfigProvider.backButton.text('');
+           // $ionicConfigProvider.backButton.text('');
 
             $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
 
@@ -65,7 +65,15 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                             }
                         }
                     })
-
+                    .state('app.user', {
+                        url: '/user/:id/:reveal',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/user-profile.html',
+                                controller: 'userProfileCtrl'
+                            }
+                        }
+                    })
                     .state('app.user-profile', {
                         url: '/user-profile',
                         views: {

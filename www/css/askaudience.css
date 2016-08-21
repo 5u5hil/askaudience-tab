@@ -1608,11 +1608,11 @@ a.autolinker {
     text-align: left;
 }*/
 .item-checkbox-img {
-  vertical-align: middle;
-  position: absolute !important;
-  top: 0px;
-  right: 15px;
-  height:100%;
+    vertical-align: middle;
+    position: absolute !important;
+    top: 0px;
+    right: 15px;
+    height:100%;
 }
 .option-checkbox { 
     position: absolute !important; 
@@ -1629,7 +1629,7 @@ a.autolinker {
     vertical-align: middle;
 }
 .custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
+    visibility: hidden;
 }
 .custom-file-input::before {
     content: 'Select an image';
@@ -1651,10 +1651,10 @@ a.autolinker {
     margin-bottom: 4px;
 }
 .custom-file-input:hover::before {
-  border-color: black;
+    border-color: black;
 }
 .custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 .poll-listing-img img {
     border-radius: 0px !important;
@@ -1666,16 +1666,19 @@ a.autolinker {
     font-size: 14px !important;
 }
 .action-button {
-        height: 27px !important;
+    height: 27px !important;
     padding: 7px 10px !important;
     line-height: 18px !important;
     min-height: 30px !important;
     font-size: 12px !important;
- }
- .edit-icon {
+}
+.edit-icon {
     color: #ddd;
     margin-left: 10px  !important;
- }
- .ml5 {
+}
+.ml5 {
     margin-left: 5px !important; 
- }
+}
+.options .item {
+    margin: 10px 0;
+}

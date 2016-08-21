@@ -7,10 +7,10 @@
             <div class="cover-item cover-item-detail" style="background-image:url(' img/bgp.png')">
                 <div class=" ">
                     <div class="celeb-img-detail profile-img-detail">
-                        <img ng-src="img/user-icon.png">
+                        <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
                     </div>
                     <div class="celeb-info-detail profile-user-detail">
-                        <h2 class="mb0 fs20">Jigar Shah</h2>
+                        <h2 class="mb0 fs20">{{ userInfo.display_name }}</h2>
                         
                     </div>
                      <div class="wrapp-count mt10 row text-center">

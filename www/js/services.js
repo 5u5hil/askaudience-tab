@@ -1,12 +1,16 @@
 angular.module('askaudience.services', [])
         .factory('APIFactory', ['$http', '$httpParamSerializer', function ($http, $httpParamSerializer) {
                 var api = {
+                    getUser: function (data) {
+                        var req = {method: 'GET', url: domain + 'getUser&id=' + data};
+                        return $http(req);
+                    },
                     vote: function (data) {
                         var req = {method: 'POST', url: domain + 'vote', headers: {'Content-Type': undefined}, data: data};
                         return $http(req);
                     },
                     pollDetails: function (data) {
-                        var req = {method: 'GET', url: domain + 'pollDetails', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        var req = {method: 'POST', url: domain + 'pollDetails', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
                     follow: function (data) {

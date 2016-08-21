@@ -5,35 +5,36 @@
     <ion-content class="has-footer">
         <div class="card custom-poll-card">
             <div class="item item-avatar">
-                <img ng-src="{{poll.author.img}}" class="poll-img" >
-                <h2 class="pull-left">{{ poll.author.display_name}}</h2>
+                <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
+                <h2 class="pull-left" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
+                <h2 class="pull-left" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
+                <h2 class="pull-left" ng-if="poll.posted_as == 4">Anonymous</h2>
+                <p class="pull-right">{{poll.date}}</p>
             </div>
             <div class="item item-body p0">
 
                 <div class="poll-img-wrapper" ng-if="poll.img != ''"><img ng-src="{{poll.img}}" class="full-image" alt=""></div>
                 <p class="poll-question bold" ng-bind-html="poll.title"></p>
 
-                <h4 class="pl16">Choose Your Option</h4>
-                <form class="vote">
+                <form class="vote" ng-if="participated == 'No'">
 
-       
                     <ul class="options">
-                     
+
                         <li ng-repeat="opt in poll.options">
                             <label class="checkbox w100">
                                 <ion-item class="item item-avatar">
-                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image !== ''" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
-                               <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
+                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
+                                    <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
                                 </ion-item>
-                                 
+
                             </label>
 
                         </li>
                     </ul>
                     <input type="hidden" name="pollid" value="{{ poll.id}}" />
                     <div class="padding-top txt-center">
-                    <button class="button button-balanced" ng-click="vote()">Submit</button>
-                        
+                        <button class="button button-balanced" ng-click="vote()">Submit</button>
+
                     </div>
                 </form>
 
