@@ -1,10 +1,23 @@
+var a;
+
 angular.module('askaudience.controllers', [])
         .controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover', 'APIFactory', 'Loader', '$rootScope', 'LSFactory', '$ionicActionSheet',
-            '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory',
+            '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing',
             function ($scope, $ionicModal, $timeout, $ionicPopover, APIFactory, Loader, $rootScope, LSFactory, $ionicActionSheet, $cordovaOauth, $ionicPopup,
-                    $state, $ionicHistory, $http, CommonFactory) {
+                    $state, $ionicHistory, $http, CommonFactory, $cordovaSocialSharing) {
 
                 $rootScope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"];
+
+                $rootScope.socialShare = function (message, subject, file) {
+                    var link = domain + "socialshare";
+                    $cordovaSocialSharing.share(message, subject, file, link) // Share via native share sheet
+                            .then(function (result) {
+                                Loader.toast('Shared Successfully');
+                            }, function (err) {
+                                Loader.toast('Ooops ... Looks like something went wrong!');
+
+                            });
+                }
 
                 $scope.updateUser = function () {
                     if (LSFactory.get('user')) {
@@ -309,18 +322,69 @@ angular.module('askaudience.controllers', [])
 
         .controller('userProfileCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
+
+                Loader.show();
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;
                 $scope.uid = $stateParams.id;
+                $scope.following = 'No';
+                $scope.friends = 'No';
+                $scope.friend_requested = 'No';
+
                 if (!$rootScope.isLoggedIn)
                     $scope.cid = -1;
                 else
                     $scope.cid = LSFactory.get('user').ID;
 
                 APIFactory.getUser($stateParams.id).then(function (response) {
-                    Loader.hide();
                     $scope.userInfo = response.data;
+
+
+                    if (LSFactory.get('user')) {
+
+                        try {
+                            var following = jQuery.grep(response.data.followers, function (element, index) {
+                                return element.user.ID == LSFactory.get('user').ID;
+                            });
+                            if (following.length || (following.indexOf(LSFactory.get('user').ID) > -1)) {
+                                $scope.following = 'Yes';
+                            }
+                        } catch (err) {
+
+                        }
+
+                        try {
+                            var friends = jQuery.grep(response.data.friends, function (element, index) {
+                                return element.ID == LSFactory.get('user').ID;
+                            });
+                            if (friends.length || (friends.indexOf(LSFactory.get('user').ID) > -1)) {
+                                $scope.friends = 'Yes';
+                            }
+
+                        } catch (err) {
+
+                        }
+
+                        try {
+
+                            var friend_requested = jQuery.grep(response.data.friend_requests, function (element, index) {
+                                return element.ID == LSFactory.get('user').ID;
+                            });
+                            if (friend_requested.length || (friend_requested.indexOf(LSFactory.get('user').ID) > -1)) {
+                                $scope.friend_requested = 'Yes';
+                            }
+                        } catch (err) {
+
+                        }
+
+
+                    }
+
+
+                    Loader.hide();
+
+
                 }, function (data) {
                     Loader.hide();
                     Loader.toast('Oops! something went wrong');
@@ -343,6 +407,60 @@ angular.module('askaudience.controllers', [])
                     }
                     $scope.activePanCat = tab;
                 }
+
+
+                $scope.follow = function () {
+                    if (!$rootScope.isLoggedIn) {
+                        $rootScope.$broadcast('showLoginModal', $scope, function () {
+                            $ionicHistory.goBack(-1);
+                        }, function () {
+                            follow();
+                        });
+                    } else {
+                        follow();
+                    }
+                }
+
+                function follow() {
+                    Loader.show();
+                    APIFactory.follow({uid: $scope.uid, cid: LSFactory.get('user').ID, following: $scope.reveal}).then(function (response) {
+                        if (response.data.error) {
+                            Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                        } else {
+                            Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                            $scope.following = 'Yes';
+                            $scope.userInfo.followers = response.data.followers;
+                        }
+                    });
+                }
+
+
+                $scope.unfollow = function () {
+                    if (!$rootScope.isLoggedIn) {
+                        $rootScope.$broadcast('showLoginModal', $scope, function () {
+                            $ionicHistory.goBack(-1);
+                        }, function () {
+                            unfollow();
+                        });
+                    } else {
+                        unfollow();
+                    }
+                }
+
+                function unfollow() {
+                    Loader.show();
+                    APIFactory.unfollow({uid: $scope.uid, cid: LSFactory.get('user').ID}).then(function (response) {
+                        if (response.data.error) {
+                            Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                        } else {
+                            Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                            $scope.following = 'No';
+                            $scope.userInfo.followers = response.data.followers;
+                        }
+                    });
+                }
+
+
                 // if (!$rootScope.isLoggedIn) {
                 //     $rootScope.$broadcast('showLoginModal', $scope, function () {
                 //         $ionicHistory.goBack(-1);
@@ -450,11 +568,7 @@ angular.module('askaudience.controllers', [])
                         });
                         if (found.length || (participants.indexOf(LSFactory.get('user').ID) > -1)) {
                             $scope.participated = 'Yes';
-                        } else {
-                            $scope.participated = 'No';
                         }
-                    } else {
-                        $scope.participated = 'No';
                     }
 
                     angular.forEach(response.data.options, function (value, key) {

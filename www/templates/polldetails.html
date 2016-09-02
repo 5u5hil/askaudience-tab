@@ -4,11 +4,15 @@
     </ion-nav-title>
     <ion-content class="has-footer">
         <div class="card custom-poll-card">
-            <div class="item item-avatar">
+            <div  ng-if="poll.posted_as != 4" class="item item-avatar" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
                 <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
                 <h2 class="pull-left" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
                 <h2 class="pull-left" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
-                <h2 class="pull-left" ng-if="poll.posted_as == 4">Anonymous</h2>
+                <p class="pull-right">{{poll.date}}</p>
+            </div>
+            <div  ng-if="poll.posted_as == 4" class="item item-avatar">
+                <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
+                <h2 class="pull-left">Anonymous</h2>
                 <p class="pull-right">{{poll.date}}</p>
             </div>
             <div class="item item-body p0">
@@ -22,7 +26,7 @@
 
                         <li ng-repeat="opt in poll.options">
                             <label class="checkbox w100">
-                                <ion-item class="item item-avatar">
+                                <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}">
                                     <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
                                     <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
                                 </ion-item>
@@ -41,7 +45,7 @@
                 <pie-chart data="chart" id="chart" options="options"></pie-chart>
             </div>
             <div class="item tabs tabs-secondary tabs-icon-left action-button-wrapper">
-                <a class="tab-item" href="#">
+                <a class="tab-item" href="#" ng-click="socialShare(poll.title, poll.title, poll.img)">
                     <i class="icon ion-share"></i>
                     Share
                 </a>

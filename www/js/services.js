@@ -14,7 +14,11 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     follow: function (data) {
-                        var req = {method: 'GET', url: domain + 'follow', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        var req = {method: 'POST', url: domain + 'follow', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    unfollow: function (data) {
+                        var req = {method: 'POST', url: domain + 'unfollow', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
                     getInterests: function () {

@@ -18,6 +18,7 @@
 .mt10{
     margin-top: 10px !important;
 }
+
 a.menu-item {
     color: #424242;
     text-transform: UPPERCASE;
@@ -85,7 +86,7 @@ span.badge.custom-badge {
     color: #EC1D23 !important;
 }
 .cover-item-wrapper{
-    max-height: 250px;
+    /*  max-height: 250px; */
     width: 100%;
     overflow: hidden !important;
 } 
@@ -246,9 +247,9 @@ a.celeb-name {
     width: 100%;
     background-size: cover;
 }
-.cover-detail-wrapper.cover-item-wrapper {
+/*.cover-detail-wrapper.cover-item-wrapper {
     max-height: 200px;
-}
+}*/
 .celeb-img-detail img{
     height: 80px;
     width: 80px; 
@@ -1535,8 +1536,10 @@ a.autolinker {
     border-color: #33cd5f !important;
     font-size: 12px;
 }
-.poll-img-wrapper { 
-    max-width: 100%;
+.poll-img-wrapper.listing { 
+    width: 40%;
+    margin: 10px;
+    float: left;
 }
 .poll-img-wrapper img{ 
     height: auto;
@@ -1681,4 +1684,10 @@ a.autolinker {
 }
 .options .item {
     margin: 10px 0;
+}
+
+.connections button {
+    padding: 5px;
+    font-size: 10px;
+    width: 150px;
 }

@@ -1,0 +1,868 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'update',
+1 verbose cli   '-self' ]
+2 info using npm@3.3.12
+3 info using node@v5.2.0
+4 silly mapToRegistry name gulp
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry https://registry.npmjs.org/
+7 silly mapToRegistry uri https://registry.npmjs.org/gulp
+8 silly mapToRegistry name gulp-sass
+9 silly mapToRegistry using default registry
+10 silly mapToRegistry registry https://registry.npmjs.org/
+11 silly mapToRegistry uri https://registry.npmjs.org/gulp-sass
+12 silly mapToRegistry name gulp-concat
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat
+16 silly mapToRegistry name gulp-minify-css
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry uri https://registry.npmjs.org/gulp-minify-css
+20 silly mapToRegistry name gulp-rename
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/gulp-rename
+24 silly mapToRegistry name bower
+25 silly mapToRegistry using default registry
+26 silly mapToRegistry registry https://registry.npmjs.org/
+27 silly mapToRegistry uri https://registry.npmjs.org/bower
+28 silly mapToRegistry name gulp-util
+29 silly mapToRegistry using default registry
+30 silly mapToRegistry registry https://registry.npmjs.org/
+31 silly mapToRegistry uri https://registry.npmjs.org/gulp-util
+32 silly mapToRegistry name shelljs
+33 silly mapToRegistry using default registry
+34 silly mapToRegistry registry https://registry.npmjs.org/
+35 silly mapToRegistry uri https://registry.npmjs.org/shelljs
+36 verbose request uri https://registry.npmjs.org/gulp-concat
+37 verbose request no auth needed
+38 info attempt registry request try #1 at 12:40:15 AM
+39 verbose request id e81f6daf568e5e3e
+40 verbose etag "89U4L3N9R2PJEBUTQA1C573NO"
+41 http request GET https://registry.npmjs.org/gulp-concat
+42 verbose request uri https://registry.npmjs.org/gulp
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 12:40:16 AM
+45 verbose etag "64CIRATG14RVEWSBWNZXSBR0E"
+46 http request GET https://registry.npmjs.org/gulp
+47 verbose request uri https://registry.npmjs.org/gulp-rename
+48 verbose request no auth needed
+49 info attempt registry request try #1 at 12:40:16 AM
+50 verbose etag "4EMP99QD2ZQD3AX60IFXCJZMU"
+51 http request GET https://registry.npmjs.org/gulp-rename
+52 verbose request uri https://registry.npmjs.org/gulp-sass
+53 verbose request no auth needed
+54 info attempt registry request try #1 at 12:40:16 AM
+55 verbose etag "EV76KSB9BBA4SO7PERYL13W95"
+56 http request GET https://registry.npmjs.org/gulp-sass
+57 verbose request uri https://registry.npmjs.org/gulp-minify-css
+58 verbose request no auth needed
+59 info attempt registry request try #1 at 12:40:16 AM
+60 verbose etag "905YZ77Q1IXWF9SJD64KO8OMO"
+61 http request GET https://registry.npmjs.org/gulp-minify-css
+62 verbose request uri https://registry.npmjs.org/bower
+63 verbose request no auth needed
+64 info attempt registry request try #1 at 12:40:17 AM
+65 verbose etag "5YINSV2OQWNYCHXM1L0UAUAUC"
+66 http request GET https://registry.npmjs.org/bower
+67 verbose request uri https://registry.npmjs.org/shelljs
+68 verbose request no auth needed
+69 info attempt registry request try #1 at 12:40:17 AM
+70 verbose etag "ECED7C19XTRHPH7SRZO7ONAZR"
+71 http request GET https://registry.npmjs.org/shelljs
+72 verbose request uri https://registry.npmjs.org/gulp-util
+73 verbose request no auth needed
+74 info attempt registry request try #1 at 12:40:17 AM
+75 verbose etag "25IRZM5WN6Z07Z67X4W2DIUXU"
+76 http request GET https://registry.npmjs.org/gulp-util
+77 http 200 https://registry.npmjs.org/gulp-sass
+78 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+78 verbose headers   etag: '"8VFGCX69RZIZD3HQFCOXWQYVT"',
+78 verbose headers   'content-type': 'application/json',
+78 verbose headers   'content-encoding': 'gzip',
+78 verbose headers   'cache-control': 'max-age=300',
+78 verbose headers   'content-length': '9811',
+78 verbose headers   'accept-ranges': 'bytes',
+78 verbose headers   date: 'Wed, 31 Aug 2016 19:10:18 GMT',
+78 verbose headers   via: '1.1 varnish',
+78 verbose headers   age: '261',
+78 verbose headers   connection: 'keep-alive',
+78 verbose headers   'x-served-by': 'cache-sin6922-SIN',
+78 verbose headers   'x-cache': 'HIT',
+78 verbose headers   'x-cache-hits': '86',
+78 verbose headers   'x-timer': 'S1472670618.771457,VS0,VE0',
+78 verbose headers   vary: 'Accept-Encoding' }
+79 silly get cb [ 200,
+79 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+79 silly get     etag: '"8VFGCX69RZIZD3HQFCOXWQYVT"',
+79 silly get     'content-type': 'application/json',
+79 silly get     'content-encoding': 'gzip',
+79 silly get     'cache-control': 'max-age=300',
+79 silly get     'content-length': '9811',
+79 silly get     'accept-ranges': 'bytes',
+79 silly get     date: 'Wed, 31 Aug 2016 19:10:18 GMT',
+79 silly get     via: '1.1 varnish',
+79 silly get     age: '261',
+79 silly get     connection: 'keep-alive',
+79 silly get     'x-served-by': 'cache-sin6922-SIN',
+79 silly get     'x-cache': 'HIT',
+79 silly get     'x-cache-hits': '86',
+79 silly get     'x-timer': 'S1472670618.771457,VS0,VE0',
+79 silly get     vary: 'Accept-Encoding' } ]
+80 verbose get saving gulp-sass to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-sass\.cache.json
+81 http 200 https://registry.npmjs.org/gulp-rename
+82 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+82 verbose headers   etag: '"A9F7CBER1J6I8LLHYB6ASZFDC"',
+82 verbose headers   'content-type': 'application/json',
+82 verbose headers   'content-encoding': 'gzip',
+82 verbose headers   'cache-control': 'max-age=300',
+82 verbose headers   'content-length': '4235',
+82 verbose headers   'accept-ranges': 'bytes',
+82 verbose headers   date: 'Wed, 31 Aug 2016 19:10:24 GMT',
+82 verbose headers   via: '1.1 varnish',
+82 verbose headers   age: '0',
+82 verbose headers   connection: 'keep-alive',
+82 verbose headers   'x-served-by': 'cache-sin6922-SIN',
+82 verbose headers   'x-cache': 'HIT',
+82 verbose headers   'x-cache-hits': '1',
+82 verbose headers   'x-timer': 'S1472670623.256604,VS0,VE879',
+82 verbose headers   vary: 'Accept-Encoding' }
+83 silly get cb [ 200,
+83 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+83 silly get     etag: '"A9F7CBER1J6I8LLHYB6ASZFDC"',
+83 silly get     'content-type': 'application/json',
+83 silly get     'content-encoding': 'gzip',
+83 silly get     'cache-control': 'max-age=300',
+83 silly get     'content-length': '4235',
+83 silly get     'accept-ranges': 'bytes',
+83 silly get     date: 'Wed, 31 Aug 2016 19:10:24 GMT',
+83 silly get     via: '1.1 varnish',
+83 silly get     age: '0',
+83 silly get     connection: 'keep-alive',
+83 silly get     'x-served-by': 'cache-sin6922-SIN',
+83 silly get     'x-cache': 'HIT',
+83 silly get     'x-cache-hits': '1',
+83 silly get     'x-timer': 'S1472670623.256604,VS0,VE879',
+83 silly get     vary: 'Accept-Encoding' } ]
+84 verbose get saving gulp-rename to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-rename\.cache.json
+85 http 200 https://registry.npmjs.org/gulp-concat
+86 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+86 verbose headers   etag: '"116HPIW08P8K2YOCD5X90H5DE"',
+86 verbose headers   'content-type': 'application/json',
+86 verbose headers   'content-encoding': 'gzip',
+86 verbose headers   'cache-control': 'max-age=300',
+86 verbose headers   'content-length': '7849',
+86 verbose headers   'accept-ranges': 'bytes',
+86 verbose headers   date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+86 verbose headers   via: '1.1 varnish',
+86 verbose headers   age: '81',
+86 verbose headers   connection: 'keep-alive',
+86 verbose headers   'x-served-by': 'cache-sin6926-SIN',
+86 verbose headers   'x-cache': 'HIT',
+86 verbose headers   'x-cache-hits': '1',
+86 verbose headers   'x-timer': 'S1472670623.190135,VS0,VE0',
+86 verbose headers   vary: 'Accept-Encoding' }
+87 silly get cb [ 200,
+87 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+87 silly get     etag: '"116HPIW08P8K2YOCD5X90H5DE"',
+87 silly get     'content-type': 'application/json',
+87 silly get     'content-encoding': 'gzip',
+87 silly get     'cache-control': 'max-age=300',
+87 silly get     'content-length': '7849',
+87 silly get     'accept-ranges': 'bytes',
+87 silly get     date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+87 silly get     via: '1.1 varnish',
+87 silly get     age: '81',
+87 silly get     connection: 'keep-alive',
+87 silly get     'x-served-by': 'cache-sin6926-SIN',
+87 silly get     'x-cache': 'HIT',
+87 silly get     'x-cache-hits': '1',
+87 silly get     'x-timer': 'S1472670623.190135,VS0,VE0',
+87 silly get     vary: 'Accept-Encoding' } ]
+88 verbose get saving gulp-concat to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-concat\.cache.json
+89 http 304 https://registry.npmjs.org/shelljs
+90 verbose headers { date: 'Wed, 31 Aug 2016 19:10:24 GMT',
+90 verbose headers   via: '1.1 varnish',
+90 verbose headers   'cache-control': 'max-age=300',
+90 verbose headers   etag: '"ECED7C19XTRHPH7SRZO7ONAZR"',
+90 verbose headers   age: '241',
+90 verbose headers   connection: 'keep-alive',
+90 verbose headers   'x-served-by': 'cache-sin6922-SIN',
+90 verbose headers   'x-cache': 'HIT',
+90 verbose headers   'x-cache-hits': '7',
+90 verbose headers   'x-timer': 'S1472670624.498531,VS0,VE0',
+90 verbose headers   vary: 'Accept-Encoding' }
+91 silly get cb [ 304,
+91 silly get   { date: 'Wed, 31 Aug 2016 19:10:24 GMT',
+91 silly get     via: '1.1 varnish',
+91 silly get     'cache-control': 'max-age=300',
+91 silly get     etag: '"ECED7C19XTRHPH7SRZO7ONAZR"',
+91 silly get     age: '241',
+91 silly get     connection: 'keep-alive',
+91 silly get     'x-served-by': 'cache-sin6922-SIN',
+91 silly get     'x-cache': 'HIT',
+91 silly get     'x-cache-hits': '7',
+91 silly get     'x-timer': 'S1472670624.498531,VS0,VE0',
+91 silly get     vary: 'Accept-Encoding' } ]
+92 verbose etag https://registry.npmjs.org/shelljs from cache
+93 verbose get saving shelljs to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\shelljs\.cache.json
+94 http 200 https://registry.npmjs.org/gulp-util
+95 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+95 verbose headers   etag: '"AL94JPG3R56EMTVC4NPOX8HOC"',
+95 verbose headers   'content-type': 'application/json',
+95 verbose headers   'content-encoding': 'gzip',
+95 verbose headers   'cache-control': 'max-age=300',
+95 verbose headers   'content-length': '9212',
+95 verbose headers   'accept-ranges': 'bytes',
+95 verbose headers   date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+95 verbose headers   via: '1.1 varnish',
+95 verbose headers   age: '121',
+95 verbose headers   connection: 'keep-alive',
+95 verbose headers   'x-served-by': 'cache-sin6926-SIN',
+95 verbose headers   'x-cache': 'HIT',
+95 verbose headers   'x-cache-hits': '2',
+95 verbose headers   'x-timer': 'S1472670623.595183,VS0,VE0',
+95 verbose headers   vary: 'Accept-Encoding' }
+96 silly get cb [ 200,
+96 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+96 silly get     etag: '"AL94JPG3R56EMTVC4NPOX8HOC"',
+96 silly get     'content-type': 'application/json',
+96 silly get     'content-encoding': 'gzip',
+96 silly get     'cache-control': 'max-age=300',
+96 silly get     'content-length': '9212',
+96 silly get     'accept-ranges': 'bytes',
+96 silly get     date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+96 silly get     via: '1.1 varnish',
+96 silly get     age: '121',
+96 silly get     connection: 'keep-alive',
+96 silly get     'x-served-by': 'cache-sin6926-SIN',
+96 silly get     'x-cache': 'HIT',
+96 silly get     'x-cache-hits': '2',
+96 silly get     'x-timer': 'S1472670623.595183,VS0,VE0',
+96 silly get     vary: 'Accept-Encoding' } ]
+97 verbose get saving gulp-util to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-util\.cache.json
+98 http 200 https://registry.npmjs.org/bower
+99 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+99 verbose headers   etag: '"808VH4NLZGEOGM9STWDN012D5"',
+99 verbose headers   'content-type': 'application/json',
+99 verbose headers   'content-encoding': 'gzip',
+99 verbose headers   'cache-control': 'max-age=300',
+99 verbose headers   'content-length': '20617',
+99 verbose headers   'accept-ranges': 'bytes',
+99 verbose headers   date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+99 verbose headers   via: '1.1 varnish',
+99 verbose headers   age: '52',
+99 verbose headers   connection: 'keep-alive',
+99 verbose headers   'x-served-by': 'cache-sin6922-SIN',
+99 verbose headers   'x-cache': 'HIT',
+99 verbose headers   'x-cache-hits': '1',
+99 verbose headers   'x-timer': 'S1472670623.556808,VS0,VE0',
+99 verbose headers   vary: 'Accept-Encoding' }
+100 silly get cb [ 200,
+100 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+100 silly get     etag: '"808VH4NLZGEOGM9STWDN012D5"',
+100 silly get     'content-type': 'application/json',
+100 silly get     'content-encoding': 'gzip',
+100 silly get     'cache-control': 'max-age=300',
+100 silly get     'content-length': '20617',
+100 silly get     'accept-ranges': 'bytes',
+100 silly get     date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+100 silly get     via: '1.1 varnish',
+100 silly get     age: '52',
+100 silly get     connection: 'keep-alive',
+100 silly get     'x-served-by': 'cache-sin6922-SIN',
+100 silly get     'x-cache': 'HIT',
+100 silly get     'x-cache-hits': '1',
+100 silly get     'x-timer': 'S1472670623.556808,VS0,VE0',
+100 silly get     vary: 'Accept-Encoding' } ]
+101 verbose get saving bower to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\bower\.cache.json
+102 http 200 https://registry.npmjs.org/gulp-minify-css
+103 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+103 verbose headers   etag: '"5F0C2OF716X7MZNDFJURVMP5W"',
+103 verbose headers   'content-type': 'application/json',
+103 verbose headers   'content-encoding': 'gzip',
+103 verbose headers   'cache-control': 'max-age=300',
+103 verbose headers   'content-length': '9076',
+103 verbose headers   'accept-ranges': 'bytes',
+103 verbose headers   date: 'Wed, 31 Aug 2016 19:10:24 GMT',
+103 verbose headers   via: '1.1 varnish',
+103 verbose headers   age: '268',
+103 verbose headers   connection: 'keep-alive',
+103 verbose headers   'x-served-by': 'cache-sin6921-SIN',
+103 verbose headers   'x-cache': 'HIT',
+103 verbose headers   'x-cache-hits': '47',
+103 verbose headers   'x-timer': 'S1472670624.489397,VS0,VE0',
+103 verbose headers   vary: 'Accept-Encoding' }
+104 silly get cb [ 200,
+104 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+104 silly get     etag: '"5F0C2OF716X7MZNDFJURVMP5W"',
+104 silly get     'content-type': 'application/json',
+104 silly get     'content-encoding': 'gzip',
+104 silly get     'cache-control': 'max-age=300',
+104 silly get     'content-length': '9076',
+104 silly get     'accept-ranges': 'bytes',
+104 silly get     date: 'Wed, 31 Aug 2016 19:10:24 GMT',
+104 silly get     via: '1.1 varnish',
+104 silly get     age: '268',
+104 silly get     connection: 'keep-alive',
+104 silly get     'x-served-by': 'cache-sin6921-SIN',
+104 silly get     'x-cache': 'HIT',
+104 silly get     'x-cache-hits': '47',
+104 silly get     'x-timer': 'S1472670624.489397,VS0,VE0',
+104 silly get     vary: 'Accept-Encoding' } ]
+105 verbose get saving gulp-minify-css to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-minify-css\.cache.json
+106 http 200 https://registry.npmjs.org/gulp
+107 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+107 verbose headers   etag: '"7AI9QCVC7L3W4PF09T1X0Q7WQ"',
+107 verbose headers   'content-type': 'application/json',
+107 verbose headers   'content-encoding': 'gzip',
+107 verbose headers   'cache-control': 'max-age=300',
+107 verbose headers   'content-length': '18838',
+107 verbose headers   'accept-ranges': 'bytes',
+107 verbose headers   date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+107 verbose headers   via: '1.1 varnish',
+107 verbose headers   age: '214',
+107 verbose headers   connection: 'keep-alive',
+107 verbose headers   'x-served-by': 'cache-sin6926-SIN',
+107 verbose headers   'x-cache': 'HIT',
+107 verbose headers   'x-cache-hits': '4',
+107 verbose headers   'x-timer': 'S1472670623.599203,VS0,VE0',
+107 verbose headers   vary: 'Accept-Encoding' }
+108 silly get cb [ 200,
+108 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+108 silly get     etag: '"7AI9QCVC7L3W4PF09T1X0Q7WQ"',
+108 silly get     'content-type': 'application/json',
+108 silly get     'content-encoding': 'gzip',
+108 silly get     'cache-control': 'max-age=300',
+108 silly get     'content-length': '18838',
+108 silly get     'accept-ranges': 'bytes',
+108 silly get     date: 'Wed, 31 Aug 2016 19:10:23 GMT',
+108 silly get     via: '1.1 varnish',
+108 silly get     age: '214',
+108 silly get     connection: 'keep-alive',
+108 silly get     'x-served-by': 'cache-sin6926-SIN',
+108 silly get     'x-cache': 'HIT',
+108 silly get     'x-cache-hits': '4',
+108 silly get     'x-timer': 'S1472670623.599203,VS0,VE0',
+108 silly get     vary: 'Accept-Encoding' } ]
+109 verbose get saving gulp to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp\.cache.json
+110 info outdated updating [ { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'bower',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '1.7.9',
+110 info outdated     latest: '1.7.9',
+110 info outdated     req: '^1.3.3',
+110 info outdated     what: 'bower@1.7.9' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'gulp',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '3.9.1',
+110 info outdated     latest: '3.9.1',
+110 info outdated     req: '^3.5.6',
+110 info outdated     what: 'gulp@3.9.1' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'gulp-concat',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '2.6.0',
+110 info outdated     latest: '2.6.0',
+110 info outdated     req: '^2.2.0',
+110 info outdated     what: 'gulp-concat@2.6.0' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'gulp-minify-css',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '0.3.13',
+110 info outdated     latest: '1.2.4',
+110 info outdated     req: '^0.3.0',
+110 info outdated     what: 'gulp-minify-css@0.3.13' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'gulp-rename',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '1.2.2',
+110 info outdated     latest: '1.2.2',
+110 info outdated     req: '^1.2.0',
+110 info outdated     what: 'gulp-rename@1.2.2' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'gulp-sass',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '2.3.2',
+110 info outdated     latest: '2.3.2',
+110 info outdated     req: '^2.0.4',
+110 info outdated     what: 'gulp-sass@2.3.2' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'gulp-util',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '2.2.20',
+110 info outdated     latest: '3.0.7',
+110 info outdated     req: '^2.2.14',
+110 info outdated     what: 'gulp-util@2.2.20' },
+110 info outdated   { dep:
+110 info outdated      { package: [Object],
+110 info outdated        path: 'D:\\askaudience-tab',
+110 info outdated        parent: [Object],
+110 info outdated        isMissing: true },
+110 info outdated     depname: 'shelljs',
+110 info outdated     current: undefined,
+110 info outdated     wanted: '0.3.0',
+110 info outdated     latest: '0.7.4',
+110 info outdated     req: '^0.3.0',
+110 info outdated     what: 'shelljs@0.3.0' } ]
+111 silly loadCurrentTree Starting
+112 silly install loadCurrentTree
+113 silly install readLocalPackageData
+114 silly fetchPackageMetaData bower@1.7.9
+115 silly fetchPackageMetaData gulp@3.9.1
+116 silly fetchPackageMetaData gulp-concat@2.6.0
+117 silly fetchPackageMetaData gulp-minify-css@0.3.13
+118 silly fetchPackageMetaData gulp-rename@1.2.2
+119 silly fetchPackageMetaData gulp-sass@2.3.2
+120 silly fetchPackageMetaData gulp-util@2.2.20
+121 silly fetchPackageMetaData shelljs@0.3.0
+122 silly fetchNamedPackageData bower
+123 silly mapToRegistry name bower
+124 silly mapToRegistry using default registry
+125 silly mapToRegistry registry https://registry.npmjs.org/
+126 silly mapToRegistry uri https://registry.npmjs.org/bower
+127 silly fetchNamedPackageData gulp
+128 silly mapToRegistry name gulp
+129 silly mapToRegistry using default registry
+130 silly mapToRegistry registry https://registry.npmjs.org/
+131 silly mapToRegistry uri https://registry.npmjs.org/gulp
+132 silly fetchNamedPackageData gulp-concat
+133 silly mapToRegistry name gulp-concat
+134 silly mapToRegistry using default registry
+135 silly mapToRegistry registry https://registry.npmjs.org/
+136 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat
+137 silly fetchNamedPackageData gulp-minify-css
+138 silly mapToRegistry name gulp-minify-css
+139 silly mapToRegistry using default registry
+140 silly mapToRegistry registry https://registry.npmjs.org/
+141 silly mapToRegistry uri https://registry.npmjs.org/gulp-minify-css
+142 silly fetchNamedPackageData gulp-rename
+143 silly mapToRegistry name gulp-rename
+144 silly mapToRegistry using default registry
+145 silly mapToRegistry registry https://registry.npmjs.org/
+146 silly mapToRegistry uri https://registry.npmjs.org/gulp-rename
+147 silly fetchNamedPackageData gulp-sass
+148 silly mapToRegistry name gulp-sass
+149 silly mapToRegistry using default registry
+150 silly mapToRegistry registry https://registry.npmjs.org/
+151 silly mapToRegistry uri https://registry.npmjs.org/gulp-sass
+152 silly fetchNamedPackageData gulp-util
+153 silly mapToRegistry name gulp-util
+154 silly mapToRegistry using default registry
+155 silly mapToRegistry registry https://registry.npmjs.org/
+156 silly mapToRegistry uri https://registry.npmjs.org/gulp-util
+157 silly fetchNamedPackageData shelljs
+158 silly mapToRegistry name shelljs
+159 silly mapToRegistry using default registry
+160 silly mapToRegistry registry https://registry.npmjs.org/
+161 silly mapToRegistry uri https://registry.npmjs.org/shelljs
+162 verbose get https://registry.npmjs.org/gulp not expired, no request
+163 verbose get https://registry.npmjs.org/gulp-concat not expired, no request
+164 verbose get https://registry.npmjs.org/bower not expired, no request
+165 verbose get https://registry.npmjs.org/gulp-minify-css not expired, no request
+166 verbose get https://registry.npmjs.org/gulp-rename not expired, no request
+167 verbose request uri https://registry.npmjs.org/gulp-sass
+168 verbose request no auth needed
+169 info attempt registry request try #1 at 12:40:36 AM
+170 verbose etag "8VFGCX69RZIZD3HQFCOXWQYVT"
+171 http request GET https://registry.npmjs.org/gulp-sass
+172 verbose get https://registry.npmjs.org/gulp-util not expired, no request
+173 verbose get https://registry.npmjs.org/shelljs not expired, no request
+174 http 304 https://registry.npmjs.org/gulp-sass
+175 verbose headers { date: 'Wed, 31 Aug 2016 19:10:36 GMT',
+175 verbose headers   via: '1.1 varnish',
+175 verbose headers   'cache-control': 'max-age=300',
+175 verbose headers   etag: '"8VFGCX69RZIZD3HQFCOXWQYVT"',
+175 verbose headers   age: '279',
+175 verbose headers   connection: 'keep-alive',
+175 verbose headers   'x-served-by': 'cache-sin6921-SIN',
+175 verbose headers   'x-cache': 'HIT',
+175 verbose headers   'x-cache-hits': '2',
+175 verbose headers   'x-timer': 'S1472670636.157098,VS0,VE0',
+175 verbose headers   vary: 'Accept-Encoding' }
+176 silly get cb [ 304,
+176 silly get   { date: 'Wed, 31 Aug 2016 19:10:36 GMT',
+176 silly get     via: '1.1 varnish',
+176 silly get     'cache-control': 'max-age=300',
+176 silly get     etag: '"8VFGCX69RZIZD3HQFCOXWQYVT"',
+176 silly get     age: '279',
+176 silly get     connection: 'keep-alive',
+176 silly get     'x-served-by': 'cache-sin6921-SIN',
+176 silly get     'x-cache': 'HIT',
+176 silly get     'x-cache-hits': '2',
+176 silly get     'x-timer': 'S1472670636.157098,VS0,VE0',
+176 silly get     vary: 'Accept-Encoding' } ]
+177 verbose etag https://registry.npmjs.org/gulp-sass from cache
+178 verbose get saving gulp-sass to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-sass\.cache.json
+179 silly install normalizeTree
+180 silly loadCurrentTree Finishing
+181 silly loadIdealTree Starting
+182 silly install loadIdealTree
+183 silly cloneCurrentTree Starting
+184 silly install cloneCurrentTreeToIdealTree
+185 silly cloneCurrentTree Finishing
+186 silly loadShrinkwrap Starting
+187 silly install loadShrinkwrap
+188 silly loadShrinkwrap Finishing
+189 silly loadAllDepsIntoIdealTree Starting
+190 silly install loadAllDepsIntoIdealTree
+191 silly resolveWithNewModule gulp@3.9.1 checking installable status
+192 silly cache add args [ 'gulp@3.9.1', null ]
+193 verbose cache add spec gulp@3.9.1
+194 silly resolveWithNewModule gulp-concat@2.6.0 checking installable status
+195 silly cache add args [ 'gulp-concat@2.6.0', null ]
+196 verbose cache add spec gulp-concat@2.6.0
+197 silly resolveWithNewModule bower@1.7.9 checking installable status
+198 silly cache add args [ 'bower@1.7.9', null ]
+199 verbose cache add spec bower@1.7.9
+200 silly resolveWithNewModule gulp-minify-css@0.3.13 checking installable status
+201 silly cache add args [ 'gulp-minify-css@0.3.13', null ]
+202 verbose cache add spec gulp-minify-css@0.3.13
+203 silly resolveWithNewModule gulp-rename@1.2.2 checking installable status
+204 silly cache add args [ 'gulp-rename@1.2.2', null ]
+205 verbose cache add spec gulp-rename@1.2.2
+206 silly resolveWithNewModule gulp-util@2.2.20 checking installable status
+207 silly cache add args [ 'gulp-util@2.2.20', null ]
+208 verbose cache add spec gulp-util@2.2.20
+209 silly resolveWithNewModule shelljs@0.3.0 checking installable status
+210 silly cache add args [ 'shelljs@0.3.0', null ]
+211 verbose cache add spec shelljs@0.3.0
+212 silly resolveWithNewModule gulp-sass@2.3.2 checking installable status
+213 silly cache add args [ 'gulp-sass@2.3.2', null ]
+214 verbose cache add spec gulp-sass@2.3.2
+215 silly cache add parsed spec Result {
+215 silly cache add   raw: 'gulp@3.9.1',
+215 silly cache add   scope: null,
+215 silly cache add   name: 'gulp',
+215 silly cache add   rawSpec: '3.9.1',
+215 silly cache add   spec: '3.9.1',
+215 silly cache add   type: 'version' }
+216 silly addNamed gulp@3.9.1
+217 verbose addNamed "3.9.1" is a plain semver version for gulp
+218 silly mapToRegistry name gulp
+219 silly mapToRegistry using default registry
+220 silly mapToRegistry registry https://registry.npmjs.org/
+221 silly mapToRegistry uri https://registry.npmjs.org/gulp
+222 verbose addNameVersion registry:https://registry.npmjs.org/gulp not in flight; fetching
+223 silly cache add parsed spec Result {
+223 silly cache add   raw: 'gulp-concat@2.6.0',
+223 silly cache add   scope: null,
+223 silly cache add   name: 'gulp-concat',
+223 silly cache add   rawSpec: '2.6.0',
+223 silly cache add   spec: '2.6.0',
+223 silly cache add   type: 'version' }
+224 silly addNamed gulp-concat@2.6.0
+225 verbose addNamed "2.6.0" is a plain semver version for gulp-concat
+226 silly mapToRegistry name gulp-concat
+227 silly mapToRegistry using default registry
+228 silly mapToRegistry registry https://registry.npmjs.org/
+229 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat
+230 verbose addNameVersion registry:https://registry.npmjs.org/gulp-concat not in flight; fetching
+231 silly cache add parsed spec Result {
+231 silly cache add   raw: 'bower@1.7.9',
+231 silly cache add   scope: null,
+231 silly cache add   name: 'bower',
+231 silly cache add   rawSpec: '1.7.9',
+231 silly cache add   spec: '1.7.9',
+231 silly cache add   type: 'version' }
+232 silly addNamed bower@1.7.9
+233 verbose addNamed "1.7.9" is a plain semver version for bower
+234 silly mapToRegistry name bower
+235 silly mapToRegistry using default registry
+236 silly mapToRegistry registry https://registry.npmjs.org/
+237 silly mapToRegistry uri https://registry.npmjs.org/bower
+238 verbose addNameVersion registry:https://registry.npmjs.org/bower not in flight; fetching
+239 silly cache add parsed spec Result {
+239 silly cache add   raw: 'gulp-minify-css@0.3.13',
+239 silly cache add   scope: null,
+239 silly cache add   name: 'gulp-minify-css',
+239 silly cache add   rawSpec: '0.3.13',
+239 silly cache add   spec: '0.3.13',
+239 silly cache add   type: 'version' }
+240 silly addNamed gulp-minify-css@0.3.13
+241 verbose addNamed "0.3.13" is a plain semver version for gulp-minify-css
+242 silly mapToRegistry name gulp-minify-css
+243 silly mapToRegistry using default registry
+244 silly mapToRegistry registry https://registry.npmjs.org/
+245 silly mapToRegistry uri https://registry.npmjs.org/gulp-minify-css
+246 verbose addNameVersion registry:https://registry.npmjs.org/gulp-minify-css not in flight; fetching
+247 silly cache add parsed spec Result {
+247 silly cache add   raw: 'gulp-rename@1.2.2',
+247 silly cache add   scope: null,
+247 silly cache add   name: 'gulp-rename',
+247 silly cache add   rawSpec: '1.2.2',
+247 silly cache add   spec: '1.2.2',
+247 silly cache add   type: 'version' }
+248 silly addNamed gulp-rename@1.2.2
+249 verbose addNamed "1.2.2" is a plain semver version for gulp-rename
+250 silly mapToRegistry name gulp-rename
+251 silly mapToRegistry using default registry
+252 silly mapToRegistry registry https://registry.npmjs.org/
+253 silly mapToRegistry uri https://registry.npmjs.org/gulp-rename
+254 verbose addNameVersion registry:https://registry.npmjs.org/gulp-rename not in flight; fetching
+255 silly cache add parsed spec Result {
+255 silly cache add   raw: 'gulp-util@2.2.20',
+255 silly cache add   scope: null,
+255 silly cache add   name: 'gulp-util',
+255 silly cache add   rawSpec: '2.2.20',
+255 silly cache add   spec: '2.2.20',
+255 silly cache add   type: 'version' }
+256 silly addNamed gulp-util@2.2.20
+257 verbose addNamed "2.2.20" is a plain semver version for gulp-util
+258 silly mapToRegistry name gulp-util
+259 silly mapToRegistry using default registry
+260 silly mapToRegistry registry https://registry.npmjs.org/
+261 silly mapToRegistry uri https://registry.npmjs.org/gulp-util
+262 verbose addNameVersion registry:https://registry.npmjs.org/gulp-util not in flight; fetching
+263 silly cache add parsed spec Result {
+263 silly cache add   raw: 'shelljs@0.3.0',
+263 silly cache add   scope: null,
+263 silly cache add   name: 'shelljs',
+263 silly cache add   rawSpec: '0.3.0',
+263 silly cache add   spec: '0.3.0',
+263 silly cache add   type: 'version' }
+264 silly addNamed shelljs@0.3.0
+265 verbose addNamed "0.3.0" is a plain semver version for shelljs
+266 silly mapToRegistry name shelljs
+267 silly mapToRegistry using default registry
+268 silly mapToRegistry registry https://registry.npmjs.org/
+269 silly mapToRegistry uri https://registry.npmjs.org/shelljs
+270 verbose addNameVersion registry:https://registry.npmjs.org/shelljs not in flight; fetching
+271 silly cache add parsed spec Result {
+271 silly cache add   raw: 'gulp-sass@2.3.2',
+271 silly cache add   scope: null,
+271 silly cache add   name: 'gulp-sass',
+271 silly cache add   rawSpec: '2.3.2',
+271 silly cache add   spec: '2.3.2',
+271 silly cache add   type: 'version' }
+272 silly addNamed gulp-sass@2.3.2
+273 verbose addNamed "2.3.2" is a plain semver version for gulp-sass
+274 silly mapToRegistry name gulp-sass
+275 silly mapToRegistry using default registry
+276 silly mapToRegistry registry https://registry.npmjs.org/
+277 silly mapToRegistry uri https://registry.npmjs.org/gulp-sass
+278 verbose addNameVersion registry:https://registry.npmjs.org/gulp-sass not in flight; fetching
+279 verbose request uri https://registry.npmjs.org/gulp-concat
+280 verbose request no auth needed
+281 info attempt registry request try #1 at 12:40:40 AM
+282 verbose etag "116HPIW08P8K2YOCD5X90H5DE"
+283 http request GET https://registry.npmjs.org/gulp-concat
+284 verbose get https://registry.npmjs.org/gulp not expired, no request
+285 verbose get https://registry.npmjs.org/gulp-minify-css not expired, no request
+286 warn deprecated gulp-minify-css@0.3.13: Please use gulp-clean-css
+287 verbose request uri https://registry.npmjs.org/gulp-rename
+288 verbose request no auth needed
+289 info attempt registry request try #1 at 12:40:40 AM
+290 verbose etag "A9F7CBER1J6I8LLHYB6ASZFDC"
+291 http request GET https://registry.npmjs.org/gulp-rename
+292 verbose get https://registry.npmjs.org/bower not expired, no request
+293 verbose get https://registry.npmjs.org/gulp-util not expired, no request
+294 verbose request uri https://registry.npmjs.org/shelljs
+295 verbose request no auth needed
+296 info attempt registry request try #1 at 12:40:40 AM
+297 verbose etag "ECED7C19XTRHPH7SRZO7ONAZR"
+298 http request GET https://registry.npmjs.org/shelljs
+299 verbose get https://registry.npmjs.org/gulp-sass not expired, no request
+300 silly mapToRegistry name gulp
+301 silly mapToRegistry using default registry
+302 silly mapToRegistry registry https://registry.npmjs.org/
+303 silly mapToRegistry uri https://registry.npmjs.org/gulp
+304 verbose addRemoteTarball https://registry.npmjs.org/gulp/-/gulp-3.9.1.tgz not in flight; adding
+305 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp/-/gulp-3.9.1.tgz',
+305 verbose addRemoteTarball   '571ce45928dd40af6514fc4011866016c13845b4' ]
+306 silly mapToRegistry name gulp-minify-css
+307 silly mapToRegistry using default registry
+308 silly mapToRegistry registry https://registry.npmjs.org/
+309 silly mapToRegistry uri https://registry.npmjs.org/gulp-minify-css
+310 verbose addRemoteTarball https://registry.npmjs.org/gulp-minify-css/-/gulp-minify-css-0.3.13.tgz not in flight; adding
+311 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp-minify-css/-/gulp-minify-css-0.3.13.tgz',
+311 verbose addRemoteTarball   'ba813c665422868305383ccd185f239c1e35209b' ]
+312 silly mapToRegistry name bower
+313 silly mapToRegistry using default registry
+314 silly mapToRegistry registry https://registry.npmjs.org/
+315 silly mapToRegistry uri https://registry.npmjs.org/bower
+316 verbose addRemoteTarball https://registry.npmjs.org/bower/-/bower-1.7.9.tgz not in flight; adding
+317 verbose addRemoteTarball [ 'https://registry.npmjs.org/bower/-/bower-1.7.9.tgz',
+317 verbose addRemoteTarball   'b7296c2393e0d75edaa6ca39648132dd255812b0' ]
+318 info retry fetch attempt 1 at 12:40:40 AM
+319 info attempt registry request try #1 at 12:40:40 AM
+320 http fetch GET https://registry.npmjs.org/gulp/-/gulp-3.9.1.tgz
+321 info retry fetch attempt 1 at 12:40:40 AM
+322 info attempt registry request try #1 at 12:40:40 AM
+323 http fetch GET https://registry.npmjs.org/bower/-/bower-1.7.9.tgz
+324 silly mapToRegistry name gulp-sass
+325 silly mapToRegistry using default registry
+326 silly mapToRegistry registry https://registry.npmjs.org/
+327 silly mapToRegistry uri https://registry.npmjs.org/gulp-sass
+328 verbose addRemoteTarball https://registry.npmjs.org/gulp-sass/-/gulp-sass-2.3.2.tgz not in flight; adding
+329 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp-sass/-/gulp-sass-2.3.2.tgz',
+329 verbose addRemoteTarball   '82b7ab90fe902cdc34c04f180d92f2c34902dd52' ]
+330 info retry fetch attempt 1 at 12:40:40 AM
+331 info attempt registry request try #1 at 12:40:40 AM
+332 http fetch GET https://registry.npmjs.org/gulp-minify-css/-/gulp-minify-css-0.3.13.tgz
+333 info retry fetch attempt 1 at 12:40:40 AM
+334 info attempt registry request try #1 at 12:40:40 AM
+335 http fetch GET https://registry.npmjs.org/gulp-sass/-/gulp-sass-2.3.2.tgz
+336 silly cache afterAdd gulp-util@2.2.20
+337 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-util\2.2.20\package\package.json not in flight; writing
+338 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-util\2.2.20\package\package.json written
+339 http 304 https://registry.npmjs.org/gulp-concat
+340 verbose headers { date: 'Wed, 31 Aug 2016 19:10:40 GMT',
+340 verbose headers   via: '1.1 varnish',
+340 verbose headers   'cache-control': 'max-age=300',
+340 verbose headers   etag: '"116HPIW08P8K2YOCD5X90H5DE"',
+340 verbose headers   age: '98',
+340 verbose headers   connection: 'keep-alive',
+340 verbose headers   'x-served-by': 'cache-sin6921-SIN',
+340 verbose headers   'x-cache': 'HIT',
+340 verbose headers   'x-cache-hits': '5',
+340 verbose headers   'x-timer': 'S1472670640.400338,VS0,VE0',
+340 verbose headers   vary: 'Accept-Encoding' }
+341 silly get cb [ 304,
+341 silly get   { date: 'Wed, 31 Aug 2016 19:10:40 GMT',
+341 silly get     via: '1.1 varnish',
+341 silly get     'cache-control': 'max-age=300',
+341 silly get     etag: '"116HPIW08P8K2YOCD5X90H5DE"',
+341 silly get     age: '98',
+341 silly get     connection: 'keep-alive',
+341 silly get     'x-served-by': 'cache-sin6921-SIN',
+341 silly get     'x-cache': 'HIT',
+341 silly get     'x-cache-hits': '5',
+341 silly get     'x-timer': 'S1472670640.400338,VS0,VE0',
+341 silly get     vary: 'Accept-Encoding' } ]
+342 verbose etag https://registry.npmjs.org/gulp-concat from cache
+343 verbose get saving gulp-concat to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-concat\.cache.json
+344 http 304 https://registry.npmjs.org/gulp-rename
+345 verbose headers { date: 'Wed, 31 Aug 2016 19:10:40 GMT',
+345 verbose headers   via: '1.1 varnish',
+345 verbose headers   'cache-control': 'max-age=300',
+345 verbose headers   etag: '"A9F7CBER1J6I8LLHYB6ASZFDC"',
+345 verbose headers   age: '16',
+345 verbose headers   connection: 'keep-alive',
+345 verbose headers   'x-served-by': 'cache-sin6927-SIN',
+345 verbose headers   'x-cache': 'HIT',
+345 verbose headers   'x-cache-hits': '1',
+345 verbose headers   'x-timer': 'S1472670640.404065,VS0,VE0',
+345 verbose headers   vary: 'Accept-Encoding' }
+346 silly get cb [ 304,
+346 silly get   { date: 'Wed, 31 Aug 2016 19:10:40 GMT',
+346 silly get     via: '1.1 varnish',
+346 silly get     'cache-control': 'max-age=300',
+346 silly get     etag: '"A9F7CBER1J6I8LLHYB6ASZFDC"',
+346 silly get     age: '16',
+346 silly get     connection: 'keep-alive',
+346 silly get     'x-served-by': 'cache-sin6927-SIN',
+346 silly get     'x-cache': 'HIT',
+346 silly get     'x-cache-hits': '1',
+346 silly get     'x-timer': 'S1472670640.404065,VS0,VE0',
+346 silly get     vary: 'Accept-Encoding' } ]
+347 verbose etag https://registry.npmjs.org/gulp-rename from cache
+348 verbose get saving gulp-rename to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\gulp-rename\.cache.json
+349 http fetch 200 https://registry.npmjs.org/gulp/-/gulp-3.9.1.tgz
+350 silly cache afterAdd gulp-rename@1.2.2
+351 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-rename\1.2.2\package\package.json not in flight; writing
+352 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-rename\1.2.2\package\package.json written
+353 silly cache afterAdd gulp-concat@2.6.0
+354 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-concat\2.6.0\package\package.json not in flight; writing
+355 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-concat\2.6.0\package\package.json written
+356 silly fetchAndShaCheck shasum 571ce45928dd40af6514fc4011866016c13845b4
+357 verbose addTmpTarball C:\Users\MAROON~1\AppData\Local\Temp\npm-6644-f3482ef7\registry.npmjs.org\gulp\-\gulp-3.9.1.tgz not in flight; adding
+358 verbose addTmpTarball already have metadata; skipping unpack for gulp@3.9.1
+359 http fetch 200 https://registry.npmjs.org/gulp-sass/-/gulp-sass-2.3.2.tgz
+360 silly cache afterAdd gulp@3.9.1
+361 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp\3.9.1\package\package.json not in flight; writing
+362 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp\3.9.1\package\package.json written
+363 http fetch 200 https://registry.npmjs.org/gulp-minify-css/-/gulp-minify-css-0.3.13.tgz
+364 silly fetchAndShaCheck shasum ba813c665422868305383ccd185f239c1e35209b
+365 verbose addTmpTarball C:\Users\MAROON~1\AppData\Local\Temp\npm-6644-f3482ef7\registry.npmjs.org\gulp-minify-css\-\gulp-minify-css-0.3.13.tgz not in flight; adding
+366 verbose addTmpTarball already have metadata; skipping unpack for gulp-minify-css@0.3.13
+367 http fetch 200 https://registry.npmjs.org/bower/-/bower-1.7.9.tgz
+368 silly cache afterAdd gulp-minify-css@0.3.13
+369 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-minify-css\0.3.13\package\package.json not in flight; writing
+370 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-minify-css\0.3.13\package\package.json written
+371 http 304 https://registry.npmjs.org/shelljs
+372 verbose headers { date: 'Wed, 31 Aug 2016 19:10:42 GMT',
+372 verbose headers   via: '1.1 varnish',
+372 verbose headers   'cache-control': 'max-age=300',
+372 verbose headers   etag: '"ECED7C19XTRHPH7SRZO7ONAZR"',
+372 verbose headers   age: '258',
+372 verbose headers   connection: 'keep-alive',
+372 verbose headers   'x-served-by': 'cache-sin6923-SIN',
+372 verbose headers   'x-cache': 'HIT',
+372 verbose headers   'x-cache-hits': '5',
+372 verbose headers   'x-timer': 'S1472670642.083782,VS0,VE0',
+372 verbose headers   vary: 'Accept-Encoding' }
+373 silly get cb [ 304,
+373 silly get   { date: 'Wed, 31 Aug 2016 19:10:42 GMT',
+373 silly get     via: '1.1 varnish',
+373 silly get     'cache-control': 'max-age=300',
+373 silly get     etag: '"ECED7C19XTRHPH7SRZO7ONAZR"',
+373 silly get     age: '258',
+373 silly get     connection: 'keep-alive',
+373 silly get     'x-served-by': 'cache-sin6923-SIN',
+373 silly get     'x-cache': 'HIT',
+373 silly get     'x-cache-hits': '5',
+373 silly get     'x-timer': 'S1472670642.083782,VS0,VE0',
+373 silly get     vary: 'Accept-Encoding' } ]
+374 verbose etag https://registry.npmjs.org/shelljs from cache
+375 verbose get saving shelljs to C:\Users\Maroon 5\AppData\Roaming\npm-cache\registry.npmjs.org\shelljs\.cache.json
+376 silly cache afterAdd shelljs@0.3.0
+377 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\shelljs\0.3.0\package\package.json not in flight; writing
+378 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\shelljs\0.3.0\package\package.json written
+379 silly fetchAndShaCheck shasum 82b7ab90fe902cdc34c04f180d92f2c34902dd52
+380 verbose addTmpTarball C:\Users\MAROON~1\AppData\Local\Temp\npm-6644-f3482ef7\registry.npmjs.org\gulp-sass\-\gulp-sass-2.3.2.tgz not in flight; adding
+381 verbose addTmpTarball already have metadata; skipping unpack for gulp-sass@2.3.2
+382 silly cache afterAdd gulp-sass@2.3.2
+383 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-sass\2.3.2\package\package.json not in flight; writing
+384 verbose afterAdd C:\Users\Maroon 5\AppData\Roaming\npm-cache\gulp-sass\2.3.2\package\package.json written
+385 verbose stack Error: read ECONNRESET
+385 verbose stack     at exports._errnoException (util.js:856:11)
+385 verbose stack     at TLSWrap.onread (net.js:545:26)
+386 verbose cwd D:\askaudience-tab
+387 error Windows_NT 10.0.14393
+388 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "update" "-self"
+389 error node v5.2.0
+390 error npm  v3.3.12
+391 error code ECONNRESET
+392 error errno ECONNRESET
+393 error syscall read
+394 error network read ECONNRESET
+394 error network This is most likely not a problem with npm itself
+394 error network and is related to network connectivity.
+394 error network In most cases you are behind a proxy or have bad network settings.
+394 error network
+394 error network If you are behind a proxy, please make sure that the
+394 error network 'proxy' config is set properly.  See: 'npm help config'
+395 verbose exit [ 1, true ]

@@ -7,15 +7,18 @@
         <div class="cover-item-wrapper cover-detail-wrapper">
             <div class="cover-item cover-item-detail" style="background-image:url(' img/bgp.png')">
                 <div class=" ">
-                    <div class="celeb-img-detail profile-img-detail">
-                        <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
+                    <div class="row">
+                        <div class="celeb-img-detail profile-img-detail col ">
+                            <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
+
+                            <h2 class="mb0 fs20" style="color:#fff">                            
+                                {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.user_nicename : 'Anonymous')}} 
+                                <span class="icon ion-edit edit-icon" ng-if="uid == cid"  ng-click="updatePan('profile')"></span>
+                            </h2>
+                        </div>
                     </div>
-                    <div class="celeb-info-detail profile-user-detail">
-                        <h2 class="mb0 fs20">                            
-                            {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.user_nicename : 'Anonymous')}} 
-                            <span class="icon ion-edit edit-icon" ng-if="uid == cid"  ng-click="updatePan('profile')"></span></h2>
-                    </div>
-                    <div class="wrapp-count mt10 row text-center">
+
+                    <div class="wrapp-count row text-center">
                         <a class="col" ng-click="updateCat('polls')">
                             <div class="title">
                                 {{ userInfo.polls.length}}
@@ -73,6 +76,19 @@
                             </div>
                         </a>
                     </div>
+
+                    <div class="row connections mt10" ng-if="uid != cid">
+                        <div class=" col ">
+                            <button ng-if="following == 'No'" class="button button-outline button-small button-balanced pull-right" ng-click="follow()"><i class="ion-arrow-up-c"></i> Follow</button>
+                            <button ng-if="following == 'Yes'" class="button button-small button-balanced pull-right" ng-click="unfollow()"><i class="ion-checkmark-round"></i> Following</button>
+                        </div>
+                        <div class=" col ">
+                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="pull-left button button-outline button-small button-balanced " ng-click="freq()"><i class="ion-person-add"></i> Add Friend</button>
+                            <button ng-if="friends == 'No' && friend_requested == 'Yes'" class="pull-left button button-small button-energized " ><i class="ion-paper-airplane"></i> Friend Requested</button>
+                            <button ng-if="friends == 'Yes'" class="pull-left button button-outline button-small button-assertive " ng-click="unfriend()"><i class="ion-close"></i> Unfriend</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
