@@ -1691,3 +1691,20 @@ a.autolinker {
     font-size: 10px;
     width: 150px;
 }
+/*create poll tab   */
+a.button.cat-button {
+    width: 33.34%;
+        line-height: 41px;
+            color: #a2a2a2;
+}
+a.button.cat-button:last-child{
+    position: relative !important;
+    top: 0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+}
+.subnav-active {
+    background-color: #4CAF50;
+    color: #fff !important;
+    font-weight: bold !important;
+}

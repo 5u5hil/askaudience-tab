@@ -670,3 +670,63 @@ angular.module('askaudience.controllers', [])
 
             }
         ])
+        .controller('createPollCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
+            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
+                $scope.acitveTab = 'tab1';
+                Loader.show();
+                APIFactory.getInterests().then(function (response) {
+                    $scope.interests = response.data;
+                    $scope.addOption();
+                    $scope.addOption();
+                    Loader.hide();
+                }, function (error) {
+                    Loader.hide();
+                    Loader.toast('Oops! something went wrong. Please try later again');
+                })
+                $scope.manageTabs = function (activeTab) {
+                    if ($scope.acitveTab == 'tab1') {
+                         $scope.acitveTab = 'tab2';
+                    } else if ( $scope.acitveTab == 'tab2') {
+                         $scope.acitveTab = 'tab3';
+                    }
+
+                }
+                $scope.createPoll = function () {
+                    if (!$rootScope.isLoggedIn) {
+                        $rootScope.$broadcast('showLoginModal', $scope, function () {
+                            $ionicHistory.goBack(-1);
+                        }, function () {
+                            newPoll();
+                        });
+                    } else {
+                        newPoll();
+                    }
+                }
+
+                function newPoll() {
+                    var data = new FormData(jQuery("form.createPoll")[0]);
+                    data.append('userId', LSFactory.get('user').ID);
+                    Loader.show('Creating Poll ...');
+                    APIFactory.createPoll(data).then(function (response) {
+
+                        if (response.data.error) {
+                            Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                        } else {
+                            Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                            $timeout(function () {
+                                window.location.reload();
+                            }, 1000)
+
+
+                        }
+
+                    });
+                }
+
+                $scope.addOption = function () {
+                    jQuery(".options").append(jQuery(".toClone").html());
+                    indexOptions();
+                }
+
+            }
+        ])

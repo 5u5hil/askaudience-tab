@@ -65,6 +65,15 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                             }
                         }
                     })
+                    .state('app.createpoll1', {
+                        url: '/create-poll1',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/createpoll1.html',
+                                controller: 'createPollCtrl1'
+                            }
+                        }
+                    })
                     .state('app.user', {
                         url: '/user/:id/:reveal',
                         views: {
