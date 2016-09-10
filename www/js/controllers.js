@@ -670,8 +670,8 @@ angular.module('askaudience.controllers', [])
 
             }
         ])
-        .controller('createPollCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
-            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
+        .controller('createPollCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
+            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
                 $scope.acitveTab = 'tab1';
                 Loader.show();
                 APIFactory.getInterests().then(function (response) {
@@ -689,7 +689,12 @@ angular.module('askaudience.controllers', [])
                     } else if ( $scope.acitveTab == 'tab2') {
                          $scope.acitveTab = 'tab3';
                     }
+                      $ionicScrollDelegate.scrollTop();
 
+                }
+                $scope.selectOption = function (event) { 
+
+                    angular.element(event.target).parent().parent().toggleClass('selected-option');
                 }
                 $scope.createPoll = function () {
                     if (!$rootScope.isLoggedIn) {

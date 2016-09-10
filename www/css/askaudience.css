@@ -1704,7 +1704,44 @@ a.button.cat-button:last-child{
     bottom: 0px !important;
 }
 .subnav-active {
-    background-color: #4CAF50;
-    color: #fff !important;
+  
     font-weight: bold !important;
+
+    color: #000000 !important;
+        font-style: italic;
+}
+.cover-input-about1 {
+        text-align: center;
+    margin-right: 20px;
+    text-transform: uppercase;
+}
+.yes-no-bg {
+           background-image: url('../img/poll-yes-no.jpg') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 1px;
+}
+.multiple {
+           background-image: url('../img/poll-multiple.png') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 1px;
+}
+.image-poll {
+          background-image: url('../img/image-poll.jpg') !important;
+    background-size: 141% 100%;
+    background-repeat: no-repeat;
+    background-position: -33px -7px;
+}
+.refe {
+          background-image: url('../img/referendum.jpg') !important;
+    background-size: 141% 100%;
+    background-repeat: no-repeat;
+    background-position: -33px -7px;
+}
+.cover-overlay.selected-option {
+        border: 6px solid #a0a0a0 !important;
+}
+a.button.cat-button:hover {
+    background: #f8f8f8;
 }
