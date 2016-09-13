@@ -47,6 +47,15 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                             }
                         }
                     })
+                    .state('app.polls1', {
+                        url: '/polls1',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/polls1.html',
+                                controller: 'pollsCtrl1'
+                            }
+                        }
+                    })
                     .state('app.polldetails', {
                         url: '/polldetails/:id',
                         views: {

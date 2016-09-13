@@ -1,8 +1,8 @@
-<div  ng-if="poll.posted_as != 4" class="item item-avatar" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
+<!--<div  ng-if="poll.posted_as != 4" class="item item-avatar" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
     <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
     <h2 class="pull-left" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
     <h2 class="pull-left" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
-    <p class="pull-right">{{poll.date}}</p>
+    <p class="pull-right">{{poll.date}}</p> 
 </div>
 <div  ng-if="poll.posted_as == 4" class="item item-avatar">
     <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
@@ -23,4 +23,45 @@
         <i class="icon ion-share"></i>
         Share
     </a>
-</div>
+</div>-->
+         <div class="item poll-topbar padding10">
+                <div class="poll-id pull-left">#125214</div>
+                <div class="poll-id pull-right"> {{poll.valid_till}}</div>
+            </div>
+            <div class="item item-text-wrap poll-image padding10 pb0 custom-spacing" ng-class="!poll.img ? 'text-poll' : 'img-poll'">
+               
+                <img  ng-src="{{poll.img}}" alt=""  ng-if="poll.img" ui-sref="app.polldetails({id:poll.id})">
+          
+                <div class="item item-avatar cover-overlay-poll" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
+                    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+              
+                        <h2 class="white" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
+                        <h2 class="white" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
+                </div>
+                     <div class="item item-avatar cover-overlay-poll" ng-if="poll.posted_as == 4">
+                    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" >
+            
+                        <h2 class="white">Anonymous</h2> 
+                </div>
+            </div>
+            <div class="item item-text-wrap padding10 " ng-bind-html="poll.title" ui-sref="app.polldetails({id:poll.id})">
+               
+            </div>
+            <div class="item item-text-wrap padding10 row poll-action-panel">
+                <a class="text-center  stable fz20 col">
+                    <i class="icon ion-android-open"></i>
+
+                </a>
+                <a class="text-center  stable fz20 col">
+                    <i class="icon ion-android-share-alt"></i>
+
+                </a>
+                <a class="text-center  stable fz20 col">
+                    <i class="icon ion-android-open"></i>
+
+                </a>
+                <a class="text-center  stable fz20 col">
+                    <i class="icon ion-android-open"></i>
+
+                </a>
+            </div>
