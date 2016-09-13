@@ -8,31 +8,22 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.askaudience.app"
+            "PACKAGE_NAME": "com.ionicframework.askaskaudiencetab644565"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.askaudience.app"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.askaudience.app"
+            "PACKAGE_NAME": "com.ionicframework.askaskaudiencetab644565"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.askaudience.app"
+            "PACKAGE_NAME": "com.ionicframework.askaskaudiencetab644565"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.askaudience.app"
+            "PACKAGE_NAME": "com.ionicframework.askaskaudiencetab644565"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.askaudience.app"
-        },
-        "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.askaudience.app"
+            "PACKAGE_NAME": "com.ionicframework.askaskaudiencetab644565"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.askaudience.app"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.askaudience.app"
+            "PACKAGE_NAME": "com.ionicframework.askaskaudiencetab644565"
         }
     },
     "dependent_plugins": {}
