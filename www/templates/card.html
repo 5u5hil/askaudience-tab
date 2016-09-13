@@ -24,44 +24,48 @@
         Share
     </a>
 </div>-->
+<div ng-class="!poll.img ? 'text-poll' : 'img-poll'">
+    
+
          <div class="item poll-topbar padding10">
                 <div class="poll-id pull-left">#125214</div>
                 <div class="poll-id pull-right"> {{poll.valid_till}}</div>
             </div>
-            <div class="item item-text-wrap poll-image padding10 pb0 custom-spacing" ng-class="!poll.img ? 'text-poll' : 'img-poll'">
+            <div class="item item-text-wrap poll-image p0 pb0" >
                
-                <img  ng-src="{{poll.img}}" alt=""  ng-if="poll.img" ui-sref="app.polldetails({id:poll.id})">
+                <img  ng-src="{{poll.img}}" alt=""  ng-if="poll.img"  >
           
-                <div class="item item-avatar cover-overlay-poll" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
+                <div class="item item-avatar cover-overlay-poll" ng-if="poll.posted_as != 4"  >
                     <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
               
-                        <h2 class="white" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
-                        <h2 class="white" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
+                        <h2 class="white poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
+                        <h2 class="white poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
                 </div>
                      <div class="item item-avatar cover-overlay-poll" ng-if="poll.posted_as == 4">
                     <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" >
             
-                        <h2 class="white">Anonymous</h2> 
+                        <h2 class="white poll-name-user">Anonymous</h2> 
                 </div>
             </div>
-            <div class="item item-text-wrap padding10 " ng-bind-html="poll.title" ui-sref="app.polldetails({id:poll.id})">
+            <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title" >
                
             </div>
             <div class="item item-text-wrap padding10 row poll-action-panel">
-                <a class="text-center  stable fz20 col">
+                <a class="text-center  black fz20 col">
                     <i class="icon ion-android-open"></i>
 
                 </a>
-                <a class="text-center  stable fz20 col">
+                <a class="text-center  black fz20 col">
                     <i class="icon ion-android-share-alt"></i>
 
                 </a>
-                <a class="text-center  stable fz20 col">
+                <a class="text-center  black fz20 col">
                     <i class="icon ion-android-open"></i>
 
                 </a>
-                <a class="text-center  stable fz20 col">
+                <a class="text-center  black fz20 col">
                     <i class="icon ion-android-open"></i>
 
                 </a>
+            </div>
             </div>
