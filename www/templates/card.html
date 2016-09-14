@@ -43,7 +43,6 @@
                 </div>
                      <div class="item item-avatar cover-overlay-poll" ng-if="poll.posted_as == 4">
                     <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" >
-            
                         <h2 class="white poll-name-user">Anonymous</h2> 
                 </div>
             </div>
@@ -51,20 +50,20 @@
                
             </div>
             <div class="item item-text-wrap padding10 row poll-action-panel">
-                <a class="text-center  black fz20 col">
+                <a class="text-center  black fz20 col" ng-click="participate(poll.id)">
                     <i class="icon ion-android-open"></i>
 
                 </a>
-                <a class="text-center  black fz20 col">
+                <a class="text-center  black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)">
                     <i class="icon ion-android-share-alt"></i>
 
                 </a>
                 <a class="text-center  black fz20 col">
-                    <i class="icon ion-android-open"></i>
+                    <i class="icon ion-android-notifications-none"></i>
 
                 </a>
                 <a class="text-center  black fz20 col">
-                    <i class="icon ion-android-open"></i>
+                    <i class="icon ion-ios-flag-outline"></i>
 
                 </a>
             </div>

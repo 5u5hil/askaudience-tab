@@ -1,0 +1,82 @@
+<ion-modal-view class="transparent-modal">
+
+    <!--<ion-header-bar class="bar bar-energized">
+        <h1 class="title"> </h1>
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-close-round" ng-click="closeParticipate()" menu-toggle="right">
+                </button>
+        </div>
+    </ion-header-bar>-->
+    <ion-content class="full-transparent">
+        <div class="card ">
+            <div ng-class="!pollDetail.img ? 'text-poll' : 'img-poll'" class="card-polls">
+
+
+                <div class="item poll-topbar padding10">
+                    <div class="poll-id pull-left">#125214</div>
+                    <div class="poll-id pull-right"> {{pollDetail.valid_till}}</div>
+                </div>
+                <div class="item item-text-wrap poll-image p0 pb0">
+
+                    <img ng-src="{{pollDetail.img}}" alt="" ng-if="pollDetail.img">
+
+                    <div class="item item-avatar cover-overlay-poll" ng-if="pollDetail.posted_as != 4">
+                        <img ng-src="{{pollDetail.posted_as != 1 ? 'img/user-icon.png' : pollDetail.author.img}}">
+
+                        <h2 class="white poll-name-user" ng-if="pollDetail.posted_as == 1">{{ pollDetail.author.display_name}}</h2>
+                        <h2 class="white poll-name-user" ng-if="pollDetail.posted_as == 3">{{ pollDetail.author.user_nicename}}</h2>
+                    </div>
+                    <div class="item item-avatar cover-overlay-poll" ng-if="pollDetail.posted_as == 4">
+                        <img ng-src="{{pollDetail.posted_as != 1 ? 'img/user-icon.png' : pollDetail.author.img}}">
+                        <h2 class="white poll-name-user">Anonymous</h2>
+                    </div>
+                </div>
+                <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="pollDetail.title">
+
+                </div>
+            </div>
+                 <div class="item item-text-wrap p0 poll-answer-options">
+   <form class="vote" ng-if="participated == 'No'">
+
+                    <ul class="options">
+
+                        <li ng-repeat="opt in pollDetail.options">
+                            <label class="checkbox w100">
+                                <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}">
+                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
+                                    <input type="{{pollDetail.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
+                                </ion-item>
+
+                            </label>
+
+                        </li>
+                    </ul>
+                    <input type="hidden" name="pollid" value="{{ pollDetail.id}}" />
+                    <div class="padding-top txt-center">
+                        <button class="button button-balanced button-small" ng-click="vote()">Submit</button>
+
+                    </div>
+                </form>
+                </div>
+                 <div class="item tabs tabs-secondary poll-share tabs-icon-left action-button-wrapper" ng-if="false">
+                <pie-chart data="chart" id="chart" options="options"></pie-chart>
+            </div>
+                 <div class="item tabs tabs-secondary poll-share tabs-icon-left action-button-wrapper">
+                <a class="tab-item" href="#" ng-click="socialShare(pollDetail.title, pollDetail.title, pollDetail.img)">
+                    <i class="icon ion-share"></i> Share
+                </a>
+            </div>
+                <div class="item tabs tabs-secondary poll-share tabs-icon-left  light-gray-bg">
+                <a class="tab-item" href="#" ng-click="closeParticipate()">
+                     CANCEL
+                </a>
+            </div>
+        </div>
+        <div>
+       
+             
+           
+        </div>
+    </ion-content>
+
+</ion-modal-view>

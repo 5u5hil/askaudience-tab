@@ -1482,7 +1482,7 @@ padding: 0px 20px !important;
 .option-checkbox {
     position: absolute !important;
     right: 1px !important;
-    top: 26px !important
+    top: 14px !important;
 }
 .custom-poll-card .item.item-avatar {
     padding: 27px 10px 0px 88px !important
@@ -1610,7 +1610,7 @@ a.button.cat-button:hover {
     padding: 2px 10px !important;
     background-color: rgba(0,0,0,0.5) !important;
     color: #fff;
-    font-weight: bold;
+   
       position: absolute !important;
     z-index: 111 !important;
 }
@@ -1642,11 +1642,9 @@ a.button.cat-button:hover {
 .text-poll .item.item-avatar {
     position: relative !important;
         /*background: linear-gradient(transparent, #fbbc05);*/
-        background-image: url('http://armyandyou.co.uk/wp-content/uploads/2013/12/WALL.jpg')
+        background-image: url('../img/white-wall.jpg')
 }
-.text-poll .white {
-    color: #000 !important;
-}
+ 
 .card-polls .item-avatar  > img:first-child  {
     max-height: 35px !important;
     max-width: 35px !important;
@@ -1691,7 +1689,27 @@ ion-content {
 }
 .text-poll .item-avatar {
     padding-top: 41px;
+    padding-left: 70px;
 }
 .text-poll .item-avatar img:first-child{
         top: 30px !important;
 } 
+.poll-answer-options .item-avatar img{
+        border-radius: 0px !important;
+        top: 0px;
+        left: 2px;
+        box-shadow: none;
+} 
+.poll-answer-options .item-avatar{
+       min-height: 58px !important;
+       margin-top: 0px;
+} 
+.full-transparent {
+    background: transparent;
+}
+.transparent-modal {
+        background: rgba(0,0,0,0.80) !important;
+}
+.light-gray-bg {
+        background-color: #dedede !important;
+}

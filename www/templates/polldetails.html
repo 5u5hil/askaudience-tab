@@ -3,7 +3,7 @@
         Participate
     </ion-nav-title>
     <ion-content class="has-footer">
-        <div class="card custom-poll-card">
+        <div class="card custom-poll-card card-polls">
             <div  ng-if="poll.posted_as != 4" class="item item-avatar" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
                 <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
                 <h2 class="pull-left" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
