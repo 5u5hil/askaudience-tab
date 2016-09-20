@@ -1,30 +1,4 @@
-<!--<div  ng-if="poll.posted_as != 4" class="item item-avatar" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
-    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
-    <h2 class="pull-left" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
-    <h2 class="pull-left" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
-    <p class="pull-right">{{poll.date}}</p> 
-</div>
-<div  ng-if="poll.posted_as == 4" class="item item-avatar">
-    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
-    <h2 class="pull-left">Anonymous</h2>
-    <p class="pull-right">{{poll.date}}</p>
-</div>
-<div class="item item-body p0">
-
-    <div class="poll-img-wrapper listing" ng-if="poll.img" ui-sref="app.polldetails({id:poll.id})"><img ng-src="{{poll.img}}" alt=""></div>
-    <p class="poll-question bold" ng-bind-html="poll.title" ui-sref="app.polldetails({id:poll.id})"></p>
-</div>
-<div class="item tabs tabs-secondary tabs-icon-left action-button-wrapper">
-    <a class="tab-item"  ui-sref="app.polldetails({id:poll.id})">
-        <i class="icon ion-chatbox"></i>
-        Participate
-    </a>
-    <a class="tab-item" ng-click="socialShare(poll.title, poll.title, poll.img)">
-        <i class="icon ion-share"></i>
-        Share
-    </a>
-</div>-->
-<div ng-class="!poll.img ? 'text-poll' : 'img-poll'">
+<!--<div ng-class="!poll.img ? 'text-poll' : 'img-poll'">
     
 
          <div class="item poll-topbar padding10">
@@ -67,4 +41,77 @@
 
                 </a>
             </div>
-            </div>
+            </div>-->
+<div ng-class="!poll.img ? 'text-poll' : 'img-poll'">
+    <div class="top-bar-wrapper">
+
+        <div class="item item-avatar pull-left col-80" ng-if="poll.posted_as != 4">
+            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+            <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name || 'Swapnil Patwa'}}</h2>
+            <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
+        </div>
+        <div class="item item-avatar  pull-left col-80" ng-if="poll.posted_as == 4">
+            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+            <h2 class=" poll-name-user">Anonymous</h2>
+        </div>
+        <div class="tags pull-right">
+            <h2>18+</h2>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title">
+
+    </div>
+    <div class="item item-text-wrap poll-image p0 pb0">
+
+        <img ng-src="{{poll.img}}" alt="" ng-if="poll.img">
+
+    </div>
+    <div class="item poll-topbar padding10">
+        <div class="poll-id pull-left">#125214</div> 
+        <div class="poll-id pull-right"> {{getTimeLeft(poll.valid_till) }}</div>
+    </div>
+    
+           <div class="item item-text-wrap p0 poll-answer-options hidden"  id="{{poll.id}}">
+   <form class="vote" >
+<!--ng-if="participated == 'No'"-->
+                    <ul class="options">
+
+                        <li ng-repeat="opt in poll.options">
+                            <label class="checkbox w100">
+                                <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}">
+                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
+                                    <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
+                                </ion-item>
+
+                            </label>
+
+                        </li>
+                    </ul>
+                    <input type="hidden" name="pollid" value="{{poll.id}}" />
+                    <div class=" txt-center">
+                        <button class="button button-balanced button-small button-block" ng-click="vote()">Submit</button>
+
+                    </div>
+                </form>
+                </div>
+    
+    <div class="item item-text-wrap padding10 row poll-action-panel">
+        <a class="text-center  black fz20 col" ng-click="participate($event, poll.id)">
+            <i class="icon ion-android-open"></i>
+
+        </a>
+        <a class="text-center  black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)">
+            <i class="icon ion-android-share-alt"></i>
+
+        </a>
+        <a class="text-center  black fz20 col">
+            <i class="icon ion-android-notifications-none"></i>
+
+        </a>
+        <a class="text-center  black fz20 col">
+            <i class="icon ion-ios-flag-outline"></i>
+
+        </a>
+    </div>
+</div>
