@@ -91,7 +91,7 @@ span.badge.custom-badge {
 }
 .cover-item {
     background-image: url('../img/home-bg.jpg');
-    height: 250px;
+     
     width: 100%;
     background-size: cover
 }
@@ -125,8 +125,8 @@ input.cover-search-input {
     left: 15px !important
 }
 .cover-heading-text {
-    font-size: 20px;
-    margin-bottom: 8px
+    font-size: 12px;
+   
 }
 a.cover-feed-text {
     font-size: 12px;
@@ -1186,10 +1186,11 @@ padding: 0px 20px !important;
 .cover-input-about {
     position: relative;
     color: #fff;
-    left: 15px !important
+    
 }
 .about-cover-text {
-    padding-top: 200px
+    padding-top: 80px;
+    padding-bottom: 5px;
 }
 .about-radius8 p {
     text-align: justify
@@ -1570,7 +1571,7 @@ a.button.cat-button:last-child {
 }
 .cover-input-about1 {
     text-align: center;
-    margin-right: 20px;
+   
     text-transform: uppercase
 }
 .yes-no-bg {
@@ -1665,7 +1666,7 @@ a.button.cat-button:hover {
 .card  .item {
     border: none !important;
 }
-ion-content {
+.listing-content{
     background-color: #bbbbbb;
 }
 .bar.bar-energized {
@@ -1755,3 +1756,40 @@ ion-content {
 .poll-answer-options {
     background-color: #eee;
 }
+ .newpoll-subheader {
+     height: 30px !important;
+ }
+ .newpoll-subheader  .button {
+    min-height: 30px !important;
+      line-height: 30px !important;
+    max-height: 30px !important;
+  
+}
+.has-poll-subheader {
+    margin-top :30px !important;
+}
+.mr10 {
+    margin-right: 10px; 
+}
+.interest-wrapper {
+    height: 200px;
+    overflow: auto;
+}
+.interest-checkbox {
+    display: inline-block  !important;
+    vertical-align: middle  !important;
+    margin-right: 5px  !important;
+}
+ .text-login {
+        width: 93 %;
+        font-size: 16px !important;
+        opacity: 0.9;
+        border-radius: 2px;
+        display: inline !important;
+        margin-top: 15px;
+        height: 45px !important;
+        padding-left:15 px !Important;
+    }
+    .text-login:focus {
+        opacity: 1;
+    }

@@ -2,22 +2,22 @@
     <ion-nav-title>
         Create A New Poll
     </ion-nav-title>
-        <ion-subheader-bar class="bar bar-subheader">
+        <ion-subheader-bar class="bar bar-subheader newpoll-subheader">
  
         
-            <a class="button cat-button"   ng-class="acitveTab == 'tab1' ? 'subnav-active' : ''">Step 1</a>
-            <a class="button cat-button"  ng-class="acitveTab == 'tab2' ? 'subnav-active' : ''">Step 2</a>
-            <a class="button cat-button"  ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''">Step 3</a>
+            <a class="button cat-button"   ng-class="acitveTab == 'tab1' ? 'subnav-active' : ''" ng-click="manageTabs('tab1', 'nav')">Step 1</a>
+            <a class="button cat-button"    ng-class="acitveTab == 'tab2' ? 'subnav-active' : ''" ng-click="manageTabs('tab2', 'nav')">Step 2</a>
+            <a class="button cat-button"   ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''" ng-click="manageTabs('tab3', 'nav')">Step 3</a>
            
     </ion-subheader-bar>
-    <ion-content class="has-footer has-subheader">
+    <ion-content class="has-footer has-poll-subheader">
     <form  class="createPoll">
         <div class="tab1" ng-show="acitveTab == 'tab1'">
              <div class="row"> 
                  <div class="block col">
                      <div class="cover-item-wrapper">
         <div class="cover-item yes-no-bg">
-        <div class="cover-overlay" ng-click="selectOption($event)"> 
+        <div class="cover-overlay" ng-click="manageTabs()"> 
             <div class="cover-input-about cover-input-about1">
         <div class="cover-heading-text about-cover-text">Yes/ No </div> 
         </div>  
@@ -33,7 +33,7 @@
                  <div class="block col">
                      <div class="cover-item-wrapper">
         <div class="cover-item multiple">
-        <div class="cover-overlay" ng-click="selectOption($event)"> 
+        <div class="cover-overlay" ng-click="manageTabs()"> 
             <div class="cover-input-about cover-input-about1">
         <div class="cover-heading-text about-cover-text"> 
                      Multiple Choice</div> 
@@ -49,7 +49,7 @@
                  <div class="block col">
                      <div class="cover-item-wrapper">
         <div class="cover-item image-poll">
-        <div class="cover-overlay" ng-click="selectOption($event)"> 
+        <div class="cover-overlay" ng-click="manageTabs()"> 
             <div class="cover-input-about cover-input-about1">
         <div class="cover-heading-text about-cover-text"> Image Poll</div> 
         </div>  
@@ -65,7 +65,7 @@
                  <div class="block col">
                      <div class="cover-item-wrapper">
         <div class="cover-item refe">
-        <div class="cover-overlay" ng-click="selectOption($event)"> 
+        <div class="cover-overlay" ng-click="manageTabs()"> 
             <div class="cover-input-about cover-input-about1">
         <div class="cover-heading-text about-cover-text"> 
                    Referendum</div> 
@@ -78,62 +78,78 @@
                  </div>
 </div>
              
-            <button class="button button-balanced button-block" type="button" ng-click="manageTabs()">Next</button> 
+      <!--       <button class="button button-balanced button-block" type="button" ng-click="manageTabs()">Next</button>  -->
              </div>
          
         <div class="tab2" ng-show="acitveTab == 'tab2'">
             <ul class="list">
-
-                <li class="item item-input item-floating-label">
-                    <span class="input-label">Question *</span>
-                    <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
+ 
+                <li >
+                   <label class="item item-input item-select">
+    <div class="input-label">
+      Posting As
+    </div>
+    <select>
+      <option selected>Choose</option>
+      <option>Blue</option>
+      <option >Green</option>
+      <option>Red</option>
+    </select>
+  </label>
                 </li>
-
-                
-                <li class="item">
-                    Multiple Answers
-                    <label class="checkbox vlm pull-right">
-                        <input type="checkbox" name="multiple_answers" value="Yes">
-                    </label>
+                <li >
+       <div class="item" ion-datetime-picker ng-model="datetimeValue">
+                Poll Valid Till*
+                <span class="pull-right">{{datetimeValue| date: "yyyy-MM-dd H:mm:ss"}}</span>
+         <i class="icon icon-left ion-calendar pull-right mr10"></i> 
+    </div>
                 </li>
+<li class="item item-toggle">
+     Explicit Content
+     <label class="toggle toggle-balanced">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+<li class="item item-toggle">
+     Mature Content
+     <label class="toggle toggle-balanced">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+  <li class="item item-toggle">
+     Resgion Specific
+     <label class="toggle toggle-balanced">
+       <input type="checkbox" ng-model="resgion">
+     <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+         
+  <li class="item item-input item-floating-label" ng-if="resgion">
+           <span class="input-label">Resgion  </span>
+   <input type="text" g-places-autocomplete ng-model="myScopeVar"  placeholder="Enter google location here" />
+  </li>
+          
 
-              
-                <li class="item item-input">
-                    <span class="input-label">Poll Valid Till *</span>
-                    <input type="date" name="valid_till" />
-                </li>
-
-
-
-                <li class="item options">
-                    Add Options * (Minimum Two)
-                    <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()" ></i>
-                </li>
-
-
-                 <li class="item">
-                    Explicit Content
-                    <label class="checkbox vlm pull-right">
-                        <input type="checkbox" name="multiple_answers" value="Yes">
-                    </label>
-                </li>
-                 <li class="item">
-                    Mature  Content
-                    <label class="checkbox vlm pull-right">
-                        <input type="checkbox" name="multiple_answers" value="Yes">
-                    </label>
-                </li>
-
+     
                 <li class="item">
                     Interest Areas
-
+<div class="interest-wrapper">
                     <div ng-repeat="interest in interests">
-                        <label class="checkbox vlm">
-                            <input type="checkbox" name="interests[]" value="{{ interest.term_id}}"> 
-                        </label>
-                        <span class="label vlm" ng-bind-html="interest.name"> </span>
-                    </div>
+                        <label class="checkbox vlm w100">
 
+                            <input type="checkbox" class="interest-checkbox" name="interests[]" value="{{ interest.term_id}}"> 
+                        <span class="label vlm" ng-bind-html="interest.name"> </span>
+                        </label>
+                    </div>
+</div>
                 </li>
 
             </ul>
@@ -141,7 +157,25 @@
 
         </div>
         <div class="tab3" ng-show="acitveTab == 'tab3'">
-            
+                       <li class="item item-input item-floating-label">
+                    <span class="input-label">Question *</span>
+                    <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
+                </li>
+
+                  <li class="item ">
+                    <span class=" ">Poll Description *</span>
+                        <tags-input ng-model="tags"></tags-input>
+                </li>
+
+             
+
+                <li class="item options">
+                    Add Options * (Minimum Two)
+                    <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()" ></i>
+                </li>
+
+
+               
                 <li class="item item-input">
                     <span class="input-label">Poll Image</span>
                     <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">

@@ -556,13 +556,47 @@ angular.module('askaudience.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal; 
             });
-            $scope.participate = function (event, id) {
-          
+            $scope.participate = function (event, id, options) {
+            jQuery('#'+id).append("<div id='chart_div'></div>");
               jQuery('#'+id).slideToggle();
+              $scope.barResults('#'+id, options);
             };
             $scope.closeParticipate = function () {
                 $scope.modal.hide();
             };
+              $scope.barResults = function (id, options) {
+                  var resultArray = [];
+                  resultArray.push(['Options', 'Votes', { role: 'style' }]);
+                  angular.forEach(options, function (element, index) {
+                      console.log(element);
+                      resultArray.push([element.option, element.number_of_votes, '#b87333']);
+                  }); 
+              google.charts.load('current', {'packages':['bar']});
+                  
+                 google.charts.setOnLoadCallback(drawChart(resultArray));                  
+              }
+      function drawChart(resultArray) {
+          console.log(resultArray);
+          var data = google.visualization.arrayToDataTable(resultArray);
+
+        var options = {
+         
+          bars: 'horizontal', // Required for Material Bar Charts.
+         bar: {groupWidth: "50%"},
+             hAxis: {format: 'decimal'},
+      
+          colors: ['#1b9e77', '#d95f02', '#7570b3'],
+          height: 'auto'
+        }
+
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+
+        var btns = document.getElementById('btn-group');
+
+   
+      }
             $scope.getTimeLeft = function (timeLeft) {
             
                   var eventTime= '1366549200'; // Timestamp - Sun, 21 Apr 2013 13:00:00 GMT
@@ -717,8 +751,13 @@ var interval = 1000;
     ])
     .controller('createPollCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
         function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
-            $scope.acitveTab = 'tab1';
+            $scope.acitveTab = 'tab3'; 
             Loader.show();
+              $scope.tags = [
+    { text: 'Tag1' },
+    { text: 'Tag2' },
+    { text: 'Tag3' }
+  ];
             APIFactory.getInterests().then(function (response) {
                 $scope.interests = response.data;
                 $scope.addOption();
@@ -728,18 +767,24 @@ var interval = 1000;
                 Loader.hide();
                 Loader.toast('Oops! something went wrong. Please try later again');
             })
-            $scope.manageTabs = function (activeTab) {
-                if ($scope.acitveTab == 'tab1') {
-                    $scope.acitveTab = 'tab2';
-                } else if ($scope.acitveTab == 'tab2') {
-                    $scope.acitveTab = 'tab3';
-                }
-                $ionicScrollDelegate.scrollTop();
+            $scope.manageTabs = function (activeTab, type) {
+                if (type == 'nav') {
+                console.log(activeTab + type);
+                    $scope.acitveTab = activeTab;
+                    console.log($scope.acitveTab);
+                    $scope.$digest;
+                } else {
+                                if ($scope.acitveTab == 'tab1') {
+                                    $scope.acitveTab = 'tab2'; 
+                                } else if ($scope.acitveTab == 'tab2') { 
+                                    $scope.acitveTab = 'tab3';
+                                }
+                }                $ionicScrollDelegate.scrollTop();
 
             }
             $scope.selectOption = function (event) {
 
-                angular.element(event.target).parent().parent().toggleClass('selected-option');
+                 
             }
             $scope.createPoll = function () {
                 if (!$rootScope.isLoggedIn) {

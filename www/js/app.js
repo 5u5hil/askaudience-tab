@@ -1,6 +1,6 @@
 // Ionic askaudience App
 var domain = 'http://ask-audience.cruxservers.in/api/?method=';
-angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'angularMoment'])
+angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'angularMoment', 'ion-datetime-picker', 'google.places', 'ngTagsInput'])
 
         .run(function ($ionicPlatform, $cordovaStatusbar) {
             $ionicPlatform.ready(function () {
@@ -18,9 +18,11 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                     if (window.StatusBar) {
                         StatusBar.styleDefault();
                     }
-                } catch (e) {
-                }
                 $cordovaStatusbar.styleHex('#FF9800');
+
+                } catch (e) {
+                    console.log('real device only')
+                }
 
             });
         })
