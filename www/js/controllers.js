@@ -557,46 +557,14 @@ angular.module('askaudience.controllers', [])
                 $scope.modal = modal; 
             });
             $scope.participate = function (event, id, options) {
-            jQuery('#'+id).append("<div id='chart_div'></div>");
+    
               jQuery('#'+id).slideToggle();
-              $scope.barResults('#'+id, options);
+              
             };
             $scope.closeParticipate = function () {
                 $scope.modal.hide();
             };
-              $scope.barResults = function (id, options) {
-                  var resultArray = [];
-                  resultArray.push(['Options', 'Votes', { role: 'style' }]);
-                  angular.forEach(options, function (element, index) {
-                      console.log(element);
-                      resultArray.push([element.option, element.number_of_votes, '#b87333']);
-                  }); 
-              google.charts.load('current', {'packages':['bar']});
-                  
-                 google.charts.setOnLoadCallback(drawChart(resultArray));                  
-              }
-      function drawChart(resultArray) {
-          console.log(resultArray);
-          var data = google.visualization.arrayToDataTable(resultArray);
-
-        var options = {
-         
-          bars: 'horizontal', // Required for Material Bar Charts.
-         bar: {groupWidth: "50%"},
-             hAxis: {format: 'decimal'},
-      
-          colors: ['#1b9e77', '#d95f02', '#7570b3'],
-          height: 'auto'
-        }
-
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-
-        var btns = document.getElementById('btn-group');
-
-   
-      }
+  
             $scope.getTimeLeft = function (timeLeft) {
             
                   var eventTime= '1366549200'; // Timestamp - Sun, 21 Apr 2013 13:00:00 GMT
