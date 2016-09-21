@@ -459,57 +459,6 @@ angular.module('askaudience.controllers', [])
                         }
                     });
                 }
-
-
-                // if (!$rootScope.isLoggedIn) {
-                //     $rootScope.$broadcast('showLoginModal', $scope, function () {
-                //         $ionicHistory.goBack(-1);
-                //     }, function () {
-                //         getUserData();
-                //     });
-                // } else {
-                //     getUserData();
-                // }
-
-                // function getUserData() {
-                //     Loader.show();
-                //     APIFactory.userData($rootScope.user.ID).then(function (response) {
-                //         Loader.hide();
-                //         $scope.userInfo = response.data;
-                //     }, function (data) {
-                //         /* body... */
-                //         Loader.hide();
-                //         Loader.toast('Oops! something went wrong');
-                //     })
-                // };
-                // $scope.updateUser = function (data) {
-                //     var password = {
-                //         pass: '',
-                //         repass: ''
-                //     };
-                //     Loader.show();
-                //     APIFactory.updateUser(data, password, $rootScope.user.ID).then(function (response) {
-                //         console.log(response);
-                //         Loader.hide();
-                //         Loader.toast('Profile updated successfuly');
-                //     }, function (error) {
-                //         console.log(error);
-                //         Loader.hide();
-                //         Loader.toast('Oops! something went wrong. Please try later again');
-                //     })
-                // }
-                // $scope.changePassword = function (data, password) {
-                //     Loader.show();
-                //     APIFactory.updateUser(data, password, $rootScope.user.ID).then(function (response) {
-                //         console.log(response);
-                //         Loader.hide();
-                //         Loader.toast('Password updated successfuly');
-                //     }, function (error) {
-                //         console.log(error);
-                //         Loader.hide();
-                //         Loader.toast('Oops! something went wrong. Please try later again');
-                //     })
-                // }
             }
         ])
 
@@ -538,6 +487,7 @@ angular.module('askaudience.controllers', [])
         .controller('pollsCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal) {
                 Loader.show();
+                $scope.options = {thickness: 10};
                 var data = {};
                 $scope.uid = '';
 
@@ -547,7 +497,25 @@ angular.module('askaudience.controllers', [])
                 }
 
                 APIFactory.getPolls(data).then(function (response) {
+
+                    jQuery.each(response.data, function (k, v) {
+                        response.data[k].chartdata = [];
+                        response.data[k].chartlabels = [];
+
+                        jQuery.each(v.options, function (kk, vv) {
+                            response.data[k].chartdata.push({label: vv.option, value: vv.number_of_votes, color: $rootScope.colors[kk]});
+
+
+                        });
+
+                    });
+
                     $scope.polls = response.data;
+                    a = response.data;
+
+
+
+
                     Loader.hide();
                 }, function (error) {
                     Loader.hide();
@@ -588,13 +556,6 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
                             jQuery("form.vote" + pid).hide();
-                            // angular.forEach(response.data, function(value, key) {
-                            //     value.number_of_votes = (value.number_of_votes == "" ? 0 : value.number_of_votes);
-                            //     $scope.chart.push({ 'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key] });
-                            //     $scope.$digest;
-                            //     window.dispatchEvent(new Event('resize'));
-
-                            // });
                         }
                     });
                 }
@@ -607,7 +568,6 @@ angular.module('askaudience.controllers', [])
 
                 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
                     angular.forEach($scope.polls, function (element, index) {
-                        console.log(element.id);
                         jQuery('#' + element.id).countdowntimer({
                             dateAndTime: element.valid_till,
                             size: "lg",
@@ -631,88 +591,6 @@ angular.module('askaudience.controllers', [])
                 }
             }
         })
-        .controller('pollsCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
-            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
-                Loader.show();
-                var data = {};
-
-                if (LSFactory.get('user'))
-                    data.userId = LSFactory.get('user').ID
-
-                APIFactory.getPolls(data).then(function (response) {
-                    $scope.polls = response.data;
-                    Loader.hide();
-                }, function (error) {
-                    Loader.hide();
-                    Loader.toast('Oops! something went wrong. Please try later again');
-                });
-
-            }
-        ])
-
-        .controller('pollDetailsCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$filter',
-            function ($scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $filter) {
-                $scope.participated = 'No';
-                Loader.show();
-                $scope.chart = [];
-                $scope.options = {thickness: 10};
-                APIFactory.pollDetails({'pid': $stateParams.id}).then(function (response) {
-                    $scope.poll = response.data;
-                    var participants = response.data.participants;
-                    if (LSFactory.get('user')) {
-                        var found = jQuery.grep(participants, function (element, index) {
-                            return element.ID == LSFactory.get('user').ID;
-                        });
-                        if (found.length || (participants.indexOf(LSFactory.get('user').ID) > -1)) {
-                            $scope.participated = 'Yes';
-                        }
-                    }
-
-                    angular.forEach(response.data.options, function (value, key) {
-                        value.number_of_votes = (value.number_of_votes == "" ? 0 : value.number_of_votes);
-                        $scope.chart.push({'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key]});
-                    });
-                    Loader.hide();
-                    window.dispatchEvent(new Event('resize'));
-                }, function (error) {
-                    Loader.hide();
-                    Loader.toast('Oops! something went wrong. Please try later again');
-                });
-                $scope.vote = function () {
-                    if (!$rootScope.isLoggedIn) {
-                        $rootScope.$broadcast('showLoginModal', $scope, function () {
-                            $ionicHistory.goBack(-1);
-                        }, function () {
-                            vote();
-                        });
-                    } else {
-                        vote();
-                    }
-                };
-
-                function vote() {
-                    var data = new FormData(jQuery("form.vote")[0]);
-                    data.append('userId', LSFactory.get('user').ID);
-                    Loader.show('Submitting Your Vote ...');
-                    APIFactory.vote(data).then(function (response) {
-                        if (response.data.error) {
-                            Loader.toggleLoadingWithMessage(response.data.error, 2000);
-                        } else {
-                            Loader.toggleLoadingWithMessage(response.data.success, 2000);
-                            jQuery("form.vote").hide();
-                            angular.forEach(response.data, function (value, key) {
-                                value.number_of_votes = (value.number_of_votes == "" ? 0 : value.number_of_votes);
-                                $scope.chart.push({'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key]});
-                                $scope.$digest;
-                                window.dispatchEvent(new Event('resize'));
-
-                            });
-                        }
-                    });
-                }
-
-            }
-        ])
 
         .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
