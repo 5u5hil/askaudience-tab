@@ -74,11 +74,10 @@
                             </div>
                         </label>
                     </li>
-                    <li class="item item-input item-floating-label" ng-if="location_specific">
+                    <li class="item item-input item-floating-label" ng-show="location_specific">
                         <span class="input-label">Google Location  </span>
-                        <input type="text" id="searchTextField" gm-places-autocomplete ng-model="autocomplete" placeholder="Enter google location here" />
-                        <input type="text" id="lat" name="lat" />
-                        <input type="text" id="lng" name="lng" />  
+                        <input type="text"   placeholder="Enter google location here" gm-places-autocomplete ng-model="autocomplete" />  
+                       
                     </li>
                     <li class="item">
                         Interest Areas

@@ -842,11 +842,13 @@ angular.module('askaudience.controllers', [])
             }
     $scope.$on('gmPlacesAutocomplete::placeChanged', function() {
         console.log('asdf')
-            var location = $scope.autocomplete.getPlace().geometry.location;
+        console.log($scope.autocomplete);
+            var location = $scope.autocomplete.getPlace();
+            console.log(location);
             $scope.lat = location.lat();
             $scope.lng = location.lng();
             $scope.$apply();
-            $scope.eventDetail.location = [$scope.lng, $scope.lat];
+      
         });
             $scope.addOption = function() {
                 jQuery(".options").append(jQuery(".toClone").html());

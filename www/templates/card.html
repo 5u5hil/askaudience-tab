@@ -11,10 +11,12 @@
             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
             <h2 class=" poll-name-user">Anonymous</h2>
         </div>
+        <div ng-if="poll.is_explicit || poll.is_mature">
         <div class="tags pull-right">
             <h2>18+</h2>
         </div>
     <div class="poll-separator-ver pull-right"></div> 
+    </div>
     </div>
     <div class="poll-separator"></div>
     <div class="clear-fix"></div>
@@ -32,14 +34,14 @@
         <span ng-init="getTimeLeft(poll.valid_till, poll.id, $event)"></span>
     </div>
     
-           <div class="item item-text-wrap p0 poll-answer-options hidden" >
-   <form class="vote" >
+           <div class="item item-text-wrap p0 poll-answer-options hidden" data-toggle="{{poll.id}}">
+   <form class="vote" ng-if="participated == 'No'">
 <!--ng-if="participated == 'No'"-->
                     <ul class="options">
     
                         <li ng-repeat="opt in poll.options">
                             <label class="checkbox w100">
-                                <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}">
+                                <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}" ng-click="vote()">
                                     <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
                                     <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
                                 </ion-item>
