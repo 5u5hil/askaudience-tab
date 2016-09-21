@@ -3,9 +3,10 @@
         Create   New Poll
     </ion-nav-title>
     <ion-subheader-bar class="bar bar-subheader newpoll-subheader">
-        <a class="button cat-button" ng-class="acitveTab == 'tab1' ? 'subnav-active' : ''" ng-click="manageTabs('tab1', 'nav')">Step 1</a>
+        <!-- <a class="button cat-button" ng-class="acitveTab == 'tab1' ? 'subnav-active' : ''" ng-click="manageTabs('tab1', 'nav')">Step 1</a>
         <a class="button cat-button" ng-class="acitveTab == 'tab2' ? 'subnav-active' : ''" ng-click="manageTabs('tab2', 'nav')">Step 2</a>
-        <a class="button cat-button" ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''" ng-click="manageTabs('tab3', 'nav')">Step 3</a>
+        <a class="button cat-button" ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''" ng-click="manageTabs('tab3', 'nav')">Step 3</a> -->
+         <a class="button cat-button w100 bold" > {{acitveTab == 'tab1' ? '1' : (acitveTab == 'tab2' ? '2' : '3')}}/3</a>
     </ion-subheader-bar>
     <ion-content class="has-footer has-poll-subheader">
         <form class="createPoll">
@@ -44,7 +45,7 @@
                             Poll Valid Till*
                             <span class="pull-right">{{datetimeValue | date: "yyyy-MM-dd H:mm:ss"}}</span>
                             <i class="icon icon-left ion-calendar pull-right mr10"></i>
-                            <input type="text" name="valid_till" value="{{datetimeValue | date: 'yyyy-MM-dd H:mm:ss'}}">
+                            <input type="text" name="valid_till" style="display:none" value="{{datetimeValue | date: 'yyyy-MM-dd H:mm:ss'}}">
                         </div>
                     </li>
                     <li class="item item-toggle">
@@ -74,33 +75,44 @@
                             </div>
                         </label>
                     </li>
-                    <li class="item item-input item-floating-label" ng-show="location_specific">
+                    <li class="item item-input item-stacked-label" ng-show="location_specific">
                         <span class="input-label">Google Location  </span>
-                        <input type="text"   placeholder="Enter google location here" gm-places-autocomplete ng-model="autocomplete" />  
+                     
+                        <input type="text" gm-places-autocomplete ng-model="autocomplete" />
                        
                     </li>
-                    <li class="item">
-                        Interest Areas
+         
+                        
+                        <li class="item item-input item-stacked-label">
+                        <span class="input-label">Interest Areas </span> 
+                        <input type="text"  ng-model="search" placeholder="Search Interest Area" />
+                       
+                    </li>
                         <div class="interest-wrapper">
-                            <div ng-repeat="interest in interests">
+                            <div ng-repeat="interest in interests | filter:search">
                                 <label class="checkbox vlm w100">
                                     <input type="checkbox" class="interest-checkbox" name="interests[]" value="{{ interest.term_id}}">
                                     <span class="label vlm" ng-bind-html="interest.name"> </span>
                                 </label>
                             </div>
                         </div>
-                    </li>
+                  
                 </ul>
                 <button class="button button-balanced button-block" type="button" ng-click="manageTabs()">Next</button>
             </div>
             <div class="tab3" ng-show="acitveTab == 'tab3'">
                 <li class="item item-input item-floating-label">
-                    <span class="input-label">Question *</span>
+                    <span class="input-label">Poll Question *</span>
                     <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
                 </li>
+               <!--  <li class="item item-input item-floating-label">
+                    <span class="input-label">Poll Description *</span>
+                    <input type="text" name="pollname"   placeholder="Poll Discription" required>
+                </li> -->
                 <li class="item ">
-                    <span class=" ">Poll Description *</span>
+                    <span class=" ">Tags *</span>
                     <tags-input ng-model="tags"></tags-input>
+                    <input type="hidden" name="tags[]" value="{{tags}}">
                 </li>
                 <li class="item options">
                     Add Options * (Minimum Two)
@@ -176,7 +188,7 @@
         <div class="toClone">
             <ul class="list">
                 <li class="item">
-                    <div class="  option">
+                    <div class="  option ">
                         <div class=" ">
                             <input type="file" name="option[1][image]" class="custom-file-input" />
                         </div>
