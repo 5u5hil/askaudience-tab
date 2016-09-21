@@ -14,8 +14,9 @@
         <div class="tags pull-right">
             <h2>18+</h2>
         </div>
+    <div class="poll-separator-ver pull-right"></div> 
     </div>
-    <div class="poll-seprator"></div>
+    <div class="poll-separator"></div>
     <div class="clear-fix"></div>
     <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title">
 
@@ -27,10 +28,11 @@
     </div>
     <div class="item poll-topbar padding10">
         <div class="poll-id pull-left">#125214</div> 
-        <div class="poll-id pull-right"> {{getTimeLeft(poll.valid_till) }}</div>
+        <div class="poll-id pull-right"> <span id="{{poll.id}}"></span></div>
+        <span ng-init="getTimeLeft(poll.valid_till, poll.id, $event)"></span>
     </div>
     
-           <div class="item item-text-wrap p0 poll-answer-options hidden"  id="{{poll.id}}">
+           <div class="item item-text-wrap p0 poll-answer-options hidden" >
    <form class="vote" >
 <!--ng-if="participated == 'No'"-->
                     <ul class="options">

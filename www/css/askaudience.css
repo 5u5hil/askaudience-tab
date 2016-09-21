@@ -1717,12 +1717,21 @@ a.button.cat-button:hover {
     margin-bottom: 0px;
 }
 .tags {
-       border-left: 1px solid #f1f1f1;
+      /* border-left: 1px solid #f1f1f1;*/
        padding: 10px;
 }
 .top-bar-wrapper {
-        border-bottom: 1px solid #f1f1f1;
+        /*border-bottom: 1px solid #f1f1f1;*/
             height: 45px;
+}
+.poll-separator {
+        border-bottom: 1px solid #f1f1f1 !important;
+    margin: 0px 6px !important;
+}
+.poll-separator-ver {
+     border-left: 1px solid #f1f1f1;
+    margin-top: 6px;
+    height: 35px;
 }
 .clear-fix {
     clear: both;
