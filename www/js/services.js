@@ -29,6 +29,10 @@ angular.module('askaudience.services', [])
                         var req = {method: 'GET', url: domain + 'getPolls', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
+                    getPollType: function (data) {
+                        var req = {method: 'GET', url: domain + 'polltypes', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     authUser: function (data) {
                         var req = {method: 'POST', url: domain + 'login', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);

@@ -557,7 +557,7 @@ angular.module('askaudience.controllers', [])
             });
             $scope.participate = function(event, id, options) {
 
-                jQuery('#' + id).slideToggle();
+                jQuery('[data-toggle=' + id + ']').slideToggle();
 
             };
 
@@ -574,7 +574,7 @@ angular.module('askaudience.controllers', [])
                         dateAndTime: element.valid_till,
                         size: "lg",
                         regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})",
-                        regexpReplaceWith: "$1<sup class='displayformat'>days</sup>   $2<sup class='displayformat'>hrs</sup>  $3<sup class='displayformat'>mins</sup>"
+                        regexpReplaceWith: "$1<span class='displayformat'> days</span>   $2<span class='displayformat'> hrs</span>  $3<span class='displayformat'> mins</span>"
                     })
                 })
 
@@ -607,7 +607,39 @@ angular.module('askaudience.controllers', [])
             }, function(error) {
                 Loader.hide();
                 Loader.toast('Oops! something went wrong. Please try later again');
-            })
+            });
+              $scope.vote = function() {
+            if (!$rootScope.isLoggedIn) {
+                $rootScope.$broadcast('showLoginModal', $scope, function() {
+                    $ionicHistory.goBack(-1);
+                }, function() {
+                    vote();
+                });
+            } else {
+                vote();
+            }
+        };
+
+        function vote() {
+            var data = new FormData(jQuery("form.vote")[0]);
+            data.append('userId', LSFactory.get('user').ID);
+            Loader.show('Submitting Your Vote ...');
+            APIFactory.vote(data).then(function(response) {
+                if (response.data.error) {
+                    Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                } else {
+                    Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                    jQuery("form.vote").hide();
+                    // angular.forEach(response.data, function(value, key) {
+                    //     value.number_of_votes = (value.number_of_votes == "" ? 0 : value.number_of_votes);
+                    //     $scope.chart.push({ 'label': value.option, 'value': value.number_of_votes, 'color': $rootScope.colors[key] });
+                    //     $scope.$digest;
+                    //     window.dispatchEvent(new Event('resize'));
+
+                    // });
+                }
+            });
+        }
         }
     ])
 
@@ -687,7 +719,14 @@ angular.module('askaudience.controllers', [])
             }, function(error) {
                 Loader.hide();
                 Loader.toast('Oops! something went wrong. Please try later again');
-            })
+            });
+               APIFactory.getPollType().then(function(response) {
+                $scope.pollTypes = response.data; 
+                Loader.hide();
+            }, function(error) {
+                Loader.hide();
+                Loader.toast('Oops! something went wrong. Please try later again');
+            });
 
             $scope.createPoll = function() {
                 if (!$rootScope.isLoggedIn) {
@@ -730,13 +769,9 @@ angular.module('askaudience.controllers', [])
     ])
     .controller('createPollCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
         function($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
-            $scope.acitveTab = 'tab3';
+            $scope.acitveTab = 'tab1';
             Loader.show();
-            $scope.tags = [
-                { text: 'Tag1' },
-                { text: 'Tag2' },
-                { text: 'Tag3' }
-            ];
+         
             APIFactory.getInterests().then(function(response) {
                 $scope.interests = response.data;
                 $scope.addOption();
@@ -745,7 +780,15 @@ angular.module('askaudience.controllers', [])
             }, function(error) {
                 Loader.hide();
                 Loader.toast('Oops! something went wrong. Please try later again');
-            })
+            });
+                        APIFactory.getPollType().then(function(response) {
+                $scope.pollTypes = response.data; 
+                Loader.hide();
+            }, function(error) {
+                Loader.hide();
+                Loader.toast('Oops! something went wrong. Please try later again');
+            });
+
             $scope.manageTabs = function(activeTab, type) {
                 if (type == 'nav') {
                     console.log(activeTab + type);
@@ -797,7 +840,14 @@ angular.module('askaudience.controllers', [])
 
                 });
             }
-
+    $scope.$on('gmPlacesAutocomplete::placeChanged', function() {
+        console.log('asdf')
+            var location = $scope.autocomplete.getPlace().geometry.location;
+            $scope.lat = location.lat();
+            $scope.lng = location.lng();
+            $scope.$apply();
+            $scope.eventDetail.location = [$scope.lng, $scope.lat];
+        });
             $scope.addOption = function() {
                 jQuery(".options").append(jQuery(".toClone").html());
                 indexOptions();

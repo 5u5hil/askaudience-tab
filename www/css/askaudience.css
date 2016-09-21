@@ -1,3 +1,49 @@
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 100;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2");
+}
+
+/** Thin */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 200;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2");
+}
+
+/** Regular */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2");
+}
+
+/** Medium */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: normal;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
+}
+
+/** Semi Bold */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 500;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2");
+}
+
+/** Bold */ 
+@font-face {
+  font-family: "San Francisco";
+  font-weight: bold;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
+}
+ * {
+  font-family: "San Francisco" !important;
+  font-weight: 200 !important;
+
+
+ }
 .white {
     color: #fff !important
 }
@@ -1103,8 +1149,7 @@ a.autolinker {
     background - color: black !important;
     color: #fff !important
 }
-padding: 0px 20px !important;
-}
+ 
 .linkedin-bgc,
 .linkedin-bgc:hover {
     background-color: #007AB6 !important
@@ -1575,25 +1620,25 @@ a.button.cat-button:last-child {
     text-transform: uppercase
 }
 .yes-no-bg {
-    background-image: url('../img/poll-yes-no.jpg') !important;
+    /*background-image: url('../img/poll-yes-no.jpg') !important;*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 1px
 }
 .multiple {
-    background-image: url('../img/poll-multiple.png') !important;
+    /*background-image: url('../img/poll-multiple.png') !important;*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 1px
 }
 .image-poll {
-    background-image: url('../img/image-poll.jpg') !important;
+    /*background-image: url('../img/image-poll.jpg') !important;*/
     background-size: 141% 100%;
     background-repeat: no-repeat;
     background-position: -33px -7px
 }
 .refe {
-    background-image: url('../img/referendum.jpg') !important;
+    /*background-image: url('../img/referendum.jpg') !important;*/
     background-size: 141% 100%;
     background-repeat: no-repeat;
     background-position: -33px -7px
@@ -1687,7 +1732,7 @@ a.button.cat-button:hover {
      color : #000;
     font-size: 16px !important;
     padding-left: 6px;
-    font-weight: bold; 
+    /*font-weight: bold; */
 }
  
 .poll-answer-options .item-avatar img{
@@ -1790,16 +1835,12 @@ a.button.cat-button:hover {
     vertical-align: middle  !important;
     margin-right: 5px  !important;
 }
- .text-login {
-        width: 93 %;
-        font-size: 16px !important;
-        opacity: 0.9;
-        border-radius: 2px;
-        display: inline !important;
-        margin-top: 15px;
-        height: 45px !important;
-        padding-left:15 px !Important;
-    }
-    .text-login:focus {
-        opacity: 1;
-    }
+.poll-type-imge {
+        width: 100px;
+}
+.poll-block {
+        width: 49%;
+    float: left;
+    text-align: center;
+        padding: 12px;
+}
