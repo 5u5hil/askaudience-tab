@@ -530,6 +530,10 @@ angular.module('askaudience.controllers', [])
                 $scope.participate = function (event, id, options) {
 
                     jQuery('[data-toggle=' + id + ']').slideToggle();
+                    $timeout(function () {
+                    window.dispatchEvent(new Event('resize'));
+                        
+                    }, 500)
 
                 };
 
@@ -592,7 +596,7 @@ angular.module('askaudience.controllers', [])
             }
         })
 
-        .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
+        .controller('createPollCtrl21', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
 
                 Loader.show();
@@ -626,6 +630,14 @@ angular.module('askaudience.controllers', [])
                 }
 
                 function newPoll() {
+                    var tembVar = '';
+                 console.log($scope.tags);
+                   $scope.tags.forEach(function (element, index) {
+                    console.log(element)
+                        tembVar  += '&tags[]=' + element.text;
+                    });
+                  jQuery('#tags').val(tembVar);
+                return false;
                     var data = new FormData(jQuery("form.createPoll")[0]);
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Creating Poll ...');
@@ -652,7 +664,7 @@ angular.module('askaudience.controllers', [])
 
             }
         ])
-        .controller('createPollCtrl1', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
+        .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
                 $scope.acitveTab = 'tab1';
                 Loader.show();

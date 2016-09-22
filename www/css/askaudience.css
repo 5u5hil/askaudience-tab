@@ -1760,6 +1760,7 @@ a.button.cat-button:hover {
     color: #706f6f;
      height: 25px;
     margin-bottom: 0px;
+        line-height: 28px;
 }
 .tags {
       /* border-left: 1px solid #f1f1f1;*/

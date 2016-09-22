@@ -1,0 +1,76 @@
+<ion-view hide-menu-button="true">
+    <ion-nav-title>
+        Create A New Poll
+    </ion-nav-title>
+    <ion-content class="has-footer">
+        <form class="createPoll" >
+            <ul class="list">
+
+                <li class="item item-input item-floating-label">
+                    <span class="input-label">Question *</span>
+                    <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
+                </li>
+
+                <li class="item item-input">
+                    <span class="input-label">Poll Image</span>
+                    <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
+                </li>
+
+                <li class="item item-input">
+                    <span class="input-label">Post As *</span>
+                    <select name="posted_as" required>
+                        <option value="1">Public</option>
+                        <option value="2">Private (Only Friends Can View)</option>
+                        <option value="3">Reveal Only Pin (Only Your Pin will be Revealed)</option>
+                        <option value="4">Anonymously</option>
+                    </select>
+                </li>
+
+
+
+                <li class="item">
+                    Multiple Answers
+                    <label class="checkbox vlm pull-right">
+                        <input type="checkbox" name="multiple_answers" value="Yes">
+                    </label>
+                </li> 
+
+
+                <li class="item options">
+                    Add Options * (Minimum Two)
+                    <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()" ></i>
+                </li>
+
+
+                <li class="item">
+                    Interest Areas
+
+                    <div ng-repeat="interest in interests">
+                        <label class="checkbox vlm">
+                            <input type="checkbox" name="interests[]" value="{{ interest.term_id}}"> 
+                        </label>
+                        <span class="label vlm" ng-bind-html="interest.name"> </span>
+                    </div>
+
+                </li>
+
+            </ul>
+            <button class="button button-balanced button-block" ng-click="createPoll()">Submit Poll</button>
+        </form>
+
+        <div class="toClone">
+            <ul class="list">
+                <li class="item">
+                    <div class="  option">
+                        <div class=" "><input type="file" name="option[1][image]" class="custom-file-input" /></div>
+                        <label class="item item-input">
+                            <input type="text"  name="option[1][text]" placeholder="Option Text">
+                        </label>
+                        <div class="col"> <i class="icon ion-ios-minus-outline pull-right deleteOption"  ></i></div>
+                    </div>   
+                </li>
+            </ul>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,9 +1,131 @@
 <ion-view hide-menu-button="true">
     <ion-nav-title>
-        Create A New Poll
+        Create   New Poll
     </ion-nav-title>
-    <ion-content class="has-footer">
-        <form class="createPoll" >
+    <ion-subheader-bar class="bar bar-subheader newpoll-subheader">
+        <!-- <a class="button cat-button" ng-class="acitveTab == 'tab1' ? 'subnav-active' : ''" ng-click="manageTabs('tab1', 'nav')">Step 1</a>
+        <a class="button cat-button" ng-class="acitveTab == 'tab2' ? 'subnav-active' : ''" ng-click="manageTabs('tab2', 'nav')">Step 2</a>
+        <a class="button cat-button" ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''" ng-click="manageTabs('tab3', 'nav')">Step 3</a> -->
+         <a class="button cat-button w100 bold" > {{acitveTab == 'tab1' ? '1' : (acitveTab == 'tab2' ? '2' : '3')}}/3</a>
+    </ion-subheader-bar>
+    <ion-content class="has-footer has-poll-subheader">
+        <form class="createPoll">
+            <div class="tab1" ng-show="acitveTab == 'tab1'">
+                <div class="" >
+                    <label class="poll-block  " ng-click="manageTabs()" for="{{type.term_id}}" ng-repeat="type in pollTypes">
+                        <div class=" ">
+                            <img ng-src="{{type.image}}" alt="" class="poll-type-imge">
+                            <input type="radio" style="display:none" name="polltype" id="{{type.term_id}}" value="{{type.term_id}}">
+                            <div class=" ">
+                                <div class=" ">{{type.name}} </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+             
+            </div>
+            <div class="tab2" ng-show="acitveTab == 'tab2'">
+                <ul class="list">
+                    <li>
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Posting As*
+                            </div>
+                            <select name="posted_as" >
+                                    <option value="1">Public</option>
+                        <option value="2">Private (Only Friends Can View)</option>
+                        <option value="3">Reveal Only Pin (Only Your Pin will be Revealed)</option>
+                        <option value="4">Anonymously</option>
+                        <option value="5">Group</option>
+                            </select>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="item" ion-datetime-picker ng-model="datetimeValue">
+                            Poll Valid Till*
+                            <span class="pull-right">{{datetimeValue | date: "yyyy-MM-dd H:mm:ss"}}</span>
+                            <i class="icon icon-left ion-calendar pull-right mr10"></i>
+                            <input type="text" name="valid_till" style="display:none" value="{{datetimeValue | date: 'yyyy-MM-dd H:mm:ss'}}">
+                        </div>
+                    </li>
+                    <li class="item item-toggle">
+                        Explicit Content
+                        <label class="toggle toggle-balanced">
+                            <input type="checkbox" name="is_explicit" ng-model="explicit" value="{{explicit}}">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="item item-toggle">
+                        Mature Content
+                        <label class="toggle toggle-balanced">
+                            <input type="checkbox" name="is_content" ng-model="content" value="{{content}}">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="item item-toggle">
+                        Location Specific
+                        <label class="toggle toggle-balanced" >
+                            <input type="checkbox"  name="location_specific" ng-model="location_specific" value="{{location_specific}}" >
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="item item-input item-stacked-label" ng-show="location_specific">
+                        <span class="input-label">Google Location  </span>
+                     
+                        <input type="text" gm-places-autocomplete ng-model="autocomplete" />
+                       
+                    </li>
+         
+                        
+                        <li class="item item-input item-stacked-label">
+                        <span class="input-label">Interest Areas </span> 
+                        <input type="text"  ng-model="search" placeholder="Search Interest Area" />
+                       
+                    </li>
+                        <div class="interest-wrapper">
+                            <div ng-repeat="interest in interests | filter:search">
+                                <label class="checkbox vlm w100">
+                                    <input type="checkbox" class="interest-checkbox" name="interests[]" value="{{ interest.term_id}}">
+                                    <span class="label vlm" ng-bind-html="interest.name"> </span>
+                                </label>
+                            </div>
+                        </div>
+                  
+                </ul>
+                <button class="button button-balanced button-block" type="button" ng-click="manageTabs()">Next</button>
+            </div>
+            <div class="tab3" ng-show="acitveTab == 'tab3'">
+                <li class="item item-input item-floating-label">
+                    <span class="input-label">Poll Question *</span>
+                    <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
+                </li>
+               <!--  <li class="item item-input item-floating-label">
+                    <span class="input-label">Poll Description *</span>
+                    <input type="text" name="pollname"   placeholder="Poll Discription" required>
+                </li> -->
+                <li class="item ">
+                    <span class=" ">Tags *</span>
+                    <tags-input ng-model="tags"></tags-input>
+                    <input type="hidden" id="tags" name="tags[]" value="{{tags}}">
+                </li>
+                <li class="item options">
+                    Add Options * (Minimum Two)
+                    <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()"></i>
+                </li>
+                <li class="item item-input">
+                    <span class="input-label">Poll Image</span>
+                    <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
+                </li>
+                <button class="button button-balanced button-block" ng-click="createPoll()">Submit Poll</button>
+            </div>
+        </form>
+        <!--   <form class="createPoll" >
             <ul class="list">
 
                 <li class="item item-input item-floating-label">
@@ -33,7 +155,12 @@
                     <label class="checkbox vlm pull-right">
                         <input type="checkbox" name="multiple_answers" value="Yes">
                     </label>
-                </li> 
+                </li>
+                <li class="item item-input">
+                    <span class="input-label">Poll Valid Till *</span>
+                    <input type="date" name="valid_till" />
+                </li>
+
 
 
                 <li class="item options">
@@ -57,20 +184,21 @@
             </ul>
             <button class="button button-balanced button-block" ng-click="createPoll()">Submit Poll</button>
         </form>
-
+ -->
         <div class="toClone">
             <ul class="list">
                 <li class="item">
-                    <div class="  option">
-                        <div class=" "><input type="file" name="option[1][image]" class="custom-file-input" /></div>
+                    <div class="  option ">
+                        <div class=" ">
+                            <input type="file" name="option[1][image]" class="custom-file-input" />
+                        </div>
                         <label class="item item-input">
-                            <input type="text"  name="option[1][text]" placeholder="Option Text">
+                            <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>
-                        <div class="col"> <i class="icon ion-ios-minus-outline pull-right deleteOption"  ></i></div>
-                    </div>   
+                        <div class="col"> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
+                    </div>
                 </li>
             </ul>
         </div>
-
     </ion-content>
 </ion-view>
