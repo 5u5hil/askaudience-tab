@@ -539,6 +539,7 @@ angular.module('askaudience.controllers', [])
 
 
                 $scope.vote = function (pid) {
+                    console.log('asdf');
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -596,74 +597,7 @@ angular.module('askaudience.controllers', [])
             }
         })
 
-        .controller('createPollCtrl21', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory',
-            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory) {
-
-                Loader.show();
-                APIFactory.getInterests().then(function (response) {
-                    $scope.interests = response.data;
-                    $scope.addOption();
-                    $scope.addOption();
-                    Loader.hide();
-                }, function (error) {
-                    Loader.hide();
-                    Loader.toast('Oops! something went wrong. Please try later again');
-                });
-                APIFactory.getPollType().then(function (response) {
-                    $scope.pollTypes = response.data;
-                    Loader.hide();
-                }, function (error) {
-                    Loader.hide();
-                    Loader.toast('Oops! something went wrong. Please try later again');
-                });
-
-                $scope.createPoll = function () {
-                    if (!$rootScope.isLoggedIn) {
-                        $rootScope.$broadcast('showLoginModal', $scope, function () {
-                            $ionicHistory.goBack(-1);
-                        }, function () {
-                            newPoll();
-                        });
-                    } else {
-                        newPoll();
-                    }
-                }
-
-                function newPoll() {
-                    var tembVar = '';
-                 console.log($scope.tags);
-                   $scope.tags.forEach(function (element, index) {
-                    console.log(element)
-                        tembVar  += '&tags[]=' + element.text;
-                    });
-                  jQuery('#tags').val(tembVar);
-                return false;
-                    var data = new FormData(jQuery("form.createPoll")[0]);
-                    data.append('userId', LSFactory.get('user').ID);
-                    Loader.show('Creating Poll ...');
-                    APIFactory.createPoll(data).then(function (response) {
-
-                        if (response.data.error) {
-                            Loader.toggleLoadingWithMessage(response.data.error, 2000);
-                        } else {
-                            Loader.toggleLoadingWithMessage(response.data.success, 2000);
-                            $timeout(function () {
-                                window.location.reload();
-                            }, 1000)
-
-
-                        }
-
-                    });
-                }
-
-                $scope.addOption = function () {
-                    jQuery(".options").append(jQuery(".toClone").html());
-                    indexOptions();
-                }
-
-            }
-        ])
+        
         .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
                 $scope.acitveTab = 'tab1';

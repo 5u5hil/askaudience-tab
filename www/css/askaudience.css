@@ -1,44 +1,44 @@
 @font-face {
   font-family: "San Francisco";
   font-weight: 100;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2");
+  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2");
 }
 
 /** Thin */
 @font-face {
   font-family: "San Francisco";
   font-weight: 200;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2");
+  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2");
 }
 
 /** Regular */
 @font-face {
   font-family: "San Francisco";
   font-weight: 400;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2");
+  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2");
 }
 
 /** Medium */
 @font-face {
   font-family: "San Francisco";
   font-weight: normal;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
+  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
 }
 
 /** Semi Bold */
 @font-face {
   font-family: "San Francisco";
   font-weight: 500;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2");
+  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2");
 }
 
 /** Bold */ 
 @font-face {
   font-family: "San Francisco";
   font-weight: bold;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
+  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
 }
- * {
+ .platform-android * {
   font-family: "San Francisco" !important;
   font-weight: 200 !important;
 
@@ -475,19 +475,19 @@ a.autolinker {
     color: #fff !important
 }
 .w100 {
-    width: 100 % !important
+    width: 100% !important
 }
 .pt12 {
-    padding - top: 12 px !important
+    padding-top: 12 px !important
 }
 .mt2 {
-    margin - top: 2 px;
-    margin - bottom: 0 px !important
+    margin-top: 2px;
+    margin-bottom: 0px !important
 }
 .mt10 {
-    margin - top: 10 px !important
+    margin-top: 10px !important
 }
-a.menu - item {
+a.menu-item {
     color: #424242;
     text-transform: UPPERCASE;
     font-weight: bold
@@ -1871,4 +1871,11 @@ a.button.cat-button:hover {
 }
 .inputfile + label * {
     pointer-events: none;
+}
+.bottom25 {
+        bottom: 25px !important;
+}
+.not-link {
+    color: #969494 !important;
+    text-decoration: none !important;
 }

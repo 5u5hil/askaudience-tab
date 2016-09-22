@@ -49,15 +49,7 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                             }
                         }
                     })
-                    .state('app.polls1', {
-                        url: '/polls1',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'templates/polls1.html',
-                                controller: 'pollsCtrl1'
-                            }
-                        }
-                    })
+            
                     .state('app.polldetails', {
                         url: '/polldetails/:id',
                         views: {
@@ -73,15 +65,6 @@ angular.module('askaudience', ['ionic', 'n3-pie-chart', 'ngCordova', 'askaudienc
                             'menuContent': {
                                 templateUrl: 'templates/createpoll.html',
                                 controller: 'createPollCtrl'
-                            }
-                        }
-                    })
-                    .state('app.createpoll1', {
-                        url: '/create-poll1',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'templates/createpoll1.html',
-                                controller: 'createPollCtrl1'
                             }
                         }
                     })

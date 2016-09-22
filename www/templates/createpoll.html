@@ -8,7 +8,7 @@
         <a class="button cat-button" ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''" ng-click="manageTabs('tab3', 'nav')">Step 3</a> -->
          <a class="button cat-button w100 bold" > {{acitveTab == 'tab1' ? '1' : (acitveTab == 'tab2' ? '2' : '3')}}/3</a>
     </ion-subheader-bar>
-    <ion-content class="has-footer has-poll-subheader">
+    <ion-content class="has-footer has-poll-subheader" has-bouncing="false">
         <form class="createPoll">
             <div class="tab1" ng-show="acitveTab == 'tab1'">
                 <div class="" >

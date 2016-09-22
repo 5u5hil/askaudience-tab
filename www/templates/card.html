@@ -2,7 +2,7 @@
 <div ng-class="!poll.img ? 'text-poll' : 'img-poll'">
     <div class="top-bar-wrapper">
 
-        <div class="item item-avatar pull-left col-80" ng-if="poll.posted_as != 4">
+        <div class="item item-avatar pull-left col-80" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name || 'Swapnil Patwa'}}</h2>
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
@@ -29,7 +29,7 @@
 
     </div>
     <div class="item poll-topbar padding10">
-        <div class="poll-id pull-left">#125214</div> 
+        <div class="poll-id pull-left not-link">#125214</div> 
         <div class="poll-id pull-right"> <span id="{{poll.id}}"></span></div>
         <span ng-init="getTimeLeft(poll.valid_till, poll.id, $event)"></span>
     </div>
@@ -42,7 +42,7 @@
                     <label class="checkbox w100">
                         <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}" ng-click="vote()">
                             <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
-                            <input type="radio" name="options[]" value="{{ opt.id}}" ng-click="vote(poll.id)" class="option-checkbox">
+                            <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox">
                         </ion-item>
 
                     </label>
