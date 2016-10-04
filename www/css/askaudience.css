@@ -1,80 +1,107 @@
 @font-face {
-  font-family: "San Francisco";
-  font-weight: 100;
-  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2");
+    font-family: "San Francisco";
+    font-weight: 100;
+    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2");
 }
+
 
 /** Thin */
+
 @font-face {
-  font-family: "San Francisco";
-  font-weight: 200;
-  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2");
+    font-family: "San Francisco";
+    font-weight: 200;
+    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2");
 }
+
 
 /** Regular */
+
 @font-face {
-  font-family: "San Francisco";
-  font-weight: 400;
-  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2");
+    font-family: "San Francisco";
+    font-weight: 400;
+    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2");
 }
+
 
 /** Medium */
+
 @font-face {
-  font-family: "San Francisco";
-  font-weight: normal;
-  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
+    font-family: "San Francisco";
+    font-weight: normal;
+    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
 }
+
 
 /** Semi Bold */
+
 @font-face {
-  font-family: "San Francisco";
-  font-weight: 500;
-  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2");
+    font-family: "San Francisco";
+    font-weight: 500;
+    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2");
 }
 
-/** Bold */ 
+
+/** Bold */
+
 @font-face {
-  font-family: "San Francisco";
-  font-weight: bold;
-  src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
+    font-family: "San Francisco";
+    font-weight: bold;
+    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
 }
- .platform-android * {
-  font-family: "San Francisco" !important;
-  font-weight: 200 !important;
 
+.platform-android * {
+    font-family: "San Francisco" !important;
+    font-weight: 200 !important;
+}
 
- }
 .white {
     color: #fff !important
 }
+
 .w100 {
     width: 100% !important
 }
+
 .pt12 {
     padding-top: 12px !important
 }
+
 .mt2 {
     margin-top: 2px;
     margin-bottom: 0px !important
 }
+
 .mt10 {
     margin-top: 10px !important
 }
+
+.mt0 {
+    margin-top: 0px !important
+}
+
+.pb0 {
+    padding-bottom: 0px !important;
+}
+
 a.menu-item {
     color: #424242;
     text-transform: UPPERCASE;
     font-weight: bold
 }
+
 a.menu-item i {
     font-size: 18px !important
 }
+
 .header-logo {
     height: 20px;
     margin-top: 12px
 }
+
 .menu-bottom {
     bottom: 30px !important
 }
+
 .menu-option-bottom a {
     color: #ddd;
     font-size: 12px;
@@ -82,15 +109,18 @@ a.menu-item i {
     font-weight: bold;
     padding: 10px 10px 10px 0px
 }
+
 .menu-option-bottom i {
     margin-right: 4px !important
 }
+
 .menu-option-bottom {
     bottom: 16px;
     left: 18px;
     right: 16px;
     position: absolute
 }
+
 span.badge.custom-badge {
     position: absolute;
     top: 5px;
@@ -100,56 +130,68 @@ span.badge.custom-badge {
     color: #fff;
     border: none
 }
+
 .radiuz-primary,
 .radiuz-primary:hover {
     background-color: #EC1D23;
     color: #fff
 }
+
 .radiuz-btn,
 .radiuz-btn:hover {
     background-color: #EC1D23 !important;
     color: #fff !important
 }
+
 .tab-radius {
     background-color: #EC1D23 !important
 }
+
 .tab-radius a {
     opacity: 1 !important
 }
+
 .txt-center {
     text-align: center !important
 }
+
 .anchor-type-btn {
     background: white;
     color: #EC1D23 !important
 }
+
 .anchor-type-btn:hover {
     background: white;
     color: #EC1D23 !important
 }
+
 .cover-item-wrapper {
     width: 100%;
     overflow: hidden !important
 }
+
 .home-cover {
     width: 101% !important;
     margin-left: -1px !important
 }
+
 .cover-item {
     background-image: url('../img/home-bg.jpg');
-     
     width: 100%;
     background-size: cover
 }
+
 .cover-input-wrapper {
     text-align: center !important;
     clear: both;
     width: 100%
 }
+
 .cover-overlay {
     background: linear-gradient(transparent, black);
     height: 100%
 }
+
 input.cover-search-input {
     width: 90%;
     padding: 10px;
@@ -161,19 +203,22 @@ input.cover-search-input {
     clear: both !important;
     display: inline !important
 }
+
 .cover-input-wrapper {
     padding: 10px
 }
+
 .cover-input-text {
     position: relative;
     color: #fff;
     margin-top: 110px;
     left: 15px !important
 }
+
 .cover-heading-text {
     font-size: 12px;
-   
 }
+
 a.cover-feed-text {
     font-size: 12px;
     color: #A9A5A5;
@@ -182,53 +227,65 @@ a.cover-feed-text {
     line-height: 20px;
     text-decoration: none !important
 }
+
 .custom-cat-border {
     border-radius: 0px !important
 }
+
 .border-right {
     border-right: 1px solid #B3B3B3 !important
 }
+
 .listing-img {
     border-radius: 0px !important;
     width: 90px !important;
     height: 90px !important
 }
+
 button.radiuz-button {
     border: none;
     padding: 3px 15px;
     border-radius: 3px;
     margin-top: 2px
 }
+
 .list-listing {
     margin-bottom: 0px !important
 }
+
 .list-listing .item {
     border-top: 0px !important;
     padding-bottom: 8px !important
 }
+
 .mb0 {
     margin-bottom: 0 !important
 }
+
 .no-more-celeb {
     padding: 6px 0px 6px 0px;
     margin: 0px !important;
     background-color: #000000;
     color: white
 }
+
 .wide-item {
     width: 1000px
 }
+
 .list-awards li {
     line-height: 26px;
     margin-left: 10px;
     list-style: initial
 }
+
 span.sub-menu-item {
     padding: 14px 15px;
     background-color: #0c0c0c;
     color: white;
     font-weight: normal
 }
+
 span.active-item {
     padding: 14px 15px;
     background-color: #151515;
@@ -236,83 +293,103 @@ span.active-item {
     border-bottom: 2px solid #fff;
     font-weight: bold
 }
+
 .ion-sc::-webkit-scrollbar {
     display: none
 }
+
 .ion-sc {
     width: 101%;
     height: 53px;
     background-color: #000000 !important
 }
+
 h3.listing-title {
     font-size: 20px;
     margin-top: 4px
 }
+
 div.filter-btn-wrap {
     text-align: right;
     margin-top: -4px !important
 }
+
 div.filter-btn-wrap button {
     color: #000000 !important
 }
+
 a.celeb-name h2 {
     font-size: 18px
 }
+
 a.celeb-name {
     text-decoration: none
 }
+
 .celeb-img-a {
     position: absolute !important;
     top: 10px !important;
     left: 10px !important
 }
+
 .cover-item-detail {
     height: 280px;
     width: 100%;
     background-size: cover
 }
+
 .celeb-img-detail img {
     height: 80px;
     width: 80px;
     border: 3px solid #DCDCDC;
     border-radius: 50%
 }
+
 .celeb-img-detail {
     text-align: center;
     padding-top: 15px
 }
+
 .celeb-info-detail {
     text-align: center;
     padding-top: 5px
 }
+
 .celeb-info-detail h2,
 .celeb-info-detail p,
 .celeb-info-detail a {
     color: #fff
 }
+
 .txt-right {
     text-align: right
 }
+
 .bar-footer {
     overflow: visible !important
 }
+
 .bar-footer textarea {
     resize: none;
     height: 25px
 }
+
 button.ion-android-send {
     padding-top: 2px
 }
+
 .footer-btn-wrap {
     position: relative;
     height: 100%;
     width: 50px;
     top: 7px
 }
+
 .footer-btn {
     position: absolute !important;
     bottom: 0
 }
+
 img.profile-pic {
     width: 40px;
     height: 40px;
@@ -320,33 +397,42 @@ img.profile-pic {
     position: absolute;
     bottom: 10px
 }
+
 img.profile-pic.left {
     left: 10px
 }
+
 img.profile-pic.right {
     right: 10px
 }
+
 .ion-email {
     float: right;
     font-size: 32px;
     vertical-align: middle
 }
+
 .message {
     font-size: 14px
 }
+
 .message-detail {
     white-space: nowrap;
     font-size: 14px
 }
+
 .bar.item-input-inset .item-input-wrapper input {
     width: 100% !important
 }
+
 .message-wrapper {
     position: relative
 }
+
 .message-wrapper:last-child {
     margin-bottom: 10px
 }
+
 .chat-bubble {
     border-radius: 5px;
     display: inline-block;
@@ -355,6 +441,7 @@ img.profile-pic.right {
     margin: 10px;
     max-width: 80%
 }
+
 .chat-bubble:before {
     content: "\00a0";
     display: block;
@@ -363,31 +450,37 @@ img.profile-pic.right {
     position: absolute;
     bottom: -7.5px
 }
+
 .chat-bubble.left {
     background-color: #e6e5eb;
     float: left;
     margin-left: 55px
 }
+
 .chat-bubble.left:before {
     background-color: #e6e5eb;
     left: 10px;
     -webkit-transform: rotate(70deg) skew(5deg)
 }
+
 .chat-bubble.right {
     background-color: #158ffe;
     color: #fff;
     float: right;
     margin-right: 55px
 }
+
 .chat-bubble.right:before {
     background-color: #158ffe;
     right: 10px;
     -webkit-transform: rotate(118deg) skew(-5deg)
 }
+
 .chat-bubble.right a.autolinker {
     color: #fff;
     font-weight: bold
 }
+
 .user-messages-top-icon {
     font-size: 28px;
     display: inline-block;
@@ -396,28 +489,34 @@ img.profile-pic.right {
     top: -3px;
     right: 5px
 }
+
 .msg-header-username {
     display: inline-block;
     vertical-align: middle;
     position: relative;
     top: -3px
 }
+
 input,
 textarea,
 .item-input,
 .item-input-wrapper {
     background-color: #f4f4f4
 }
+
 .bold {
     font-weight: bold
 }
+
 .cf {
     clear: both !important
 }
+
 a.autolinker {
     color: #3b88c3;
     text-decoration: none
 }
+
 .loader-center {
     height: 100%;
     display: -webkit-box;
@@ -449,59 +548,75 @@ a.autolinker {
     -ms-flex-align: center;
     align-items: center
 }
+
 .loader .ion-loading-c {
     font-size: 64px
 }
+
 .chat-bg {
     background-image: url('../img/chat-bg.jpg');
     -webkit-background-size: 120% auto
 }
+
 .header-popover {
     left: auto !important
 }
+
 .pm0 {
     padding: 0px;
     margin: 0px
 }
+
 .full-height {
     height: 100vh !important;
     background: #444;
     color: #fff
 }
+
 .noborder {
     border: 0px !important
 }
+
 .white {
     color: #fff !important
 }
+
 .w100 {
     width: 100% !important
 }
+
 .pt12 {
     padding-top: 12 px !important
 }
+
 .mt2 {
     margin-top: 2px;
     margin-bottom: 0px !important
 }
+
 .mt10 {
     margin-top: 10px !important
 }
+
 a.menu-item {
     color: #424242;
     text-transform: UPPERCASE;
     font-weight: bold
 }
+
 a.menu-item i {
     font-size: 18px !important
 }
+
 .header-logo {
     height: 20px;
     margin-top: 12px
 }
+
 .menu-bottom {
     bottom: 45px !important
 }
+
 .menu-option-bottom a {
     color: # ddd;
     font - size: 12 px;
@@ -509,15 +624,18 @@ a.menu-item i {
     font - weight: bold;
     padding: 10 px 10 px 10 px 0 px
 }
+
 .menu - option - bottom i {
     margin - right: 4 px !important
 }
+
 .menu - option - bottom {
     bottom: 16 px;
     left: 18 px;
     right: 16 px;
     position: absolute
 }
+
 span.badge.custom - badge {
     position: absolute;
     top: 5 px;
@@ -527,57 +645,70 @@ span.badge.custom - badge {
     color: #fff;
     border: none
 }
+
 .radiuz - primary,
 .radiuz - primary: hover {
     background - color: #EC1D23;
     color: #fff
 }
+
 .radiuz - btn,
 .radiuz - btn: hover {
     background - color: #EC1D23 !important;
     color: #fff !important
 }
+
 .tab - radius {
     background - color: #EC1D23 !important
 }
+
 .tab - radius a {
     opacity: 1 !important
 }
+
 .txt - center {
     text - align: center !important
 }
+
 .anchor - type - btn {
     background: white;
     color: #EC1D23 !important
 }
+
 .anchor - type - btn: hover {
     background: white;
     color: #EC1D23 !important
 }
+
 .cover - item - wrapper {
     max - height: 250 px;
     width: 100 %;
     overflow: hidden !important
 }
+
 .home - cover {
     width: 101 % !important;
     margin - left: -1 px !important
 }
+
 .cover - item {
     background - image: url('../img/home-bg.jpg');
     height: 250 px;
     width: 100 %;
     background - size: cover
 }
+
 .cover - input - wrapper {
     text - align: center !important;
     clear: both;
     width: 100 %
 }
+
 .cover - overlay {
     background: linear-gradient(transparent, black);
     height: 100 %
 }
+
 input.cover - search - input {
     width: 90 %;
     padding: 10 px;
@@ -589,19 +720,23 @@ input.cover - search - input {
     clear: both !important;
     display: inline !important
 }
+
 .cover - input - wrapper {
     padding: 10 px
 }
+
 .cover - input - text {
     position: relative;
     color: #fff;
     margin - top: 110 px;
     left: 15 px !important
 }
+
 .cover - heading - text {
     font - size: 20 px;
     margin - bottom: 8 px
 }
+
 a.cover - feed - text {
     font - size: 12 px;
     color: #A9A5A5;
@@ -610,53 +745,65 @@ a.cover - feed - text {
     line - height: 20 px;
     text - decoration: none !important
 }
+
 .custom - cat - border {
     border - radius: 0 px !important
 }
+
 .border - right {
     border - right: 1 px solid# B3B3B3 !important
 }
+
 .listing - img {
     border - radius: 0 px !important;
     width: 90 px !important;
     height: 90 px !important
 }
+
 button.radiuz - button {
     border: none;
     padding: 3 px 15 px;
     border - radius: 3 px;
     margin - top: 2 px
 }
+
 .list - listing {
     margin - bottom: 0 px !important
 }
+
 .list - listing.item {
     border - top: 0 px !important;
     padding - bottom: 8 px !important
 }
+
 .mb0 {
     margin - bottom: 0 !important
 }
+
 .no - more - celeb {
     padding: 6 px 0 px 6 px 0 px;
     margin: 0 px !important;
     background - color: #000000;
     color: white
 }
+
 .wide-item {
     width: 1000px
 }
+
 .list-awards li {
     line-height: 26px;
     margin-left: 10px;
     list-style: initial
 }
+
 span.sub-menu-item {
     padding: 14px 15px;
     background-color: # 000000;
     color: white;
     font - weight: normal
 }
+
 span.active - item {
     padding: 14 px 15 px;
     background - color: #000000;
@@ -664,86 +811,107 @@ span.active - item {
     border-bottom: 2px solid # fff;
     font - weight: bold
 }
+
 .ion - sc::-webkit - scrollbar {
     display: none
 }
+
 .ion - sc {
     width: 101 %;
     height: 53 px;
     background - color: #000000
 }
+
 h3.listing-title {
     font-size: 20px;
     margin-top: 4px
 }
+
 div.filter-btn-wrap {
     text-align: right;
     margin-top: -4px !important
 }
+
 div.filter-btn-wrap button {
     color: # 000000 !important
 }
+
 a.celeb - name h2 {
     font - size: 18 px
 }
+
 a.celeb - name {
     text - decoration: none
 }
+
 .celeb - img - a {
     position: absolute !important;
     top: 10 px !important;
     left: 10 px !important
 }
+
 .cover - item - detail {
     height: 280 px;
     width: 100 %;
     background - size: cover
 }
+
 .cover - detail - wrapper.cover - item - wrapper {
     max - height: 330 px
 }
+
 .celeb - img - detail img {
     height: 130 px;
     width: 130 px;
     border: 3 px solid# DCDCDC;
     border - radius: 2 px
 }
+
 .celeb - img - detail {
     text - align: center;
     padding - top: 20 px
 }
+
 .celeb - info - detail {
     text - align: center;
     padding - top: 5 px
 }
+
 .celeb - info - detail h2,
 .celeb - info - detail p,
 .celeb - info - detail a {
     color: #fff
 }
+
 .txt - right {
     text - align: right
 }
+
 .bar - footer {
     overflow: visible !important
 }
+
 .bar - footer textarea {
     resize: none;
     height: 25 px
 }
+
 button.ion - android - send {
     padding - top: 2 px
 }
+
 .footer - btn - wrap {
     position: relative;
     height: 100 %;
     width: 50 px;
     top: 7 px
 }
+
 .footer - btn {
     position: absolute !important;
     bottom: 0
 }
+
 img.profile - pic {
     width: 40 px;
     height: 40 px;
@@ -751,33 +919,42 @@ img.profile - pic {
     position: absolute;
     bottom: 10 px
 }
+
 img.profile - pic.left {
     left: 10 px
 }
+
 img.profile - pic.right {
     right: 10 px
 }
+
 .ion - email {
     float: right;
     font - size: 32 px;
     vertical - align: middle
 }
+
 .message {
     font - size: 14 px
 }
+
 .message - detail {
     white - space: nowrap;
     font - size: 14 px
 }
+
 .bar.item - input - inset.item - input - wrapper input {
     width: 100 % !important
 }
+
 .message - wrapper {
     position: relative
 }
+
 .message - wrapper: last - child {
     margin - bottom: 10 px
 }
+
 .chat - bubble {
     border - radius: 5 px;
     display: inline - block;
@@ -786,6 +963,7 @@ img.profile - pic.right {
     margin: 10 px;
     max - width: 80 %
 }
+
 .chat - bubble: before {
     content: "\00a0";
     display: block;
@@ -794,31 +972,37 @@ img.profile - pic.right {
     position: absolute;
     bottom: -7.5 px
 }
+
 .chat - bubble.left {
     background - color: #e6e5eb;
     float: left;
     margin - left: 55 px
 }
+
 .chat - bubble.left: before {
     background - color: #e6e5eb;
     left: 10 px;
     - webkit - transform: rotate(70 deg) skew(5 deg)
 }
+
 .chat - bubble.right {
     background - color: #158ffe;
     color: # fff;
     float: right;
     margin - right: 55 px
 }
+
 .chat - bubble.right: before {
     background - color: #158ffe;
     right: 10px;
     -webkit-transform: rotate(118deg) skew(-5deg)
 }
+
 .chat-bubble.right a.autolinker {
     color: # fff;
     font - weight: bold
 }
+
 .user - messages - top - icon {
     font - size: 28 px;
     display: inline - block;
@@ -827,28 +1011,34 @@ img.profile - pic.right {
     top: -3 px;
     right: 5 px
 }
+
 .msg - header - username {
     display: inline - block;
     vertical - align: middle;
     position: relative;
     top: -3 px
 }
+
 input,
 textarea,
 .item - input,
 .item - input - wrapper {
     background - color: #f4f4f4 !important
 }
+
 .bold {
     font - weight: bold
 }
+
 .cf {
     clear: both !important
 }
+
 a.autolinker {
     color: #3b88c3;
     text-decoration: none
 }
+
 .loader-center {
     height: 100%;
     display: -webkit-box;
@@ -880,49 +1070,62 @@ a.autolinker {
     -ms-flex-align: center;
     align-items: center
 }
+
 .loader .ion-loading-c {
     font-size: 64px
 }
+
 .chat-bg {
     background-image: url('../img/chat-bg.jpg');
     -webkit-background-size: 120% auto
 }
+
 .header-popover {
     left: auto !important
 }
+
 .pm0 {
     padding: 0px;
     margin: 0px
 }
+
 .full-height {
     height: 100vh !important;
     background: # 444;
     color: #fff
 }
+
 .noborder {
     border: 0 px !important
 }
+
 .reset - btn {
     padding: 0 px 20 px !important
 }
+
 .linkedin - bgc,
 .linkedin - bgc: hover {
     background - color: #007AB6 !important
 }
+
 .facebook-background,
 .facebook-background:hover {
     background-color: # 3 F5C9A !important
 }
+
 .login - bg {
     background: url('../img/login-bg.jpg') no - repeat;
     - webkit - background - size: 120 % auto
 }
+
 .mb10 {
     margin - bottom: 10 px !important
 }
+
 .mb2 {
     margin - bottom: 2 px !important
 }
+
 .text - login {
     width: 93 %;
     font - size: 16 px !important;
@@ -933,92 +1136,116 @@ a.autolinker {
     height: 45 px !important;
     padding - left: 15 px !important
 }
+
 .text - login: focus {
     opacity: 1
 }
+
 .btn - login {
     width: 93 % !important;
     height: 45 px;
     margin - top: 15 px !important
 }
+
 .facebook - sign - in,
 .facebook - sign - in: hover {
     background - color: #3F5C9A;
     height: 45px;
     width: 93%
 }
+
 .login-pad {
     padding: 0px 15px !important
 }
+
 .radiuz-color {
     color: # EC1D23 !important
 }
+
 .wrapper - logo {
     margin - top: 5 vh;
     margin - bottom: 3 vh
 }
+
 .logo - login {
     width: 140 px
 }
+
 .or - text {
     padding: 25 px 0 px
 }
+
 .register - fb {
     margin - top: 15 px;
     margin - bottom: 0 px
 }
+
 .item - register,
 .transparent - label {
     background: transparent !important
 }
+
 .border - tn {
     border - top: none !important
 }
+
 .border - bn {
     border - bottom: none !important
 }
+
 .pb0 {
     padding - bottom: 0 !important
 }
+
 .mt25 {
     margin - top: 25 px !important
 }
+
 .cover - input - about {
     position: relative;
     color: #fff;
     left: 15 px !important
 }
+
 .about - cover - text {
     padding - top: 200 px
 }
+
 .about - radius8 p {
     text - align: justify
 }
+
 .bold {
     font - weight: bold
 }
+
 .list.item.item - accordion {
     line - height: 38 px;
     padding - top: 0;
     padding - bottom: 0;
     transition: 0.09 s all linear
 }
+
 .list.item.item - accordion.ng - hide {
     line - height: 0 px
 }
+
 .list.item.item - accordion.ng - hide - add,
 .list.item.item - accordion.ng - hide - remove {
     display: block !important
 }
+
 .terms - radius8 p {
     text - align: justify;
     line - height: 24 px
 }
+
 .terms - radius8.item p {
     overflow: visible !important;
     text - overflow: inherit !important;
     white - space: normal !important
 }
+
 .terms - radius8 li {
     list - style: initial;
     margin - left: 5 px;
@@ -1026,38 +1253,49 @@ a.autolinker {
     margin - top: 10 px;
     white - space: normal
 }
+
 .line - h50 {
     line - height: 50 px !important
 }
+
 .profile - head {
     padding - left: 15 px;
     padding - top: 0 px;
     padding - bottom: 0 px
 }
+
 .fz14 {
     font - size: 14 px
 }
+
 .fz20 {
     font-size: 20 px
 }
+
 .bg - f4 {
     background - color: #f4f4f4 !important
 }
+
 .linkedin - sign - in {
     background - color: #007AB6 !important
 }
+
 .textarea-height {
     min-height: 80px
 }
+
 .fz12 {
     font-size: 12px !important
 }
+
 .mt50 {
     margin-top: 50px
 }
+
 .news li.item {
     white-space: normal
 }
+
 .stars {
     width: 70px !important;
     height: 14px !important;
@@ -1065,9 +1303,11 @@ a.autolinker {
     background-position: 0 -1133px;
     position: relative
 }
+
 .rating {
     padding: 2px 0px 10px 0px
 }
+
 .rating .stars i {
     position: absolute;
     top: 0;
@@ -1077,45 +1317,56 @@ a.autolinker {
     width: 70px;
     height: 14px
 }
+
 .rating-count {
     margin: -3px 0px 3px 7px;
     vertical-align: baseline !important;
     color: # DEDEDE
 }
+
 .reviews.card {
     background - color: #F3F3F3 !important
 }
+
 .icon - fb {
     color: #3A5795
 }
+
 .icon-gp {
     color: # d73d32 !important
 }
+
 .icon - twitter {
     color: #1DA1F2
 }
+
 .reach .item-note {
     float: right;
     color: # 000;
     font - size: 14 px;
     font - weight: bold
 }
+
 .justify {
     text - align: justify
 }
+
 .read - more - btn {
     background - color: red;
     color: #fff;
     margin - top: 8 px;
     float: right
 }
+
 .filter - input {
     width: 100 %;
     padding: 0 px 0 px 0 px 10 px !important
 }
+
 .heading - sub {
     padding - left: 6 px
 }
+
 .sub - cat - title {
     padding: 10 px;
     font - size: 19 px;
@@ -1123,51 +1374,63 @@ a.autolinker {
     border: 0 px;
     color: #fff
 }
+
 .filter - modal.scroll {
     background - color: #444444
 }
+
 .white-bg {
     background-color: # fff
 }
+
 .mt15 {
     margin - top: 15 px !important
 }
+
 .footer - btn - wrap {
     position: relative !important;
     height: 100 % !important;
     width: 50 px !important;
     top: 0 px !important
 }
+
 .footer - btn - wrap button {
     padding - left: 17 px !important
 }
+
 .chat - input {
     height: 36 px;
     width: 100 %
 }
+
 .btn - send {
     background - color: black !important;
     color: #fff !important
 }
- 
+
 .linkedin-bgc,
 .linkedin-bgc:hover {
     background-color: #007AB6 !important
 }
+
 .facebook-background,
 .facebook-background:hover {
     background-color: #3F5C9A !important
 }
+
 .login-bg {
     background-color: #d4d4d4;
     -webkit-background-size: 120% auto
 }
+
 .mb10 {
     margin-bottom: 10px !important
 }
+
 .mb2 {
     margin-bottom: 2px !important
 }
+
 .text-login {
     width: 93%;
     font-size: 16px !important;
@@ -1178,93 +1441,116 @@ a.autolinker {
     height: 45px !important;
     padding-left: 15px !important
 }
+
 .text-login:focus {
     opacity: 1
 }
+
 .btn-login {
     width: 93% !important;
     height: 45px;
     margin-top: 15px !important
 }
+
 .facebook-sign-in,
 .facebook-sign-in:hover {
     background-color: #3F5C9A;
     height: 45px;
     width: 93%
 }
+
 .login-pad {
     padding: 0px 15px !important
 }
+
 .radiuz-color {
     color: #EC1D23 !important
 }
+
 .wrapper-logo {
     margin-top: 5vh;
     margin-bottom: 3vh
 }
+
 .logo-login {
     width: 140px
 }
+
 .or-text {
     padding: 25px 0px
 }
+
 .register-fb {
     margin-top: 15px;
     margin-bottom: 0px
 }
+
 .item-register,
 .transparent-label {
     background: transparent !important
 }
+
 .border-tn {
     border-top: none !important
 }
+
 .border-bn {
     border-bottom: none !important
 }
+
 .pb0 {
     padding-bottom: 0 !important
 }
+
 .mt25 {
     margin-top: 25px !important
 }
+
 .cover-input-about {
     position: relative;
     color: #fff;
-    
 }
+
 .about-cover-text {
     padding-top: 80px;
     padding-bottom: 5px;
 }
+
 .about-radius8 p {
     text-align: justify
 }
+
 .bold {
     font-weight: bold
 }
+
 .list .item.item-accordion {
     line-height: 38px;
     padding-top: 0;
     padding-bottom: 0;
     transition: 0.09s all linear
 }
+
 .list .item.item-accordion.ng-hide {
     line-height: 0px
 }
+
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
     display: block !important
 }
+
 .terms-radius8 p {
     text-align: justify;
     line-height: 24px
 }
+
 .terms-radius8 .item p {
     overflow: visible !important;
     text-overflow: inherit !important;
     white-space: normal !important
 }
+
 .terms-radius8 li {
     list-style: initial;
     margin-left: 5px;
@@ -1272,35 +1558,45 @@ a.autolinker {
     margin-top: 10px;
     white-space: normal
 }
+
 .line-h50 {
     line-height: 50px !important
 }
+
 .profile-head {
     padding-left: 15px;
     padding-top: 0px;
     padding-bottom: 0px
 }
+
 .fz14 {
     font-size: 14px
 }
+
 .bg-f4 {
     background-color: #f4f4f4 !important
 }
+
 .linkedin-sign-in {
     background-color: #007AB6 !important
 }
+
 .textarea-height {
     min-height: 80px
 }
+
 .fz12 {
     font-size: 12px !important
 }
+
 .mt50 {
     margin-top: 50px
 }
+
 .news li.item {
     white-space: normal
 }
+
 .stars {
     width: 70px !important;
     height: 14px !important;
@@ -1308,9 +1604,11 @@ a.autolinker {
     background-position: 0 -1133px;
     position: relative
 }
+
 .rating {
     padding: 2px 0px 10px 0px
 }
+
 .rating .stars i {
     position: absolute;
     top: 0;
@@ -1320,45 +1618,56 @@ a.autolinker {
     width: 70px;
     height: 14px
 }
+
 .rating-count {
     margin: -3px 0px 3px 7px;
     vertical-align: baseline !important;
     color: #DEDEDE
 }
+
 .reviews .card {
     background-color: #F3F3F3 !important
 }
+
 .icon-fb {
     color: #3A5795
 }
+
 .icon-gp {
     color: #d73d32 !important
 }
+
 .icon-twitter {
     color: #1DA1F2
 }
+
 .reach .item-note {
     float: right;
     color: #000;
     font-size: 14px;
     font-weight: bold
 }
+
 .justify {
     text-align: justify
 }
+
 .read-more-btn {
     background-color: red;
     color: #fff;
     margin-top: 8px;
     float: right
 }
+
 .filter-input {
     width: 100%;
     padding: 0px 0px 0px 10px !important
 }
+
 .heading-sub {
     padding-left: 6px
 }
+
 .sub-cat-title {
     padding: 10px;
     font-size: 19px;
@@ -1366,87 +1675,110 @@ a.autolinker {
     border: 0px;
     color: #fff
 }
+
 .filter-modal .scroll {
     background-color: #444444
 }
+
 .white-bg {
     background-color: #fff
 }
+
 .mt15 {
     margin-top: 15px !important
 }
+
 .footer-btn-wrap {
     position: relative !important;
     height: 100% !important;
     width: 50px !important;
     top: 0px !important
 }
+
 .footer-btn-wrap button {
     padding-left: 17px !important
 }
+
 .chat-input {
     height: 36px;
     width: 100%
 }
+
 .btn-send {
     background-color: black !important;
     color: #fff !important
 }
+
 .disabled-a,
 .disabled-a>* {
     color: gray !important;
     pointer-events: none !important
 }
+
 .uppercase {
     text-transform: uppercase !important
 }
+
 .error-border {
     border-bottom: 1px solid red !important
 }
+
 .success-border {
     border-bottom: 1px solid green !important
 }
+
 .validation-error {
     color: red;
     font-weight: bold;
     margin-left: 6px;
     margin-top: -22px !important
 }
+
 .button.button:disabled {
     background-color: red !important;
     color: white !important
 }
+
 .custom-hero {
     height: 110px !important
 }
+
 .user-content {
     text-align: left !important;
     margin-left: 25px
 }
+
 .user-avatar {
     display: inline-block;
     vertical-align: middle
 }
+
 .user-title {
     display: inline-block;
     vertical-align: middle;
     margin-left: 15px
 }
+
 .m4 {
     margin: 4px !important
 }
+
 .mt-4 {
     margin-top: -4px
 }
+
 .ml3 {
     margin-left: 3px
 }
+
 .feed-item {
     margin: auto 1px !important
 }
+
 .side-menu-color {
     background-color: #656565
 }
+
 .menu .avatar {
     top: 16px;
     left: 16px;
@@ -1454,70 +1786,87 @@ a.autolinker {
     width: 75px !important;
     left: 37% !important
 }
+
 .button-small.button-outline.button-balanced {
     padding: 0 5px;
     border-color: #33cd5f !important;
     font-size: 12px
 }
+
 .poll-img-wrapper.listing {
     width: 40%;
     margin: 10px;
     float: left
 }
+
 .poll-img-wrapper img {
     height: auto;
     width: 100%;
 }
+
 .p0 {
     padding: 0 !important
 }
+
 .poll-question {
     margin-top: 0px !important;
     padding: 16px 10px
 }
+
 .custom-poll-card .item.item-avatar {
     min-height: 70px !important;
     padding-left: 88px !important;
     padding: 25px 10px 0px 88px
 }
+
 .custom-poll-card .poll-img {
     top: 10px !important
 }
+
 .poll-follow-btn {
     top: -7px !important
 }
+
 .askaud-tabs .tabs {
     border-color: #d23f31 !important;
     background-color: #d23f31 !important;
     background-image: linear-gradient(0deg, #d23f31, #d23f31 50%, transparent 50%) !important;
     color: #fff
 }
+
 .addOptions {
     color: green;
     font-size: 20px
 }
+
 .createPoll .item-input,
 .createPoll input {
     background: #fff !important
 }
+
 .toClone {
     display: none
 }
+
 .title {
     font-size: 16px;
     font-weight: bold;
     color: white
 }
+
 .title-cat {
     font-size: 14px;
     color: #ababab
 }
+
 .cover-item-detail {
     background-color: #000 !important
 }
+
 .fs20 {
     font-size: 20px !important
 }
+
 .item-checkbox-img {
     vertical-align: middle;
     position: absolute !important;
@@ -1525,23 +1874,33 @@ a.autolinker {
     right: 15px;
     height: 100%
 }
+
 .option-checkbox {
     position: absolute !important;
-    right: 1px !important;
-    top: 14px !important;
+    left: 1px !important;
+    top: 3px !important;
 }
+
+.ion-item-custom {
+    padding-left: 40px !important;
+}
+
 .custom-poll-card .item.item-avatar {
     padding: 27px 10px 0px 88px !important
 }
+
 .pl16 {
     padding-left: 16px
 }
+
 .vlm {
     vertical-align: middle
 }
+
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden
 }
+
 .custom-file-input::before {
     content: 'Select an image';
     display: inline-block;
@@ -1561,21 +1920,27 @@ a.autolinker {
     vertical-align: middle;
     margin-bottom: 4px
 }
+
 .custom-file-input:hover::before {
     border-color: black
 }
+
 .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9)
 }
+
 .poll-listing-img img {
     border-radius: 0px !important
 }
+
 .no-one-line {
     white-space: normal !important
 }
+
 .poll-listing-img h2 {
     font-size: 14px !important
 }
+
 .action-button {
     height: 27px !important;
     padding: 7px 10px !important;
@@ -1583,268 +1948,321 @@ a.autolinker {
     min-height: 30px !important;
     font-size: 12px !important
 }
+
 .edit-icon {
     color: #ddd;
     margin-left: 10px !important
 }
+
 .ml5 {
     margin-left: 5px !important
 }
+
 .options .item {
-    margin: 10px 0
+    margin: 5px 0
 }
+
 .connections button {
     padding: 5px;
     font-size: 10px;
     width: 150px
 }
+
 a.button.cat-button {
     width: 33.34%;
     line-height: 41px;
     color: #a2a2a2
 }
+
 a.button.cat-button:last-child {
     position: relative !important;
     top: 0px !important;
     right: 0px !important;
     bottom: 0px !important
 }
+
 .subnav-active {
     font-weight: bold !important;
     color: #000000 !important;
     font-style: italic
 }
+
 .cover-input-about1 {
     text-align: center;
-   
     text-transform: uppercase
 }
+
 .yes-no-bg {
     /*background-image: url('../img/poll-yes-no.jpg') !important;*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 1px
 }
+
 .multiple {
     /*background-image: url('../img/poll-multiple.png') !important;*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 1px
 }
+
 .image-poll {
     /*background-image: url('../img/image-poll.jpg') !important;*/
     background-size: 141% 100%;
     background-repeat: no-repeat;
     background-position: -33px -7px
 }
+
 .refe {
     /*background-image: url('../img/referendum.jpg') !important;*/
     background-size: 141% 100%;
     background-repeat: no-repeat;
     background-position: -33px -7px
 }
+
 .cover-overlay.selected-option {
     border: 6px solid #a0a0a0 !important
 }
+
 a.button.cat-button:hover {
     background: #f8f8f8
 }
+
 .menu-list .list {
     margin-top: 105px !important
 }
+
 .poll-topbar {
     padding: 2px 6px !important;
-    background-color: rgba(0,0,0,0.3) !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
     color: #fff;
- position: absolute !important;
+    position: absolute !important;
     z-index: 111 !important;
-        margin-top: -23px;
+    margin-top: -23px;
 }
- 
+
 .poll-image img {
     width: 100%
 }
+
 .padding10 {
     padding: 10px
 }
+
 .card-polls .item.item-avatar {
     /*position: absolute;*/
     border: 0px;
     bottom: 0px;
     min-height: 75px
 }
+
 .cover-overlay-poll {
     background: linear-gradient(transparent, black);
-    
 }
+
 .custom-spacing {
     margin-bottom: 10px;
     border: none
 }
+
 .poll-action-panel {
     padding-top: 2px;
     padding-bottom: 2px;
 }
+
 .poll-action-panel a {
     font-size: 24px;
     color: #6f6f6f;
 }
- 
- 
-.card-polls .item-avatar  > img:first-child  {
+
+.card-polls .item-avatar > img:first-child {
     max-height: 35px !important;
     max-width: 35px !important;
     top: 6px !important;
     left: 6px !important;
     box-shadow: none;
 }
- .card-polls .item.item-avatar {
+
+.card-polls .item.item-avatar {
     min-height: 45px !important;
     padding-left: 50px !important;
 }
 
- 
 .black {
-        color: #000000;
+    color: #000000;
 }
 
-.card  .item {
+.card .item {
     border: none !important;
 }
-.listing-content{
+
+.listing-content {
     background-color: #bbbbbb;
 }
+
 .bar.bar-energized {
     border-color: #e6b500;
     background-color: #fbbc05 !important;
     background-image: linear-gradient(0deg, #e6b500, #e6b500 50%, transparent 50%);
     color: #fff;
 }
+
 .card {
-    box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.4); 
+    box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.4);
 }
+
 .poll-name-user {
-    color : #222;
+    color: #222;
     font-size: 16px !important;
     line-height: 14px;
+    font-weight: bold !important;
 }
+
 .poll-question-text {
-     color : #000;
+    color: #000;
     font-size: 16px !important;
     padding-left: 6px;
-    /*font-weight: bold; */
+    font-weight: bold;
 }
- 
-.poll-answer-options .item-avatar img{
-        border-radius: 0px !important;
-        top: 0px;
-        left: 2px;
-        box-shadow: none;
-} 
-.poll-answer-options .item-avatar{
-       min-height: 58px !important;
-       margin-top: 0px;
-} 
+
+.poll-answer-options .item-avatar img {
+    border-radius: 0px !important;
+    top: 0px;
+    left: 2px;
+    box-shadow: none;
+}
+
+.poll-answer-options .item-avatar {
+    min-height: 58px !important;
+    margin-top: 0px;
+}
+
 .full-transparent {
     background: transparent;
 }
+
 .transparent-modal {
-        background: rgba(0,0,0,0.80) !important;
+    background: rgba(0, 0, 0, 0.80) !important;
 }
+
 .light-gray-bg {
-        background-color: #dedede !important;
+    background-color: #dedede !important;
 }
+
 .tags h2 {
-        font-size: 16px;
+    font-size: 16px;
     font-weight: normal;
     color: #706f6f;
-     height: 25px;
+    height: 25px;
     margin-bottom: 0px;
-        line-height: 28px;
+    line-height: 24px;
+    border-left: 1px solid #eee;
 }
+
 .tags {
-      /* border-left: 1px solid #f1f1f1;*/
-       padding: 10px;
+    /* border-left: 1px solid #f1f1f1;*/
+    padding: 10px;
+    text-align: center;
 }
+
 .top-bar-wrapper {
-        /*border-bottom: 1px solid #f1f1f1;*/
-            height: 45px;
+    /*border-bottom: 1px solid #f1f1f1;*/
+    height: 45px;
 }
+
 .poll-separator {
-        border-bottom: 1px solid #f1f1f1 !important;
+    border-bottom: 1px solid #f1f1f1 !important;
     margin: 0px 6px !important;
 }
+
 .poll-separator-ver {
-     border-left: 1px solid #f1f1f1;
+    border-left: 1px solid #f1f1f1;
     margin-top: 6px;
     height: 35px;
 }
+
 .clear-fix {
     clear: both;
 }
+
 .poll-image img {
     box-shadow: none !important;
 }
+
 .text-poll .poll-topbar {
-        margin-top: 0px;
+    margin-top: 0px;
     position: relative !important;
-        background: white !important;
+    background: white !important;
     color: #969494;
     font-weight: bold;
-      border-bottom: 1px solid #f1f1f1 !important;
+    border-bottom: 1px solid #f1f1f1 !important;
 }
+
 .card-polls {
-        box-shadow: none !important;
-        margin-bottom: 20px !important;
-            border-radius: 0px;
+    box-shadow: none !important;
+    margin-bottom: 10px !important;
+    border-radius: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
+
 .hidden {
     display: none;
 }
+
 .img-poll .poll-topbar {
     background-image: url('../img/gradientbg.png') !important;
     padding-top: 24px !important;
     margin-top: -49px !important;
     padding-bottom: 6px !important;
     background-color: transparent !important;
-        font-weight: bold;
+    /*     font-weight: bold;*/
 }
+
 .poll-answer-options {
     background-color: #eee;
 }
- .newpoll-subheader {
-     height: 30px !important;
- }
- .newpoll-subheader  .button {
+
+.newpoll-subheader {
+    height: 30px !important;
+}
+
+.newpoll-subheader .button {
     min-height: 30px !important;
-      line-height: 30px !important;
+    line-height: 30px !important;
     max-height: 30px !important;
-  
 }
+
 .has-poll-subheader {
-    margin-top :30px !important;
+    margin-top: 30px !important;
 }
+
 .mr10 {
-    margin-right: 10px; 
+    margin-right: 10px;
 }
+
 .interest-wrapper {
     height: 200px;
     overflow: auto;
 }
+
 .interest-checkbox {
-    display: inline-block  !important;
-    vertical-align: middle  !important;
-    margin-right: 5px  !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-right: 5px !important;
 }
+
 .poll-type-imge {
-        width: 100px;
+    width: 100px;
 }
+
 .poll-block {
-        width: 49%;
+    width: 49%;
     float: left;
     text-align: center;
-        padding: 12px;
+    padding: 12px;
 }
+
 .inputfile + label {
     font-size: 1.25em;
     font-weight: 700;
@@ -1857,6 +2275,7 @@ a.button.cat-button:hover {
 .inputfile + label:hover {
     background-color: red;
 }
+
 .inputfile {
     width: 0.1px;
     height: 0.1px;
@@ -1865,17 +2284,233 @@ a.button.cat-button:hover {
     position: absolute;
     z-index: -1;
 }
+
 .inputfile:focus + label {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
+
 .inputfile + label * {
     pointer-events: none;
 }
+
 .bottom25 {
-        bottom: 25px !important;
+    bottom: 25px !important;
 }
+
 .not-link {
-    color: #969494 !important;
+    color: #ffffff !important;
     text-decoration: none !important;
+}
+
+.custom-item {
+    padding-top: 7px !important;
+    padding-bottom: 3px !important;
+}
+
+.poll-user-tag {
+    color: #939393;
+}
+
+.no-border {
+    border-left: none !important;
+}
+
+.fz21 {
+    font-size: 21px;
+}
+
+.tag-text {
+    color: red !important;
+    font-size: 13px !important;
+}
+
+.col-40 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 40%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 40%;
+    -ms-flex: 0 0 40%;
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+
+.col-60 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 60%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 60%;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    max-width: 60%;
+}
+
+.poll-option-btn {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+.poll-option-btn:before {
+    margin-right: 7px;
+    font-weight: bold !important;
+}
+
+.checkbox input:checked:before,
+.checkbox input:checked + .checkbox-icon:before {
+    background: #fbbc05 !important;
+    border-color: #d6d6d6 !important;
+}
+
+.checkbox input {
+    width: 38px !important;
+    height: 38px !important;
+}
+
+.checkbox input:after,
+.checkbox-icon:after {
+    top: 35% !important;
+    left: 28% !important;
+    width: 16px !important;
+    height: 8px !important;
+    /*border: 3px solid #fff !important;*/
+}
+
+.ion-item-custom {
+    padding-bottom: 12px;
+    padding-top: 10px;
+    margin-top: 0px;
+}
+
+.poll-option {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.notification-icon {
+    margin-top: -5px;
+    font-weight: normal !important;
+    color: #818181;
+}
+
+.no-height-row {
+    margin: 0px;
+    padding: 0px 5px;
+}
+
+.pb0 {
+    padding-bottom: 0px !important;
+}
+
+.circle-result {
+    position: absolute;
+    left: 12px;
+    height: 38px;
+    width: 38px;
+    background-color: #fbbc05;
+    border: 1px solid #818181;
+    border-radius: 50%;
+    color: #fff;
+    padding: 11px 0px;
+    font-size: 11px;
+    left: 0;
+    top: 7px;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 0%;
+    background-color: #fbbc05;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.progress-bar-wrap {
+    height: 7px;
+    margin-left: 10px;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    margin-top: 2px;
+}
+
+.listing-done {
+    text-align: center;
+    text-transform: uppercase;
+    /* background: gray; */
+    padding: 0px 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item.title {
+    font-size: 20px;
+    color: #000;
+    border: 0px !important;
+    padding-bottom: 6px;
+}
+
+.filterpopup i.checkbox-icon {
+    float: right !important;
+}
+
+.filterpopup .item-checkbox {
+    padding-left: 16px !important;
+}
+
+.poll-wrapper {
+    padding: 0px 12px;
+}
+
+.poll-wrapper .item {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.poll-type .item:first-child,
+.poll-type .item:nth-child(2) {
+    border-top: none !important;
+}
+
+.poll-type .item:last-child {
+    border-bottom: none !important;
+}
+
+.textbox-css {
+    height: 45px !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+    display: inline-block !important;
+    border: 1px solid #ccc !important;
+    box-shadow: inset 0 1px 3px #ddd !important;
+    border-radius: 4px !important;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+.pt0 {
+    padding-top: 0px !important;
+}
+
+.poll-btn {
+    background: #fbbc05;
+    color: white;
+    border-radius: 0;
+    height: 100% !important;
+}
+
+.clear-btn {
+    background: #4c4c4c;
+    color: #fff;
+    height: 100% !important;
+    border-radius: 0;
 }

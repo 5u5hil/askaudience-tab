@@ -3,14 +3,21 @@
         Latest Polls
     </ion-nav-title>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear ion-android-funnel" >
-      </button>
+       <button class="button button-icon button-clear ion-android-funnel">
+        </button>
+           <button class="button button-icon button-clear ion-android-funnel">
+        </button>
+        <button class="button button-icon button-clear ion-android-funnel">
+        </button>
     </ion-nav-buttons>
+   
     <ion-content class="has-footer listing-content">
-    <div id="countdowntimer"><span id="future_date"><span></div>
+        <ion-refresher pulling-text="Pull to get latest polls..." on-refresh="getPolls(1)">
+        </ion-refresher>
+   
         <div class="card card-polls" ng-include src="'templates/card.html'" ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
-         
         </div>
+         <ion-infinite-scroll on-infinite="getPolls(pageNumber+1)" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>
+         <div ng-if="!canLoadMore" class="listing-done"><p>All Polls listed</p></div>
     </ion-content>
 </ion-view>
- 

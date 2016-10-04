@@ -7989,7 +7989,7 @@ input:checked + .checkbox-icon:before {
   display: table;
   width: 14px;
   height: 6px;
-  border: 1px solid #fff;
+  border: 3px solid #fff;
   border-top: 0;
   border-right: 0;
   content: ' ';
