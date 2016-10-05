@@ -25,8 +25,9 @@ angular.module('askaudience.services', [])
                         var req = {method: 'GET', url: domain + 'getInterests', headers: {'Content-Type': 'application/x-www-form-urlencoded'}};
                         return $http(req);
                     },
-                    getPolls: function (data) {
-                        var req = {method: 'POST', url: domain + 'getPolls', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                    getPolls: function (filters, pageNo, orderBy) {
+                        console.log(filters+' '+ pageNo+' '+ orderBy)
+                        var req = {method: 'GET', url: domain + 'getPolls&'+filters+'&pageNo='+pageNo+'&orderby='+orderBy};
                         return $http(req);
                     },
                     getPollType: function (data) {

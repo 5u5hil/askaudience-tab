@@ -1,4 +1,4 @@
- <script id="templates/filters.html" type="text/ng-template">
+ 
     <ion-modal-view>
         <ion-header-bar class="bar bar-energized">
             <h1 class="title">Filter</h1>
@@ -6,7 +6,7 @@
             </button>
         </ion-header-bar>
         <ion-content has-bouncing="false" class="filter-modal filterpopup poll-wrapper">
-            <div class=" pm0">
+            <form class=" pm0"   name="pollfilter" id="pollfilter" role="form" action="#">
    
                 <div class=" white-bg">
           
@@ -16,10 +16,9 @@
 
   <div class="item title">
     Poll Type
-  </div>
+  </div> 
  
-  <ion-checkbox ng-repeat="poll in pollTypes" ng-model="filter.pollType[$index]" ng-value="poll.term_id">{{::poll.name}}</ion-checkbox> 
-  
+  <ion-checkbox ng-repeat="poll in pollTypes"  name="polltypes[{{poll.term_id}}]" ng-value="poll.term_id"  ng-click="toggleSelection(poll.term_id)">{{::poll.name}}</ion-checkbox> 
 </div>
  <div class="list poll-type">
 
@@ -40,7 +39,7 @@
                     <li class="item item-toggle">
                         Mature Content
                         <label class="toggle toggle-balanced">
-                            <input type="checkbox" name="is_content" ng-model="content" value="{{content}}">
+                            <input type="checkbox" name="is_mature" ng-model="content" value="{{content}}">
                             <div class="track">
                                 <div class="handle"></div>
                             </div>
@@ -61,10 +60,10 @@
                         <input type="text"  ng-model="search" class="textbox-css" placeholder="Search Interest Area" />
                        
                     </li>
-                        <div class=" ">
+                        <div class="custom-checkbox">
                             <div ng-repeat="interest in interests | filter:search">
                                 <label class="checkbox vlm w100">
-                                    <input type="checkbox" class="interest-checkbox" name="interests[]" value="{{ interest.term_id}}">
+                                    <input type="checkbox" class="interest-checkbox" name="interests[{{interest.term_id}}]" value="{{ interest.term_id}}">
                                     <span class="label vlm" ng-bind-html="interest.name"> </span>
                                 </label>
                             </div>
@@ -74,14 +73,14 @@
 </div>
       
         </div>
-        </div>
+        </form>
     </ion-content>
     <ion-footer-bar class="bar bar-footer ">
     <div class="button-bar">
-  <button class="button  ml3 col" ng-click="filterCeleb('clear')">Clear Filter(s)</button>
-        <button class="button poll-btn  mt-4 col" ng-click="closeFilters()">Done</button>
+  <button class="button  ml3 col" ng-click="resetForm()">Clear Filter(s)</button>
+        <button class="button poll-btn  mt-4 col" type="button" ng-click="getFilteredPolls()">Done</button>
 </div>
        
     </ion-footer-bar>
     </ion-modal-view>
-    </script>
+ 

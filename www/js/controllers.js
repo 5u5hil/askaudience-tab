@@ -487,20 +487,26 @@ angular.module('askaudience.controllers', [])
         function($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal) {
             $scope.pageNumber = 1;
             $scope.canLoadMore = true;
-            $scope.data = {};
-            $scope.filters = {};
-            $scope.getPolls = function(pageNumber) {
-                $scope.pageNumber = pageNumber;
-                $scope.data.pageNo = $scope.pageNumber;
-                if (pageNumber == 1) {
+            $scope.filters = '';
+             $scope.orderBy = '';
+            $scope.getPolls = function(type) {
+                console.log(type);
+              if (type == 'infScr') {
+                $scope.pageNumber = $scope.pageNumber+1;
+              } 
+              if (type == 'pullRef') {
+                $scope.pageNumber = 1;
+              }
+            
+                if ($scope.pageNumber == 1) {
                     Loader.show();
                 }
                 $scope.uid = '';
                 if (LSFactory.get('user')) {
-                    $scope.data.userId = LSFactory.get('user').ID;
+                    $scope.filters.userId = LSFactory.get('user').ID;
                     $scope.uid = parseInt(LSFactory.get('user').ID);
                 }
-                APIFactory.getPolls($scope.data).then(function(response) {
+                APIFactory.getPolls($scope.filters,  $scope.pageNumber, $scope.orderBy).then(function(response) {
                     if ($scope.pageNumber > 1) {
                         if (!response.data.length) {
                             $scope.canLoadMore = false;
@@ -522,11 +528,20 @@ angular.module('askaudience.controllers', [])
                     $scope.$broadcast('scroll.refreshComplete');
                 });;
             }
-            $scope.getPolls(1);
+            $scope.getPolls();
 
-            $scope.getFilteredPolls = function(filters) {
-                $scope.data.orderby = filters.sortBy;
-                $scope.getPolls(1);
+            $scope.getFilteredPolls = function() { 
+            $scope.pageNumber = 1;
+            $scope.filters =  jQuery("#pollfilter").serialize();
+            $scope.getPolls();
+            $scope.closeFilters();
+            } 
+            $scope.resetForm = function () {
+            jQuery('#pollfilter')[0].reset();
+            $scope.pageNumber = 1; 
+            $scope.filters = ''; 
+            $scope.getPolls();
+               
             }
 
             $scope.participate = function(event, id, options) {
@@ -590,6 +605,7 @@ angular.module('askaudience.controllers', [])
                 $scope.modal = modal;
             });
             $scope.openFilters = function() {
+                console.log('openFilters')
                 $scope.modal.show();
                 
             };

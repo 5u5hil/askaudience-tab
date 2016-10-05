@@ -11,16 +11,17 @@
             <h2 class=" poll-name-user">Anonymous</h2>
         </div>
         <!-- ng-if="poll.is_explicit || poll.is_mature" -->
-        <div class="tags pull-right col-33 row">
-            <div class="col-33">
+        <div class="tags custom-vln  tar row">
+         <div class="custom-vln tar" ng-click="popover.show($event)">
+                <h2><span class="fz21 ion-android-more-vertical" ></span></h2>
+            </div>
+            <div class="custom-vln tar" ng-if="poll.reposts != ''">
                 <h2 class=" no-border"><span class="ion-ios-copy-outline icon fz21"></span></h2>
             </div>
-            <div class="col-33">
+            <div class="custom-vln tar" ng-if="poll.is_explicit == 1 || poll.is_mature == 1">
                 <h2 class="tag-text">18+</h2>
             </div>
-            <div class="col-33">
-                <h2><span class="fz21 ion-android-more-vertical" ng-click="popover.show($event)"></span></h2>
-            </div>
+           
         </div>
         <!--   <div class="poll-separator-ver pull-right"></div>  -->
     </div>
