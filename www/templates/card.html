@@ -12,7 +12,7 @@
         </div>
         <!-- ng-if="poll.is_explicit || poll.is_mature" -->
         <div class="tags custom-vln  tar row">
-         <div class="custom-vln tar" ng-click="popover.show($event)">
+         <div class="custom-vln tar" ng-click="openPopover($event, poll)">
                 <h2><span class="fz21 ion-android-more-vertical" ></span></h2>
             </div>
             <div class="custom-vln tar" ng-if="poll.reposts != ''">
@@ -33,7 +33,7 @@
         <img ng-src="{{poll.img}}" alt="" ng-if="poll.img">
     </div>
     <div class="item poll-topbar padding10">
-        <div class="poll-id pull-left not-link">#125214</div>
+        <div class="poll-id pull-left not-link">#{{poll.id}}</div>
         <div class="poll-id pull-right"> <span id="{{poll.id}}"></span></div>
         <span ng-init="getTimeLeft(poll.valid_till, poll.id, $event)"></span>
     </div>
@@ -49,7 +49,7 @@
 
                     </label> -->
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote()">
+                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id)">
                             <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " />
                             <span class="poll-option">{{ opt.option}}</span>
                             <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized">
@@ -59,7 +59,7 @@
             </ul>
             <input type="hidden" name="pollid" value="{{poll.id}}" />
         </form>
-                <div>
+                <div ng-if="isLoggedIn">
             <ul class="options">
 
         <li ng-repeat="opt in poll.options">          
@@ -78,33 +78,18 @@
             <div>
                 <div class="poll-separator"></div>
                 <div class="row no-height-row">
-                    <div class="col txt-left "><a class="pb0 notification-icon poll-option-btn ion-android-notifications black fz20 col">Notify Me</a></div>
-                    <div class="col txt-right">{{poll.participants.length}} People Voted</div>
+                    <div class="col txt-left "><a class="pb0 notification-icon poll-option-btn ion-android-favorite black fz20 col">{{poll.likes.length || 0}} People(s) Liked</a></div>
+                    <div class="col txt-right">{{poll.participants.length}} People(s) Voted</div>
                 </div>
                 <div class="poll-separator"></div>
-            </div>
-        <!-- <pie-chart data="poll.chartdata" options="options"></pie-chart> -->
+            </div> 
 
     </div>
     <div class="item item-text-wrap padding10 row poll-action-panel">
-        <!--  <a class="text-center  black fz20 col" ng-click="participate($event, poll.id, poll.options)">
-            <i class="icon ion-android-open"></i>
-
-        </a>
-        <a class="text-center  black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)">
-            <i class="icon ion-android-share-alt"></i>
-
-        </a>
-        <a class="text-center  black fz20 col">
-            <i class="icon ion-android-notifications-none"></i>
-
-        </a>
-        <a class="text-center  black fz20 col">
-            <i class="icon ion-ios-flag-outline"></i>
-
-        </a> -->
+ 
         <a class="button poll-option-btn ion-paper-airplane button-clear button-dark black fz20 col" ng-click="participate($event, poll.id, poll.options)">Vote</a>
+        
         <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)">Share</a>
-        <a class="button poll-option-btn ion-ios-copy-outline button-clear button-dark black fz20 col">Re-Post</a>
+        <a class="button poll-option-btn ion-ios-copy-outline button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)">Re-Post</a>
     </div>
 </div>

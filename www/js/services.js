@@ -38,6 +38,30 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'login', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
+                    likePoll: function (data) {
+                        var req = {method: 'POST', url: domain + 'like', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    unlikePoll: function (data) {
+                        var req = {method: 'POST', url: domain + 'unlike', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    notifyMe: function (data) {
+                        var req = {method: 'POST', url: domain + 'notify', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    unNotifyMe: function (data) {
+                        var req = {method: 'POST', url: domain + 'unnotify', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    repost : function (data) {
+                        var req = {method: 'POST', url: domain + 'repost', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    flag : function (data) {
+                        var req = {method: 'POST', url: domain + 'flag', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     registerUser: function (data) {
                         var req = {method: 'POST', url: domain + 'manualRegistration', headers: {'Content-Type': undefined}, data: data};
                         return $http(req);

@@ -9,17 +9,38 @@
             <form class=" pm0"   name="pollfilter" id="pollfilter" role="form" action="#">
    
                 <div class=" white-bg">
-          
- <div class="list poll-type">
+      <div class="list poll-type">
 
  
 
-  <div class="item title">
+  <div class="item title ">
+    Search  
+  </div>
+   <li class="item item-input item-stacked-label">
+                      
+                        <input type="text" name="sterm" class="textbox-css" placeholder="Search Keyword(s)" />
+       </li>
+                     <label class="item item-input item-select">
+    <div class="input-label">
+      Search By
+    </div>
+    <select name="search_by"> 
+      <option selected>poll id</option>
+      <option>tag</option> 
+    </select>
+  </label>
+             
+  
+</div>    
+ <div class="list poll-type">
+ 
+  <div class="item title pt0">
     Poll Type
   </div> 
  
   <ion-checkbox ng-repeat="poll in pollTypes"  name="polltypes[{{poll.term_id}}]" ng-value="poll.term_id"  ng-click="toggleSelection(poll.term_id)">{{::poll.name}}</ion-checkbox> 
 </div>
+ 
  <div class="list poll-type">
 
  

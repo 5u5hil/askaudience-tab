@@ -36,15 +36,7 @@ angular.module('askaudience.controllers', [])
             };
 
             $scope.updateUser();
-            $ionicPopover.fromTemplateUrl('templates/common-template.html', {
-                scope: $scope
-            }).then(function(popover) {
-                $scope.popover = popover;
-            });
 
-            $scope.openPopover = function($event) {
-                $scope.popover.show($event);
-            };
 
             $rootScope.$on('showLoginModal', function($event, scope, cancelCallback, callback) {
                 $scope.showLogin = true;
@@ -378,9 +370,7 @@ angular.module('askaudience.controllers', [])
                 }
 
 
-            }
-
-
+            } 
             Loader.hide();
 
 
@@ -483,22 +473,23 @@ angular.module('askaudience.controllers', [])
     }
 ])
 
-.controller('pollsCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal',
-        function($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal) {
+.controller('pollsCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate',
+        function($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate) {
             $scope.pageNumber = 1;
             $scope.canLoadMore = true;
             $scope.filters = '';
-             $scope.orderBy = '';
+            $scope.orderBy = ''; 
             $scope.getPolls = function(type) {
                 console.log(type);
-              if (type == 'infScr') {
-                $scope.pageNumber = $scope.pageNumber+1;
-              } 
-              if (type == 'pullRef') {
-                $scope.pageNumber = 1;
-              }
-            
-                if ($scope.pageNumber == 1) {
+                if (type == 'infScr') {
+                    $scope.pageNumber = $scope.pageNumber + 1;
+                }
+                if (type == 'pullRef') {
+                    $scope.pageNumber = 1;
+                    $scope.canLoadMore = true;  
+                }
+
+                if ($scope.pageNumber == 1 && type != 'pullRef') {
                     Loader.show();
                 }
                 $scope.uid = '';
@@ -506,7 +497,7 @@ angular.module('askaudience.controllers', [])
                     $scope.filters.userId = LSFactory.get('user').ID;
                     $scope.uid = parseInt(LSFactory.get('user').ID);
                 }
-                APIFactory.getPolls($scope.filters,  $scope.pageNumber, $scope.orderBy).then(function(response) {
+                APIFactory.getPolls($scope.filters, $scope.pageNumber, $scope.orderBy).then(function(response) {
                     if ($scope.pageNumber > 1) {
                         if (!response.data.length) {
                             $scope.canLoadMore = false;
@@ -530,28 +521,152 @@ angular.module('askaudience.controllers', [])
             }
             $scope.getPolls();
 
-            $scope.getFilteredPolls = function() { 
-            $scope.pageNumber = 1;
-            $scope.filters =  jQuery("#pollfilter").serialize();
-            $scope.getPolls();
-            $scope.closeFilters();
-            } 
-            $scope.resetForm = function () {
-            jQuery('#pollfilter')[0].reset();
-            $scope.pageNumber = 1; 
-            $scope.filters = ''; 
-            $scope.getPolls();
-               
+            $scope.getFilteredPolls = function() {
+                $scope.pageNumber = 1;
+                $scope.canLoadMore = true; 
+                $scope.filters = jQuery("#pollfilter").serialize();
+                 $ionicScrollDelegate.scrollTop();
+                $scope.getPolls();
+                $scope.closeFilters(); 
+            }
+            $scope.resetForm = function() {
+                jQuery('#pollfilter')[0].reset();
+                $scope.pageNumber = 1;
+                $scope.filters = '';
+                $scope.getPolls();
+
             }
 
             $scope.participate = function(event, id, options) {
                 jQuery('[data-toggle=' + id + ']').slideToggle();
+                if(angular.element(event.target).text() == 'Vote') {
+                    angular.element(event.target).text('Hide');
+                    angular.element(event.target).removeClass('ion-paper-airplane').addClass('ion-arrow-up-c');
+
+            } else {  
+                    angular.element(event.target).text('Vote');
+                    angular.element(event.target).removeClass('ion-arrow-up-c').addClass('ion-paper-airplane');
+            }
+        }
+            $scope.performTask = function(type, pollid) {
+                if (!$rootScope.isLoggedIn) {
+                    $rootScope.$broadcast('showLoginModal', $scope, function() {
+                        $ionicHistory.goBack(-1);
+                    }, function() {
+                           if(type == 'like') {
+                            likePoll(pollid);
+                        } else if (type == 'notify') {
+                            notifyMe(pollid);
+                        } else if (type == 'unlike') {
+                            UnlikePoll(pollid);
+                        } else if (type == 'unNotifyMe') {
+                            unNotifyMe(pollid);
+                        } else if (type == 'repost') {
+                            repost(pollid);
+                        }else if (type == 'report') {
+                            reportContent(pollid);
+                        }
+                    });
+                } else {
+                      if(type == 'like') {
+                            likePoll(pollid);
+                        } else if (type == 'notify') {
+                            notifyMe(pollid);
+                        } else if (type == 'unlike') {
+                            UnlikePoll(pollid);
+                        } else if (type == 'unNotifyMe') {
+                            unNotifyMe(pollid);
+                        } else if (type == 'repost') {
+                            repost(pollid);
+                        } else if (type == 'report') {
+                            reportContent(pollid);
+                        }
+                }
             };
+
+            function likePoll(pollid) {
+                var data = { pollid: pollid, userId: LSFactory.get('user').ID };
+                Loader.show();
+                APIFactory.likePoll(data).then(function(response) {
+                    if (response.data.error) {
+                        Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                    } else {
+                        Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                        $scope.pollLiked = !$scope.pollLiked;
+                        $scope.getPolls();
+
+                    }
+                });
+            }
+            function repost (pollid) {
+                var data = { pollid: pollid, userId: LSFactory.get('user').ID };
+                Loader.show();
+                APIFactory.repost(data).then(function(response) {
+                    if (response.data.error) {
+                        Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                    } else {
+                        Loader.toggleLoadingWithMessage(response.data.success, 2000); 
+                    }
+                });
+            }
+            function reportContent (pollid) {
+                var data = { pollid: pollid, userId: LSFactory.get('user').ID };
+                Loader.show();
+                APIFactory.flag(data).then(function(response) {
+                    if (response.data.error) {
+                        Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                    } else {
+                        Loader.toggleLoadingWithMessage(response.data.success, 2000); 
+                    }
+                });
+            }
+            function UnlikePoll(pollid) {
+                var data = { pollid: pollid, userId: LSFactory.get('user').ID };
+                Loader.show();
+                APIFactory.unlikePoll(data).then(function(response) {
+                    if (response.data.error) {
+                        Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                    } else {
+                        Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                        $scope.getPolls();
+                        $scope.pollLiked = !$scope.pollLiked;
+
+                    }
+                });
+            }
+            function notifyMe (pollid) {
+                var data = { pollid: pollid, userId: LSFactory.get('user').ID };
+                Loader.show();
+                APIFactory.notifyMe(data).then(function(response) {
+                    if (response.data.error) {
+                        Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                    } else {
+                        Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                        $scope.pollNotify = !$scope.pollNotify;
+
+
+                    }
+                });
+            }
+            function unNotifyMe (pollid) {
+                var data = { pollid: pollid, userId: LSFactory.get('user').ID };
+                Loader.show();
+                APIFactory.unNotifyMe(data).then(function(response) {
+                    if (response.data.error) {
+                        Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                    } else {
+                        Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                        $scope.pollNotify = !$scope.pollNotify;
+
+
+                    }
+                });
+            }
             $scope.getPollsFilters = function() {
-               Loader.show();
+                Loader.show();
 
                 APIFactory.getInterests().then(function(response) {
-                    $scope.interests = response.data; 
+                    $scope.interests = response.data;
                     Loader.hide();
                 }, function(error) {
                     Loader.hide();
@@ -593,7 +708,32 @@ angular.module('askaudience.controllers', [])
                     }
                 });
             }
+            $ionicPopover.fromTemplateUrl('templates/common-template.html', {
+                scope: $scope
+            }).then(function(popover) {
+                $scope.popover = popover;
+            });
 
+            $scope.openPopover = function($event, poll) {
+                var data = {pid: poll.id};
+                APIFactory.pollDetails(data).then(function(response) {
+                   $scope.pollForTask = response.data;
+                         $scope.popover.show($event);
+                $scope.like_pollid = $scope.pollForTask .id; 
+                if (LSFactory.get('user').ID) {
+                  if ($scope.pollForTask.likes.indexOf(Number((LSFactory.get('user').ID))) < 0) {
+                    $scope.pollLiked = false;
+                  } else {
+                    $scope.pollLiked = true; 
+                  };
+                  if ($scope.pollForTask.notify.indexOf(Number((LSFactory.get('user').ID))) < 0) {
+                    $scope.pollNotify = false;
+                  } else {
+                    $scope.pollNotify = true; 
+                  }; 
+                }
+                });
+            };
 
             $scope.closeParticipate = function() {
                 $scope.modal.hide();
@@ -607,7 +747,7 @@ angular.module('askaudience.controllers', [])
             $scope.openFilters = function() {
                 console.log('openFilters')
                 $scope.modal.show();
-                
+
             };
             $scope.closeFilters = function() {
                 $scope.modal.hide();

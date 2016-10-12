@@ -15,7 +15,7 @@
             <ion-tab title="Latest Polls" nav-clear menu-close icon="ion-clipboard" ui-sref-opts="{reload: true, notify: true,cache: false}" ui-sref="app.polls"></ion-tab>
             <ion-tab title="Polls For Me" icon-off="ion-ios-people" nav-clear menu-close icon-on="ion-ios-people" href="#/app/playlists"></ion-tab>
             <ion-tab title="Create Poll" icon-off="ion-wand" nav-clear menu-close icon-on="ion-wand" href="#/app/create-poll"></ion-tab>
-            <ion-tab title="My Profile" icon-off="ion-android-person" nav-clear menu-close icon-on="ion-android-person" ui-sref="app.user-profile"></ion-tab>
+            <ion-tab title="My Profile" icon-off="ion-android-person" nav-clear menu-close icon-on="ion-android-person" ui-sref="app.user({id:user.ID, reveal : 1})"></ion-tab>
         </ion-tabs>
         <ion-nav-view name="menuContent"></ion-nav-view>
 
