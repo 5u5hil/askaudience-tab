@@ -1,0 +1,15 @@
+<ion-view hide-menu-button="true">
+    <ion-nav-title>
+        Polls for Me
+    </ion-nav-title>
+
+    <ion-content class="has-footer listing-content">
+        <ion-refresher pulling-text="Pull to get latest polls..." on-refresh="getPolls('pullRef')">
+        </ion-refresher>
+
+        <div class="card card-polls" ng-include src="'templates/card.html'" ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
+        </div>
+        <ion-infinite-scroll on-infinite="getPolls('infScr')" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>
+        <div ng-if="!canLoadMore" class="listing-done"><p>No more polls</p></div>
+    </ion-content>
+</ion-view>

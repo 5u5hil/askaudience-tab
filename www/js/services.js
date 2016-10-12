@@ -2,7 +2,7 @@ angular.module('askaudience.services', [])
         .factory('APIFactory', ['$http', '$httpParamSerializer', function ($http, $httpParamSerializer) {
                 var api = {
                     getUser: function (data) {
-                        var req = {method: 'GET', url: domain + 'getUser&id=' + data};
+                        var req = {method: 'GET', url: domain + 'getUser&userId=' + data};
                         return $http(req);
                     },
                     vote: function (data) {
@@ -26,8 +26,11 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     getPolls: function (filters, pageNo, orderBy) {
-                        console.log(filters+' '+ pageNo+' '+ orderBy)
-                        var req = {method: 'GET', url: domain + 'getPolls&'+filters+'&pageNo='+pageNo+'&orderby='+orderBy};
+                        var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy};
+                        return $http(req);
+                    },
+                    forme: function (userId, pageNo) {
+                        var req = {method: 'GET', url: domain + 'forme&userId=' + userId + '&pageNo=' + pageNo};
                         return $http(req);
                     },
                     getPollType: function (data) {
@@ -54,11 +57,11 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'unnotify', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
-                    repost : function (data) {
+                    repost: function (data) {
                         var req = {method: 'POST', url: domain + 'repost', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
-                    flag : function (data) {
+                    flag: function (data) {
                         var req = {method: 'POST', url: domain + 'flag', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },

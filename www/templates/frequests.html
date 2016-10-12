@@ -1,0 +1,17 @@
+<ion-view hide-menu-button="true">
+    <ion-nav-title>
+        Friend Requests
+    </ion-nav-title>
+
+    <ion-content class="has-footer listing-content" >
+        <a class="item item-avatar" href="#" ng-repeat='req in user.friend_requests_received'>
+            <img ng-src="{{req.img}}">
+            <h2>{{req.user_firstname}} {{ req.user_lastname}}</h2>
+            <p></p>
+        </a>
+    </ion-content>
+
+
+</ion-view>
+
+

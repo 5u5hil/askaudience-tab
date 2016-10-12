@@ -2513,10 +2513,10 @@ a.button.cat-button:hover {
     margin-right: 10px;
 }
 .select-wrap {
-        padding: 9px 0px 5px 0px;
+    padding: 9px 0px 5px 0px;
 }
 .custom-checkbox .checkbox {
-padding-right: 0px !important;
+    padding-right: 0px !important;
 }
 .custom-vln {
     width: 32%;
@@ -2526,3 +2526,13 @@ padding-right: 0px !important;
 }
 .tar {
     text-align: center !important;}
+
+span.badge{
+    float: right;
+    top: -4px;
+    right: 15px;;
+    font-size: 10px;
+    display: inline-block;
+}
+
+.poll-name-user {margin-top: 10px !important;}

@@ -1,6 +1,6 @@
 // Ionic askaudience App
 var domain = 'http://ask-audience.cruxservers.in/api/?method=';
-angular.module('askaudience', ['ionic',  'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives',  'ion-datetime-picker', 'gm', 'ngTagsInput'])
+angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'gm', 'ngTagsInput'])
 
         .run(function ($ionicPlatform, $cordovaStatusbar) {
             $ionicPlatform.ready(function () {
@@ -18,7 +18,7 @@ angular.module('askaudience', ['ionic',  'ngCordova', 'askaudience.controllers',
                     if (window.StatusBar) {
                         StatusBar.styleDefault();
                     }
-                $cordovaStatusbar.styleHex('#FF9800');
+                    $cordovaStatusbar.styleHex('#FF9800');
 
                 } catch (e) {
                     console.log('real device only')
@@ -29,7 +29,7 @@ angular.module('askaudience', ['ionic',  'ngCordova', 'askaudience.controllers',
         .config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
             $ionicConfigProvider.tabs.position('bottom');
             $ionicConfigProvider.views.maxCache(0);
-           // $ionicConfigProvider.backButton.text('');
+            // $ionicConfigProvider.backButton.text('');
 
             $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
 
@@ -49,7 +49,27 @@ angular.module('askaudience', ['ionic',  'ngCordova', 'askaudience.controllers',
                             }
                         }
                     })
-            
+
+                    .state('app.forme', {
+                        url: '/forme',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/forme.html',
+                                controller: 'formeCtrl'
+                            }
+                        }
+                    })
+
+                    .state('app.friendrequests', {
+                        url: '/frequests',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/frequests.html',
+                                controller: 'frequestsCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.polldetails', {
                         url: '/polldetails/:id',
                         views: {
