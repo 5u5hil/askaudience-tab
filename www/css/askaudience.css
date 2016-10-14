@@ -2536,3 +2536,26 @@ span.badge{
 }
 
 .poll-name-user {margin-top: 10px !important;}
+.pr60 {
+    padding-right: 60px !important;
+}
+.image-avatar-option .circle-result {
+    background-size: cover  !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+.ion-google-place-container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: none;
+}
+
+
+input.ion-google-place[readonly]{
+    background-color: transparent;
+    cursor: text;
+}

@@ -1,14 +1,9 @@
 <ion-view hide-menu-button="true">
     <ion-nav-title>
-        Create   New Poll
+        Create Poll ({{acitveTab == 'tab1' ? '1' : (acitveTab == 'tab2' ? '2' : '3')}}/3)
     </ion-nav-title>
-    <ion-subheader-bar class="bar bar-subheader newpoll-subheader">
-        <!-- <a class="button cat-button" ng-class="acitveTab == 'tab1' ? 'subnav-active' : ''" ng-click="manageTabs('tab1', 'nav')">Step 1</a>
-        <a class="button cat-button" ng-class="acitveTab == 'tab2' ? 'subnav-active' : ''" ng-click="manageTabs('tab2', 'nav')">Step 2</a>
-        <a class="button cat-button" ng-class="acitveTab == 'tab3' ? 'subnav-active' : ''" ng-click="manageTabs('tab3', 'nav')">Step 3</a> -->
-         <a class="button cat-button w100 bold" > {{acitveTab == 'tab1' ? '1' : (acitveTab == 'tab2' ? '2' : '3')}}/3</a>
-    </ion-subheader-bar>
-    <ion-content class="has-footer has-poll-subheader" has-bouncing="false">
+ 
+    <ion-content class="has-footer" has-bouncing="false">
         <form class="createPoll">
             <div class="tab1" ng-show="acitveTab == 'tab1'">
                 <div class="" >

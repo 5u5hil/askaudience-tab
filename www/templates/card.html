@@ -48,7 +48,7 @@
 
                     </label> -->
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" 
+                        <ion-item class="item {{ opt.image ? 'item-avatar pr60' : ''}} ion-item-custom mt0" 
                          ng-style="{'background-image':'url({{opt.image.url}}', 
                 'background-repeat':'no-repeat',
                 'background-position': 'right', 'background-size': '60px 60px'}" ng-click="vote(poll.id, opt.id)">
@@ -66,8 +66,8 @@
 
                 <li ng-repeat="opt in poll.options">          
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote()">
-                            <div class="circle-result">{{(opt.number_of_votes / poll.participants.length)*100 | number:0}}%</div>
+                        <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" ng-click="vote()">
+                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{(opt.number_of_votes / poll.participants.length)*100 | number:0}}%</div>
                             <span class="poll-option">{{ opt.option}}</span>
                             <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{(opt.number_of_votes / poll.participants.length) * 100}} +  '%'}" ></div></div>
 

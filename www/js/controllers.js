@@ -1205,10 +1205,9 @@ angular.module('askaudience.controllers', [])
 
                     });
                 }
-                $scope.$on('gmPlacesAutocomplete::placeChanged', function () {
-                    console.log('asdf')
-                    console.log($scope.autocomplete);
-                    var location = $scope.autocomplete.getPlace();
+                $scope.$on('gmPlacesAutocomplete::placeChanged', function (aasdf) {
+                
+                    var location = aasdf.getPlace();
                     console.log(location);
                     $scope.lat = location.lat();
                     $scope.lng = location.lng();
