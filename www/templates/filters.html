@@ -18,17 +18,17 @@
   </div>
    <li class="item item-input item-stacked-label">
                       
-                        <input type="text" name="sterm" class="textbox-css" placeholder="Search Keyword(s)" />
-       </li>
-                     <label class="item item-input item-select">
-    <div class="input-label">
-      Search By
-    </div>
-    <select name="search_by"> 
-      <option selected>poll id</option>
-      <option>tag</option> 
+                        <input type="text" name="sterm" class="textbox-css col-75" placeholder="Search Keyword(s)" />
+                        
+  
+    <select name="search_by" class="col-25 filter-ddl"> 
+      <option selected value="1">Poll Title</option>
+      <option value="2">Poll ID</option>
+      <option value="3">Tag</option> 
     </select>
-  </label>
+ 
+       </li>
+                    
              
   
 </div>    
@@ -48,29 +48,20 @@
   <div class="item title pt0">
     Privacy 
   </div>
-      <li class="item item-toggle">
-                        Explicit Content
-                        <label class="toggle toggle-balanced">
-                            <input type="checkbox" name="is_explicit" ng-model="explicit" value="{{explicit}}">
-                            <div class="track">
-                                <div class="handle"></div>
-                            </div>
-                        </label>
-                    </li>
-                    <li class="item item-toggle">
-                        Mature Content
-                        <label class="toggle toggle-balanced">
-                            <input type="checkbox" name="is_mature" ng-model="content" value="{{content}}">
-                            <div class="track">
-                                <div class="handle"></div>
-                            </div>
-                        </label>
-                    </li>
-             
+  
+                   
+               <ion-checkbox   name="is_explicit" ng-model="explicit" ng-value="explicit">
+ 
+
+                  Explicit Content
+    </ion-checkbox> 
+               <ion-checkbox   name="is_mature" ng-model="content" ng-value="content">
+                  Mature Content
+    </ion-checkbox> 
+ 
   
 </div>
  <div class="list poll-type">
-
  
 
   <div class="item title pt0">
@@ -80,15 +71,10 @@
                       
                         <input type="text"  ng-model="search" class="textbox-css" placeholder="Search Interest Area" />
                        
-                    </li>
-                        <div class="custom-checkbox">
-                            <div ng-repeat="interest in interests | filter:search">
-                                <label class="checkbox vlm w100">
-                                    <input type="checkbox" class="interest-checkbox" name="interests[{{interest.term_id}}]" value="{{ interest.term_id}}">
-                                    <span class="label vlm" ng-bind-html="interest.name"> </span>
-                                </label>
-                            </div>
-                        </div>
+                    </li> 
+
+  <ion-checkbox ng-repeat="interest in interests | filter:search"  name="interests[{{interest.term_id}}]" ng-value=" interest.term_id ">
+    <span class="label vlm" ng-bind-html="interest.name"> </span> </ion-checkbox> 
              
   
 </div>
@@ -98,8 +84,8 @@
     </ion-content>
     <ion-footer-bar class="bar bar-footer ">
     <div class="button-bar">
-  <button class="button  ml3 col" ng-click="resetForm()">Clear Filter(s)</button>
-        <button class="button poll-btn  mt-4 col" type="button" ng-click="getFilteredPolls()">Done</button>
+  <button class="button  ml3 col h100 no-radius" ng-click="resetForm()">Clear Filter(s)</button>
+        <button class="button poll-btn no-radius mt-4 col" type="button" ng-click="getFilteredPolls()">Done</button>
 </div>
        
     </ion-footer-bar>

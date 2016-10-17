@@ -21,6 +21,22 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'unfollow', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
+                    friendRequestAccept: function (data) {
+                        var req = {method: 'POST', url: domain + 'faccept', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    friendRequestReject: function (data) {
+                        var req = {method: 'POST', url: domain + 'freject', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    unFriend: function (data) {
+                        var req = {method: 'POST', url: domain + 'unfriend', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    addFriend: function (data) {
+                        var req = {method: 'POST', url: domain + 'frequest', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     getInterests: function () {
                         var req = {method: 'GET', url: domain + 'getInterests', headers: {'Content-Type': 'application/x-www-form-urlencoded'}};
                         return $http(req);
@@ -29,12 +45,20 @@ angular.module('askaudience.services', [])
                         var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy};
                         return $http(req);
                     },
+                    getPollsByType: function (data) {
+                        var req = {method: 'POST', url: domain + 'getPollsByTypes', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     forme: function (userId, pageNo) {
                         var req = {method: 'GET', url: domain + 'forme&userId=' + userId + '&pageNo=' + pageNo};
                         return $http(req);
                     },
                     getPollType: function (data) {
                         var req = {method: 'GET', url: domain + 'polltypes', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    searchUser: function (data) {
+                        var req = {method: 'POST', url: domain + 'searchUser', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
                     authUser: function (data) {

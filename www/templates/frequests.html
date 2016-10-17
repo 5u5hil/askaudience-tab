@@ -3,12 +3,15 @@
         Friend Requests
     </ion-nav-title>
 
-    <ion-content class="has-footer listing-content" >
+    <ion-content class="has-footer" >
+    <div class="list">
+        
         <a class="item item-avatar" href="#" ng-repeat='req in user.friend_requests_received'>
             <img ng-src="{{req.img}}">
             <h2>{{req.user_firstname}} {{ req.user_lastname}}</h2>
             <p></p>
         </a>
+    </div>
     </ion-content>
 
 

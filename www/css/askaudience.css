@@ -1,49 +1,4 @@
-/* @font-face {
-    font-family: "San Francisco";
-    font-weight: 100;
-    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2");
-}
-
-
  
-
-@font-face {
-    font-family: "San Francisco";
-    font-weight: 200;
-    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2");
-}
-
- 
-@font-face {
-    font-family: "San Francisco";
-    font-weight: 400;
-    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2");
-}
- 
-
-@font-face {
-    font-family: "San Francisco";
-    font-weight: normal;
-    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
-}
- 
-@font-face {
-    font-family: "San Francisco";
-    font-weight: 500;
-    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2");
-}
- 
-@font-face {
-    font-family: "San Francisco";
-    font-weight: bold;
-    src: url("lib/ionic/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
-}
-
-.platform-android * {
-    font-family: "San Francisco" !important;
-    font-weight: 200 !important;
-}
-*/
 .white {
     color: #fff !important
 }
@@ -323,9 +278,10 @@ a.celeb-name {
 }
 
 .cover-item-detail {
-    height: 280px;
+         max-height: 205px;
     width: 100%;
-    background-size: cover
+    background-size: cover;
+        padding-bottom: 10px;
 }
 
 .celeb-img-detail img {
@@ -337,7 +293,7 @@ a.celeb-name {
 
 .celeb-img-detail {
     text-align: center;
-    padding-top: 15px
+    padding-top: 5px
 }
 
 .celeb-info-detail {
@@ -1840,13 +1796,13 @@ a.autolinker {
 
 .title {
     font-size: 16px;
-    font-weight: bold;
-    color: white
+    /*font-weight: bold;*/
+    color: #fbbc05;
 }
 
 .title-cat {
     font-size: 14px;
-    color: #ababab
+    color: #737373;
 }
 
 .cover-item-detail {
@@ -2110,7 +2066,7 @@ a.button.cat-button:hover {
 
 .poll-question-text {
     color: #000;
-    font-size: 16px !important;
+    font-size: 18px !important;
     padding-left: 6px;
     font-weight: bold;
 }
@@ -2558,4 +2514,92 @@ span.badge{
 input.ion-google-place[readonly]{
     background-color: transparent;
     cursor: text;
+}
+.profile-name {
+      line-height: 73px;
+            padding-left: 15px;
+}
+.txt-left {
+    text-align: left !important;
+}
+.mb10 {
+        margin-bottom: 10px;
+}
+.pb0 {
+    padding-bottom: 0px;
+}
+.profile-bg {
+        background-color: #fff !important;
+}
+.poll-btn {
+        background: #fbbc05 !important;
+    color: #fff !important;
+}
+.w100 {
+    width: 100%;
+}
+ 
+ .poll-action-panel a {
+       line-height: 50px !important;
+}
+.item-avatar h2 {
+    text-transform: capitalize;
+}
+.active-cat {
+    font-weight: bold;
+}
+.popover a.item, .p10 {
+    padding: 10px !important;
+}
+.ion-autocomplete-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: none;
+    margin: auto;
+}
+input.ion-autocomplete[readonly] {
+    background-color: transparent;
+    cursor: text;
+}
+.ion-autocomplete-loading-icon {
+    padding-left: 10px;
+}
+.custom-popover {
+        height: 128px;
+}
+.h100 {
+    height: 100% !important;
+}
+.no-radius {
+    border-radius: 0px !important;
+}
+.filter-ddl {
+        padding: 8px 2px 11px 2px !important;
+    box-shadow: inset 0 1px 3px #ddd !important;
+}
+.left-checkbox .item.item-checkbox{
+padding-left: 20px !important;
+    padding-right: 0px !important;
+    border-left: 0px;
+    border-right: 0px;
+         border-right: 1px solid #eee;
+}
+.left-checkbox .checkbox-icon{
+     float: right !important;
+}
+.ion-datetime-picker-popup button, .popup-container button {
+    font-size: 12px !important;
+}
+.tooltip {
+    font-size: 10px;
+    color:#ddd;
+}
+.button.button-positive, .button.button-positive:hover, .button.button-positive:focus {
+    border-color: transparent;
+    background-color: #fbbc05 ;
+    color: #fff;
 }

@@ -40,9 +40,9 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
 
                 // set the default values of the one way binded attributes
                 $timeout(function () {
-                    controller.placeholder = valueOrDefault(controller.placeholder, 'Click to enter a value...');
+                    controller.placeholder = valueOrDefault(controller.placeholder, 'Search for user...');
                     controller.cancelLabel = valueOrDefault(controller.cancelLabel, 'Cancel');
-                    controller.selectItemsLabel = valueOrDefault(controller.selectItemsLabel, "Select a celebrity..."); 
+                    controller.selectItemsLabel = valueOrDefault(controller.selectItemsLabel, "Select a user..."); 
                       controller.selectedItemsLabel = valueOrDefault(controller.selectedItemsLabel, $interpolate("Selected items{{maxSelectedItems ? ' (max. ' + maxSelectedItems + ')' : ''}}:")(controller));
                 });
 
@@ -80,7 +80,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
 
                 var template = [
                     '<div class="ion-autocomplete-container ' + ionAutocompleteController.randomCssClass + ' modal" style="display: none;">',
-                    '<div class="bar bar-header bar-dark item-input-inset">',
+                    '<div class="bar bar-header bar-energized item-input-inset">',
                     '<label class="item-input-wrapper">',
                     '<i class="icon ion-search placeholder-icon"></i>',
                     '<input type="search" class="ion-autocomplete-search" ng-model="viewModel.searchQuery" ng-model-options="viewModel.ngModelOptions" placeholder="{{viewModel.placeholder}}"/>',

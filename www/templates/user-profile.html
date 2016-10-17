@@ -3,33 +3,35 @@
 
     </ion-nav-title>
 
-    <ion-content >
+    <ion-content class="has-footer">
         <div class="cover-item-wrapper cover-detail-wrapper">
-            <div class="cover-item cover-item-detail" style="background-image:url(' img/bgp.png')">
+            <div class="cover-item-detail profile-bg">
                 <div class=" ">
-                    <div class="row">
-                        <div class="celeb-img-detail profile-img-detail col ">
+                    <div class="row mb15">
+                        <div class="celeb-img-detail profile-img-detail col-25 ">
                             <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
+                         </div>
+                        <div class="celeb-img-detail  txt-left  col-75 ">
 
-                            <h2 class="mb0 fs20" style="color:#fff">                            
+                            <h2 class="mb0 fs20 profile-name">                            
                                 {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.user_nicename : 'Anonymous')}} 
-                                <span class="icon ion-edit edit-icon" ng-if="uid == cid"  ng-click="updatePan('profile')"></span>
+                                <span class="icon ion-edit edit-icon" ng-if="uid == cid"  ng-click="updatePan('profile')"></span> 
                             </h2>
-                        </div>
+                       </div>
                     </div>
 
-                    <div class="wrapp-count row text-center">
-                        <a class="col" ng-click="updateCat('polls')">
+                    <div class="wrapp-count row text-center pb0">
+                        <a class="col" ng-click="updateCat('polls')"  ng-class="activePanCat == 'polls' ? 'active-cat' : ''">
                             <div class="title">
-                                {{ userInfo.polls.length}}
+                                {{ userInfo.polls.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Polls
                             </div>
                         </a>
-                        <a class="col" ng-click="updatePan('following')" ng-if="uid == cid">
+                        <a class="col" ng-click="updatePan('following')" ng-if="uid == cid"   ng-class="activePan == 'following' ? 'active-cat' : ''">
                             <div class="title">
-                                {{ userInfo.following.length}}
+                                {{ userInfo.following.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Following
@@ -37,15 +39,15 @@
                         </a>
                         <a class="col" ng-if="uid != cid">
                             <div class="title">
-                                {{ userInfo.following.length}}
+                                {{ userInfo.following.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Following
                             </div>
                         </a>
-                        <a class="col" ng-click="updatePan('followers')" ng-if="uid == cid">
+                        <a class="col" ng-click="updatePan('followers')" ng-if="uid == cid" ng-class="activePan == 'followers' ? 'active-cat' : ''">
                             <div class="title">
-                                {{ userInfo.followers.length}}
+                                {{ userInfo.followers.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Followers 
@@ -53,15 +55,15 @@
                         </a>
                         <a class="col" ng-if="uid != cid">
                             <div class="title">
-                                {{ userInfo.followers.length}}
+                                {{ userInfo.followers.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Followers 
                             </div>
                         </a>
-                        <a class="col" ng-click="updateCat('friends')" ng-if="uid == cid">
+                        <a class="col" ng-click="updateCat('friends')" ng-if="uid == cid" ng-class="activePanCat == 'friends' ? 'active-cat' : ''"> 
                             <div class="title">
-                                {{ userInfo.friends.length}}
+                                {{ userInfo.friends.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Friends
@@ -69,25 +71,26 @@
                         </a>
                         <a class="col"  ng-if="uid != cid">
                             <div class="title">
-                                {{ userInfo.friends.length}}
+                                {{ userInfo.friends.length || 0}}
                             </div>
                             <div class="title-cat">
                                 Friends
                             </div>
                         </a>
                     </div>
+               <div class="row connections mt10" ng-if="uid != cid">
+                        <div class="col">
+                            <button ng-if="following == 'No'" class="button w100 button-small poll-btn" ng-click="follow()">Follow</button>
+                            <button ng-if="following == 'Yes'" class="button  w100 button-small poll-btn" ng-click="unfollow()">Following</button>
+                        </div>
+                        <div class="col">
 
-                    <div class="row connections mt10" ng-if="uid != cid">
-                        <div class=" col ">
-                            <button ng-if="following == 'No'" class="button button-outline button-small button-balanced pull-right" ng-click="follow()"><i class="ion-arrow-up-c"></i> Follow</button>
-                            <button ng-if="following == 'Yes'" class="button button-small button-balanced pull-right" ng-click="unfollow()"><i class="ion-checkmark-round"></i> Following</button>
+                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="w100 button-small poll-btn button " ng-click="friendRequest(uid, $index)">Add Friend</button>
+                            <button ng-if="friends == 'No' && friend_requested == 'Yes'" class="button w100 button-small poll-btn" > Friend Requested</button>
+                            <button ng-if="friends == 'Yes'" class="button w100 button-small poll-btn" ng-click="unFriend(uid, $index)">Unfriend</button>
                         </div>
-                        <div class=" col ">
-                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="pull-left button button-outline button-small button-balanced " ng-click="freq()"><i class="ion-person-add"></i> Add Friend</button>
-                            <button ng-if="friends == 'No' && friend_requested == 'Yes'" class="pull-left button button-small button-energized " ><i class="ion-paper-airplane"></i> Friend Requested</button>
-                            <button ng-if="friends == 'Yes'" class="pull-left button button-outline button-small button-assertive " ng-click="unfriend()"><i class="ion-close"></i> Unfriend</button>
-                        </div>
-                    </div>
+                    </div> 
+    
 
                 </div>
             </div>
@@ -95,13 +98,15 @@
         </div> 
         <div ng-if="activePanCat == 'polls'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
-                <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'"  ng-click="updatePan('openPolls')">All Open</span>
-                <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('closedPolls')">Closed Polls</span>
-                <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"    ng-click="updatePan('privatePolls')">Private Polls</span>
-                <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('Anonymous')">Anonymous</span>
-                <span ng-class="activePan == 'nameRevealed' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('nameRevealed')">Name Revealed</span>
-
-                <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('pinRevealed')">Pin Revealed</span>
+                <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'" 
+                 ng-click="updatePan('openPolls', 'open', 'polls')">All Open</span>
+                <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"
+                   ng-click="updatePan('closedPolls', 'closed', 'polls')">Closed Polls</span>
+                <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"   
+                 ng-click="updatePan('privatePolls', 'private', 'polls')">Private Polls</span>
+                <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('Anonymous', 'anonymous', 'polls')">Anonymous</span> 
+                <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub-menu-item'"  
+                 ng-click="updatePan('pinRevealed' , 'revealPin', 'polls')">Pin Revealed</span>
 
 
 
@@ -113,159 +118,59 @@
                 <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('allfrnd')">Friends</span>
 
                 <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('PendingRequest')">Pending Request</span>
-
-                <span ng-class="activePan == 'rejected' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('rejected')">Rejected</span>
-
+ 
                 <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('myRequest')">My Requests</span>
 
 
             </ion-scroll>
         </div>
-        <div ng-if="activePan == 'openPolls'">
-
-            <div class="list card custom-poll-card" ng-include src="'templates/card.html'" ng-repeat="poll in userInfo.polls" ng-if="poll.posted_as == reveal && cid != uid" >
-
-            </div>
-
-            <div class="list" ng-if="uid == cid">
-
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
-                    <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
-                    <p>Started at: 12 Aug 2016</p>
-                </a> 
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
-                    <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
-                    <p>Started at: 14 Aug 2016</p>
-
-                </a> 
-            </div>
+        <div ng-if="(activePan ==  'openPolls') || (activePan ==  'privatePolls') || (activePan ==  'Anonymous') ||( activePan ==  'pinRevealed' ) || (activePan ==  'closedPolls') " class="listing-content">
+   <div class="card card-polls" ng-include src="'templates/card.html'" ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
         </div>
-        <div ng-if="activePan == 'privatePolls'">
-            <div class="list">
+          
 
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
-                    <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
-                    <p>Started at: 12 Aug 2016</p>
-                </a> 
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
-                    <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
-                    <p>Started at: 14 Aug 2016</p>
-
-                </a> 
-            </div>
+          <ion-infinite-scroll on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
+        <div ng-if="!polls.length" class="listing-done p10">No Polls found.</div>
         </div>
-        <div ng-if="activePan == 'Anonymous'">
-            <div class="list">
-
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
-                    <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
-                    <p>Started at: 12 Aug 2016</p>
-                </a> 
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
-                    <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
-                    <p>Started at: 14 Aug 2016</p>
-
-                </a> 
-            </div>
-        </div>
-        <div ng-if="activePan == 'nameRevealed'">
-            <div class="list">
-
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
-                    <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
-                    <p>Started at: 12 Aug 2016</p>
-                </a> 
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
-                    <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
-                    <p>Started at: 14 Aug 2016</p>
-
-                </a> 
-            </div>
-        </div>
-        <div ng-if="activePan == 'pinRevealed'">
-            <div class="list">
-
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/donald-trump-vs-hillary-clinton-rivalry.jpg">
-                    <h2 class="no-one-line">Who’ll win the next U.S Elections?</h2>
-                    <p>Started at: 12 Aug 2016</p>
-                </a> 
-                <a class="item item-thumbnail-left poll-listing-img" ui-sref="app.polls">
-                    <img src="http://ask-audience.cruxservers.in/wp-content/uploads/2016/07/of-muse-bite-sized-travel-inspiration-travel-love-august-22nd-2013-gqGfZq-quote.jpeg">
-                    <h2 class="no-one-line">Which is a better travel destination? Europe or USA?</h2>
-                    <p>Started at: 14 Aug 2016</p>
-
-                </a> 
-            </div>
-        </div>
-        <div ng-if="activePan == 'closedPolls'">
-            <div class="list">
-
-                <div class="list card custom-poll-card" ng-include src="'templates/card.html'" ng-repeat="poll in userInfo.polls" ng-if="poll.posted_as == reveal">
-
-                </div>
-
-            </div>
-        </div>
+       
+       
+    
+      
         <div ng-if="activePan == 'following'">
 
 
             <div class="list">
 
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Swapnil Patwa</h2>
-                    <p class="mt10"> <input type="button" value="Unfollow" class=" button action-button button-positive"><input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+                <div class="item item-avatar" role="link" ng-repeat="followingUsers in userInfo.following">
+                    <img ng-src="{{followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">{{::followingUsers.user.display_name | capitalize}}</h2>
+                    <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.user.ID)" class=" button poll-btn action-button button-positive"> </p> 
+                </div>
 
-
-                </a>
-
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Chintan Lad</h2>
-                    <p class="mt10"> <input type="button" value="Unfollow" class=" button action-button button-positive"><input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
-
-
-                </a>
-
+                
 
             </div>         
         </div>
         <div ng-if="activePan == 'followers'">
             <div class="list">
 
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Venkman</h2>
-                    <p class="mt10"> <input type="button" value="View Poll" class=" button action-button button-positive"></p>
-
-                </a>
-
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Sushil Sudhakaran</h2>
-                    <p class="mt10"> <input type="button" value="View Poll" class=" button action-button button-positive"></p>
-
-                </a>
+                <div class="item item-avatar"  ng-repeat="follwerUsers in userInfo.followers">
+                    <img ng-src="{{follwerUsers.user.img}}" ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">{{::follwerUsers.user.display_name}}</h2>
+                    
+                </div>
+ 
             </div>        
         </div>
         <div ng-if="activePan == 'allfrnd'">
             <div class="list">
 
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Venkman</h2>
-                    <p class="mt10"> <input type="button" value="Unfriend" class=" button action-button button-positive"><input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+                <div class="item item-avatar" ng-repeat="friend in userInfo.friends">
+                    <img ng-src="{{friend.img}}">
+                    <h2>{{friend.display_name}}</h2>
+                    <p class="mt10"> <input type="button" value="Unfriend" ng-click="unFriend(friend.ID, $index)" class=" button action-button button-positive"> </p>
 
-                </a>
+                </div>
 
 
             </div>       
@@ -273,13 +178,12 @@
         <div ng-if="activePan == 'PendingRequest'">
             <div class="list">
 
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Venkman</h2>
-                    <p class="mt10"> <input type="button" value="Confirm Friend" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-stable">
-                        <input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+                <div class="item item-avatar" ng-repeat="friendPending in userInfo.friend_requests_received">
+                    <img ng-src="{{friendPending.img}}" ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">{{friendPending.display_name}}</h2> 
+                    <p class="mt10"> <input type="button" value="Confirm Friend" ng-click="friendRequestAccept(friendPending.ID, $index)" class=" button action-button button-positive"> <input type="button" value="Reject" ng-click="friendRequestReject(friendPending.ID, $index)" class=" button action-button button-stable"> </p>
 
-                </a>
+                </div>
 
 
             </div>       
@@ -287,32 +191,20 @@
         <div ng-if="activePan == 'myRequest'">
             <div class="list">
 
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Swapnil Patwa</h2>
-                    <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-stable">
-                        <input type="button" value="View Poll" class=" button action-button button-positive ml5"></p>
+                    <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
+                    <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">{{friendSent.display_name}}</h2> 
+                    <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-stable"> </p>
 
-                </a>
-
-
-            </div>       
-        </div>
-        <div ng-if="activePan == 'rejected'">
-            <div class="list">
-
-                <a class="item item-avatar">
-                    <img src="img/user-icon.png">
-                    <h2>Venkman</h2>
-                    <p class="mt10"><input type="button" value="View Poll" class=" button action-button button-positive  "></p>
-                </a>
+                </div>
 
 
             </div>       
         </div>
+        
         <div ng-if="activePan == 'profile'">
             <h4 class="content  profile-head double-padding-x">My Profile</h4>
-            <form name="userProfile" id="updateUserForm" ng-submit="updateUser(userInfo)">
+            <form name="userProfile" id="updateUserForm" ng-submit="modifyUser(userInfo)">
                 <div class="list">
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14">First Name*</span>

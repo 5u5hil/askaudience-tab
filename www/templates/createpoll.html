@@ -2,21 +2,50 @@
     <ion-nav-title>
         Create Poll ({{acitveTab == 'tab1' ? '1' : (acitveTab == 'tab2' ? '2' : '3')}}/3)
     </ion-nav-title>
- 
+            <ion-nav-buttons side="right">
+                
+            </ion-nav-buttons>
     <ion-content class="has-footer" has-bouncing="false">
         <form class="createPoll">
             <div class="tab1" ng-show="acitveTab == 'tab1'">
-                <div class="" >
-                    <label class="poll-block  " ng-click="manageTabs()" for="{{type.term_id}}" ng-repeat="type in pollTypes">
+                <div class="">
+                    <!-- ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs()" for="16">
                         <div class=" ">
-                            <img ng-src="{{type.image}}" alt="" class="poll-type-imge">
-                            <input type="radio" style="display:none" name="polltype" id="{{type.term_id}}" value="{{type.term_id}}">
+                            <img alt="" class="poll-type-imge" src="img/Multiple-Choise-1.jpg">
+                            <input type="radio" style="display:none" name="polltype" id="16" value="16">
                             <div class=" ">
-                                <div class=" ">{{type.name}} </div>
+                                <div class=" ng-binding">Multiple Choice </div>
                             </div>
-                        </label>
+                        
                     </div>
-                </div>
+                </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs()" for="15">
+                        <div class=" ">
+                            <img   alt="" class="poll-type-imge" src="img/Multiple-Choise.jpg">
+                            <input type="radio" style="display:none" name="polltype" id="15" value="15">
+                            <div class=" ">
+                                <div class=" ng-binding">Multiple Choice with Image </div>
+                            </div>
+                        
+                    </div>
+                </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs()" for="17">
+                        <div class=" ">
+                            <img   alt="" class="poll-type-imge" src="img/Referendum.jpg">
+                            <input type="radio" style="display:none" name="polltype" id="17" value="17">
+                            <div class=" ">
+                                <div class=" ng-binding">Referendum </div>
+                            </div>
+                        
+                    </div>
+                </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs()" for="14">
+                        <div class=" ">
+                            <img  alt="" class="poll-type-imge" src="img/True-False.jpg">
+                            <input type="radio" style="display:none" name="polltype" id="14" value="14">
+                            <div class=" ">
+                                <div class=" ng-binding">Yes/No </div>
+                            </div>
+                        
+                    </div>
+                </label><!-- end ngRepeat: type in pollTypes --></div>
              
             </div>
             <div class="tab2" ng-show="acitveTab == 'tab2'">
@@ -36,32 +65,30 @@
                         </label>
                     </li>
                     <li>
-                        <div class="item" ion-datetime-picker ng-model="datetimeValue">
+                        <div class="item" ion-datetime-picker  only-valid="{'after': 'today', 'inclusive': true}"  ng-model="datetimeValue">
                             Poll Valid Till*
                             <span class="pull-right">{{datetimeValue | date: "yyyy-MM-dd H:mm:ss"}}</span>
                             <i class="icon icon-left ion-calendar pull-right mr10"></i>
                             <input type="text" name="valid_till" style="display:none" value="{{datetimeValue | date: 'yyyy-MM-dd H:mm:ss'}}">
                         </div>
                     </li>
-                    <li class="item item-toggle">
-                        Explicit Content
-                        <label class="toggle toggle-balanced">
-                            <input type="checkbox" name="is_explicit" ng-model="explicit" value="{{explicit}}">
-                            <div class="track">
-                                <div class="handle"></div>
-                            </div>
-                        </label>
-                    </li>
-                    <li class="item item-toggle">
-                        Mature Content
-                        <label class="toggle toggle-balanced">
-                            <input type="checkbox" name="is_content" ng-model="content" value="{{content}}">
-                            <div class="track">
-                                <div class="handle"></div>
-                            </div>
-                        </label>
-                    </li>
-                    <li class="item item-toggle">
+             
+                     <div class="  poll-type left-checkbox">
+
+  
+                   
+               <ion-checkbox   name="is_explicit" ng-model="explicit" ng-value="explicit">
+ 
+
+                  Explicit Content <div class="tooltip">(content here for explicit content)</div>
+    </ion-checkbox> 
+               <ion-checkbox   name="is_mature" ng-model="content" ng-value="content">
+                  Mature Content <div class="tooltip">(content here for Mature content)</div>
+    </ion-checkbox> 
+ 
+  
+</div>
+                 <!--    <li class="item item-toggle">
                         Location Specific
                         <label class="toggle toggle-balanced" >
                             <input type="checkbox"  name="location_specific" ng-model="location_specific" value="{{location_specific}}" >
@@ -69,13 +96,16 @@
                                 <div class="handle"></div>
                             </div>
                         </label>
-                    </li>
-                    <li class="item item-input item-stacked-label" ng-show="location_specific">
-                        <span class="input-label">Google Location  </span>
-                     
-                        <input type="text" gm-places-autocomplete ng-model="autocomplete" />
-                       
-                    </li>
+                    </li> -->
+                  <!--   <div class="item item-input item-stacked-label" ng-show="location_specific">
+                        <span class="input-label">  Location  </span>
+                      <input id="from" type="text" ng-model="autocomplete" placeholder="Type Address" class="ng-pristine ng-valid" autocomplete="off">
+                      <input type="hidden" name="lat" ng-model="lat">
+                      <input type="hidden" name="lng" ng-model="lng">
+
+                              
+                    </div> -->
+                
          
                         
                         <li class="item item-input item-stacked-label">
@@ -183,14 +213,18 @@
         <div class="toClone">
             <ul class="list">
                 <li class="item">
-                    <div class="  option ">
-                        <div class=" ">
-                            <input type="file" name="option[1][image]" class="custom-file-input" />
+                    <div class="  option  ">
+                       
+                            <input type="file" name="option[1][image]" class="custom-file-input"  />
+                            <div class="option[1][image]"></div>
+                            <img src="" id="option[1][image]" alt="">
                         </div>
+                        <div class=" ">
                         <label class="item item-input">
                             <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>
-                        <div class="col"> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
+                        </div>
+                        <div class=""> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
                     </div>
                 </li>
             </ul>

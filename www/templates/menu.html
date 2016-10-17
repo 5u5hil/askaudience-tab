@@ -9,15 +9,15 @@
                 </button>
             </ion-nav-buttons>
             <ion-nav-buttons side="right">
-                <button class="button button-icon button-clear ion-search" >
-                </button>
-
+                <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
+                </button> 
                 <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
                     <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
-
+<input ion-autocomplete type="text"   class="ion-autocomplete"  items-method-value-key="items" items-method="getTestItems(query)"  autocomplete="off" ng-model="sterm" item-view-value-key="display_name" items-clicked-method="clickedMethod
+(callback)"  manage-externally="true" ng-show="false" max-selected-items="1" required loading-icon="ios-small"/>
         <!-- TABS -->
         <ion-tabs class="tabs-stable tabs-icon-top">
             <ion-tab title="Latest Polls" nav-clear menu-close icon="ion-stats-bars" ui-sref-opts="{reload: true, notify: true,cache: false}" ui-sref="app.polls"></ion-tab>
