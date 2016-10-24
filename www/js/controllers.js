@@ -944,7 +944,12 @@ angular.module('askaudience.controllers', [])
                         $scope.filters.userId = "";
                         $scope.uid = "";
                     }
-                    APIFactory.getPolls($scope.filters, $scope.pageNumber, $scope.orderBy, $scope.filters.userId || '').then(function (response) {
+                    if ($rootScope.isLoggedIn) {
+                        $scope.userId = LSFactory.get('user').ID;
+                    } else {
+                        $scope.userId = null;
+                    }
+                    APIFactory.getPolls($scope.filters, $scope.pageNumber, $scope.orderBy, $scope.userId).then(function (response) {
                         if ($scope.pageNumber > 1) {
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
