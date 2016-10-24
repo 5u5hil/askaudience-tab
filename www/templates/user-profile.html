@@ -1,6 +1,6 @@
 <ion-view>
     <ion-nav-title>
-
+ {{ reveal == 1 ? userInfo.first_name : (reveal == 3 ? userInfo.first_name : 'Anonymous')}}'s Profile
     </ion-nav-title>
 
     <ion-content class="has-footer">
@@ -99,14 +99,16 @@
         <div ng-if="activePanCat == 'polls'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
                 <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'" 
-                 ng-click="updatePan('openPolls', 'open', 'polls')">All Open</span>
+                 ng-click="updatePan('openPolls', 'open', 'polls')">Open</span>
                 <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"
-                   ng-click="updatePan('closedPolls', 'closed', 'polls')">Closed Polls</span>
+                   ng-click="updatePan('closedPolls', 'closed', 'polls')">Closed</span>
                 <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"   
-                 ng-click="updatePan('privatePolls', 'private', 'polls')">Private Polls</span>
+                 ng-click="updatePan('privatePolls', 'private', 'polls')">Private</span>
                 <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('Anonymous', 'anonymous', 'polls')">Anonymous</span> 
                 <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub-menu-item'"  
                  ng-click="updatePan('pinRevealed' , 'revealPin', 'polls')">Pin Revealed</span>
+                <span ng-class="activePan == 'myVoted' ? 'active-item' : 'sub-menu-item'"  
+                 ng-click="updatePan('myVoted' , 'getUserPollParticipate', 'polls')">My Participated </span>
 
 
 
@@ -115,22 +117,21 @@
         <div ng-if="activePanCat == 'friends'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
 
-                <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('allfrnd')">Friends</span>
+                <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('allfrnd')">Friend(s)</span>
 
-                <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('PendingRequest')">Pending Request</span>
+                <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('PendingRequest')">Pending Request(s)</span>
  
-                <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('myRequest')">My Requests</span>
+                <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('myRequest')">My Request(s)</span>
 
 
             </ion-scroll>
         </div>
-        <div ng-if="(activePan ==  'openPolls') || (activePan ==  'privatePolls') || (activePan ==  'Anonymous') ||( activePan ==  'pinRevealed' ) || (activePan ==  'closedPolls') " class="listing-content">
+        <div ng-if="(activePan ==  'openPolls') || (activePan ==  'privatePolls') || (activePan ==  'Anonymous') ||( activePan ==  'pinRevealed' ) || (activePan ==  'closedPolls') || (activePan ==  'myVoted') " class="listing-content">
    <div class="card card-polls" ng-include src="'templates/card.html'" ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
         </div>
           
-
-          <ion-infinite-scroll on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
-        <div ng-if="!polls.length" class="listing-done p10">No Polls found.</div>
+      
+          <ion-infinite-scroll class="white-bg" on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
         </div>
        
        
@@ -146,6 +147,7 @@
                     <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">{{::followingUsers.user.display_name | capitalize}}</h2>
                     <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.user.ID)" class=" button poll-btn action-button button-positive"> </p> 
                 </div>
+                <div class="no-result" ng-if="!userInfo.following.length">No following</div>
 
                 
 
@@ -159,6 +161,7 @@
                     <h2 ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">{{::follwerUsers.user.display_name}}</h2>
                     
                 </div>
+                <div class="no-result" ng-if="!userInfo.followers.length">No follower(s)</div>
  
             </div>        
         </div>
@@ -166,11 +169,12 @@
             <div class="list">
 
                 <div class="item item-avatar" ng-repeat="friend in userInfo.friends">
-                    <img ng-src="{{friend.img}}">
-                    <h2>{{friend.display_name}}</h2>
+                    <img ng-src="{{friend.img}}" ui-sref="app.user({id:friend.user.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friend.user.ID, reveal : 1})">{{friend.display_name}}</h2>
                     <p class="mt10"> <input type="button" value="Unfriend" ng-click="unFriend(friend.ID, $index)" class=" button action-button button-positive"> </p>
 
                 </div>
+                <div class="no-result" ng-if="!userInfo.friends.length">No request(s)</div>
 
 
             </div>       
@@ -184,20 +188,28 @@
                     <p class="mt10"> <input type="button" value="Confirm Friend" ng-click="friendRequestAccept(friendPending.ID, $index)" class=" button action-button button-positive"> <input type="button" value="Reject" ng-click="friendRequestReject(friendPending.ID, $index)" class=" button action-button button-stable"> </p>
 
                 </div>
-
+                <div class="no-result" ng-if="!userInfo.friend_requests_received.length">No pending request(s)</div>
 
             </div>       
         </div>
         <div ng-if="activePan == 'myRequest'">
             <div class="list">
-
+                <h4 class="padding-left">Pending</h4>
                     <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
                     <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">{{friendSent.display_name}}</h2> 
-                    <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-stable"> </p>
+                    <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-positive"> </p>
 
                 </div>
+                <div class="no-result" ng-if="!userInfo.friend_requests_sent.length">No pending request(s)</div>
+            <h4 class="padding-left">Rejected</h4>
+                    <!-- <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
+                    <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">{{friendSent.display_name}}</h2> 
+                    <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-positive"> </p>
 
+                </div> -->
+                <div class="no-result">No rejected request(s)</div>
 
             </div>       
         </div>

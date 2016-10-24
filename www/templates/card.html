@@ -15,8 +15,8 @@
             <div class="custom-vln tar" ng-click="openPopover($event, poll, $index)">
                 <h2><span class="fz21 ion-android-more-vertical" ></span></h2>
             </div>
-            <div class="custom-vln tar" ng-if="poll.reposts != ''">
-                <h2 class=" no-border"><span class="ion-ios-loop-strong icon fz21"></span></h2>
+            <div class="custom-vln tar" ng-if="poll.reposts != ''" ng-click="getRepostedBy(poll.id)">
+                <h2 class=" no-border reposts-icon"><span class="ion-ios-loop-strong icon  "></span></h2>
             </div>
             <div class="custom-vln tar" ng-if="poll.is_explicit == 1 || poll.is_mature == 1">
                 <h2 class="tag-text">18+</h2>
@@ -82,8 +82,8 @@
         <div>
             <div class="poll-separator"></div>
             <div class="row no-height-row">
-                <div class="col txt-left "><a class="pb0 notification-icon poll-option-btn ion-android-favorite black fz20 col">{{poll.likes.length|| 0}} Like(s)</a></div>
-                <div class="col txt-right">{{poll.participants.length}} Vote(s)</div>
+                <div class="col txt-left  fz12"> {{poll.likes.length|| 0}} Like(s) </div>
+                <div class="col txt-right fz12">{{poll.participants.length}} Vote(s)</div>
             </div>
             <div class="poll-separator"></div>
         </div> 
@@ -91,9 +91,9 @@
     </div>
     <div class="item item-text-wrap padding10 row poll-action-panel">
 
-        <a class="button poll-option-btn ion-paper-airplane button-clear button-dark black fz20 col" data-ref="{{poll.id}}" ng-click="participate($event, poll.id, poll.options)">Vote</a>
+        <a class="button poll-option-btn ion-android-checkmark-circle button-clear button-dark black fz20 col" data-ref="{{poll.id}}" ng-click="participate($event, poll.id, poll.options)"><span class="vlm">Vote</span></a>
 
-        <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)">Share</a>
-        <a class="button poll-option-btn ion-ios-copy-outline button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)">Re-Post</a>
+        <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)"><span class="vlm">Share</span></a>
+        <a class="button poll-option-btn ion-ios-loop-strong button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)"><span class="vlm">Re-Post</span></a>
     </div>
 </div>

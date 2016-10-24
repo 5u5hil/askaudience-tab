@@ -1,49 +1,25 @@
 <ion-view hide-menu-button="true">
     <ion-nav-title>
-        Latest Polls
+       Ask Audience
     </ion-nav-title>
-<!--     <ion-nav-buttons side="right">
-       <button class="button button-icon button-clear ion-android-funnel">
-        </button>
-           <button class="button button-icon button-clear ion-android-funnel">
-        </button>
-        <button class="button button-icon button-clear ion-android-funnel">
-        </button>
-    </ion-nav-buttons> -->
-       <ion-subheader-bar class="bar bar-subheader">
-      <!--   <div class="row">
-            <div class="col-60">
-                <h3 class="listing-title">Celebrities on Radiuz8</h3>
-            </div>
-            <div class="col-20 filter-btn-wrap">
-                <input ion-autocomplete type="search" name="location" ng-model-options="{debounce:1000}" readonly="readonly" class="ion-autocomplete cover-search-input" autocomplete="on" ng-model="listingFilter" item-value-key="label" item-view-value-key="label" items-method="getTestItems(query)" items-method-value-key="items" items-clicked-method="clickedMethod(callback)" placeholder="Search ex Amir Khan, PK etc." max-selected-items="1" manage-externally="true" required style="display: none !important" />
-                <button class="button button-icon button-clear ion-search" ng-click="clickButton()"></button>
-            </div>
-            <div class="col-20 filter-btn-wrap">
-                <button class="button button-icon button-clear ion-funnel" ng-click="openFilters()"></button>
-            </div>
-        </div> -->
-        <div class="tabs tabs-icon-left">
- 
-<span class="sort-text">Sort By</span>
-<span class="select-wrap">
-   <select name="" id="" class="tab-item" ng-model="orderBy" ng-change="getFilteredPolls()">
-      <option value="">Date</option>
-      <option value="total_likes">Most Likes</option>
-      <option value="total_participants"> Most Voted</option>
-      <option value="total_reposts"> Total Reposts</option>
-  </select>
-</span>
-  <a class="tab-item" ng-click="openFilters()">
-    <i class="icon ion-funnel"></i>
-    Filter
-  </a>
-</div>
-    </ion-subheader-bar>
-    <ion-content class="has-footer has-subheader listing-content">
+            <ion-nav-buttons side="right"> 
+                <button class="button button-icon button-clear ion-arrow-swap sort-icon" ng-click="invokeSort()">
+                </button> 
+                <button class="button button-icon button-clear ion-android-funnel" ng-click="openFilters()">
+                </button> 
+                <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
+                </button> 
+                <button class="button button-icon button-clear ion-android-more-vertical" ng-click="openListingMore()">
+                </button> 
+            <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
+                    <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
+                </button> -->
+                  
+            </ion-nav-buttons> 
+    <ion-content class="has-footer  listing-content">
         <ion-refresher pulling-text="Pull to get latest polls..." on-refresh="getPolls('pullRef')">
-        </ion-refresher>
-   
+        </ion-refresher> 
+       
         <div class="card card-polls" ng-include src="'templates/card.html'" ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
         </div>
          <ion-infinite-scroll on-infinite="getPolls('infScr')" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>

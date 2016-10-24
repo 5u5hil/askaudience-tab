@@ -18,7 +18,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     if (window.StatusBar) {
                         StatusBar.styleDefault();
                     }
-                    $cordovaStatusbar.styleHex('#FF9800');
+                    $cordovaStatusbar.styleHex('#ca9606');
 
                 } catch (e) {
                     console.log('real device only')
@@ -27,8 +27,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
             });
         })
         .config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
-            $ionicConfigProvider.tabs.position('bottom');
-            $ionicConfigProvider.views.maxCache(0);
+            $ionicConfigProvider.tabs.position('bottom'); 
             // $ionicConfigProvider.backButton.text('');
 
             $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);

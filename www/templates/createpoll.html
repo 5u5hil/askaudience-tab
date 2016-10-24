@@ -53,10 +53,10 @@
                     <li>
                         <label class="item item-input item-select">
                             <div class="input-label">
-                                Posting As*
+                                Posting As*  
                             </div>
-                            <select name="posted_as" >
-                                    <option value="1">Public</option>
+                            <select name="posted_as" ng-model="posted_as" >
+                                    <option value="1" ng-selected="true">Public</option>
                         <option value="2">Private (Only Friends Can View)</option>
                         <option value="3">Reveal Only Pin (Only Your Pin will be Revealed)</option>
                         <option value="4">Anonymously</option>
@@ -80,15 +80,15 @@
                <ion-checkbox   name="is_explicit" ng-model="explicit" ng-value="explicit">
  
 
-                  Explicit Content <div class="tooltip">(content here for explicit content)</div>
+                  Explicit Content <div class="tooltip">(Select if Poll contains nudity)</div>
     </ion-checkbox> 
                <ion-checkbox   name="is_mature" ng-model="content" ng-value="content">
-                  Mature Content <div class="tooltip">(content here for Mature content)</div>
+                  Mature Content <div class="tooltip">(Select if Poll contains drugs/adulatory related content)</div>
     </ion-checkbox> 
  
   
 </div>
-                 <!--    <li class="item item-toggle">
+               <!--      <li class="item item-toggle">
                         Location Specific
                         <label class="toggle toggle-balanced" >
                             <input type="checkbox"  name="location_specific" ng-model="location_specific" value="{{location_specific}}" >
@@ -96,8 +96,8 @@
                                 <div class="handle"></div>
                             </div>
                         </label>
-                    </li> -->
-                  <!--   <div class="item item-input item-stacked-label" ng-show="location_specific">
+                    </li>
+                    <div class="item item-input item-stacked-label" ng-show="location_specific">
                         <span class="input-label">  Location  </span>
                       <input id="from" type="text" ng-model="autocomplete" placeholder="Type Address" class="ng-pristine ng-valid" autocomplete="off">
                       <input type="hidden" name="lat" ng-model="lat">
@@ -107,7 +107,7 @@
                     </div> -->
                 
          
-                        
+                     <!--    
                         <li class="item item-input item-stacked-label">
                         <span class="input-label">Interest Areas </span> 
                         <input type="text"  ng-model="search" placeholder="Search Interest Area" />
@@ -120,22 +120,35 @@
                                     <span class="label vlm" ng-bind-html="interest.name"> </span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
+<div class="filterpopup">
+      <li class="item item-input item-stacked-label">
+                        <span class="input-label">Interest Areas </span> 
+                        <input type="text"  ng-model="search" placeholder="Search Interest Area" />
+                       
+                    </li>
+               
+<div class="limitArea">
+  <ion-checkbox ng-repeat="interest in interests | filter:search"  name="interests[{{interest.term_id}}]" ng-value=" interest.term_id ">
+    <span class="label vlm" ng-bind-html="interest.name"> </span> </ion-checkbox> 
+</div>        
+  
+</div>
                   
                 </ul>
-                <button class="button button-balanced button-block" type="button" ng-click="manageTabs()">Next</button>
+                <button class="button button-balanced button-block poll-btn" ng-disabled="!datetimeValue || !posted_as" type="button" ng-click="manageTabs()">Next</button>
             </div>
             <div class="tab3" ng-show="acitveTab == 'tab3'">
-                <li class="item item-input item-floating-label">
-                    <span class="input-label">Poll Question *</span>
-                    <input type="text" name="pollname" max="140" placeholder="Poll Question, Max 140 Characters" required>
+                <li class="item item-input ">
+                    <span class=" ">Poll Question *</span>
+                    <textarea   name="pollname" id="pollquestion" ng-model="pollquest" autofocus max="140" class="pollquestion" placeholder="Enter Poll Question, Max 140 Characters*" required></textarea>
                 </li>
                <!--  <li class="item item-input item-floating-label">
                     <span class="input-label">Poll Description *</span>
                     <input type="text" name="pollname"   placeholder="Poll Discription" required>
                 </li> -->
                 <li class="item ">
-                    <span class=" ">Tags *</span>
+                    <span class=" ">Tags </span>
                     <tags-input ng-model="tags"></tags-input>
                     <input type="hidden" id="tags" name="tags[]" value="{{tags}}">
                 </li>
@@ -144,10 +157,10 @@
                     <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()"></i>
                 </li>
                 <li class="item item-input">
-                    <span class="input-label">Poll Image</span>
+                    <span class=" ">Poll Image</span>
                     <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
                 </li>
-                <button class="button button-balanced button-block" ng-click="createPoll()">Submit Poll</button>
+                <button class="button button-balanced button-block poll-btn" ng-disabled="!(pollquest)" ng-click="createPoll()">Submit Poll</button>
             </div>
         </form>
         <!--   <form class="createPoll" >
@@ -224,7 +237,7 @@
                             <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>
                         </div>
-                        <div class=""> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
+                        <div class="deleteOptionWrap"> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
                     </div>
                 </li>
             </ul>

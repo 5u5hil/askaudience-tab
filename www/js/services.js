@@ -41,8 +41,9 @@ angular.module('askaudience.services', [])
                         var req = {method: 'GET', url: domain + 'getInterests', headers: {'Content-Type': 'application/x-www-form-urlencoded'}};
                         return $http(req);
                     },
-                    getPolls: function (filters, pageNo, orderBy) {
-                        var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy};
+                    getPolls: function (filters, pageNo, orderBy, userId) {
+                        console.log(filters)
+                        var req = {method: 'GET', url: domain + 'getPolls' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId};
                         return $http(req);
                     },
                     getPollsByType: function (data) {
@@ -54,7 +55,15 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     getPollType: function (data) {
-                        var req = {method: 'GET', url: domain + 'polltypes', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        var req = {method: 'POST', url: domain + 'polltypes', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    getRepostedBy: function (data) {
+                        var req = {method: 'POST', url: domain + 'getRepost', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    deletePoll: function (data) {
+                        var req = {method: 'POST', url: domain + 'deletePost', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
                     searchUser: function (data) {
