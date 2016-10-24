@@ -944,7 +944,7 @@ angular.module('askaudience.controllers', [])
                         $scope.filters.userId = "";
                         $scope.uid = "";
                     }
-                    APIFactory.getPolls($scope.filters, $scope.pageNumber, $scope.order, $scope.filters.userId).then(function (response) {
+                    APIFactory.getPolls($scope.filters, $scope.pageNumber, $scope.order || '', $scope.filters.userId || '').then(function (response) {
                         if ($scope.pageNumber > 1) {
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
