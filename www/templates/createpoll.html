@@ -53,14 +53,14 @@
                     <li>
                         <label class="item item-input item-select">
                             <div class="input-label">
-                                Posting As*  
+                                Post As*  
                             </div>
                             <select name="posted_as" ng-model="posted_as" >
                                     <option value="1" ng-selected="true">Public</option>
                         <option value="2">Private (Only Friends Can View)</option>
                         <option value="3">Reveal Only Pin (Only Your Pin will be Revealed)</option>
                         <option value="4">Anonymously</option>
-                        <option value="5">Group</option>
+<!--                        <option value="5">Group</option>-->
                             </select>
                         </label>
                     </li>
@@ -143,6 +143,10 @@
                     <span class=" ">Poll Question *</span>
                     <textarea   name="pollname" id="pollquestion" ng-model="pollquest" autofocus max="140" class="pollquestion" placeholder="Enter Poll Question, Max 140 Characters*" required></textarea>
                 </li>
+                 <li class="item item-input">
+                    <span class=" ">Poll Image</span>
+                    <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
+                </li>
                <!--  <li class="item item-input item-floating-label">
                     <span class="input-label">Poll Description *</span>
                     <input type="text" name="pollname"   placeholder="Poll Discription" required>
@@ -150,16 +154,13 @@
                 <li class="item ">
                     <span class=" ">Tags </span>
                     <tags-input ng-model="tags"></tags-input>
-                    <input type="hidden" id="tags" name="tags[]" value="{{tags}}">
+                    <input type="hidden" id="tags" name="tags" value="{{tags}}">
                 </li>
                 <li class="item options">
                     Add Options * (Minimum Two)
                     <i class="icon ion-ios-plus-outline pull-right addOptions" ng-click="addOption()"></i>
                 </li>
-                <li class="item item-input">
-                    <span class=" ">Poll Image</span>
-                    <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
-                </li>
+               
                 <button class="button button-balanced button-block poll-btn" ng-disabled="!(pollquest)" ng-click="createPoll()">Submit Poll</button>
             </div>
         </form>
