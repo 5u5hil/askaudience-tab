@@ -399,7 +399,8 @@ angular.module('askaudience.controllers', [])
                 $scope.following = 'No';
                 $scope.friends = 'No';
                 $scope.friend_requested = 'No';
-
+                $scope.getReveal = $stateParams.reveal;
+                console.log($stateParams.reveal);
                 if (!$rootScope.isLoggedIn)
                     $scope.cid = -1;
                 else
@@ -566,7 +567,13 @@ angular.module('askaudience.controllers', [])
                             }
 
                         } else {
-                            $scope.polls = response.data;
+                            $scope.polls = [];
+
+                            angular.forEach(response.data, function (element, index) {
+                                if (element.posted_as == $stateParams.reveal) {
+                                    $scope.polls.push(element);
+                                }
+                            });
                         }
                         Loader.hide();
                     }, function (data) {
@@ -1767,3 +1774,5 @@ angular.module('askaudience.controllers', [])
 
             }
         ])
+
+
