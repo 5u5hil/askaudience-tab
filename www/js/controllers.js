@@ -1,5 +1,5 @@
 var a;
-
+var ptype;
 angular.module('askaudience.controllers', [])
         .controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover', 'APIFactory', 'Loader', '$rootScope', 'LSFactory', '$ionicActionSheet',
             '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing',
@@ -1685,6 +1685,8 @@ angular.module('askaudience.controllers', [])
                 $scope.acitveTab = 'tab1';
                 $scope.posted_as = 1;
                 Loader.show();
+$scope.ptype = '';
+
 
                 APIFactory.getInterests().then(function (response) {
                     $scope.interests = response.data;
@@ -1704,10 +1706,13 @@ angular.module('askaudience.controllers', [])
                 });
 
                 $scope.manageTabs = function (activeTab, type) {
+              
+                 $scope.ptype = activeTab;
+                    $scope.checkTab = activeTab;
                     if (type == 'nav') {
                         console.log(activeTab + type);
-                        $scope.acitveTab = activeTab;
-                        console.log($scope.acitveTab);
+                        
+                        
                         $scope.$digest;
                     } else {
                         if ($scope.acitveTab == 'tab1') {
@@ -1767,7 +1772,7 @@ angular.module('askaudience.controllers', [])
                 });
 
 
-                $scope.addOption = function () {
+                $scope.addOption = function () { 
                     jQuery(".options").append(jQuery(".toClone").html());
                     indexOptions();
                 }
