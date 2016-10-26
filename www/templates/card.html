@@ -53,7 +53,7 @@
                         <ion-item class="item {{ opt.image ? 'item-avatar pr60' : ''}} ion-item-custom mt0" 
                          ng-style="{'background-image':'url({{opt.image.url}}', 
                 'background-repeat':'no-repeat',
-                'background-position': 'right', 'background-size': '60px 60px'}" ng-click="vote(poll.id, opt.id, $parent.$index)">
+                'background-position': 'right', 'background-size': '60px 60px'}" ng-click="vote(poll.id, opt.id, poll)">
                             <!-- <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> -->
                             <span class="poll-option">{{ opt.option}}</span>
                             <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized">
@@ -82,7 +82,7 @@
         <div>
             <div class="poll-separator"></div>
             <div class="row no-height-row">
-                <div class="col txt-left  fz12"> {{poll.likes.length|| 0}} Like(s) </div>
+                <div class="col txt-left  fz12" data-like-id="{{poll.ID}}" data-like="{{poll.likes.length || 0}}"> {{poll.likes.length|| 0}} Like(s) </div>
                 <div class="col txt-right fz12">{{poll.participants.length}} Vote(s)</div>
             </div>
             <div class="poll-separator"></div>

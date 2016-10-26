@@ -2,13 +2,13 @@
     <ion-popover-view class="custom-popover">
         <ion-content>
           <div class="list">
-            <a class="item" target="_blank" ng-click="performTask('like', like_pollid)" ng-if="!pollLiked">
+            <a class="item" target="_blank" ng-click="performTask('like', like_pollid, pollForTask)" ng-if="!pollLiked">
               Like 
             </a>
-            <a class="item" target="_blank" ng-click="performTask('unlike', like_pollid)" ng-if="pollLiked">
+            <a class="item" target="_blank" ng-click="performTask('unlike', like_pollid, pollForTask)" ng-if="pollLiked">
               Unlike 
             </a>
-            <a class="item"  target="_blank" ng-click="performTask('notify', like_pollid)" ng-if="uid != cid">
+            <a class="item"  target="_blank" ng-click="performTask('notify', like_pollid)" ng-if="(uid != cid) && !pollNotify">
              Notify Me
             </a>
             <a class="item"  target="_blank" ng-click="performTask('unNotifyMe', like_pollid)" ng-if="pollNotify">

@@ -609,17 +609,17 @@ angular.module('askaudience.controllers', [])
                         jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
                     }
                 }
-                $scope.performTask = function (type, pollid) {
+                $scope.performTask = function (type, pollid, poll) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
                         }, function () {
                             if (type == 'like') {
-                                likePoll(pollid);
+                                likePoll(pollid, poll);
                             } else if (type == 'notify') {
                                 notifyMe(pollid);
                             } else if (type == 'unlike') {
-                                UnlikePoll(pollid);
+                                UnlikePoll(pollid, poll);
                             } else if (type == 'unNotifyMe') {
                                 unNotifyMe(pollid);
                             } else if (type == 'repost') {
@@ -630,11 +630,11 @@ angular.module('askaudience.controllers', [])
                         });
                     } else {
                         if (type == 'like') {
-                            likePoll(pollid);
+                            likePoll(pollid, poll);
                         } else if (type == 'notify') {
                             notifyMe(pollid);
                         } else if (type == 'unlike') {
-                            UnlikePoll(pollid);
+                            UnlikePoll(pollid, poll);
                         } else if (type == 'unNotifyMe') {
                             unNotifyMe(pollid);
                         } else if (type == 'repost') {
@@ -672,7 +672,8 @@ angular.module('askaudience.controllers', [])
                     });
                 }
 
-                function likePoll(pollid) {
+                function likePoll(pollid, poll) {
+                 
                     var data = {pollid: pollid, userId: LSFactory.get('user').ID};
                     Loader.show();
                     APIFactory.likePoll(data).then(function (response) {
@@ -682,7 +683,7 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
                             $scope.popover.hide();
-                            $scope.pollLiked = !$scope.pollLiked;
+                            $scope.pollLiked = !$scope.pollLiked; 
                             $scope.getPollsByType();
 
                         }
@@ -713,7 +714,8 @@ angular.module('askaudience.controllers', [])
                     });
                 }
 
-                function UnlikePoll(pollid) {
+                function UnlikePoll(pollid, poll) {
+                 
                     var data = {pollid: pollid, userId: LSFactory.get('user').ID};
                     Loader.show();
                     APIFactory.unlikePoll(data).then(function (response) {
@@ -721,6 +723,8 @@ angular.module('askaudience.controllers', [])
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                    
+                   
                             $scope.getPollsByType();
                             $scope.pollLiked = !$scope.pollLiked;
 
@@ -772,7 +776,9 @@ angular.module('askaudience.controllers', [])
                     }
                 };
 
-                function vote(pid, oid, index) {
+                function vote(pid, oid, poll) {
+                    var index = $scope.polls.indexOf(poll);
+                    console.log(index) 
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Submitting Your Vote ...');
@@ -781,8 +787,10 @@ angular.module('askaudience.controllers', [])
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
-                            $scope.polls[index].participants.push($scope.uid);
-
+                            $timeout(function () {
+                                $scope.polls[index].participants.push($scope.uid);
+                            }, 200)
+                             
                         }
                     });
                 }
@@ -1194,7 +1202,8 @@ angular.module('askaudience.controllers', [])
                     }
                 };
 
-                function vote(pid, oid, index) {
+                function vote(pid, oid, poll) {
+                    var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Submitting Your Vote ...');
@@ -1591,7 +1600,8 @@ angular.module('askaudience.controllers', [])
                     }
                 };
 
-                function vote(pid, oid, index) {
+                function vote(pid, oid, poll) {
+                    var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Submitting Your Vote ...');
