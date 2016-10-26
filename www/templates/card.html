@@ -72,8 +72,6 @@
                             <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{(opt.number_of_votes / poll.participants.length)*100 || 0 | number:0}}%</div>
                             <span class="poll-option">{{ opt.option}}</span>
                             <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{(opt.number_of_votes / poll.participants.length) * 100}} +  '%'}" ></div></div>
-
-
                         </ion-item>
                     </label>
                 </li>

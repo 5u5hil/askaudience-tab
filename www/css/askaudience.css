@@ -2674,3 +2674,6 @@ padding-left: 20px !important;
     border-top: 1px solid #eee  !important;
     font-weight: bold  !important;
 }
+.hide {
+    display: none !important;
+}

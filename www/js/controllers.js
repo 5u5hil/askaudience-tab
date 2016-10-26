@@ -374,12 +374,25 @@ angular.module('askaudience.controllers', [])
                             function (error) {
                                 Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try following again');
                             });
-
-
-
                 }
-            }
-        ])
+                  $scope.participate = function(event, id, options) {
+                if (jQuery('.ion-arrow-up-c').attr('data-ref') != id) {
+                    var refId = jQuery('.ion-arrow-up-c').attr('data-ref');
+                    jQuery('[data-toggle=' + refId + ']').slideToggle();
+                    jQuery('[data-ref=' + refId + ']').text('Vote');
+                    jQuery('[data-ref=' + refId + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+                }
+                jQuery('[data-toggle=' + id + ']').slideToggle();
+                if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
+                    jQuery('[data-ref=' + id + ']').text('Hide');
+                    jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
+ 
+                } else {
+                    jQuery('[data-ref=' + id + ']').text('Vote');
+                    jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+                }
+            } 
+            }])
 
         .controller('HomeCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
             function ($scope, APIFactory, Loader, $rootScope) {
@@ -399,17 +412,16 @@ angular.module('askaudience.controllers', [])
                 $scope.following = 'No';
                 $scope.friends = 'No';
                 $scope.friend_requested = 'No';
-                $scope.getReveal = $stateParams.reveal;
-                console.log($stateParams.reveal);
+                $scope.getReveal = $stateParams.reveal; 
                 if (!$rootScope.isLoggedIn)
                     $scope.cid = -1;
                 else
                     $scope.cid = LSFactory.get('user').ID;
                 $scope.getAllInfo = function () {
+                    Loader.show();
                     APIFactory.getUser($stateParams.id).then(function (response) {
-                        $scope.userInfo = response.data;
 
-
+                        $scope.userInfo = response.data;                                                                                                                                           
                         if (LSFactory.get('user')) {
 
                             try {
@@ -547,6 +559,9 @@ angular.module('askaudience.controllers', [])
                 $scope.getPollsByType = function (type, pageNumber) {
                     $scope.pollsPara = {userId: $stateParams.id};
                     $scope.pollsPara.pageNo = pageNumber || 1;
+                    if ($scope.uid != $scope.cid) {
+                        $scope.pollsPara.anonymous = 'No';
+                    }
                     if ($scope.pollsPara.pageNo == 1 || ($scope.pollsPara.type != type && type != 'getUserPollParticipate')) {
                         Loader.show();
                     }
@@ -570,9 +585,9 @@ angular.module('askaudience.controllers', [])
                             $scope.polls = [];
 
                             angular.forEach(response.data, function (element, index) {
-                                if (element.posted_as == $stateParams.reveal) {
+                                
                                     $scope.polls.push(element);
-                                }
+                              
                             });
                         }
                         Loader.hide();
@@ -598,17 +613,7 @@ angular.module('askaudience.controllers', [])
                         $scope.activePanCat = '';
                     }
                 }
-                $scope.participate = function (event, id, options) {
-                    jQuery('[data-toggle=' + id + ']').slideToggle();
-                    if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
-                        jQuery('[data-ref=' + id + ']').text('Hide');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
-
-                    } else {
-                        jQuery('[data-ref=' + id + ']').text('Vote');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
-                    }
-                }
+                
                 $scope.performTask = function (type, pollid, poll) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -823,16 +828,7 @@ angular.module('askaudience.controllers', [])
                     });
                 };
 
-                $scope.closeParticipate = function () {
-                    $scope.modal.hide();
-                };
-                $ionicModal.fromTemplateUrl('poll-more.html', {
-                    scope: $scope,
-                    animation: 'slide-in-up'
-                }).then(function (modal) {
-                    $scope.modal = modal;
-                });
-
+          
 
                 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
                     angular.forEach($scope.polls, function (element, index) {
@@ -1027,17 +1023,7 @@ angular.module('askaudience.controllers', [])
 
                 }
 
-                $scope.participate = function (event, id, options) {
-                    jQuery('[data-toggle=' + id + ']').slideToggle();
-                    if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
-                        jQuery('[data-ref=' + id + ']').text('Hide');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
-
-                    } else {
-                        jQuery('[data-ref=' + id + ']').text('Vote');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
-                    }
-                }
+                
                 $scope.performTask = function (type, pollid) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -1425,17 +1411,7 @@ angular.module('askaudience.controllers', [])
 
                 }
 
-                $scope.participate = function (event, id, options) {
-                    jQuery('[data-toggle=' + id + ']').slideToggle();
-                    if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
-                        jQuery('[data-ref=' + id + ']').text('Hide');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
-
-                    } else {
-                        jQuery('[data-ref=' + id + ']').text('Vote');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
-                    }
-                }
+                
                 $scope.performTask = function (type, pollid) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -1644,20 +1620,7 @@ angular.module('askaudience.controllers', [])
                     });
                 };
 
-                $scope.closeParticipate = function () {
-                    $scope.modal.hide();
-                };
-                $ionicModal.fromTemplateUrl('poll-more.html', {
-                    scope: $scope,
-                    animation: 'slide-in-up'
-                }).then(function (modal) {
-                    $scope.modal = modal;
-                });
-                $scope.openFilters = function () {
-                    console.log('openFilters')
-                    $scope.modal.show();
-
-                };
+                
                 $scope.closeFilters = function () {
                     $scope.modal.hide();
                 };

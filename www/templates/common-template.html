@@ -14,13 +14,12 @@
             <a class="item"  target="_blank" ng-click="performTask('unNotifyMe', like_pollid)" ng-if="pollNotify">
              Un-notify
             </a>
-            <a class="item"  target="_blank" ng-click="performTask('delete', like_pollid)" ng-if="uid == cid">
+            <a class="item"  target="_blank" ng-click="deletePoll(like_pollid)" ng-if="uid == cid">
              Delete
             </a>  
             <a class="item"  target="_blank" ng-click="performTask('report', like_pollid)">
              Report Content
-            </a>
- 
+            </a> 
           </div>
         </ion-content>
       </ion-popover-view>
