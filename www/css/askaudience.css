@@ -2677,3 +2677,6 @@ padding-left: 20px !important;
 .hide {
     display: none !important;
 }
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    opacity: 1; 
+}

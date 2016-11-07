@@ -26,7 +26,7 @@
 
             <ion-tab title="Create Poll" icon-off="ion-ios-compose" nav-clear menu-close icon-on="ion-ios-compose" ng-if="isLoggedIn" href="#/app/create-poll"></ion-tab>
             <ion-tab title="Create Poll" icon-off="ion-ios-compose" nav-clear menu-close icon-on="ion-ios-compose" ng-if="!isLoggedIn" ng-click="loginFromMenu()"></ion-tab>
-            <ion-tab title="My Profile" icon-off="ion-android-person" ng-class="cid == uid ? 'tab-item-active' : ''" ng-if="isLoggedIn" nav-clear menu-close icon-on="ion-android-person" href="#/app/user/{{user.ID}}/1" ng-disabled="false"></ion-tab>
+            <ion-tab title="My Profile" icon-off="ion-android-person" ng-class="cid == uid ? 'tab-item-active' : ''" ng-if="isLoggedIn" nav-clear menu-close icon-on="ion-android-person" href="#/app/my-profile/{{user.ID}}/1" ng-disabled="false"></ion-tab>
             <ion-tab title="My Profile" icon-off="ion-android-person" ng-class="cid == uid ? 'tab-item-active' : ''" ng-if="!isLoggedIn" nav-clear menu-close icon-on="ion-android-person" ng-click="loginFromMenu()"></ion-tab>
         </ion-tabs>
         <ion-nav-view name="menuContent"></ion-nav-view>
@@ -38,11 +38,11 @@
         <ion-header-bar class="expanded bar bar-header disable-user-behavior side-menu-color bg-css" style="background-image: url('img/bgp.png');"> 
             <div class="avatar-wrapper w100">
                 <div class="avatar" ng-if="!isLoggedIn" ng-click="loginFromMenu()" style="background-color:#eee; background-image:url('img/user-icon.png'); background-size:cover"></div>
-                <div class="avatar" ng-if="isLoggedIn" ui-sref="app.user({id:user.ID, reveal : 1})" menu-close style="background-color:#eee; background-image:url('{{ user.img}}'); background-size:cover"></div>
+                <div class="avatar" ng-if="isLoggedIn" ui-sref="app.my-profile({id:user.ID, reveal : 1})" menu-close style="background-color:#eee; background-image:url('{{ user.img}}'); background-size:cover"></div>
 
             </div>
             <div class="menu-bottom text-center bottom25">
-                Hello <span ng-if="isLoggedIn" ui-sref="app.user({id:user.ID, reveal : 1})" menu-close>{{user.first_name| capitalize}}</span> <span ng-if="!isLoggedIn" ng-click="loginFromMenu()">Guest</span> !
+                Hello <span ng-if="isLoggedIn" ui-sref="app.my-profile({id:user.ID, reveal : 1})" menu-close>{{user.first_name| capitalize}}</span> <span ng-if="!isLoggedIn" ng-click="loginFromMenu()">Guest</span> !
             </div>
         </ion-header-bar>
         <ion-content>
