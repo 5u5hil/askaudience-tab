@@ -26,7 +26,6 @@ function indexOptionsMultiChoice(option) {
 
 
     jQuery(".createPoll ." + option+"Img").each(function (k, v) {
-        console.log(k);
         jQuery(this).find("input[type='file']").attr("name", "image[" + k + "]");
         jQuery(this).find("input[type='hidden']").attr("name", "image[" + k + "]");
     });

@@ -11,6 +11,7 @@
         <!-- testing -->
 
         <form class="createPoll" id="createPoll">
+            <input type='hidden' name='userId' value="{{userId}}" />
             <div class="tab1" ng-show="acitveTab == 'tab1'">
                 <div class="">
                     <!-- ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(1, 'cloneBlock')" for="16">

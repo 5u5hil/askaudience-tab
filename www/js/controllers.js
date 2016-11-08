@@ -1646,7 +1646,6 @@ angular.module('askaudience.controllers', [])
                 Loader.show();
                 $scope.ptype = '';
 
-
                 APIFactory.getInterests().then(function (response) {
                     $scope.interests = response.data;
 //                    $scope.addOption();
@@ -1665,6 +1664,7 @@ angular.module('askaudience.controllers', [])
                 });
 
                 $scope.manageTabs = function (activeTab, type) {
+                    $scope.userId = LSFactory.get('user').ID;
                     if (typeof (activeTab) != 'undefined') {
                         ptype = activeTab;
                     }
