@@ -1679,7 +1679,7 @@ $scope.ptype = '';
                 });
 
                 $scope.manageTabs = function (activeTab, type) {
-              
+              console.log(activeTab);
                  $scope.ptype = activeTab;
                     $scope.checkTab = activeTab;
                     if (type == 'nav') {
