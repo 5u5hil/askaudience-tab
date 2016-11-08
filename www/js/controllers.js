@@ -1754,7 +1754,6 @@ angular.module('askaudience.controllers', [])
 
 
                 $scope.addOption = function () {
-                    console.log("add option " + ptype);
                     if (ptype == 1) {
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
                         indexOptions();
