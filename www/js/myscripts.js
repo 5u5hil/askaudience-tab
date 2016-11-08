@@ -10,10 +10,7 @@ function indexOptions() {
     jQuery(".createPoll .option").each(function (k, v) {
         jQuery(this).find("input[type='file']").attr("name", "image[" + k + "]");
         jQuery(this).find("input[type='text']").attr("name", "option[" + k + "][text]");
-        console.log(k)
-       
+        jQuery(this).find(".deleteOptionWrap").remove();
 
-			jQuery(this).find(".deleteOptionWrap").remove();
-     
     });
 }

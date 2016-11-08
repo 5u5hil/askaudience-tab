@@ -15,7 +15,6 @@ angular.module('askaudience.directives', [])
                 link: function (scope, elm, attrs, ctrl) {
                     ctrl.$parsers.unshift(function (viewValue, $scope) {
                         var noMatch = viewValue != scope.changePwdForm.password.$viewValue
-                        console.log(noMatch);
                         ctrl.$setValidity('noMatch', !noMatch)
                     })
                 }

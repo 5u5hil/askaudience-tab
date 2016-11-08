@@ -21,7 +21,6 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     $cordovaStatusbar.styleHex('#ca9606');
 
                 } catch (e) {
-                    console.log('real device only')
                 }
 
             });

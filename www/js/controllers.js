@@ -42,7 +42,6 @@ angular.module('askaudience.controllers', [])
                     }
                 }
                 $scope.clickedMethod = function (callback) {
-                    console.log(callback);
                     $state.go('app.user', {id: callback.item.ID, reveal: 1});
                 }
                 $scope.filterData = function (data) {
@@ -170,7 +169,6 @@ angular.module('askaudience.controllers', [])
                             });
                         }, function (error) {
                             Loader.hide();
-                            console.log(error);
                         });
                     } //end fb login
                     $scope.linkedinLogin = function () {
@@ -214,7 +212,6 @@ angular.module('askaudience.controllers', [])
                                             });
                                 },
                                 function (error) {
-                                    console.log(error);
                                 });
                     };
                 });
@@ -268,7 +265,6 @@ angular.module('askaudience.controllers', [])
                                 $scope.$broadcast('refreshHomeData'); //get data using UserID
                             } catch (e) {
                                 // statements
-                                console.log(e);
                             }
                         }
                         ;
@@ -293,7 +289,6 @@ angular.module('askaudience.controllers', [])
                                 try {
                                     $scope.$broadcast('refreshHomeData');
                                 } catch (e) {
-                                    console.log(e);
                                 }
                             } else {
                                 $ionicHistory.nextViewOptions({
@@ -337,7 +332,6 @@ angular.module('askaudience.controllers', [])
                     e.preventDefault();
                     CommonFactory.inAppLink(link).then(function (response) {
                     }, function (error) {
-                        console.log(error);
                     })
                 };
                 $scope.getRepostedBy = function (pollid) {
@@ -450,7 +444,6 @@ angular.module('askaudience.controllers', [])
                             try {
 
                                 var friend_requested = jQuery.grep(response.data.friend_requests_received, function (element, index) {
-                                    console.log(element.ID)
                                     return element.ID == LSFactory.get('user').ID;
                                 });
                                 if (friend_requested.length || (friend_requested.indexOf(LSFactory.get('user').ID) > -1)) {
@@ -578,7 +571,6 @@ angular.module('askaudience.controllers', [])
                                     });
                                 }
                             } catch (e) {
-                                console.log(e)
                             }
 
                         } else {
@@ -602,7 +594,6 @@ angular.module('askaudience.controllers', [])
                 $scope.getPollsByType();
                 $scope.updatePan = function (tab, type, cat) {
                     $scope.activePan = tab;
-                    console.log(tab)
                     $scope.type = type;
                     if (cat == 'polls') {
                         $scope.canLoadMore = true;
@@ -769,7 +760,6 @@ angular.module('askaudience.controllers', [])
 
 
                 $scope.vote = function (pid, oid, index) {
-                    console.log('asdf');
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -783,7 +773,6 @@ angular.module('askaudience.controllers', [])
 
                 function vote(pid, oid, poll) {
                     var index = $scope.polls.indexOf(poll);
-                    console.log(index)
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Submitting Your Vote ...');
@@ -1176,7 +1165,6 @@ angular.module('askaudience.controllers', [])
                 $scope.getPollsFilters();
 
                 $scope.vote = function (pid, oid, index) {
-                    console.log('asdf');
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -1249,7 +1237,6 @@ angular.module('askaudience.controllers', [])
                     $scope.modal = modal;
                 });
                 $scope.openFilters = function () {
-                    console.log('openFilters')
                     $scope.modal.show();
 
                 };
@@ -1564,7 +1551,6 @@ angular.module('askaudience.controllers', [])
                 $scope.getPollsFilters();
 
                 $scope.vote = function (pid, oid, index) {
-                    console.log('asdf');
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -1687,13 +1673,9 @@ angular.module('askaudience.controllers', [])
                         $scope.addOption();
                     }
                     $scope.ptype = ptype;
-                    console.log(ptype);
                     $scope.ptype = activeTab;
                     $scope.checkTab = activeTab;
                     if (type == 'nav') {
-                        console.log(activeTab + type);
-
-
                         $scope.$digest;
                     } else {
                         if ($scope.acitveTab == 'tab1') {
@@ -1749,7 +1731,6 @@ angular.module('askaudience.controllers', [])
                     var place = autocompleteFrom.getPlace();
                     $scope.lat = place.geometry.location.lat();
                     $scope.lng = place.geometry.location.lng();
-                    console.log($scope.lat + ' ' + $scope.lng)
                 });
 
 
@@ -1769,6 +1750,7 @@ angular.module('askaudience.controllers', [])
                         indexOptions();
                     }
                     if (ptype == 4) {
+                        jQuery('.addOptions').hide();
                         jQuery(".options").append(jQuery(".cloneYesNo").html());
                         indexOptions();
                     }
