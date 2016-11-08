@@ -98,7 +98,7 @@ angular.module('askaudience.controllers', [])
                                 if (response.data.error) {
                                     Loader.toggleLoadingWithMessage('Invalid Username or Password', 2000);
                                 } else if (response.data) {
-                                    Loader.toggleLoadingWithMessage('Login Successful', 2000);
+                                    Loader.toggleLoadingWithMessage('Login Successfully', 2000);
                                     $scope.loginModal.hide();
                                     LSFactory.set('user', response.data);
                                     $scope.updateUser();
