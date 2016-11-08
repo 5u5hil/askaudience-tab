@@ -9,7 +9,7 @@
         <form class="createPoll">
             <div class="tab1" ng-show="acitveTab == 'tab1'">
                 <div class="">
-                    <!-- ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(1)" for="16">
+                    <!-- ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(1, 'cloneBlock')" for="16">
                         <div class=" ">
                             <img alt="" class="poll-type-imge" src="img/Multiple-Choise-1.jpg">
                             <input type="radio" style="display:none" name="polltype" id="16" value="16">
@@ -18,7 +18,7 @@
                             </div>
 
                         </div>
-                    </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(2)" for="15">
+                    </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(2, 'cloneBlock')" for="15">
                         <div class=" ">
                             <img   alt="" class="poll-type-imge" src="img/Multiple-Choise.jpg">
                             <input type="radio" style="display:none" name="polltype" id="15" value="15">
@@ -27,7 +27,7 @@
                             </div>
 
                         </div>
-                    </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(3)" for="17">
+                    </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(3, 'cloneBlock')" for="17">
                         <div class=" ">
                             <img   alt="" class="poll-type-imge" src="img/Referendum.jpg">
                             <input type="radio" style="display:none" name="polltype" id="17" value="17">
@@ -36,7 +36,7 @@
                             </div>
 
                         </div>
-                    </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(4)" for="14">
+                    </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(4, 'cloneBlock')" for="14">
                         <div class=" ">
                             <img  alt="" class="poll-type-imge" src="img/True-False.jpg">
                             <input type="radio" style="display:none" name="polltype" id="14" value="14">
@@ -158,15 +158,58 @@
             </div>
         </form>
 
-        <div class="toClone">
+        <div class="toClone cloneMultiChoice" >
+            <ul class="list">
+                <li class="item">
+                    <div class=" ">
+                        <label class="item item-input">
+                            <input type="text" name="option[1][text]" placeholder="Option Text">
+                        </label>
+                    </div>
+                    <div class="deleteOptionWrap"> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="toClone cloneWithImage" >
             <ul class="list">
                 <li class="item">
                     <div class="  option  " >
-
                         <input type="file" name="option[1][image]" class="custom-file-input"  />
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
                     </div>
+                    <div class=" ">
+                        <label class="item item-input">
+                            <input type="text" name="option[1][text]" placeholder="Option Text">
+                        </label>
+                    </div>
+                    <div class="deleteOptionWrap"> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="toClone cloneReferendum" >
+            <ul class="list">
+                <li class="item">
+                    <div class="  option  " >
+                        <input type="file" name="option[1][image]" class="custom-file-input"  />
+                        <div class="option[1][image]"></div>
+                        <img src="" id="option[1][image]" alt="">
+                    </div>
+                    <div class=" ">
+                        <label class="item item-input">
+                            <input type="text" name="option[1][text]" placeholder="Option Text">
+                        </label>
+                    </div>
+                    <div class="deleteOptionWrap"> <i class="icon ion-ios-minus-outline pull-right deleteOption"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="toClone cloneYesNo" >
+            <ul class="list">
+                <li class="item">
                     <div class=" ">
                         <label class="item item-input">
                             <input type="text" name="option[1][text]" placeholder="Option Text">

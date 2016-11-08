@@ -1663,8 +1663,8 @@ angular.module('askaudience.controllers', [])
 
                 APIFactory.getInterests().then(function (response) {
                     $scope.interests = response.data;
-                    $scope.addOption();
-                    $scope.addOption();
+//                    $scope.addOption();
+//                    $scope.addOption();
                     Loader.hide();
                 }, function (error) {
                     Loader.hide();
@@ -1679,9 +1679,14 @@ angular.module('askaudience.controllers', [])
                 });
 
                 $scope.manageTabs = function (activeTab, type) {
-                    if (typeof(activeTab) != 'undefined') {
+                    if (typeof (activeTab) != 'undefined') {
                         ptype = activeTab;
                     }
+                    if (typeof (type) != 'undefined' && type == 'cloneBlock') {
+                        $scope.addOption();
+                        $scope.addOption();
+                    }
+                    $scope.ptype = ptype;
                     console.log(ptype);
                     $scope.ptype = activeTab;
                     $scope.checkTab = activeTab;
@@ -1749,8 +1754,26 @@ angular.module('askaudience.controllers', [])
 
 
                 $scope.addOption = function () {
-                    jQuery(".options").append(jQuery(".toClone").html());
-                    indexOptions();
+                    console.log("add option " + ptype);
+                    if (ptype == 1) {
+                        jQuery(".options").append(jQuery(".cloneMultiChoice").html());
+                        indexOptions();
+                    }
+
+                    if (ptype == 2) {
+                        jQuery(".options").append(jQuery(".cloneWithImage").html());
+                        indexOptions();
+                    }
+
+                    if (ptype == 3) {
+                        jQuery(".options").append(jQuery(".cloneReferendum").html());
+                        indexOptions();
+                    }
+                    if (ptype == 4) {
+                        jQuery(".options").append(jQuery(".cloneYesNo").html());
+                        indexOptions();
+                    }
+
                 }
 
             }
