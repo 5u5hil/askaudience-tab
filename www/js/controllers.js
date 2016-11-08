@@ -375,23 +375,23 @@ angular.module('askaudience.controllers', [])
                                 Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try following again');
                             });
                 }
-                  $scope.participate = function(event, id, options) {
-                if (jQuery('.ion-arrow-up-c').attr('data-ref') != id) {
-                    var refId = jQuery('.ion-arrow-up-c').attr('data-ref');
-                    jQuery('[data-toggle=' + refId + ']').slideToggle();
-                    jQuery('[data-ref=' + refId + ']').text('Vote');
-                    jQuery('[data-ref=' + refId + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+                $scope.participate = function (event, id, options) {
+                    if (jQuery('.ion-arrow-up-c').attr('data-ref') != id) {
+                        var refId = jQuery('.ion-arrow-up-c').attr('data-ref');
+                        jQuery('[data-toggle=' + refId + ']').slideToggle();
+                        jQuery('[data-ref=' + refId + ']').text('Vote');
+                        jQuery('[data-ref=' + refId + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+                    }
+                    jQuery('[data-toggle=' + id + ']').slideToggle();
+                    if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
+                        jQuery('[data-ref=' + id + ']').text('Hide');
+                        jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
+
+                    } else {
+                        jQuery('[data-ref=' + id + ']').text('Vote');
+                        jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+                    }
                 }
-                jQuery('[data-toggle=' + id + ']').slideToggle();
-                if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
-                    jQuery('[data-ref=' + id + ']').text('Hide');
-                    jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
- 
-                } else {
-                    jQuery('[data-ref=' + id + ']').text('Vote');
-                    jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
-                }
-            } 
             }])
 
         .controller('HomeCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
@@ -412,7 +412,7 @@ angular.module('askaudience.controllers', [])
                 $scope.following = 'No';
                 $scope.friends = 'No';
                 $scope.friend_requested = 'No';
-                $scope.getReveal = $stateParams.reveal; 
+                $scope.getReveal = $stateParams.reveal;
                 if (!$rootScope.isLoggedIn)
                     $scope.cid = -1;
                 else
@@ -421,7 +421,7 @@ angular.module('askaudience.controllers', [])
                     Loader.show();
                     APIFactory.getUser($stateParams.id).then(function (response) {
 
-                        $scope.userInfo = response.data;                                                                                                                                           
+                        $scope.userInfo = response.data;
                         if (LSFactory.get('user')) {
 
                             try {
@@ -585,9 +585,9 @@ angular.module('askaudience.controllers', [])
                             $scope.polls = [];
 
                             angular.forEach(response.data, function (element, index) {
-                                
-                                    $scope.polls.push(element);
-                              
+
+                                $scope.polls.push(element);
+
                             });
                         }
                         Loader.hide();
@@ -613,7 +613,7 @@ angular.module('askaudience.controllers', [])
                         $scope.activePanCat = '';
                     }
                 }
-                
+
                 $scope.performTask = function (type, pollid, poll) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -678,7 +678,7 @@ angular.module('askaudience.controllers', [])
                 }
 
                 function likePoll(pollid, poll) {
-                 
+
                     var data = {pollid: pollid, userId: LSFactory.get('user').ID};
                     Loader.show();
                     APIFactory.likePoll(data).then(function (response) {
@@ -688,7 +688,7 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
                             $scope.popover.hide();
-                            $scope.pollLiked = !$scope.pollLiked; 
+                            $scope.pollLiked = !$scope.pollLiked;
                             $scope.getPollsByType();
 
                         }
@@ -720,7 +720,7 @@ angular.module('askaudience.controllers', [])
                 }
 
                 function UnlikePoll(pollid, poll) {
-                 
+
                     var data = {pollid: pollid, userId: LSFactory.get('user').ID};
                     Loader.show();
                     APIFactory.unlikePoll(data).then(function (response) {
@@ -728,8 +728,8 @@ angular.module('askaudience.controllers', [])
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
-                    
-                   
+
+
                             $scope.getPollsByType();
                             $scope.pollLiked = !$scope.pollLiked;
 
@@ -783,7 +783,7 @@ angular.module('askaudience.controllers', [])
 
                 function vote(pid, oid, poll) {
                     var index = $scope.polls.indexOf(poll);
-                    console.log(index) 
+                    console.log(index)
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Submitting Your Vote ...');
@@ -795,7 +795,7 @@ angular.module('askaudience.controllers', [])
                             $timeout(function () {
                                 $scope.polls[index].participants.push($scope.uid);
                             }, 200)
-                             
+
                         }
                     });
                 }
@@ -828,7 +828,7 @@ angular.module('askaudience.controllers', [])
                     });
                 };
 
-          
+
 
                 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
                     angular.forEach($scope.polls, function (element, index) {
@@ -1023,7 +1023,7 @@ angular.module('askaudience.controllers', [])
 
                 }
 
-                
+
                 $scope.performTask = function (type, pollid) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -1411,7 +1411,7 @@ angular.module('askaudience.controllers', [])
 
                 }
 
-                
+
                 $scope.performTask = function (type, pollid) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -1620,7 +1620,7 @@ angular.module('askaudience.controllers', [])
                     });
                 };
 
-                
+
                 $scope.closeFilters = function () {
                     $scope.modal.hide();
                 };
@@ -1658,7 +1658,7 @@ angular.module('askaudience.controllers', [])
                 $scope.acitveTab = 'tab1';
                 $scope.posted_as = 1;
                 Loader.show();
-$scope.ptype = '';
+                $scope.ptype = '';
 
 
                 APIFactory.getInterests().then(function (response) {
@@ -1679,13 +1679,16 @@ $scope.ptype = '';
                 });
 
                 $scope.manageTabs = function (activeTab, type) {
-              console.log(activeTab);
-                 $scope.ptype = activeTab;
+                    if (typeof(activeTab) != 'undefined') {
+                        ptype = activeTab;
+                    }
+                    console.log(ptype);
+                    $scope.ptype = activeTab;
                     $scope.checkTab = activeTab;
                     if (type == 'nav') {
                         console.log(activeTab + type);
-                        
-                        
+
+
                         $scope.$digest;
                     } else {
                         if ($scope.acitveTab == 'tab1') {
@@ -1745,7 +1748,7 @@ $scope.ptype = '';
                 });
 
 
-                $scope.addOption = function () { 
+                $scope.addOption = function () {
                     jQuery(".options").append(jQuery(".toClone").html());
                     indexOptions();
                 }
