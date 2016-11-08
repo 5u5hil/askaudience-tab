@@ -10,7 +10,7 @@
 
         <!-- testing -->
 
-        <form class="createPoll">
+        <form class="createPoll" id="createPoll">
             <div class="tab1" ng-show="acitveTab == 'tab1'">
                 <div class="">
                     <!-- ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(1, 'cloneBlock')" for="16">
@@ -136,7 +136,7 @@
 
             <ul class="list">
                 <li class="item">
-                    <div class=" ">
+                    <div class="optionMultiChoice">
                         <label class="item item-input">
                             <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>
@@ -146,17 +146,17 @@
             </ul>
         </div>
 
-        <div class="toClone cloneWithImage" >
+       <div class="toClone cloneWithImage" >
             <ul class="list">
                 <li class="item">
-                    <div class="  option  " >
+                    <div class="  optionWithImageImg  " >
                         <input type="hidden" name="option[1][image]"  />
                         <input type="file" name="option[1][image]" class="custom-file-input" onchange="loadFile(event)"  />
 
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
                     </div>
-                    <div class=" ">
+                    <div class="optionWithImage">
                         <label class="item item-input">
                             <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>
@@ -166,16 +166,16 @@
             </ul>
         </div>
 
-        <div class="toClone cloneReferendum" >
+       <div class="toClone cloneReferendum" >
             <ul class="list">
                 <li class="item">
-                    <div class="  option  " >
+                    <div class="  optionReferendumImg  " >
                         <input type="hidden" name="option[1][image]"  />
                         <input type="file" name="option[1][image]" class="custom-file-input"  onchange="loadFile(event)" />
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
                     </div>
-                    <div class=" ">
+                    <div class="optionReferendum ">
                         <label class="item item-input">
                             <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>
@@ -188,7 +188,7 @@
         <div class="toClone cloneYesNo" >
             <ul class="list">
                 <li class="item">
-                    <div class=" ">
+                    <div class=" optionYesNo">
                         <label class="item item-input">
                             <input type="text" name="option[1][text]" placeholder="Option Text">
                         </label>

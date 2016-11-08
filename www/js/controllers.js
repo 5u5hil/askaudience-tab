@@ -1705,9 +1705,12 @@ angular.module('askaudience.controllers', [])
                 }
 
                 function newPoll() {
-                    var data = new FormData(jQuery("form.createPoll")[0]);
-                    a = data;
-                    data.append('userId', LSFactory.get('user').ID);
+                    // var data = new FormData(jQuery("form.createPoll")[0]);
+                    var data = jQuery("#createPoll").serialize();
+
+                    console.log(data);
+
+                    //  data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Creating Poll ...');
                     APIFactory.createPoll(data).then(function (response) {
 
@@ -1738,22 +1741,24 @@ angular.module('askaudience.controllers', [])
                 $scope.addOption = function () {
                     if (ptype == 1) {
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
-                        indexOptions();
+                        indexOptionsMultiChoice('optionMultiChoice');
                     }
 
                     if (ptype == 2) {
                         jQuery(".options").append(jQuery(".cloneWithImage").html());
-                        indexOptions();
+                        indexOptionsMultiChoice('optionWithImage');
                     }
 
                     if (ptype == 3) {
                         jQuery(".options").append(jQuery(".cloneReferendum").html());
-                        indexOptions();
+                        indexOptionsMultiChoice('optionReferendum');
+
+
                     }
                     if (ptype == 4) {
                         jQuery('.addOptions').hide();
                         jQuery(".options").append(jQuery(".cloneYesNo").html());
-                        indexOptions();
+                        indexOptionsMultiChoice('optionYesNo');
                     }
 
                 }
