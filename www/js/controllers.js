@@ -1639,7 +1639,7 @@ angular.module('askaudience.controllers', [])
         })
 
 
-        .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
+        .controller('createPollCtrl', [ '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
             function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
                 $scope.acitveTab = 'tab1';
                 $scope.posted_as = 1;
