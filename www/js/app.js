@@ -1,6 +1,6 @@
 // Ionic askaudience App
 var domain = 'http://ask-audience.cruxservers.in/api/?method=';
-angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'ngTagsInput', 'ion-autocomplete'])
+angular.module('askaudience', ['ionic', 'ngImageCompress' ,'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'ngTagsInput', 'ion-autocomplete'])
 
         .run(function ($ionicPlatform, $cordovaStatusbar) {
             $ionicPlatform.ready(function () {
