@@ -1706,6 +1706,7 @@ angular.module('askaudience.controllers', [])
 
                 function newPoll() {
                     var data = new FormData(jQuery("form.createPoll")[0]);
+                    a = data;
                     data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Creating Poll ...');
                     APIFactory.createPoll(data).then(function (response) {
@@ -1756,10 +1757,10 @@ angular.module('askaudience.controllers', [])
                     }
 
                 }
-                
-                
-                
-                
+
+
+
+
 
             }
         ])

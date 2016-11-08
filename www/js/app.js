@@ -164,11 +164,13 @@ function downscaleImage(dataUrl, newWidth) {
 }
 
 var loadFile = function (event) {
+    console.log(event.target.name);
     var reader = new FileReader();
     reader.onload = function () {
         var output = document.getElementById('output');
         var newurl = downscaleImage(reader.result, 500);
-        output.src = newurl;
+        jQuery("[type='hidden'][name='" + event.target.name + "']").val(newurl);
+
     };
     reader.readAsDataURL(event.target.files[0]);
 };

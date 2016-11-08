@@ -6,11 +6,9 @@
 
     </ion-nav-buttons>
     <ion-content class="has-footer" has-bouncing="false">
-        
+
+
         <!-- testing -->
-<input type="file" accept="image/*" onchange="loadFile(event)">
-<img id="output"/>
-     <!-- testing -->
 
         <form class="createPoll">
             <div class="tab1" ng-show="acitveTab == 'tab1'">
@@ -94,39 +92,7 @@
 
 
                     </div>
-                    <!--      <li class="item item-toggle">
-                             Location Specific
-                             <label class="toggle toggle-balanced" >
-                                 <input type="checkbox"  name="location_specific" ng-model="location_specific" value="{{location_specific}}" >
-                                 <div class="track">
-                                     <div class="handle"></div>
-                                 </div>
-                             </label>
-                         </li>
-                         <div class="item item-input item-stacked-label" ng-show="location_specific">
-                             <span class="input-label">  Location  </span>
-                           <input id="from" type="text" ng-model="autocomplete" placeholder="Type Address" class="ng-pristine ng-valid" autocomplete="off">
-                           <input type="hidden" name="lat" ng-model="lat">
-                           <input type="hidden" name="lng" ng-model="lng">
-     
-                                   
-                         </div> -->
 
-
-                    <!--    
-                       <li class="item item-input item-stacked-label">
-                       <span class="input-label">Interest Areas </span> 
-                       <input type="text"  ng-model="search" placeholder="Search Interest Area" />
-                      
-                   </li>
-                       <div class="interest-wrapper">
-                           <div ng-repeat="interest in interests | filter:search">
-                               <label class="checkbox vlm w100">
-                                   <input type="checkbox" class="interest-checkbox" name="interests[]" value="{{ interest.term_id}}">
-                                   <span class="label vlm" ng-bind-html="interest.name"> </span>
-                               </label>
-                           </div>
-                       </div> -->
                     <div class="filterpopup">
                         <li class="item item-input item-stacked-label">
                             <span class="input-label">Interest Areas </span> 
@@ -148,7 +114,9 @@
                 </li>
                 <li class="item item-input">
                     <span class="mr10">Poll Image </span>
-                    <input type="file" placeholder="Image" name="pollimg" class="custom-file-input" style="float: right;">
+                    <input type='hidden' value='' name='pollimg'/>
+                    <input type="file" placeholder="Image" name="pollimg" onchange="loadFile(event)" class="custom-file-input" style="float: right;">
+
                 </li>
                 <li class="item ">
                     <span class=" ">Tags </span>
@@ -182,7 +150,9 @@
             <ul class="list">
                 <li class="item">
                     <div class="  option  " >
-                        <input type="file" name="option[1][image]" class="custom-file-input"  />
+                        <input type="hidden" name="option[1][image]"  />
+                        <input type="file" name="option[1][image]" class="custom-file-input" onchange="loadFile(event)"  />
+
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
                     </div>
@@ -200,7 +170,8 @@
             <ul class="list">
                 <li class="item">
                     <div class="  option  " >
-                        <input type="file" name="option[1][image]" class="custom-file-input"  />
+                        <input type="hidden" name="option[1][image]"  />
+                        <input type="file" name="option[1][image]" class="custom-file-input"  onchange="loadFile(event)" />
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
                     </div>
