@@ -938,7 +938,7 @@ angular.module('askaudience.controllers', [])
                 $scope.filters = '';
                 $scope.orderBy = '';
                 $scope.getPolls = function (type) {
-
+             
                     if (type == 'infScr') {
                         $scope.pageNumber = $scope.pageNumber + 1;
                     }
@@ -968,11 +968,14 @@ angular.module('askaudience.controllers', [])
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
                             } else {
+                                  // console.log('hello1');
                                 angular.forEach(response.data, function (element, index) {
                                     $scope.polls.push(element);
                                 });
                             }
                         } else {
+                            console.log('hello');
+                             $scope.polls="";
                             $scope.polls = response.data;
                             a = $scope.polls;
                         }
