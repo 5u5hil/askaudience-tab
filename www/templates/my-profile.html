@@ -327,12 +327,12 @@
                         <input type="email" ng-model="userInfo.user_email" readonly="true" required name="user_email" ng-class="userProfile.user_email.$touched && userProfile.user_email.$invalid ? 'error-border' : ''"  placeholder="Enter valid Email">
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label fz14">Mobile*</span>
-                        <input type="text"  ng-model="userInfo.mobile_number" required name="phone" ng-class="userProfile.phone.$touched && userProfile.phone.$invalid ? 'error-border' : ''"  placeholder="Enter valid -">
+                        <span class="input-label fz14">Mobile</span>
+                        <input type="text"  ng-model="userInfo.mobile_number"  name="phone"   placeholder="Enter Mobile Number" >
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label fz14">Address*</span>
-                        <input type="text" ng-model="userInfo.address" required name="address" ng-class="userProfile.address.$touched && userProfile.address.$invalid ? 'error-border' : ''" placeholder="Enter Address">
+                        <span class="input-label fz14">Address</span>
+                        <input type="text" ng-model="userInfo.address"  name="address"  placeholder="Enter Address">
                     </label>
                 </div>
 
