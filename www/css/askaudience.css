@@ -1668,6 +1668,9 @@ a.autolinker {
 .error-border {
     border-bottom: 1px solid red !important
 }
+.error-text{
+    color:red !important;
+}
 
 .success-border {
     border-bottom: 1px solid green !important

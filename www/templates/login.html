@@ -67,30 +67,34 @@
                 <button class="button icon-left ion-social-linkedin  radiuz-btn  linkedin-bgc button-dark facebook-sign-in" ng-click="linkedinLogin()">SIGN UP WITH LINKEDIN</button>
             </div>
             <div class="txt-center pb0   ">OR</div>
-            <form class="margin30 manualRegistration" ng-submit="registerUser(userRegister)" enctype="multipart/form-data">
+            <form class="margin30 manualRegistration" name="registrationForm" ng-submit="registerUser(userRegister)" enctype="multipart/form-data">
                 <div class="list">
                     <label class="item border-tn item-register item-input item-floating-label">
-                        <span class="input-label ">First Name</span>
-                        <input type="text" class=" transparent-label" name="firstname" ng-model="userRegister.firstname"  placeholder="Enter your  First Name">
+                        <span class="input-label ">First Name*</span>
+                        <input type="text" class=" transparent-label" name="firstname" ng-model="userRegister.firstname"  placeholder="Enter your  First Name*" required>
+                        <p class="error-text" ng-show="registrationForm.firstname.$error.required && registrationForm.firstname.$touched">Please enter First Name</p>
                     </label> 
                     <label class="item item-register item-input item-floating-label">
-                        <span class="input-label ">Last Name</span>
-                        <input type="text" class=" transparent-label" name="lastname" ng-model="userRegister.lastname" placeholder="Enter your Last Name">
+                        <span class="input-label ">Last Name*</span>
+                        <input type="text" class=" transparent-label" name="lastname" ng-model="userRegister.lastname" placeholder="Enter your Last Name*" required>
+                        <p class="error-text" ng-show="registrationForm.lastname.$error.required && registrationForm.lastname.$touched">Please enter Last Name</p>
                     </label> 
                     <label class="item item-register item-input item-floating-label">
-                        <span class="input-label ">Email</span>
-                        <input type="email" class=" transparent-label" name="useremail" ng-model="userRegister.useremail" placeholder="Enter your Email">
+                        <span class="input-label ">Email*</span>
+                        <input type="email" class=" transparent-label" name="useremail" ng-model="userRegister.useremail" placeholder="Enter your Email*" required>
+                        <p class="error-text" ng-show="registrationForm.useremail.$error.email && registrationForm.useremail.$dirty">Please enter valid Email Id</p>
                     </label>
                     <label class="item item-register item-input item-floating-label">
-                        <span class="input-label ">Password</span>
-                        <input type="password" class=" transparent-label" name="password" ng-model="userRegister.password" placeholder="Enter your password">
+                        <span class="input-label ">Password*</span>
+                        <input type="password" class=" transparent-label" name="password" ng-model="userRegister.password" ng-minlength="5" placeholder="Enter your password*" required>
+                        <p class="error-text" ng-show="registrationForm.password.$error.minlength && registrationForm.password.$dirty">Password cannot be less than 6 characters</p>
                     </label>
                     <label class="item item-register item-input item-floating-label">
                         <span class="input-label ">Profile Pic</span>
                         <input type="file" class=" transparent-label" name="profilepic" >
                     </label>
                     <div class="txt-center">
-                        <button class="button button-small mt25 button-block button-dark btn-login radiuz-btn" type="submit">
+                        <button class="button button-small mt25 button-block button-dark btn-login radiuz-btn" type="submit" ng-disabled="registrationForm.$invalid">
                             Register
                         </button>
                     </div>
