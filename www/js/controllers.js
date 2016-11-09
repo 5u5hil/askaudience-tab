@@ -1017,6 +1017,7 @@ angular.module('askaudience.controllers', [])
                                 text: '<b>Sort</b>',
                                 type: 'button-positive',
                                 onTap: function (e) {
+                                    $scope.polls={};
                                     $scope.orderBy = jQuery("input[name=borderBy]:checked", "#ex").val();
                                     $scope.getFilteredPolls();
                                 }
