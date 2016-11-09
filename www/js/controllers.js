@@ -97,7 +97,7 @@ angular.module('askaudience.controllers', [])
                                 if (response.data.error) {
                                     Loader.toggleLoadingWithMessage('Invalid Username or Password', 2000);
                                 } else if (response.data) {
-                                    Loader.toggleLoadingWithMessage('Login Successfully', 2000);
+                                    Loader.toggleLoadingWithMessage('Logged In Successfully', 2000);
                                     $scope.loginModal.hide();
                                     LSFactory.set('user', response.data);
                                     $scope.updateUser();
@@ -892,13 +892,20 @@ angular.module('askaudience.controllers', [])
                         }
                     });
                 }
-                
-                $scope.modifyUser=function(data){
-                    APIFactory.updateUserProfile(data).then(function (response){
-                        console.log(response);
+                $scope.formData = {};
+                $scope.modifyUser = function (data) {
+                    Loader.show();
+                    APIFactory.updateUserProfile(data).then(function (response) {
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     });
                 }
-                
+                $scope.changePassword = function (userInfo, password) {
+                    Loader.show();
+                    APIFactory.updateUserPassword(userInfo,password).then(function (response) {
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                    });
+                }
+
             }
         ])
 

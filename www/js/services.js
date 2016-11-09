@@ -1,5 +1,5 @@
 angular.module('askaudience.services', [])
-        .factory('APIFactory', ['$http', '$httpParamSerializer', function ($http, $httpParamSerializer) {
+        .factory('APIFactory', ['$http', '$httpParamSerializer', function ($http, $httpParamSerializer, $templateCache) {
                 var api = {
                     getUser: function (data) {
                         var req = {method: 'GET', url: domain + 'getUser&userId=' + data};
@@ -69,18 +69,22 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'searchUser', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
-                    updateUserProfile : function (data) {
-                        var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                    updateUserProfile: function (data) {
+                        var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'data': data})};
+                        return $http(req);
+                    },
+                    updateUserPassword: function (userInfo, password) {
+                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'userInfo': userInfo,'password':password})};
                         return $http(req);
                     },
                     authUser: function (data) {
                         var req = {method: 'POST', url: domain + 'login', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
-                            likePoll: function (data) {
-                                var req = {method: 'POST', url: domain + 'like', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
-                                return $http(req);
-                            },
+                    likePoll: function (data) {
+                        var req = {method: 'POST', url: domain + 'like', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     unlikePoll: function (data) {
                         var req = {method: 'POST', url: domain + 'unlike', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
