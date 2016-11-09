@@ -319,18 +319,18 @@
                         <input type="text" ng-model="userInfo.first_name" required name="first_name" ng-class="userProfile.first_name.$touched && userProfile.first_name.$invalid ? 'error-border' : ''" placeholder="Enter First Name">
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label fz14">Last Name*</span>
-                        <input type="text" ng-model="userInfo.last_name" required name="last_name" ng-class="userProfile.last_name.$touched && userProfile.last_name.$invalid ? 'error-border' : ''" placeholder="Enter Last Name">
+                        <span class="input-label fz14">Last Name</span>
+                        <input type="text" ng-model="userInfo.last_name"  name="last_name" >
                     </label>
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14">Email*</span>
                         <input type="email" ng-model="userInfo.user_email" readonly="true" required name="user_email" ng-class="userProfile.user_email.$touched && userProfile.user_email.$invalid ? 'error-border' : ''"  placeholder="Enter valid Email">
                     </label>
-                    <label class="item item-input item-stacked-label">
+                    <label class="item item-input item-stacked-label hide">
                         <span class="input-label fz14">Mobile</span>
                         <input type="text"  ng-model="userInfo.mobile_number"  name="phone"   placeholder="Enter Mobile Number" >
                     </label>
-                    <label class="item item-input item-stacked-label">
+                    <label class="item item-input item-stacked-label hide">
                         <span class="input-label fz14">Address</span>
                         <input type="text" ng-model="userInfo.address"  name="address"  placeholder="Enter Address">
                     </label>
