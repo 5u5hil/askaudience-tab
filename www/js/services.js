@@ -42,7 +42,7 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     getPolls: function (filters, pageNo, orderBy, userId) {
-                        var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy  + '&userId=' + userId};
+                        var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId};
                         return $http(req);
                     },
                     getPollsByType: function (data) {
@@ -69,14 +69,18 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'searchUser', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
+                    updateUserProfile : function (data) {
+;                        var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     authUser: function (data) {
                         var req = {method: 'POST', url: domain + 'login', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
-                    likePoll: function (data) {
-                        var req = {method: 'POST', url: domain + 'like', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
-                        return $http(req);
-                    },
+                            likePoll: function (data) {
+                                var req = {method: 'POST', url: domain + 'like', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                                return $http(req);
+                            },
                     unlikePoll: function (data) {
                         var req = {method: 'POST', url: domain + 'unlike', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
@@ -153,7 +157,8 @@ angular.module('askaudience.services', [])
                         var isAndroid = ionic.Platform.isAndroid();
                         var isIOS = ionic.Platform.isIOS();
                         if (isAndroid || isIOS) {
-                            $cordovaToast.show(msg, 'short', 'center').then(function (success) {});
+                            $cordovaToast.show(msg, 'short', 'center').then(function (success) {
+                            });
                         } else {
                             console.info(msg);
                         }

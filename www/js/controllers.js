@@ -892,6 +892,13 @@ angular.module('askaudience.controllers', [])
                         }
                     });
                 }
+                
+                $scope.modifyUser=function(data){
+                    APIFactory.updateUserProfile(data).then(function (response){
+                        console.log(response);
+                    });
+                }
+                
             }
         ])
 
