@@ -312,7 +312,7 @@
         
         <div ng-if="activePan == 'profile'">
             <h4 class="content  profile-head double-padding-x">My Profile</h4>
-            <form name="userProfile" id="updateUserForm" ng-submit="modifyUser(userInfo)">
+            <form name="userProfile" id="updateUserForm" ng-submit="modifyUser(userInfo)" enctype="multipart/form-data">
                 <div class="list">
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14">First Name*</span>
@@ -326,9 +326,10 @@
                         <span class="input-label fz14">Email*</span>
                         <input type="email" ng-model="userInfo.user_email" readonly="true" required name="user_email" ng-class="userProfile.user_email.$touched && userProfile.user_email.$invalid ? 'error-border' : ''"  placeholder="Enter valid Email">
                     </label>
-                    <label class="item item-input item-stacked-label hide">
-                        <span class="input-label fz14">Mobile</span>
-                        <input type="text"  ng-model="userInfo.mobile_number"  name="phone"   placeholder="Enter Mobile Number" >
+                    <label class="item item-input ">
+                        <span class="mr10">Profile Image</span>
+                        <input type="hidden" name="option[1][image]" id="profileImg" ng-model="userInfo.profileImg"  />
+                          <input type="file" name="option[1][image]"  style="float: right;" class="custom-file-input" onchange="loadFile(event)"  >
                     </label>
                     <label class="item item-input item-stacked-label hide">
                         <span class="input-label fz14">Address</span>

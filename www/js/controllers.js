@@ -638,7 +638,7 @@ angular.module('askaudience.controllers', [])
                         } else if (type == 'report') {
                             reportContent(pollid);
                         } else if (type == 'delete') {
-                            $scope.deletePoll (pollid);
+                            $scope.deletePoll(pollid);
                         }
                     }
                 };
@@ -894,6 +894,7 @@ angular.module('askaudience.controllers', [])
                 }
                 $scope.formData = {};
                 $scope.modifyUser = function (data) {
+                    data.profileImg = jQuery('#profileImg').val();
                     Loader.show();
                     APIFactory.updateUserProfile(data).then(function (response) {
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
@@ -901,7 +902,7 @@ angular.module('askaudience.controllers', [])
                 }
                 $scope.changePassword = function (userInfo, password) {
                     Loader.show();
-                    APIFactory.updateUserPassword(userInfo,password).then(function (response) {
+                    APIFactory.updateUserPassword(userInfo, password).then(function (response) {
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     });
                 }
@@ -938,7 +939,7 @@ angular.module('askaudience.controllers', [])
                 $scope.filters = '';
                 $scope.orderBy = '';
                 $scope.getPolls = function (type) {
-             
+
                     if (type == 'infScr') {
                         $scope.pageNumber = $scope.pageNumber + 1;
                     }
@@ -968,14 +969,14 @@ angular.module('askaudience.controllers', [])
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
                             } else {
-                                  // console.log('hello1');
+                                // console.log('hello1');
                                 angular.forEach(response.data, function (element, index) {
                                     $scope.polls.push(element);
                                 });
                             }
                         } else {
                             console.log('hello');
-                             $scope.polls="";
+                            $scope.polls = "";
                             $scope.polls = response.data;
                             a = $scope.polls;
                         }
