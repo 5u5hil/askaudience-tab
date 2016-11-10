@@ -459,6 +459,7 @@ angular.module('askaudience.controllers', [])
 
 
                     }, function (data) {
+                        $scope.canLoadMore = false;
                         Loader.hide();
                         Loader.toast('Oops! something went wrong');
                     });
@@ -970,19 +971,19 @@ angular.module('askaudience.controllers', [])
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
                             } else {
-                                // console.log('hello1');
                                 angular.forEach(response.data, function (element, index) {
                                     $scope.polls.push(element);
                                 });
                             }
                         } else {
-                            console.log('hello');
                             $scope.polls = "";
                             $scope.polls = response.data;
                             a = $scope.polls;
                         }
                         Loader.hide();
                     }, function (error) {
+                        $scope.canLoadMore = false;
+                        console.log('testing');
                         Loader.hide();
                         Loader.toast('Oops! something went wrong. Please try later again');
                     }).finally(function () {
