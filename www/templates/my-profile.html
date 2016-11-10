@@ -326,7 +326,7 @@
                         <span class="input-label fz14">Email*</span>
                         <input type="email" ng-model="userInfo.user_email" readonly="true" required name="user_email" ng-class="userProfile.user_email.$touched && userProfile.user_email.$invalid ? 'error-border' : ''"  placeholder="Enter valid Email">
                     </label>
-                    <label class="item item-input ">
+                    <label class="item item-input " ng-if="userInfo.source!='Facebook' && userInfo.source!='LinkedIn'">
                         <span class="mr10">Profile Image</span>
                         <input type="hidden" name="option[1][image]" id="profileImg" ng-model="userInfo.profileImg"  />
                           <input type="file" name="option[1][image]"  style="float: right;" class="custom-file-input" onchange="loadFile(event)"  >

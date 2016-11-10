@@ -1689,8 +1689,8 @@ angular.module('askaudience.controllers', [])
                         ptype = activeTab;
                     }
                     if (typeof (type) != 'undefined' && type == 'cloneBlock') {
-                        $scope.addOption();
-                        $scope.addOption();
+                        $scope.addOption('Yes');
+                        $scope.addOption('No');
                     }
                     $scope.ptype = ptype;
                     $scope.ptype = activeTab;
@@ -1758,7 +1758,7 @@ angular.module('askaudience.controllers', [])
                 });
 
 
-                $scope.addOption = function () {
+                $scope.addOption = function (data) {
                     if (ptype == 1) {
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
                         indexOptionsMultiChoice('optionMultiChoice');
@@ -1776,9 +1776,10 @@ angular.module('askaudience.controllers', [])
 
                     }
                     if (ptype == 4) {
+                     
                         jQuery('.addOptions').hide();
                         jQuery(".options").append(jQuery(".cloneYesNo").html());
-                        indexOptionsMultiChoice('optionYesNo');
+                        indexOptionsMultiChoice('optionYesNo',data);
                     }
 
                 }
