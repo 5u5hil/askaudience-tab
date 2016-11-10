@@ -103,7 +103,7 @@
         <div ng-if="activePanCat == 'polls'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
                 <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'" 
-                 ng-click="updatePan('openPolls', 'open', 'polls')">Open</span>
+                 ng-click="updatePan('openPolls', 'open', 'polls')">Public</span>
              
                 <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"   
                  ng-click="updatePan('privatePolls', 'private', 'polls')">Private</span>
@@ -138,8 +138,9 @@
     <div class="top-bar-wrapper">
         <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
-            <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
+            <h2 class=" poll-name-user" ng-if="poll.posted_as == 1 || poll.posted_as == 2">{{ poll.author.display_name}}</h2>
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
+           
         </div>
           <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as == 4" >
             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
@@ -175,7 +176,7 @@
     </div>
  
     <div class="item item-text-wrap p0 poll-answer-options hidden" data-toggle="{{poll.id}}"> 
-        <form class="vote{{poll.id}}" ng-if="(Number(poll.participants.indexOf(uid)) < 0)"> 
+        <form class="vote{{poll.id}}" ng-if="(Number(poll.participants.indexOf(uid)) < 0) || !(poll.participants.length)"> 
             <ul class="options">
                 <li ng-repeat="opt in poll.options">
                     <!--         <label class="checkbox w100">
@@ -199,15 +200,16 @@
             </ul>
             <input type="hidden" name="pollid" value="{{poll.id}}" />
         </form>
-        <div class="voteOption{{poll.id}}" ng-if="isLoggedIn && (!(Number(poll.participants.indexOf(uid)) < 0))">
+        <div class="voteOption{{poll.id}}" ng-if="(!(Number(poll.participants.indexOf(uid)) < 0) &&  poll.participants.length) ">
             <ul class="options">
 
-                <li ng-repeat="opt in poll.options">          
+                <li ng-repeat="opt in poll.options">   
+                    
                     <label class="checkbox custom-checkbox w100">
                         <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" ng-click="vote()">
-                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{(opt.number_of_votes / poll.participants.length)*100 || 0 | number:0}}%</div>
+                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{((opt.number_of_votes) / poll.participants.length)*100 || 0 | number:0}}%</div>
                             <span class="poll-option">{{ opt.option}}</span>
-                            <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{(opt.number_of_votes / poll.participants.length) * 100}} +  '%'}" ></div></div>
+                            <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{((opt.number_of_votes) / poll.participants.length) * 100}} +  '%'}" ></div></div>
                         </ion-item>
                     </label>
                 </li>

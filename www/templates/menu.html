@@ -24,7 +24,7 @@
             <ion-tab title="Polls For Me" icon-off="ion-coffee" nav-clear menu-close icon-on="ion-coffee" ng-if="isLoggedIn" href="#/app/forme"></ion-tab>
             <ion-tab title="Polls For Me" icon-off="ion-coffee" nav-clear menu-close icon-on="ion-coffee" ng-if="!isLoggedIn" ng-click="loginFromMenu()"></ion-tab>
 
-            <ion-tab title="Create Poll" icon-off="ion-ios-compose" nav-clear menu-close icon-on="ion-ios-compose" ng-if="isLoggedIn" href="#/app/create-poll"></ion-tab>
+            <ion-tab title="Create Poll" icon-off="ion-ios-compose" nav-clear menu-close icon-on="ion-ios-compose" ui-sref-opts="{reload: true, notify: true,cache: false}" ui-sref="app.createpoll" ng-if="isLoggedIn" ></ion-tab>
             <ion-tab title="Create Poll" icon-off="ion-ios-compose" nav-clear menu-close icon-on="ion-ios-compose" ng-if="!isLoggedIn" ng-click="loginFromMenu()"></ion-tab>
             <ion-tab title="My Profile" icon-off="ion-android-person" ng-class="cid == uid ? 'tab-item-active' : ''" ng-if="isLoggedIn" nav-clear menu-close icon-on="ion-android-person" href="#/app/my-profile/{{user.ID}}/1" ng-disabled="false"></ion-tab>
             <ion-tab title="My Profile" icon-off="ion-android-person" ng-class="cid == uid ? 'tab-item-active' : ''" ng-if="!isLoggedIn" nav-clear menu-close icon-on="ion-android-person" ng-click="loginFromMenu()"></ion-tab>
