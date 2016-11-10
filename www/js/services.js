@@ -74,7 +74,7 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     updateUserPassword: function (userInfo, password) {
-                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'userInfo': userInfo,'password':password})};
+                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'userInfo': userInfo, 'password': password})};
                         return $http(req);
                     },
                     authUser: function (data) {
@@ -128,7 +128,8 @@ angular.module('askaudience.services', [])
                         return $http.post(domain + "update-user&first_name=" + data.user_meta.first_name[0] + "&last_name=" + data.user_meta.last_name[0] + "&phone=" + data.user_meta.phone[0] + "&email=" + data.user_email + "&address=" + data.user_meta.address[0] + "&city=" + data.user_meta.city[0] + "&postalcode=" + data.user_meta.postal_code[0] + "&state=" + data.user_meta.state[0] + "&country=" + data.user_meta.country[0] + "&pass=" + password.pass + "&repass=" + password.repass + "&userId=" + userId);
                     },
                     sendContactMail: function (data) {
-                        return $http.get(domain + "send-contact-mail&pname=" + data.pname + "&email=" + data.email + "&phone=" + data.phone + "&subject=" + data.subject + "&service=" + data.service + "&message=" + data.message);
+                        var req = {method: 'POST', url: domain + 'contactUs', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: $httpParamSerializer(data)};
+                        return $http(req);
                     },
                     linkedinToken: function (data) {
                         return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: $httpParamSerializer(data)})

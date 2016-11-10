@@ -917,7 +917,8 @@ angular.module('askaudience.controllers', [])
                     Loader.show();
                     APIFactory.sendContactMail($scope.message).then(function (response) {
                         Loader.hide();
-                        Loader.toast('Message sent successfuly');
+                        //  Loader.toast('Message sent successfuly');
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                         $scope.message = {};
                         $ionicHistory.nextViewOptions({
                             disableBack: true,
