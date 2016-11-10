@@ -155,7 +155,7 @@ angular.module('askaudience.controllers', [])
                                 APIFactory.socialRegister($scope.params).then(function (response) {
                                     $scope.loginModal.hide();
                                     Loader.hide();
-                                    Loader.toast('Logged in successfuly');
+                                    Loader.toast('Logged in successfully');
                                     LSFactory.set('user', response.data)
                                     $scope.updateUser();
                                     if (typeof callback === 'function') {
@@ -297,7 +297,7 @@ angular.module('askaudience.controllers', [])
                                 });
                                 $state.go('app.polls');
                             }
-                            Loader.toast('Logged out successfuly')
+                            Loader.toast('Logged out successfully')
                             Loader.hide();
                         }
                     });
