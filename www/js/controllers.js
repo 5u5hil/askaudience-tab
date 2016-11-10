@@ -934,12 +934,19 @@ angular.module('askaudience.controllers', [])
             }
         ])
 
-        .controller('pollsCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
-            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
+        .controller('pollsCtrl', ['$ionicNavBarDelegate','$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
+            function ($ionicNavBarDelegate,$scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = true;
                 $scope.filters = '';
                 $scope.orderBy = '';
+
+                $scope.$on('$ionicView.enter', function (e) {
+                    $ionicNavBarDelegate.showBar(true);
+                });
+
+
+
                 $scope.getPolls = function (type) {
 
                     if (type == 'infScr') {
@@ -1666,6 +1673,7 @@ angular.module('askaudience.controllers', [])
                 Loader.show();
                 $scope.ptype = '';
 
+
                 APIFactory.getInterests().then(function (response) {
                     $scope.interests = response.data;
 //                    $scope.addOption();
@@ -1727,9 +1735,6 @@ angular.module('askaudience.controllers', [])
                 function newPoll() {
                     // var data = new FormData(jQuery("form.createPoll")[0]);
                     var data = jQuery("#createPoll").serialize();
-
-                    console.log(data);
-
                     //  data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Creating Poll ...');
                     APIFactory.createPoll(data).then(function (response) {
@@ -1739,7 +1744,7 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
                             $timeout(function () {
-                                $state.go('app.polls');
+                                $state.go('app.polls', {}, {reload: true});
                             }, 1000)
 
 
@@ -1776,10 +1781,10 @@ angular.module('askaudience.controllers', [])
 
                     }
                     if (ptype == 4) {
-                     
+
                         jQuery('.addOptions').hide();
                         jQuery(".options").append(jQuery(".cloneYesNo").html());
-                        indexOptionsMultiChoice('optionYesNo',data);
+                        indexOptionsMultiChoice('optionYesNo', data);
                     }
 
                 }
