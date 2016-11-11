@@ -1,6 +1,6 @@
 <ion-view>
     <ion-nav-title>
- {{ reveal == 1 ? userInfo.first_name : (reveal == 3 ? userInfo.first_name : 'Anonymous')}}'s Profile
+        {{ reveal == 1 ? userInfo.first_name : (reveal == 3 ? userInfo.first_name : 'Anonymous')}}'s Profile
     </ion-nav-title>
 
     <ion-content class="has-footer">
@@ -10,10 +10,10 @@
                     <div class="row mb15">
                         <div class="celeb-img-detail profile-img-detail col-25 ">
                             <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
-                         </div>
+                        </div>
                         <div class="celeb-img-detail  txt-left  col-75 ">
 
-                           <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
+                            <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
                                 {{userInfo.display_name}} ( {{userInfo.user_nicename}} )
                                 <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span> 
                             </h2>
@@ -21,7 +21,7 @@
                                 {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.user_nicename : 'Anonymous')}} 
 
                             </h2>
-                       </div>
+                        </div>
                     </div>
 
                     <div class="wrapp-count row text-center pb0">
@@ -82,7 +82,7 @@
                             </div>
                         </a>
                     </div>
-               <div class="row connections mt10" ng-if="uid != cid">
+                    <div class="row connections mt10" ng-if="uid != cid">
                         <div class="col">
                             <button ng-if="following == 'No'" class="button w100 button-small poll-btn" ng-click="follow()">Follow</button>
                             <button ng-if="following == 'Yes'" class="button  w100 button-small poll-btn" ng-click="unfollow()">Following</button>
@@ -94,7 +94,7 @@
                             <button ng-if="friends == 'Yes'" class="button w100 button-small poll-btn" ng-click="unFriend(uid, $index)">Unfriend</button>
                         </div>
                     </div> 
-    
+
 
                 </div>
             </div>
@@ -103,17 +103,17 @@
         <div ng-if="activePanCat == 'polls'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
                 <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'" 
-                 ng-click="updatePan('openPolls', 'open', 'polls')">Public</span>
-             
+                      ng-click="updatePan('openPolls', 'open', 'polls')">Public</span>
+
                 <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"   
-                 ng-click="updatePan('privatePolls', 'private', 'polls')">Private</span>
+                      ng-click="updatePan('privatePolls', 'private', 'polls')">Private</span>
                 <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('Anonymous', 'anonymous', 'polls')">Anonymous</span> 
                 <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub-menu-item'"  
-                 ng-click="updatePan('pinRevealed' , 'revealPin', 'polls')">Pin Revealed</span>
+                      ng-click="updatePan('pinRevealed', 'revealPin', 'polls')">Pin Revealed</span>
                 <span ng-class="activePan == 'myVoted' ? 'active-item' : 'sub-menu-item'"  
-                 ng-click="updatePan('myVoted' , 'getUserPollParticipate', 'polls')">My Voted </span>
-                    <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"
-                   ng-click="updatePan('closedPolls', 'closed', 'polls')">Closed</span>
+                      ng-click="updatePan('myVoted', 'getUserPollParticipate', 'polls')">My Voted </span>
+                <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"
+                      ng-click="updatePan('closedPolls', 'closed', 'polls')">Closed</span>
 
 
 
@@ -125,124 +125,121 @@
                 <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('allfrnd')">Friend(s)</span>
 
                 <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('PendingRequest')">Pending Request(s)</span>
- 
+
                 <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('myRequest')">My Request(s)</span>
 
 
             </ion-scroll>
         </div>
-        <div ng-if="(activePan ==  'openPolls') || (activePan ==  'privatePolls') || (activePan ==  'Anonymous') ||( activePan ==  'pinRevealed' ) || (activePan ==  'closedPolls') || (activePan ==  'myVoted') " class="listing-content">
- 
-   <div class="card card-polls" ng-init="sectionIndex = $index"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
-   <div ng-class="!poll.img ? 'text-poll' : 'img-poll'" >
-    <div class="top-bar-wrapper">
-        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
-            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
-            <h2 class=" poll-name-user" ng-if="poll.posted_as == 1 || poll.posted_as == 2">{{ poll.author.display_name}}</h2>
-            <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
-           
-        </div>
-          <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as == 4" >
-            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
-             <h2 class=" poll-name-user">Anonymous</h2>
-        </div>
-    
-        <!-- ng-if="poll.is_explicit || poll.is_mature" -->
-        <div class="tags custom-vln  tar row">
-            <div class="custom-vln tar" ng-click="openPopover($event, poll, $index)"  ng-if="activePan !=  'closedPolls'">
-                <h2><span class="fz21 ion-android-more-vertical" ></span></h2>
+        <div ng-if="(activePan == 'openPolls') || (activePan == 'privatePolls') || (activePan == 'Anonymous') || (activePan == 'pinRevealed') || (activePan == 'closedPolls') || (activePan == 'myVoted')" class="listing-content">
+
+            <div class="card card-polls" ng-init="sectionIndex = $index"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
+                <div ng-class="!poll.img ? 'text-poll' : 'img-poll'" >
+                    <div class="top-bar-wrapper">
+                        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
+                            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+                            <h2 class=" poll-name-user" ng-if="poll.posted_as == 1 || poll.posted_as == 2">{{ poll.author.display_name}}</h2>
+                            <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
+
+                        </div>
+                        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as == 4" >
+                            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+                            <h2 class=" poll-name-user">Anonymous</h2>
+                        </div>
+
+                        <!-- ng-if="poll.is_explicit || poll.is_mature" -->
+                        <div class="tags custom-vln  tar row">
+                            <div class="custom-vln tar" ng-click="openPopover($event, poll, $index)"  ng-if="activePan != 'closedPolls'">
+                                <h2><span class="fz21 ion-android-more-vertical" ></span></h2>
+                            </div>
+                            <div class="custom-vln tar" ng-if="poll.reposts != ''" ng-click="getRepostedBy(poll.id)">
+                                <h2 class=" no-border reposts-icon"><span class="ion-ios-loop-strong icon  "></span></h2>
+                            </div>
+                            <div class="custom-vln tar" ng-if="poll.is_explicit == 1 || poll.is_mature == 1">
+                                <h2 class="tag-text">18+</h2>
+                            </div>
+
+                        </div>
+                        <!--   <div class="poll-separator-ver pull-right"></div>  -->
+                    </div>
+                    <div class="poll-separator"></div>
+                    <div class="clear-fix"></div>
+                    <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title"  ng-click="participate($event, poll.id, poll.options)">
+                    </div>
+                    <div class="item item-text-wrap poll-image p0 pb0">
+                        <img ng-src="{{poll.img}}" alt="" ng-if="poll.img"  ng-click="participate($event, poll.id, poll.options)">
+                    </div>
+                    <div class="item poll-topbar padding10">
+                        <div class="poll-id pull-left not-link">#{{poll.id}}</div>
+                        <div class="poll-id pull-right" ng-if="activePan != 'closedPolls'" > <span >{{poll.time_remaining}}</span></div>
+
+                    </div>
+
+                    <div class="item item-text-wrap p0 poll-answer-options hidden" data-toggle="{{poll.id}}"> 
+                        <form class="vote{{poll.id}}" ng-if="(Number(poll.participants.indexOf(uid)) < 0) || !(poll.participants.length)"> 
+                            <ul class="options">
+                                <li ng-repeat="opt in poll.options">
+                                    <!--         <label class="checkbox w100">
+                                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}" ng-click="vote()">
+                                            <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
+                                            <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox">
+                                        </ion-item>
+                
+                                    </label> -->
+                                    <label class="checkbox custom-checkbox w100">
+                                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0"      ng-click="vote(poll.id, opt.id, poll, sectionIndex)">
+                                            <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> 
+                                            <span class="poll-option">{{ opt.option}}</span>
+                                            <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized pull-left">
+                                        </ion-item>
+                                    </label>
+                                </li>
+                            </ul>
+                            <input type="hidden" name="pollid" value="{{poll.id}}" />
+                        </form>
+                        <div class="voteOption{{poll.id}}" ng-if="(!(Number(poll.participants.indexOf(uid)) < 0) && poll.participants.length)">
+                            <ul class="options">
+
+                                <li ng-repeat="opt in poll.options">   
+
+                                    <label class="checkbox custom-checkbox w100">
+                                        <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" ng-click="vote()">
+                                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{((opt.number_of_votes) / poll.participants.length) * 100 || 0 | number:0}}%</div>
+                                            <span class="poll-option">{{ opt.option}}</span>
+                                            <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{((opt.number_of_votes) / poll.participants.length) * 100}} +  '%'}" ></div></div>
+                                        </ion-item>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="poll-separator"></div>
+                            <div class="row no-height-row">
+                                <div class="col txt-left  fz12" data-like-id="{{poll.ID}}" data-like="{{poll.likes.length|| 0}}"> {{poll.likes.length|| 0}} Like(s) </div>
+                                <div class="col txt-right fz12">{{poll.participants.length}} Vote(s)</div>
+                            </div>
+                            <div class="poll-separator"></div>
+                        </div> 
+
+                    </div>
+                    <div class="item item-text-wrap padding10 row poll-action-panel" ng-if="activePan != 'closedPolls'">
+
+                        <a class="button poll-option-btn ion-android-checkmark-circle button-clear button-dark black fz20 col" data-ref="{{poll.id}}" ng-click="participate($event, poll.id, poll.options)"><span class="vlm">Vote</span></a>
+
+                        <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)"><span class="vlm">Share</span></a>
+                        <a class="button poll-option-btn ion-ios-loop-strong button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)"><span class="vlm">Re-Post</span></a>
+                    </div>
+                </div>
+
             </div>
-            <div class="custom-vln tar" ng-if="poll.reposts != ''" ng-click="getRepostedBy(poll.id)">
-                <h2 class=" no-border reposts-icon"><span class="ion-ios-loop-strong icon  "></span></h2>
-            </div>
-            <div class="custom-vln tar" ng-if="poll.is_explicit == 1 || poll.is_mature == 1">
-                <h2 class="tag-text">18+</h2>
-            </div>
+            <div ng-if="!polls.length" class="no-polls-msg">No poll Found</div>
 
+            <ion-infinite-scroll class="white-bg" on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
         </div>
-        <!--   <div class="poll-separator-ver pull-right"></div>  -->
-    </div>
-    <div class="poll-separator"></div>
-    <div class="clear-fix"></div>
-    <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title"  ng-click="participate($event, poll.id, poll.options)">
-    </div>
-    <div class="item item-text-wrap poll-image p0 pb0">
-        <img ng-src="{{poll.img}}" alt="" ng-if="poll.img"  ng-click="participate($event, poll.id, poll.options)">
-    </div>
-    <div class="item poll-topbar padding10">
-        <div class="poll-id pull-left not-link">#{{poll.id}}</div>
-        <div class="poll-id pull-right" ng-if="activePan !=  'closedPolls'" > <span >{{poll.time_remaining}}</span></div>
-        
-    </div>
- 
-    <div class="item item-text-wrap p0 poll-answer-options hidden" data-toggle="{{poll.id}}"> 
-        <form class="vote{{poll.id}}" ng-if="(Number(poll.participants.indexOf(uid)) < 0) || !(poll.participants.length)"> 
-            <ul class="options">
-                <li ng-repeat="opt in poll.options">
-                    <!--         <label class="checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}" ng-click="vote()">
-                            <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
-                            <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox">
-                        </ion-item>
 
-                    </label> -->
-                    <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar pr60' : ''}} ion-item-custom mt0" 
-                         ng-style="{'background-image':'url({{opt.image.url}}', 
-                'background-repeat':'no-repeat',
-                'background-position': 'right', 'background-size': '60px 60px'}" ng-click="vote(poll.id, opt.id, poll,sectionIndex)">
-                            <!-- <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> -->
-                            <span class="poll-option">{{ opt.option}}</span>
-                            <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized">
-                        </ion-item>
-                    </label>
-                </li>
-            </ul>
-            <input type="hidden" name="pollid" value="{{poll.id}}" />
-        </form>
-        <div class="voteOption{{poll.id}}" ng-if="(!(Number(poll.participants.indexOf(uid)) < 0) &&  poll.participants.length) ">
-            <ul class="options">
 
-                <li ng-repeat="opt in poll.options">   
-                    
-                    <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" ng-click="vote()">
-                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{((opt.number_of_votes) / poll.participants.length)*100 || 0 | number:0}}%</div>
-                            <span class="poll-option">{{ opt.option}}</span>
-                            <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{((opt.number_of_votes) / poll.participants.length) * 100}} +  '%'}" ></div></div>
-                        </ion-item>
-                    </label>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <div class="poll-separator"></div>
-            <div class="row no-height-row">
-                <div class="col txt-left  fz12" data-like-id="{{poll.ID}}" data-like="{{poll.likes.length || 0}}"> {{poll.likes.length|| 0}} Like(s) </div>
-                <div class="col txt-right fz12">{{poll.participants.length}} Vote(s)</div>
-            </div>
-            <div class="poll-separator"></div>
-        </div> 
 
-    </div>
-    <div class="item item-text-wrap padding10 row poll-action-panel" ng-if="activePan !=  'closedPolls'">
 
-        <a class="button poll-option-btn ion-android-checkmark-circle button-clear button-dark black fz20 col" data-ref="{{poll.id}}" ng-click="participate($event, poll.id, poll.options)"><span class="vlm">Vote</span></a>
-
-        <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)"><span class="vlm">Share</span></a>
-        <a class="button poll-option-btn ion-ios-loop-strong button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)"><span class="vlm">Re-Post</span></a>
-    </div>
-</div>
-
-        </div>
-          <div ng-if="!polls.length" class="no-polls-msg">No poll Found</div>
-      
-          <ion-infinite-scroll class="white-bg" on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
-        </div>
-       
-       
-    
-      
         <div ng-if="activePan == 'following'">
 
 
@@ -250,12 +247,12 @@
 
                 <div class="item item-avatar" role="link" ng-repeat="followingUsers in userInfo.following">
                     <img ng-src="{{followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">{{::followingUsers.user.display_name | capitalize}}</h2>
+                    <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">{{::followingUsers.user.display_name| capitalize}}</h2>
                     <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.user.ID)" class=" button poll-btn action-button button-positive"> </p> 
                 </div>
                 <div class="no-result" ng-if="!userInfo.following.length">No following</div>
 
-                
+
 
             </div>         
         </div>
@@ -265,10 +262,10 @@
                 <div class="item item-avatar"  ng-repeat="follwerUsers in userInfo.followers">
                     <img ng-src="{{follwerUsers.user.img}}" ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">{{::follwerUsers.user.display_name}}</h2>
-                    
+
                 </div>
                 <div class="no-result" ng-if="!userInfo.followers.length">No follower(s)</div>
- 
+
             </div>        
         </div>
         <div ng-if="activePan == 'allfrnd'">
@@ -281,7 +278,7 @@
 
                 </div>
                 <div class="no-result" ng-if="!userInfo.friends.length">No request(s)</div>
-        </div>       
+            </div>       
         </div>
         <div ng-if="activePan == 'PendingRequest'">
             <div class="list">
@@ -298,20 +295,20 @@
         </div>
         <div ng-if="activePan == 'myRequest'">
             <div class="list">
-                
-                    <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
+
+                <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
                     <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">{{friendSent.display_name}}</h2> 
                     <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-positive"> </p>
 
                 </div>
                 <div class="no-result" ng-if="!userInfo.friend_requests_sent.length">No pending request(s)</div>
-        
-                  
+
+
 
             </div>       
         </div>
-        
+
         <div ng-if="activePan == 'profile'">
             <h4 class="content  profile-head double-padding-x">My Profile</h4>
             <form name="userProfile" id="updateUserForm" ng-submit="modifyUser(userInfo)" enctype="multipart/form-data">
@@ -328,10 +325,10 @@
                         <span class="input-label fz14">Email*</span>
                         <input type="email" ng-model="userInfo.user_email" readonly="true" required name="user_email" ng-class="userProfile.user_email.$touched && userProfile.user_email.$invalid ? 'error-border' : ''"  placeholder="Enter valid Email">
                     </label>
-                    <label class="item item-input " ng-if="userInfo.source!='Facebook' && userInfo.source!='LinkedIn'">
+                    <label class="item item-input " ng-if="userInfo.source != 'Facebook' && userInfo.source != 'LinkedIn'">
                         <span class="mr10">Profile Image</span>
                         <input type="hidden" name="option[1][image]" id="profileImg" ng-model="userInfo.profileImg"  />
-                          <input type="file" name="option[1][image]"  style="float: right;" class="custom-file-input" onchange="loadFile(event)"  >
+                        <input type="file" name="option[1][image]"  style="float: right;" class="custom-file-input" onchange="loadFile(event)"  >
                     </label>
                     <label class="item item-input item-stacked-label hide">
                         <span class="input-label fz14">Address</span>
