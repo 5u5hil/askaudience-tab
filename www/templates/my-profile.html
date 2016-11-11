@@ -251,7 +251,7 @@
                 <div class="item item-avatar" role="link" ng-repeat="followingUsers in userInfo.following">
                     <img ng-src="{{followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">{{::followingUsers.user.display_name | capitalize}}</h2>
-                    <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.ID)" class=" button poll-btn action-button button-positive"> </p> 
+                    <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.user.ID)" class=" button poll-btn action-button button-positive"> </p> 
                 </div>
                 <div class="no-result" ng-if="!userInfo.following.length">No following</div>
 

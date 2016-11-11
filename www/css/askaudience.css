@@ -278,10 +278,10 @@ a.celeb-name {
 }
 
 .cover-item-detail {
-         max-height: 205px;
+    max-height: 205px;
     width: 100%;
     background-size: cover;
-        padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .celeb-img-detail img {
@@ -1365,7 +1365,7 @@ a.autolinker {
 }
 
 .login-bg {
-    background-color: #d4d4d4;
+    background: url(../img/login-bg.png);
     -webkit-background-size: 120% auto
 }
 
@@ -2316,7 +2316,7 @@ a.button.cat-button:hover {
     margin-right: 7px;
     font-weight: bold !important;
     font-size: 16px;
-   vertical-align: middle !important;
+    vertical-align: middle !important;
 }
 
 .checkbox input:checked:before,
@@ -2395,7 +2395,7 @@ a.button.cat-button:hover {
     border-radius: 4px;
     background-color: #f1f1f1;
     margin-top: 2px;
-        overflow: hidden;
+    overflow: hidden;
 }
 
 .listing-done {
@@ -2529,32 +2529,32 @@ input.ion-google-place[readonly]{
     cursor: text;
 }
 .profile-name {
-      line-height: 73px;
-            padding-left: 15px;
+    line-height: 73px;
+    padding-left: 15px;
 }
 .txt-left {
     text-align: left !important;
 }
 .mb10 {
-        margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .pb0 {
     padding-bottom: 0px;
 }
 .profile-bg {
-        background-color: #fff !important;
+    background-color: #fff !important;
 }
 .poll-btn {
-        background: #fbbc05 !important;
+    background: #fbbc05 !important;
     color: #fff !important;
 }
 .w100 {
     width: 100%;
 }
- 
- .poll-action-panel a {
-       line-height: 50px !important;
-       font-weight: normal !important;
+
+.poll-action-panel a {
+    line-height: 50px !important;
+    font-weight: normal !important;
 }
 .item-avatar h2 {
     text-transform: capitalize;
@@ -2583,7 +2583,7 @@ input.ion-autocomplete[readonly] {
     padding-left: 10px;
 }
 .custom-popover {
-        height: 128px;
+    height: 128px;
 }
 .h100 {
     height: 100% !important;
@@ -2592,17 +2592,17 @@ input.ion-autocomplete[readonly] {
     border-radius: 0px !important;
 }
 .filter-ddl {
-           padding: 12px 2px 12px 0px !important;
+    padding: 12px 2px 12px 0px !important;
 }
 .left-checkbox .item.item-checkbox{
-padding-left: 20px !important;
+    padding-left: 20px !important;
     padding-right: 0px !important;
     border-left: 0px;
     border-right: 0px;
-         border-right: 1px solid #eee;
+    border-right: 1px solid #eee;
 }
 .left-checkbox .checkbox-icon{
-     float: right !important;
+    float: right !important;
 }
 .ion-datetime-picker-popup button, .popup-container button {
     font-size: 12px !important;
@@ -2617,31 +2617,31 @@ padding-left: 20px !important;
     color: #fff;
 }
 .reposts-icon {
-         padding-top: 1px;
+    padding-top: 1px;
 }
 .sort-icon:before {
-        transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 .reponstedby-popup .popup{
-        width: 90%;
+    width: 90%;
 }
 .reponstedby-popup .item{
-        min-height: 55px;
+    min-height: 55px;
     padding-left: 70px;
     padding-top: 10px;
 }
 .reponstedby-popup h2{
-         padding-top: 6px;
+    padding-top: 6px;
 }
 .reponstedby-popup img{
-            top: 10px !important;
-             max-height: 35px !important;
+    top: 10px !important;
+    max-height: 35px !important;
     max-width: 35px !important;
 }
 .white-bg {
     background-color: #fff !important;
 }
- textarea.pollquestion {
+textarea.pollquestion {
     resize: none;
     /* background: #FFF; */
     height: 80px;
@@ -2659,11 +2659,11 @@ padding-left: 20px !important;
     /* height: 100%; */
 }
 .listing-more-popup {
-        left: auto !important;
-            height: 90px !important;
+    left: auto !important;
+    height: 90px !important;
 }
 .no-result {
-        color: gray;
+    color: gray;
     margin-top: 10px;
     font-weight: normal;
     font-size: 12px;
@@ -2671,7 +2671,7 @@ padding-left: 20px !important;
 }
 
 .no-polls-msg {
-        text-align: center  !important;
+    text-align: center  !important;
     background: white  !important;
     padding: 10px  !important;
     border-top: 1px solid #eee  !important;
