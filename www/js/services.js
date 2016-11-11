@@ -70,7 +70,7 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     updateUserProfile: function (data) {
-                        var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'data': data})};
+                        var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': undefined}, cache: $templateCache, data: data};
                         return $http(req);
                     },
                     updateUserPassword: function (userInfo, password) {

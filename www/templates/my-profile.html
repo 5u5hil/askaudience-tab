@@ -314,7 +314,7 @@
         
         <div ng-if="activePan == 'profile'">
             <h4 class="content  profile-head double-padding-x">My Profile</h4>
-            <form name="userProfile" id="updateUserForm" ng-submit="modifyUser(userInfo)" enctype="multipart/form-data">
+            <form name="userProfile" id="updateUserForm" class="updateUserProfile" ng-submit="modifyUser(userInfo)" enctype="multipart/form-data">
                 <div class="list">
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14">First Name*</span>
@@ -331,7 +331,7 @@
                     <label class="item item-input " ng-if="userInfo.source!='Facebook' && userInfo.source!='LinkedIn'">
                         <span class="mr10">Profile Image</span>
                         <input type="hidden" name="option[1][image]" id="profileImg" ng-model="userInfo.profileImg"  />
-                          <input type="file" name="option[1][image]"  style="float: right;" class="custom-file-input" onchange="loadFile(event)"  >
+                          <input type="file" name="option[1][image]"  style="float: right;" class="custom-file-input"   >
                     </label>
                     <label class="item item-input item-stacked-label hide">
                         <span class="input-label fz14">Address</span>

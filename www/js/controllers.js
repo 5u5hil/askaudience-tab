@@ -899,7 +899,9 @@ angular.module('askaudience.controllers', [])
                 }
                 $scope.formData = {};
                 $scope.modifyUser = function (data) {
-                    data.profileImg = jQuery('#profileImg').val();
+                    var data = new FormData(jQuery("form.updateUserProfile")[0]);
+                    data.append('userId', LSFactory.get('user').ID);
+                   // data.profileImg = jQuery('#profileImg').val();
                     Loader.show();
                     APIFactory.updateUserProfile(data).then(function (response) {
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
