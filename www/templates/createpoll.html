@@ -10,7 +10,7 @@
 
         <!-- testing -->
 
-        <form class="createPoll" id="createPoll">
+        <form class="createPoll" >
             <input type='hidden' name='userId' value="{{userId}}" />
             <div class="tab1" ng-show="acitveTab == 'tab1'">
                 <div class="">
@@ -34,7 +34,7 @@
                         </div>
                     </label><!-- end ngRepeat: type in pollTypes --><label class="poll-block" ng-click="manageTabs(3, 'cloneBlock')" for="17">
                         <div class=" ">
-                            <img   alt="" class="poll-type-imge" src="img/Referendum.jpg">
+                            <img   alt="" class="poll-type-imge" src="img/referendum.jpg">
                             <input type="radio" style="display:none" name="polltype" id="17" value="17">
                             <div class=" ">
                                 <div class=" ng-binding">Referendum </div>
@@ -116,7 +116,7 @@
                 <li class="item item-input">
                     <span class="mr10">Poll Image </span>
                     <input type='hidden' value='' name='pollimg'/>
-                    <input type="file" placeholder="Image" name="pollimg" onchange="loadFile(event)" class="custom-file-input" style="float: right;">
+                    <input type="file" placeholder="Image" name="pollimg"  class="custom-file-input" style="float: right;">
 
                 </li>
                 <li class="item ">
@@ -152,7 +152,7 @@
                 <li class="item">
                     <div class="  optionWithImageImg  " >
                         <input type="hidden" name="option[1][image]"  />
-                        <input type="file" name="option[1][image]" class="" onchange="loadFile(event)"  />
+                        <input type="file" name="option[1][image]" class=""  />
 
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
@@ -171,7 +171,7 @@
                 <li class="item">
                     <div class="  optionReferendumImg  " >
                         <input type="hidden" name="option[1][image]"  />
-                        <input type="file" name="option[1][image]" class="custom-file-input"  onchange="loadFile(event)" />
+                        <input type="file" name="option[1][image]" class="custom-file-input"   />
                         <div class="option[1][image]"></div>
                         <img src="" id="option[1][image]" alt="">
                     </div>

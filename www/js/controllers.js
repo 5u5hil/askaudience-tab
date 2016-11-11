@@ -762,7 +762,7 @@ angular.module('askaudience.controllers', [])
                 }
 
 
-                $scope.vote = function (pid, oid, index,getIndex) {
+                $scope.vote = function (pid, oid, index, getIndex) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -770,12 +770,12 @@ angular.module('askaudience.controllers', [])
                             vote(pid, oid, index);
                         });
                     } else {
-                      
-                        vote(pid, oid, index,getIndex);
+
+                        vote(pid, oid, index, getIndex);
                     }
                 };
 
-                function vote(pid, oid, poll,getIndex) {                
+                function vote(pid, oid, poll, getIndex) {
                     var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
@@ -786,7 +786,7 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
                             $timeout(function () {
-                               $scope.polls[getIndex].options= response.data;
+                                $scope.polls[getIndex].options = response.data;
                                 $scope.polls[getIndex].participants.push($scope.uid);
                             }, 200)
 
@@ -1737,9 +1737,10 @@ angular.module('askaudience.controllers', [])
                 }
 
                 function newPoll() {
-                    // var data = new FormData(jQuery("form.createPoll")[0]);
-                    var data = jQuery("#createPoll").serialize();
-                    //  data.append('userId', LSFactory.get('user').ID);
+                    //var data = jQuery("#createPoll").serialize();
+
+                    var data = new FormData(jQuery("form.createPoll")[0]);
+                    data.append('userId', LSFactory.get('user').ID);
                     Loader.show('Creating Poll ...');
                     APIFactory.createPoll(data).then(function (response) {
 

@@ -110,7 +110,7 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     createPoll: function (data) {
-                        var req = {method: 'POST', url: domain + 'createPoll', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: data};
+                        var req = {method: 'POST', url: domain + 'createPoll', headers: {'Content-Type': undefined}, data: data};
                         return $http(req);
                     },
                     linkedInLogin: function (access_token) {

@@ -34,8 +34,9 @@
     </div>
     <div class="item poll-topbar padding10">
         <div class="poll-id pull-left not-link">#{{poll.id}}</div>
-        <div class="poll-id pull-right"> <span id="{{poll.id}}"></span></div>
-        <span ng-init="getTimeLeft(poll.valid_till, poll.id, $event)"></span>
+        <div class="poll-id pull-right"> <span>{{poll.time_remaining}}</span>
+        </div>
+        
     </div>
  
     <div class="item item-text-wrap p0 poll-answer-options hidden" data-toggle="{{poll.id}}"> 
