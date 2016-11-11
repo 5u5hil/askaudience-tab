@@ -530,6 +530,8 @@ angular.module('askaudience.controllers', [])
                                 if (response.data.error) {
                                     Loader.toggleLoadingWithMessage(response.data.error, 2000);
                                 } else {
+                                    $scope.friend_requested = "No";
+                                    $scope.friends = "No";
                                     Loader.toggleLoadingWithMessage(response.data.success, 2000);
                                     $scope.getUserInfo();
                                 }
@@ -934,8 +936,8 @@ angular.module('askaudience.controllers', [])
             }
         ])
 
-        .controller('pollsCtrl', ['$ionicNavBarDelegate','$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
-            function ($ionicNavBarDelegate,$scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
+        .controller('pollsCtrl', ['$ionicNavBarDelegate', '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
+            function ($ionicNavBarDelegate, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = true;
                 $scope.filters = '';

@@ -89,9 +89,9 @@
                         </div>
                         <div class="col">
 
-                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="w100 button-small poll-btn button " ng-click="friendRequest(uid, $index)">Add Friend</button>
+                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="w100 button-small poll-btn button addfriendclass" ng-click="friendRequest(uid, $index)">Add Friend</button>
                             <button ng-if="friends == 'No' && friend_requested == 'Yes'" class="button w100 button-small poll-btn" > Friend Requested</button>
-                            <button ng-if="friends == 'Yes'" class="button w100 button-small poll-btn" ng-click="unFriend(uid, $index)">Unfriend</button>
+                            <button ng-if="friends == 'Yes'" class="button w100 button-small poll-btn unfriendClass" ng-click="unFriend(uid, $index)">Unfriend</button>
                         </div>
                     </div> 
     
