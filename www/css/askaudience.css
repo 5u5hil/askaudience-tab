@@ -1825,9 +1825,9 @@ a.autolinker {
 }
 
 .option-checkbox {
-    position: absolute !important;
+/*    position: absolute !important;
     left: 1px !important;
-    top: 3px !important;
+    top: 3px !important;*/
 }
 
 .ion-item-custom {
