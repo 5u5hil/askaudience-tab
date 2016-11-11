@@ -762,7 +762,7 @@ angular.module('askaudience.controllers', [])
                 }
 
 
-                $scope.vote = function (pid, oid, index) {
+                $scope.vote = function (pid, oid, index,getIndex) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -770,14 +770,12 @@ angular.module('askaudience.controllers', [])
                             vote(pid, oid, index);
                         });
                     } else {
-                        vote(pid, oid, index);
+                      
+                        vote(pid, oid, index,getIndex);
                     }
                 };
 
-                function vote(pid, oid, poll) {
-                console.log('pid '+pid);
-                console.log('oid '+oid);
-                console.log(poll);
+                function vote(pid, oid, poll,getIndex) {                
                     var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
@@ -788,9 +786,8 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
                             $timeout(function () {
-                                console.log($scope.polls);
-                                console.log(response.data);
-                                $scope.polls[index].participants.push($scope.uid);
+                               $scope.polls[getIndex].options= response.data;
+                                $scope.polls[getIndex].participants.push($scope.uid);
                             }, 200)
 
                         }
