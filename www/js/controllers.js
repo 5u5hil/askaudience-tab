@@ -775,6 +775,9 @@ angular.module('askaudience.controllers', [])
                 };
 
                 function vote(pid, oid, poll) {
+                console.log('pid '+pid);
+                console.log('oid '+oid);
+                console.log(poll);
                     var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);
@@ -785,6 +788,8 @@ angular.module('askaudience.controllers', [])
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
                             $timeout(function () {
+                                console.log($scope.polls);
+                                console.log(response.data);
                                 $scope.polls[index].participants.push($scope.uid);
                             }, 200)
 
