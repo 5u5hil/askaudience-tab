@@ -1825,9 +1825,9 @@ a.autolinker {
 }
 
 .option-checkbox {
-/*    position: absolute !important;
-    left: 1px !important;
-    top: 3px !important;*/
+    /*    position: absolute !important;
+        left: 1px !important;
+        top: 3px !important;*/
 }
 
 
@@ -2679,4 +2679,7 @@ textarea.pollquestion {
 }
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
     opacity: 1; 
+}
+.title.title-left.header-item{
+    left: 35px !important;
 }

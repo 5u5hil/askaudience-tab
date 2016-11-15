@@ -901,7 +901,7 @@ angular.module('askaudience.controllers', [])
                 $scope.modifyUser = function (data) {
                     var data = new FormData(jQuery("form.updateUserProfile")[0]);
                     data.append('userId', LSFactory.get('user').ID);
-                   // data.profileImg = jQuery('#profileImg').val();
+                    // data.profileImg = jQuery('#profileImg').val();
                     Loader.show();
                     APIFactory.updateUserProfile(data).then(function (response) {
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
@@ -954,6 +954,7 @@ angular.module('askaudience.controllers', [])
 
 
                 $scope.getPolls = function (type) {
+                    Loader.show();
 
                     if (type == 'infScr') {
                         $scope.pageNumber = $scope.pageNumber + 1;
@@ -996,7 +997,6 @@ angular.module('askaudience.controllers', [])
                         Loader.hide();
                     }, function (error) {
                         $scope.canLoadMore = false;
-                        console.log('testing');
                         Loader.hide();
                         Loader.toast('Oops! something went wrong. Please try later again');
                     }).finally(function () {
@@ -1007,6 +1007,7 @@ angular.module('askaudience.controllers', [])
                 $scope.getPolls();
 
                 $scope.getFilteredPolls = function () {
+                    Loader.show();
                     $scope.pageNumber = 1;
                     $scope.canLoadMore = true;
                     $scope.filters = jQuery("#pollfilter").serialize();
@@ -1197,7 +1198,7 @@ angular.module('askaudience.controllers', [])
                 }
                 $scope.getPollsFilters();
 
-                $scope.vote = function (pid, oid, index,getIndex) {
+                $scope.vote = function (pid, oid, index, getIndex) {
                     if (!$rootScope.isLoggedIn) {
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
@@ -1205,11 +1206,11 @@ angular.module('askaudience.controllers', [])
                             vote(pid, oid, index);
                         });
                     } else {
-                        vote(pid, oid, index,getIndex);
+                        vote(pid, oid, index, getIndex);
                     }
                 };
 
-                function vote(pid, oid, poll,getIndex) {
+                function vote(pid, oid, poll, getIndex) {
                     var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
                     data.append('userId', LSFactory.get('user').ID);

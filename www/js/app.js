@@ -28,7 +28,8 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
         })
         .config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
             $ionicConfigProvider.tabs.position('bottom');
-            // $ionicConfigProvider.backButton.text('');
+            $ionicConfigProvider.navBar.alignTitle('left');
+            $ionicConfigProvider.backButton.text('');
             $ionicConfigProvider.views.maxCache(0);
             $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
 
