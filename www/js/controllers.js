@@ -951,6 +951,26 @@ angular.module('askaudience.controllers', [])
                     $ionicNavBarDelegate.showBar(true);
                 });
 
+                $scope.getPollsFilters = function () {
+                    Loader.show();
+
+                    APIFactory.getInterests().then(function (response) {
+                        $scope.interests = response.data;
+
+                    }, function (error) {
+
+                        Loader.toast('Oops! something went wrong. Please try later again');
+                    });
+                    APIFactory.getPollType().then(function (response) {
+                        $scope.pollTypes = response.data;
+                        Loader.hide();
+                    }, function (error) {
+                        Loader.hide();
+                        Loader.toast('Oops! something went wrong. Please try later again');
+                    });
+                }
+                $scope.getPollsFilters();
+
 
 
                 $scope.getPolls = function (type) {
@@ -1178,25 +1198,6 @@ angular.module('askaudience.controllers', [])
                         }
                     });
                 }
-                $scope.getPollsFilters = function () {
-                    Loader.show();
-
-                    APIFactory.getInterests().then(function (response) {
-                        $scope.interests = response.data;
-                        Loader.hide();
-                    }, function (error) {
-                        Loader.hide();
-                        Loader.toast('Oops! something went wrong. Please try later again');
-                    });
-                    APIFactory.getPollType().then(function (response) {
-                        $scope.pollTypes = response.data;
-                        Loader.hide();
-                    }, function (error) {
-                        Loader.hide();
-                        Loader.toast('Oops! something went wrong. Please try later again');
-                    });
-                }
-                $scope.getPollsFilters();
 
                 $scope.vote = function (pid, oid, index, getIndex) {
                     if (!$rootScope.isLoggedIn) {
