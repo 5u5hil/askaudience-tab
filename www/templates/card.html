@@ -61,7 +61,7 @@
             </ul>
             <input type="hidden" name="pollid" value="{{poll.id}}" />
         </form>
-        <div class="voteOption{{poll.id}}" ng-if="isLoggedIn && !(poll.participants.indexOf(uid) < 0)">
+        <div class="voteOption{{poll.id}}" ng-if="(!(Number(poll.participants.indexOf(uid)) < 0) && poll.participants.length)">
             <ul class="options">
 
                 <li ng-repeat="opt in poll.options">          
