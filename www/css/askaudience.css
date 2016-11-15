@@ -1830,9 +1830,7 @@ a.autolinker {
     top: 3px !important;*/
 }
 
-.ion-item-custom {
- //   padding-left: 40px !important;
-}
+
 
 .custom-poll-card .item.item-avatar {
     padding: 27px 10px 0px 88px !important
@@ -2029,7 +2027,6 @@ a.button.cat-button:hover {
     max-height: 35px !important;
     max-width: 35px !important;
     top: 6px !important;
-    left: 6px !important;
     box-shadow: none;
 }
 
@@ -2341,7 +2338,7 @@ a.button.cat-button:hover {
 
 .ion-item-custom {
     padding-bottom: 12px;
-    padding-top: 10px;
+    padding-top: 12px;
     margin-top: 0px;
 }
 
