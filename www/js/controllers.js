@@ -943,7 +943,7 @@ angular.module('askaudience.controllers', [])
         .controller('pollsCtrl', ['$ionicNavBarDelegate', '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
             function ($ionicNavBarDelegate, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
                 $scope.pageNumber = 1;
-                $scope.canLoadMore = true;
+                $scope.canLoadMore = false;
                 $scope.filters = '';
                 $scope.orderBy = '';
 
@@ -971,9 +971,12 @@ angular.module('askaudience.controllers', [])
                 }
                 $scope.getPollsFilters();
 
-
+        $scope.isScroll=0;
 
                 $scope.getPolls = function (type) {
+                    
+                    console.log($scope.canLoadMore);
+                  
                     Loader.show();
 
                     if (type == 'infScr') {
@@ -982,6 +985,9 @@ angular.module('askaudience.controllers', [])
                     if (type == 'pullRef') {
                         $scope.pageNumber = 1;
                         $scope.canLoadMore = true;
+                    }
+                    if(type=='onLoad'){
+                        
                     }
 
                     if ($scope.pageNumber == 1 && type != 'pullRef') {
@@ -1005,6 +1011,7 @@ angular.module('askaudience.controllers', [])
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
                             } else {
+                                 
                                 angular.forEach(response.data, function (element, index) {
                                     $scope.polls.push(element);
                                 });
@@ -1013,6 +1020,10 @@ angular.module('askaudience.controllers', [])
                             $scope.polls = "";
                             $scope.polls = response.data;
                             a = $scope.polls;
+                            setTimeout(function(){
+                                $scope.canLoadMore=true
+                            },500);
+                            //$scope.canLoadMore=true;
                         }
                         Loader.hide();
                     }, function (error) {
@@ -1020,11 +1031,12 @@ angular.module('askaudience.controllers', [])
                         Loader.hide();
                         Loader.toast('Oops! something went wrong. Please try later again');
                     }).finally(function () {
+                   
                         $scope.$broadcast('scroll.infiniteScrollComplete');
                         $scope.$broadcast('scroll.refreshComplete');
                     });
                 }
-                $scope.getPolls();
+                $scope.getPolls('onLoad');
 
                 $scope.getFilteredPolls = function () {
                     Loader.show();
