@@ -51,7 +51,7 @@
 
                     </label> -->
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll,$parent.$index)">
+                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll,$parent.$parent.$index)">
                             <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> 
                             <span class="poll-option">{{ opt.option}}</span>
                             <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized pull-right">

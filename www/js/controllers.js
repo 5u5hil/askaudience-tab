@@ -1236,6 +1236,8 @@ angular.module('askaudience.controllers', [])
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
+                            console.log(response.data);
+                            console.log(getIndex);
                             $scope.polls[getIndex].options = response.data;
                             $scope.polls[getIndex].participants.push($scope.uid);
 
