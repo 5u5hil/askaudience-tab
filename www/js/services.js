@@ -73,8 +73,10 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': undefined}, cache: $templateCache, data: data};
                         return $http(req);
                     },
-                    updateUserPassword: function (userInfo, password) {
-                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'userInfo': userInfo, 'password': password})};
+                    updateUserPassword: function (uId,password) {
+                        console.log(uId);
+                        console.log(password);
+                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'uId': uId,'password':password})};
                         return $http(req);
                     },
                     authUser: function (data) {

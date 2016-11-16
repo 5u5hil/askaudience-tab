@@ -344,7 +344,7 @@
 
             </form>
             <h4 class="content  profile-head double-padding-x">Change Password</h4>
-            <form name="changePwdForm" ng-submit="changePassword(userInfo, password)">
+            <form name="changePwdForm" ng-submit="changePassword(password)">
                 <div class="list">
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14"> Password*</span>
@@ -353,6 +353,7 @@
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14">Confirm Password*</span>
                         <input type="password" ng-model="password.repass"   name="cpassword" required ng-class="changePwdForm.cpassword.$touched && changePwdForm.cpassword.$invalid ? 'error-border' : ''" placeholder="Confirm New Password">
+                        <input type="hidden" ng-model="password.userProfile" value="{{userInfo}}" />
                     </label>
                 </div>
                 <span ng-show="password.repass != password.pass" class="validation-error">Passwords do not match.</span> 

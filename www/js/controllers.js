@@ -909,9 +909,10 @@ angular.module('askaudience.controllers', [])
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     });
                 }
-                $scope.changePassword = function (userInfo, password) {
+                $scope.changePassword = function (password) {
                     Loader.show();
-                    APIFactory.updateUserPassword(userInfo, password).then(function (response) {
+                    var uId = LSFactory.get('user').ID;
+                    APIFactory.updateUserPassword(uId, password).then(function (response) {
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     });
                 }
@@ -1788,6 +1789,7 @@ angular.module('askaudience.controllers', [])
 
 
                 $scope.addOption = function (data) {
+    
                     if (ptype == 1) {
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
                         indexOptionsMultiChoice('optionMultiChoice');
@@ -1805,7 +1807,7 @@ angular.module('askaudience.controllers', [])
 
                     }
                     if (ptype == 4) {
-
+                        jQuery('.minimumText').hide();
                         jQuery('.addOptions').hide();
                         jQuery(".options").append(jQuery(".cloneYesNo").html());
                         indexOptionsMultiChoice('optionYesNo', data);
