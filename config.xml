@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.askaudience.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Ask Audience</name>
-  <description>&#xD;&#xD;&#xD;
-        An infini project.&#xD;&#xD;&#xD;
+  <description>&#xD;&#xD;&#xD;&#xD;
+        An infini project.&#xD;&#xD;&#xD;&#xD;
     </description>
-  <author email="support@infiniteit.biz" href="http://example.com.com/">&#xD;&#xD;&#xD;
-      Swapnil Patwa&#xD;&#xD;&#xD;
+  <author email="support@infiniteit.biz" href="http://example.com.com/">&#xD;&#xD;&#xD;&#xD;
+      Swapnil Patwa&#xD;&#xD;&#xD;&#xD;
     </author>
   <content src="index.html"/>
   <access origin="*"/>
