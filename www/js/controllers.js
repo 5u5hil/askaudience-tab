@@ -1219,7 +1219,7 @@ angular.module('askaudience.controllers', [])
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
                         }, function () {
-                            vote(pid, oid, index);
+                            vote(pid, oid, index,getIndex);
                         });
                     } else {
                         vote(pid, oid, index, getIndex);
