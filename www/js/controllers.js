@@ -219,7 +219,7 @@ angular.module('askaudience.controllers', [])
                     $scope.data = {}
                     // An elaborate, custom popup
                     var myPopup = $ionicPopup.show({
-                        template: '<input type="email" ng-model="data.regEmail" placeholder="Enter you email" class="padding">',
+                        template: '<input type="email" ng-model="data.userLogin" placeholder="Enter you email" class="padding">',
                         title: 'Enter your email address',
                         subTitle: 'You will get a link to reset password',
                         scope: $scope,
@@ -230,7 +230,7 @@ angular.module('askaudience.controllers', [])
                                 text: 'Submit',
                                 type: 'button-balanced fs12 reset-btn',
                                 onTap: function (e) {
-                                    if (!$scope.data.regEmail) {
+                                    if (!$scope.data.userLogin) {
                                         //don't allow the user to close unless he enters wifi password
                                         e.preventDefault();
                                     } else {
@@ -245,12 +245,14 @@ angular.module('askaudience.controllers', [])
                         }
                         Loader.show();
                         APIFactory.resetPwd(data).then(function (response) {
-                            if (response.data == 1) {
+                            console.log(response.data);
+                            if (response.data.errorType == 'success') {
+                                console.log(response.data.errorType);
                                 Loader.hide();
-                                Loader.toast('Your password reset link has been sent to your email Id');
+                                Loader.toggleLoadingWithMessage('Your password reset link has been sent to your email Id', 2000);
                             } else {
                                 Loader.hide();
-                                Loader.toast('This Email Id is not registered');
+                                Loader.toggleLoadingWithMessage('This Email Id is not registered', 2000);
                             }
                         }, function (error) {
                             console.error(error);
@@ -971,12 +973,12 @@ angular.module('askaudience.controllers', [])
                 }
                 $scope.getPollsFilters();
 
-        $scope.isScroll=0;
+                $scope.isScroll = 0;
 
                 $scope.getPolls = function (type) {
-                    
+
                     console.log($scope.canLoadMore);
-                  
+
                     Loader.show();
 
                     if (type == 'infScr') {
@@ -986,8 +988,8 @@ angular.module('askaudience.controllers', [])
                         $scope.pageNumber = 1;
                         $scope.canLoadMore = true;
                     }
-                    if(type=='onLoad'){
-                        
+                    if (type == 'onLoad') {
+
                     }
 
                     if ($scope.pageNumber == 1 && type != 'pullRef') {
@@ -1011,7 +1013,7 @@ angular.module('askaudience.controllers', [])
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
                             } else {
-                                 
+
                                 angular.forEach(response.data, function (element, index) {
                                     $scope.polls.push(element);
                                 });
@@ -1020,9 +1022,9 @@ angular.module('askaudience.controllers', [])
                             $scope.polls = "";
                             $scope.polls = response.data;
                             a = $scope.polls;
-                            setTimeout(function(){
-                                $scope.canLoadMore=true
-                            },500);
+                            setTimeout(function () {
+                                $scope.canLoadMore = true
+                            }, 500);
                             //$scope.canLoadMore=true;
                         }
                         Loader.hide();
@@ -1031,7 +1033,7 @@ angular.module('askaudience.controllers', [])
                         Loader.hide();
                         Loader.toast('Oops! something went wrong. Please try later again');
                     }).finally(function () {
-                   
+
                         $scope.$broadcast('scroll.infiniteScrollComplete');
                         $scope.$broadcast('scroll.refreshComplete');
                     });

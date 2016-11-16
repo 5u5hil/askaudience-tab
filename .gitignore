@@ -9,3 +9,7 @@ node_modules/
 plugins/
 platform/
 resources/
+/nbproject/private/
+nbproject/project.xml
+*.properties
+www.zip

@@ -117,7 +117,7 @@ angular.module('askaudience.services', [])
                         return $http.get('https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name)?format=json&oauth2_access_token=' + access_token);
                     },
                     resetPwd: function (data) {
-                        var req = {method: 'POST', url: domain + 'send-link', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        var req = {method: 'POST', url: domain + 'forgotPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
                     socialRegister: function (data) {
