@@ -950,7 +950,12 @@ angular.module('askaudience.controllers', [])
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
-                $scope.openPopover = function($event) { $scope.popover.show($event); }; $scope.closePopover = function() { $scope.popover.hide(); }; //Cleanup the popover when we're done with it! $scope.$on('$destroy', function() { $scope.popover.remove(); }); // E
+                $scope.openPopover = function($event) { 
+                    
+                    $scope.popover.show($event); }; 
+                
+                $scope.closePopover = function() { $scope.popover.hide(); }; 
+                
                 $scope.filters = '';
                 $scope.orderBy = '';
 
