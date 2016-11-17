@@ -1,4 +1,4 @@
-<div ng-class="!poll.img ? 'text-poll' : 'img-poll'" >
+<div ng-class="!poll.img ? 'text-poll' : 'img - poll'" >
     <div class="top-bar-wrapper">
         <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
@@ -51,7 +51,7 @@
 
                     </label> -->
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll,$parent.$parent.$index)">
+                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll, $parent.$parent.$index)">
                             <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> 
                             <span class="poll-option">{{ opt.option}}</span>
                             <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized pull-right">
@@ -67,9 +67,14 @@
                 <li ng-repeat="opt in poll.options">          
                     <label class="checkbox custom-checkbox w100">
                         <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" ng-click="vote()">
-                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{(opt.number_of_votes / poll.participants.length)*100 || 0 | number:0}}%</div>
-                            <span class="poll-option">{{ opt.option}}</span>
-                            <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{(opt.number_of_votes / poll.participants.length) * 100}} +  '%'}" ></div></div>
+                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url" ng-click="mopenModal()" ></div>
+                            <div class="Nproressbar" ng-click="vote()">
+                                <span class="poll-option ptitle">{{ opt.option}}</span>
+                                <span class="poll-option pers">{{((opt.number_of_votes) / poll.participants.length) * 100 || 0 | number:0}}%</span>
+                                <div class="clr"></div>
+                                <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{((opt.number_of_votes) / poll.participants.length) * 100}} +  '%'}" ></div></div>
+                            </div>
+
                         </ion-item>
                     </label>
                 </li>

@@ -102,17 +102,17 @@
         </div> 
         <div ng-if="activePanCat == 'polls'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
-                <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub - menu - item'" 
+                <span ng-class="activePan == 'openPolls' ? 'active-item' : 'sub-menu-item'" 
                       ng-click="updatePan('openPolls', 'open', 'polls')">Public</span>
 
-                <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub - menu - item'"   
+                <span ng-class="activePan == 'privatePolls' ? 'active-item' : 'sub-menu-item'"   
                       ng-click="updatePan('privatePolls', 'private', 'polls')">Private</span>
-                <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub - menu - item'"   ng-click="updatePan('Anonymous', 'anonymous', 'polls')">Anonymous</span> 
-                <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub - menu - item'"  
+                <span ng-class="activePan == 'Anonymous' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('Anonymous', 'anonymous', 'polls')">Anonymous</span> 
+                <span ng-class="activePan == 'pinRevealed' ? 'active-item' : 'sub-menu-item'"  
                       ng-click="updatePan('pinRevealed', 'revealPin', 'polls')">Pin Revealed</span>
-                <span ng-class="activePan == 'myVoted' ? 'active-item' : 'sub - menu - item'"  
+                <span ng-class="activePan == 'myVoted' ? 'active-item' : 'sub-menu-item'"  
                       ng-click="updatePan('myVoted', 'getUserPollParticipate', 'polls')">My Voted </span>
-                <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub - menu - item'"
+                <span ng-class="activePan == 'closedPolls' ? 'active-item' : 'sub-menu-item'"
                       ng-click="updatePan('closedPolls', 'closed', 'polls')">Closed</span>
 
 
@@ -122,11 +122,11 @@
         <div ng-if="activePanCat == 'friends'" >
             <ion-scroll direction="x" class="item ion-sc" ng-if="uid == cid">
 
-                <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub - menu - item'"   ng-click="updatePan('allfrnd')">Friend(s)</span>
+                <span ng-class="activePan == 'allfrnd' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('allfrnd')">Friend(s)</span>
 
-                <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub - menu - item'"   ng-click="updatePan('PendingRequest')">Pending Request(s)</span>
+                <span ng-class="activePan == 'PendingRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('PendingRequest')">Pending Request(s)</span>
 
-                <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub - menu - item'"   ng-click="updatePan('myRequest')">My Request(s)</span>
+                <span ng-class="activePan == 'myRequest' ? 'active-item' : 'sub-menu-item'"   ng-click="updatePan('myRequest')">My Request(s)</span>
 
 
             </ion-scroll>
@@ -134,7 +134,7 @@
         <div ng-if="(activePan == 'openPolls') || (activePan == 'privatePolls') || (activePan == 'Anonymous') || (activePan == 'pinRevealed') || (activePan == 'closedPolls') || (activePan == 'myVoted')" class="listing-content">
 
             <div class="card card-polls" ng-init="sectionIndex = $index"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
-                <div ng-class="!poll.img ? 'text-poll' : 'img - poll'" >
+                <div ng-class="!poll.img ? 'text-poll' : 'img-poll'" >
                     <div class="top-bar-wrapper">
                         <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
                             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
@@ -204,15 +204,14 @@
 
                                     <label class="checkbox custom-checkbox w100">
                                         <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0">
-                                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url"  ></div>
+                                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url" ng-click="mopenModal()" ></div>
                                             <div class="Nproressbar" ng-click="vote()">
-                                                <span class="poll-option ptitle">{{ opt.option}}</span>
-                                                <span class="poll-option pers">{{((opt.number_of_votes) / poll.participants.length) * 100 || 0 | number:0}}%</span>
-                                                <div class="clr"></div>
-                                                <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{((opt.number_of_votes) / poll.participants.length) * 100}} +  '%'}" ></div></div>
+                                            <span class="poll-option ptitle">{{ opt.option}}</span>
+                                            <span class="poll-option pers">{{((opt.number_of_votes) / poll.participants.length) * 100 || 0 | number:0}}%</span>
+                                            <div class="clr"></div>
+                                            <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{((opt.number_of_votes) / poll.participants.length) * 100}} +  '%'}" ></div></div>
                                             </div>
                                         </ion-item>
-
                                     </label>
                                 </li>
                             </ul>
@@ -333,9 +332,9 @@
                     <label class="item item-input " ng-if="userInfo.source != 'Facebook' && userInfo.source != 'LinkedIn'">
                         <span class="mr10">Profile Image</span>
 
-                        <input type="file" name="userImg"  style="float: right;" class="custom-file-input"   >
+                          <input type="file" name="userImg"  style="float: right;" class="custom-file-input"   >
 
-
+      
                     </label>
                     <label class="item item-input item-stacked-label hide">
                         <span class="input-label fz14">Address</span>
@@ -369,17 +368,6 @@
         </div>
 
     </ion-content>
-
-
-    <script id="my-modal.html" type="text/ng-template">
-        <ion-modal-view>
-        <ion-header-bar>
-        <h1 class="title">My Modal title</h1>
-        </ion-header-bar>
-        <ion-content>
-        Hello!
-        </ion-content>
-        </ion-modal-view>
-    </script>
-
+    
+    
 </ion-view>
