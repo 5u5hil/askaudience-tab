@@ -2555,6 +2555,7 @@ input.ion-google-place[readonly]{
 }
 .item-avatar h2 {
     text-transform: capitalize;
+    padding-left: 5px;
 }
 .active-cat {
     font-weight: bold;
