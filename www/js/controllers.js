@@ -400,7 +400,6 @@ angular.module('askaudience.controllers', [])
         .controller('userProfileCtrl', ['$ionicTabsDelegate','$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
             function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
                
-            
                 
                 $scope.canLoadMore = true;
                 Loader.show();
