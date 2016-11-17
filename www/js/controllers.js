@@ -977,9 +977,6 @@ angular.module('askaudience.controllers', [])
                 $scope.isScroll = 0;
 
                 $scope.getPolls = function (type) {
-
-                    console.log($scope.canLoadMore);
-
                     Loader.show();
 
                     if (type == 'infScr') {
