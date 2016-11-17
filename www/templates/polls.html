@@ -1,38 +1,24 @@
 <ion-view  hide-menu-button="true">
     <ion-nav-title>
-       Ask Audience
+        Ask Audience
     </ion-nav-title>
-            <ion-nav-buttons side="right"> 
-                <button class="button button-icon button-clear ion-arrow-swap sort-icon" ng-click="invokeSort()">
-                </button> 
-                <button class="button button-icon button-clear ion-funnel" ng-click="openFilters()">
-                </button> 
-                <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
-                </button> 
-                <button class="button button-icon button-clear ion-android-more-vertical" ng-click="openListingMore()">
-                </button> 
-            <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
-                    <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
-                </button> -->
-                  
-            </ion-nav-buttons> 
+    <ion-nav-buttons side="right"> 
+        <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
+        </button> 
+        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
+        </button> 
+        <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
+                <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
+            </button> -->
+
+    </ion-nav-buttons> 
     <ion-content class="has-footer  listing-content">
         <ion-refresher pulling-text="Pull to get latest polls..." on-refresh="getPolls('pullRef')">
         </ion-refresher> 
-       
+
         <div class="card card-polls" ng-include src="'templates/card.html'"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
         </div>
-         <ion-infinite-scroll on-infinite="getPolls('infScr')" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>
-         <div ng-show="!morePolls" class="listing-done"><p>No more polls</p></div>
+        <ion-infinite-scroll on-infinite="getPolls('infScr')" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>
+        <div ng-show="!morePolls" class="listing-done"><p>No more polls</p></div>
     </ion-content>
-    <script id="my-popover.html" type="text/ng-template">
-  <ion-popover-view>
-    <ion-header-bar>
-      <h1 class="title">My Popover Title</h1>
-    </ion-header-bar>
-    <ion-content>
-      Hello!
-    </ion-content>
-  </ion-popover-view>
-</script>
 </ion-view>

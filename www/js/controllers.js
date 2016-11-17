@@ -950,41 +950,22 @@ angular.module('askaudience.controllers', [])
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
+                  $scope.myPopup = '';
+                
+                        $scope.showPopup = function () {
+                            $scope.data = {};
 
-                $scope.showPopup = function () {
-                    $scope.data = {};
+                            // An elaborate, custom popup
+                            $scope.myPopup = $ionicPopup.alert({
+                                template: '<ion-list><ion-item ng-click="invokeSort()"><i class="ion-arrow-swap"></i> Sort Latest Polls</ion-item><ion-item ng-click="openFilters()"><i class="ion-funnel"></i> Filter Latest Polls</ion-item></ion-list>',
+                                scope: $scope,
+                                title: 'Select An Action',
+                            });
 
-                    // An elaborate, custom popup
-                    var myPopup = $ionicPopup.show({
-                        template: '<input type="password" ng-model="data.wifi">',
-                        title: 'Enter Wi-Fi Password',
-                        subTitle: 'Please use normal things',
-                        scope: $scope,
-                        buttons: [
-                            {text: 'Cancel'},
-                            {
-                                text: '<b>Save</b>',
-                                type: 'button-positive',
-                                onTap: function (e) {
-                                    if (!$scope.data.wifi) {
-                                        //don't allow the user to close unless he enters wifi password
-                                        e.preventDefault();
-                                    } else {
-                                        return $scope.data.wifi;
-                                    }
-                                }
-                            }
-                        ]
-                    });
+                         
 
-                    myPopup.then(function (res) {
-                        console.log('Tapped!', res);
-                    });
-
-                    $timeout(function () {
-                        myPopup.close(); //close the popup after 3 seconds for some reason
-                    }, 3000);
-                };
+                           
+                        };
 
                 $scope.filters = '';
                 $scope.orderBy = '';
@@ -1095,6 +1076,7 @@ angular.module('askaudience.controllers', [])
 
                 }
                 $scope.invokeSort = function () {
+                     $scope.myPopup.close();
                     $scope.newitem = {}
 
                     var myPopup = $ionicPopup.show({
@@ -1327,6 +1309,7 @@ angular.module('askaudience.controllers', [])
                     $scope.modal = modal;
                 });
                 $scope.openFilters = function () {
+                    $scope.myPopup.close();
                     $scope.modal.show();
 
                 };
