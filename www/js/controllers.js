@@ -354,7 +354,7 @@ angular.module('askaudience.controllers', [])
                             title: 'Reposted By:',
                             cssClass: 'reponstedby-popup',
                             buttons: [
-                                {text: 'Cancel', type: 'button-energized'}
+                                {text: 'Ok', type: 'button-energized'}
 
                             ],
                             scope: $scope
