@@ -2628,7 +2628,7 @@ input.ion-autocomplete[readonly] {
 .button.button-positive, .button.button-positive:hover, .button.button-positive:focus {
     border-color: transparent;
     background-color: #fbbc05 ;
-    color: #fff;
+   // color: #fff;
 }
 .reposts-icon {
     padding-top: 1px;

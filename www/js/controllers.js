@@ -337,6 +337,7 @@ angular.module('askaudience.controllers', [])
                     })
                 };
                 $scope.getRepostedBy = function (pollid) {
+                    Loader.show();
                     APIFactory.getRepostedBy({pollId: pollid}).then(function (response) {
                         Loader.hide();
                         $scope.repostedPost = response.data;
@@ -1732,7 +1733,6 @@ angular.module('askaudience.controllers', [])
                 $scope.posted_as = 1;
                 Loader.show();
                 $scope.ptype = '';
-
 
                 APIFactory.getInterests().then(function (response) {
                     $scope.interests = response.data;
