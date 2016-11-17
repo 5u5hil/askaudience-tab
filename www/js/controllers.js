@@ -950,7 +950,7 @@ angular.module('askaudience.controllers', [])
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
-                $scope.openPopover = function($event) { 
+                $scope.openPover = function($event) { 
                     
                     $scope.popover.show($event); }; 
                 
