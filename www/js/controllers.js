@@ -945,16 +945,46 @@ angular.module('askaudience.controllers', [])
             }
         ])
 
-        .controller('pollsCtrl', ['$ionicNavBarDelegate', '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
-            function ($ionicNavBarDelegate, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
+        .controller('pollsCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup',
+            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
-                $scope.openPover = function($event) { 
-                    
-                    $scope.popover.show($event); }; 
                 
-                $scope.closePopover = function() { $scope.popover.hide(); }; 
+                $scope.showPopup = function() {
+  $scope.data = {};
+
+  // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    template: '<input type="password" ng-model="data.wifi">',
+    title: 'Enter Wi-Fi Password',
+    subTitle: 'Please use normal things',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Save</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          if (!$scope.data.wifi) {
+            //don't allow the user to close unless he enters wifi password
+            e.preventDefault();
+          } else {
+            return $scope.data.wifi;
+          }
+        }
+      }
+    ]
+  });
+
+  myPopup.then(function(res) {
+    console.log('Tapped!', res);
+  });
+
+  $timeout(function() {
+     myPopup.close(); //close the popup after 3 seconds for some reason
+  }, 3000);
+ };
                 
                 $scope.filters = '';
                 $scope.orderBy = '';
@@ -1021,7 +1051,7 @@ angular.module('askaudience.controllers', [])
                                 $scope.canLoadMore = false;
                                 $scope.morePolls = false;
                             } else {
-
+                                $scope.morePolls = true;
                                 angular.forEach(response.data, function (element, index) {
                                     $scope.polls.push(element);                                    
                                 });
@@ -1699,8 +1729,8 @@ angular.module('askaudience.controllers', [])
         })
 
 
-        .controller('createPollCtrl', ['$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
-            function ($scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
+        .controller('createPollCtrl', ['$compile','$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
+            function ($compile, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
                 $scope.acitveTab = 'tab1';
                 $scope.posted_as = 1;
                 Loader.show();
@@ -1789,12 +1819,12 @@ angular.module('askaudience.controllers', [])
 
                 var options = {};
                 var inputFrom = document.getElementById('from');
-                var autocompleteFrom = new google.maps.places.Autocomplete(inputFrom, options);
-                google.maps.event.addListener(autocompleteFrom, 'place_changed', function () {
-                    var place = autocompleteFrom.getPlace();
-                    $scope.lat = place.geometry.location.lat();
-                    $scope.lng = place.geometry.location.lng();
-                });
+//                var autocompleteFrom = new google.maps.places.Autocomplete(inputFrom, options);
+//                google.maps.event.addListener(autocompleteFrom, 'place_changed', function () {
+//                    var place = autocompleteFrom.getPlace();
+//                    $scope.lat = place.geometry.location.lat();
+//                    $scope.lng = place.geometry.location.lng();
+//                });
 
                 $scope.isOptionValid = function () {
                     console.log('adsf');
@@ -1804,7 +1834,10 @@ angular.module('askaudience.controllers', [])
                 $scope.addOption = function (data) {
 
                     if (ptype == 1) {
+                        jQuery(".cloneMultiChoice input").attr('ng-model','opts');
+                        
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
+                        $compile(jQuery(".cloneMultiChoice input"))($scope);
                         indexOptionsMultiChoice('optionMultiChoice');
                     }
 
