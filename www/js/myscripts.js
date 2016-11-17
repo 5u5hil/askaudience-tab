@@ -4,6 +4,8 @@ jQuery(function ($) {
         $(this).parent().parent().parent().remove();
         indexOptions();
     })
+    
+    
 });
 
 function indexOptions() {

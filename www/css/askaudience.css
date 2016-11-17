@@ -2348,11 +2348,27 @@ a.button.cat-button:hover {
     font-weight: bold;
 }
 
+/* NG added */
+
+.Nproressbar .poll-option, .Nproressbar .progress-bar-wrap{margin-left: 0;}
+.Nproressbar .poll-option{display:block; float: left;}
+.Nproressbar .poll-option.ptitle{width:80%;
+                                white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Nproressbar .poll-option.pers{width:20%; text-align: right; float:right}
+.clr{clear: both; padding: 0; margin: 0;}
+
+/* end of NG */
+
 .notification-icon {
     margin-top: -5px;
     font-weight: normal !important;
     color: #818181;
 }
+
+
 
 .no-height-row {
     margin: 0px;
