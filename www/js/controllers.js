@@ -950,42 +950,42 @@ angular.module('askaudience.controllers', [])
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
-                
-                $scope.showPopup = function() {
-  $scope.data = {};
 
-  // An elaborate, custom popup
-  var myPopup = $ionicPopup.show({
-    template: '<input type="password" ng-model="data.wifi">',
-    title: 'Enter Wi-Fi Password',
-    subTitle: 'Please use normal things',
-    scope: $scope,
-    buttons: [
-      { text: 'Cancel' },
-      {
-        text: '<b>Save</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-          if (!$scope.data.wifi) {
-            //don't allow the user to close unless he enters wifi password
-            e.preventDefault();
-          } else {
-            return $scope.data.wifi;
-          }
-        }
-      }
-    ]
-  });
+                $scope.showPopup = function () {
+                    $scope.data = {};
 
-  myPopup.then(function(res) {
-    console.log('Tapped!', res);
-  });
+                    // An elaborate, custom popup
+                    var myPopup = $ionicPopup.show({
+                        template: '<input type="password" ng-model="data.wifi">',
+                        title: 'Enter Wi-Fi Password',
+                        subTitle: 'Please use normal things',
+                        scope: $scope,
+                        buttons: [
+                            {text: 'Cancel'},
+                            {
+                                text: '<b>Save</b>',
+                                type: 'button-positive',
+                                onTap: function (e) {
+                                    if (!$scope.data.wifi) {
+                                        //don't allow the user to close unless he enters wifi password
+                                        e.preventDefault();
+                                    } else {
+                                        return $scope.data.wifi;
+                                    }
+                                }
+                            }
+                        ]
+                    });
 
-  $timeout(function() {
-     myPopup.close(); //close the popup after 3 seconds for some reason
-  }, 3000);
- };
-                
+                    myPopup.then(function (res) {
+                        console.log('Tapped!', res);
+                    });
+
+                    $timeout(function () {
+                        myPopup.close(); //close the popup after 3 seconds for some reason
+                    }, 3000);
+                };
+
                 $scope.filters = '';
                 $scope.orderBy = '';
 
@@ -1053,7 +1053,7 @@ angular.module('askaudience.controllers', [])
                             } else {
                                 $scope.morePolls = true;
                                 angular.forEach(response.data, function (element, index) {
-                                    $scope.polls.push(element);                                    
+                                    $scope.polls.push(element);
                                 });
                             }
                         } else {
@@ -1729,8 +1729,8 @@ angular.module('askaudience.controllers', [])
         })
 
 
-        .controller('createPollCtrl', ['$compile','$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
-            function ($compile, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
+        .controller('createPollCtrl', ['$ionicPopup', '$compile', '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicScrollDelegate',
+            function ($ionicPopup, $compile, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicScrollDelegate) {
                 $scope.acitveTab = 'tab1';
                 $scope.posted_as = 1;
                 Loader.show();
@@ -1797,6 +1797,20 @@ angular.module('askaudience.controllers', [])
 
                 function newPoll() {
                     //var data = jQuery("#createPoll").serialize();
+                    var isoption = 0;
+                    jQuery('.options .opts').each(function () {
+                        if (jQuery(this).val()) {
+                            isoption++;
+                        }
+                    });
+
+                    if (isoption < 2) {
+                        $ionicPopup.alert({
+                            title: 'Validation Error!',
+                            template: 'Please add atleast two options'
+                        });
+                        return;
+                    }
 
                     var data = new FormData(jQuery("form.createPoll")[0]);
                     data.append('userId', LSFactory.get('user').ID);
@@ -1826,18 +1840,11 @@ angular.module('askaudience.controllers', [])
 //                    $scope.lng = place.geometry.location.lng();
 //                });
 
-                $scope.isOptionValid = function () {
-                    console.log('adsf');
-                    console.log(jQuery(".optionMultiChoice input").val());
-                    return false;
-                }
+
                 $scope.addOption = function (data) {
 
                     if (ptype == 1) {
-                        jQuery(".cloneMultiChoice input").attr('ng-model','opts');
-                        
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
-                        $compile(jQuery(".cloneMultiChoice input"))($scope);
                         indexOptionsMultiChoice('optionMultiChoice');
                     }
 
