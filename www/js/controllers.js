@@ -397,8 +397,11 @@ angular.module('askaudience.controllers', [])
             }
         ])
 
-        .controller('userProfileCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
-            function ($scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
+        .controller('userProfileCtrl', ['$ionicTabsDelegate','$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
+            function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
+               
+            
+                
                 $scope.canLoadMore = true;
                 Loader.show();
                 $scope.activePanCat = 'polls';
@@ -1786,7 +1789,11 @@ angular.module('askaudience.controllers', [])
                     $scope.lng = place.geometry.location.lng();
                 });
 
-
+                $scope.isOptionValid = function(){
+                    console.log('adsf');
+                    console.log(jQuery(".optionMultiChoice input").val());
+                    return false;
+                }
                 $scope.addOption = function (data) {
     
                     if (ptype == 1) {
