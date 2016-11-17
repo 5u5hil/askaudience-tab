@@ -2343,7 +2343,7 @@ a.button.cat-button:hover {
 }
 
 .poll-option {
-    margin-left: 10px;
+    margin-left: 30px;
     font-size: 14px;
     font-weight: bold;
 }
@@ -2388,7 +2388,7 @@ a.button.cat-button:hover {
 
 .progress-bar-wrap {
     height: 7px;
-    margin-left: 10px;
+    margin-left: 30px;
     border-radius: 4px;
     background-color: #f1f1f1;
     margin-top: 2px;
