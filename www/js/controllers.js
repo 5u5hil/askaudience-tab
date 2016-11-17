@@ -397,10 +397,10 @@ angular.module('askaudience.controllers', [])
             }
         ])
 
-        .controller('userProfileCtrl', ['$ionicTabsDelegate','$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
+        .controller('userProfileCtrl', ['$ionicTabsDelegate', '$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
             function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
-               
-                
+
+
                 $scope.canLoadMore = true;
                 Loader.show();
                 $scope.activePanCat = 'polls';
@@ -949,6 +949,8 @@ angular.module('askaudience.controllers', [])
             function ($ionicNavBarDelegate, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup) {
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
+                $scope.morePolls = true;
+                $scope.openPopover = function($event) { $scope.popover.show($event); }; $scope.closePopover = function() { $scope.popover.hide(); }; //Cleanup the popover when we're done with it! $scope.$on('$destroy', function() { $scope.popover.remove(); }); // E
                 $scope.filters = '';
                 $scope.orderBy = '';
 
@@ -1012,10 +1014,11 @@ angular.module('askaudience.controllers', [])
                         if ($scope.pageNumber > 1) {
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
+                                $scope.morePolls = false;
                             } else {
 
                                 angular.forEach(response.data, function (element, index) {
-                                    $scope.polls.push(element);
+                                    $scope.polls.push(element);                                    
                                 });
                             }
                         } else {
@@ -1218,7 +1221,7 @@ angular.module('askaudience.controllers', [])
                         $rootScope.$broadcast('showLoginModal', $scope, function () {
                             $ionicHistory.goBack(-1);
                         }, function () {
-                            vote(pid, oid, index,getIndex);
+                            vote(pid, oid, index, getIndex);
                         });
                     } else {
                         vote(pid, oid, index, getIndex);
@@ -1788,13 +1791,13 @@ angular.module('askaudience.controllers', [])
                     $scope.lng = place.geometry.location.lng();
                 });
 
-                $scope.isOptionValid = function(){
+                $scope.isOptionValid = function () {
                     console.log('adsf');
                     console.log(jQuery(".optionMultiChoice input").val());
                     return false;
                 }
                 $scope.addOption = function (data) {
-    
+
                     if (ptype == 1) {
                         jQuery(".options").append(jQuery(".cloneMultiChoice").html());
                         indexOptionsMultiChoice('optionMultiChoice');
