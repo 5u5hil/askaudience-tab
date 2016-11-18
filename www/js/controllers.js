@@ -428,6 +428,7 @@ angular.module('askaudience.controllers', [])
                 }else{
                     getUid=LSFactory.get('user').ID;
                 }
+                console.log(getUid);
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;
