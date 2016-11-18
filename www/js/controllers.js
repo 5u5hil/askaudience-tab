@@ -23,21 +23,23 @@ angular.module('askaudience.controllers', [])
                     angular.element(ionAutocompleteElement).controller('ionAutocomplete').fetchSearchQuery("", true);
                     angular.element(ionAutocompleteElement).controller('ionAutocomplete').showModal();
                 }
+                var getView = "";
+                $ionicModal.fromTemplateUrl('zoomimg.html', {
+                    scope: $scope
+                }).then(function (imview) {
+                    getView = imview;
+                    $rootScope.imview = imview;
+                });
 
-                 $ionicModal.fromTemplateUrl('zoomimg.html', {
-                        scope: $scope
-                    }).then(function(imview) {
-                        $scope.imview = imview;
-                    });
+                $scope.imageView = function (img) {
+                    console.log(getView);
+                    getView.show();
+                    $scope.magnImage = img;
+                };
 
-                    $scope.imageView = function(img) {
-                        $scope.imview.show();
-                        $scope.magnImage=img;
-                    };
+                $scope.imageViewClose = function () {
+                    $rootScope.imview.hide();
 
-                $scope.imageViewClose=function(){
-                      $scope.imview.hide();
-                      
                 }
 
 
@@ -419,6 +421,13 @@ angular.module('askaudience.controllers', [])
             function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
                 $scope.canLoadMore = true;
                 Loader.show();
+     
+                var getUid="";
+                if(typeof($stateParams.uid)!=='undefined'){
+                   getUid=$stateParams.uid;
+                }else{
+                    getUid=LSFactory.get('user').ID;
+                }
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;
@@ -427,13 +436,14 @@ angular.module('askaudience.controllers', [])
                 $scope.friends = 'No';
                 $scope.friend_requested = 'No';
                 $scope.getReveal = $stateParams.reveal;
+                
                 if (!$rootScope.isLoggedIn)
                     $scope.cid = -1;
                 else
                     $scope.cid = LSFactory.get('user').ID;
                 $scope.getAllInfo = function () {
                     Loader.show();
-                    APIFactory.getUser($stateParams.id).then(function (response) {
+                    APIFactory.getUser(getUid).then(function (response) {
 
                         $scope.userInfo = response.data;
                         if (LSFactory.get('user')) {
@@ -935,7 +945,7 @@ angular.module('askaudience.controllers', [])
                     });
                 }
 
-             
+
 
 
             }
@@ -969,22 +979,22 @@ angular.module('askaudience.controllers', [])
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
-                  $scope.myPopup = '';
-                
-                        $scope.showPopup = function () {
-                            $scope.data = {};
+                $scope.myPopup = '';
 
-                            // An elaborate, custom popup
-                            $scope.myPopup = $ionicPopup.alert({
-                                template: '<ion-list><ion-item ng-click="invokeSort()"><i class="ion-arrow-swap"></i> Sort Latest Polls</ion-item><ion-item ng-click="openFilters()"><i class="ion-funnel"></i> Filter Latest Polls</ion-item></ion-list>',
-                                scope: $scope,
-                                title: 'Select An Action',
-                            });
+                $scope.showPopup = function () {
+                    $scope.data = {};
 
-                         
+                    // An elaborate, custom popup
+                    $scope.myPopup = $ionicPopup.alert({
+                        template: '<ion-list><ion-item ng-click="invokeSort()"><i class="ion-arrow-swap"></i> Sort Latest Polls</ion-item><ion-item ng-click="openFilters()"><i class="ion-funnel"></i> Filter Latest Polls</ion-item></ion-list>',
+                        scope: $scope,
+                        title: 'Select An Action',
+                    });
 
-                           
-                        };
+
+
+
+                };
 
                 $scope.filters = '';
                 $scope.orderBy = '';
@@ -1095,7 +1105,7 @@ angular.module('askaudience.controllers', [])
 
                 }
                 $scope.invokeSort = function () {
-                     $scope.myPopup.close();
+                    $scope.myPopup.close();
                     $scope.newitem = {}
 
                     var myPopup = $ionicPopup.show({

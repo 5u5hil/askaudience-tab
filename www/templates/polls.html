@@ -21,4 +21,15 @@
         <ion-infinite-scroll on-infinite="getPolls('infScr')" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>
         <div ng-show="!morePolls" class="listing-done"><p>No more polls</p></div>
     </ion-content>
+
+    <script id="zoomimg.html" type="text/ng-template">
+        <ion-modal-view class="transparentbg">
+
+        <div class="zclose" ng-click="imageViewClose()">X</div>
+        <ion-content style="background-image: url({{magnImage}});" class="zoimg">
+
+
+        </ion-content>
+        </ion-modal-view>
+    </script>
 </ion-view>

@@ -1,6 +1,6 @@
 <div ng-class="!poll.img ? 'text-poll' : 'img - poll'" >
     <div class="top-bar-wrapper">
-        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
+        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as,uid:poll.author.ID})">
             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
@@ -43,13 +43,8 @@
         <form class="vote{{poll.id}}" ng-if="poll.participants.indexOf(uid) < 0"> 
             <ul class="options">
                 <li ng-repeat="opt in poll.options">
-                    <!--         <label class="checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}" ng-click="vote()">
-                            <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
-                            <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox">
-                        </ion-item>
-
-                    </label> -->
+                    
+                    <!--    when not loggedin -->
                     <label class="checkbox custom-checkbox w100">
                         <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll, $parent.$parent.$index)">
                             <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> 
@@ -98,3 +93,4 @@
         <a class="button poll-option-btn ion-ios-loop-strong button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)"><span class="vlm">Re-Post</span></a>
     </div>
 </div>
+

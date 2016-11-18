@@ -89,7 +89,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.user', {
-                        url: '/user/:id/:reveal',
+                        url: '/user/:id/:reveal/:uid',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/user-profile.html',
