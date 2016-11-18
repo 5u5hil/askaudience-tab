@@ -23,6 +23,24 @@ angular.module('askaudience.controllers', [])
                     angular.element(ionAutocompleteElement).controller('ionAutocomplete').fetchSearchQuery("", true);
                     angular.element(ionAutocompleteElement).controller('ionAutocomplete').showModal();
                 }
+
+                 $ionicModal.fromTemplateUrl('zoomimg.html', {
+                        scope: $scope
+                    }).then(function(imview) {
+                        $scope.imview = imview;
+                    });
+
+                    $scope.imageView = function(img) {
+                        $scope.imview.show();
+                        $scope.magnImage=img;
+                    };
+
+                $scope.imageViewClose=function(){
+                      $scope.imview.hide();
+                      
+                }
+
+
                 $scope.getTestItems = function (query, isInitializing) {
                     if (isInitializing) {
                         return {
@@ -916,6 +934,9 @@ angular.module('askaudience.controllers', [])
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     });
                 }
+
+             
+
 
             }
         ])
