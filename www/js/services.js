@@ -2,7 +2,7 @@ angular.module('askaudience.services', [])
         .factory('APIFactory', ['$http', '$httpParamSerializer', function ($http, $httpParamSerializer, $templateCache) {
                 var api = {
                     getUser: function (data) {
-                        var req = {method: 'GET', url: domain + 'getUser&userId=' + data};
+                        var req = {method: 'GET', url: domain + 'getUser&uid=' + data};
                         return $http(req);
                     },
                     vote: function (data) {
