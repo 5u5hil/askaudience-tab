@@ -1,4 +1,4 @@
-<ion-view cache-view="false">
+<ion-view>
     <ion-nav-title>
  {{ reveal == 1 ? userInfo.first_name : (reveal == 3 ? userInfo.first_name : 'Anonymous')}}'s Profile
     </ion-nav-title>
@@ -27,7 +27,7 @@
                     <div class="wrapp-count row text-center pb0">
                         <a class="col" ng-click="updateCat('polls')"  ng-class="activePanCat == 'polls' ? 'active-cat' : ''">
                             <div class="title">
-                                {{ userInfo.polls.length || 0}}
+                                {{  userInfo.publicPollCount}}
                             </div>
                             <div class="title-cat">
                                 Polls

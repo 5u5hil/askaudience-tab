@@ -584,7 +584,7 @@ angular.module('askaudience.controllers', [])
                     });
                 }
                 $scope.getPollsByType = function (type, pageNumber) {
-                    $scope.pollsPara = {userId: $stateParams.id};
+                    $scope.pollsPara = {uid: $stateParams.id};
                     $scope.pollsPara.pageNo = pageNumber || 1;
                     if ($scope.uid != $scope.cid) {
                         $scope.pollsPara.anonymous = 'No';
