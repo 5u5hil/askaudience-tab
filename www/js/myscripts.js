@@ -4,8 +4,8 @@ jQuery(function ($) {
         $(this).parent().parent().parent().remove();
         indexOptions();
     })
-    
-    
+
+
 });
 
 function indexOptions() {
@@ -27,7 +27,7 @@ function indexOptionsMultiChoice(option) {
     });
 
 
-    jQuery(".createPoll ." + option+"Img").each(function (k, v) {
+    jQuery(".createPoll ." + option + "Img").each(function (k, v) {
         jQuery(this).find("input[type='file']").attr("name", "image[" + k + "]");
         jQuery(this).find("input[type='hidden']").attr("name", "image[" + k + "]");
     });

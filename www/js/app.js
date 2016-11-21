@@ -3,8 +3,23 @@ var domain = 'http://www.askaudience.com/api/?method=';
 //var domain = 'http://ask-audience.cruxservers.in/api/?method=';
 angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'ngTagsInput', 'ion-autocomplete'])
 
+
+
         .run(function ($ionicPlatform, $cordovaStatusbar) {
+
+
+
+
             $ionicPlatform.ready(function () {
+
+                // Enable to debug issues.
+                // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+
+                // Sync hashed email if you have a login system or collect it.
+                //   Will be used to reach the user at the most optimal time of day.
+                // window.plugins.OneSignal.syncHashedEmail(userEmail);
+
                 setTimeout(function () {
                     try {
                         navigator.splashscreen.hide();
