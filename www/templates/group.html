@@ -1,0 +1,73 @@
+<ion-view  hide-menu-button="true">
+    <ion-nav-title>
+        Ask Audience
+    </ion-nav-title>
+    <ion-nav-buttons side="right"> 
+        <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
+        </button> 
+<!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
+        </button> -->
+        <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
+                <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
+            </button> -->
+
+    </ion-nav-buttons> 
+    <ion-content class="has-footer  listing-content">
+               
+        <div class="card" on-finish-render="ngRepeatFinished">
+                <div style="width: 80%;" class="item item-avatar custom-item pull-left" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as,uid:poll.author.ID})">
+                    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+                    <h2 class="group-name">Group Name adsfasfdasfa a dfasfasf</h2>
+                </div>
+                <div class="tags custom-vln-2  tar row" style="padding: 25px 0;width: 20%">
+                    <div class="custom-vln tar" ng-click="openPopoverInfo()">
+                        <div style="font-size: 30px;"><span class="fz21 ion ion-information-circled" ></span></div>
+                    </div>
+                    <div class="custom-vln tar">
+                        <div style="font-size: 30px;"><span class="no-border icon ion-stats-bars"></span></div>
+                    </div>
+                </div>
+        </div>
+        <div class="card" on-finish-render="ngRepeatFinished">
+                <div style="width: 80%;" class="item item-avatar custom-item pull-left" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as,uid:poll.author.ID})">
+                    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+                    <h2 class="group-name">tyzava s wsetg asdf sfasf</h2>
+                </div>
+                <div class="tags custom-vln-2  tar row" style="padding: 25px 0;width: 20%">
+                    <div class="custom-vln tar" ng-click="openPopoverInfo()">
+                        <div style="font-size: 30px;"><span class="fz21 ion ion-information-circled" ></span></div>
+                    </div>
+                    <div class="custom-vln tar">
+                        <div style="font-size: 30px;"><span class="no-border icon ion-stats-bars"></span></div>
+                    </div>
+                </div>
+        </div>
+        <div class="card" on-finish-render="ngRepeatFinished">
+                <div style="width: 80%;" class="item item-avatar custom-item pull-left" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as,uid:poll.author.ID})">
+                    <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+                    <h2 class="group-name">sdgf tryjtyk tksf</h2>
+                </div>
+                <div class="tags custom-vln-2  tar row" style="padding: 25px 0;width: 20%">
+                    <div class="custom-vln tar" ng-click="openPopoverInfo()">
+                        <div style="font-size: 30px;"><span class="fz21 ion ion-information-circled" ></span></div>
+                    </div>
+                    <div class="custom-vln tar">
+                        <div style="font-size: 30px;"><span class="no-border icon ion-stats-bars"></span></div>
+                    </div>
+                </div>
+        </div>
+        
+    </ion-content>
+    <div class="circlebtn" ng-click="creatGroupPopup()"><i class="ion-plus"></i></div>
+
+    <script id="zoomimg.html" type="text/ng-template">
+        <ion-modal-view class="transparentbg">
+
+        <div class="zclose" ng-click="imageViewClose()">X</div>
+        <ion-content style="background-image: url({{magnImage}});" class="zoimg">
+
+
+        </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

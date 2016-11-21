@@ -2517,8 +2517,45 @@ background-repeat: no-repeat;
     vertical-align: top;
     float: right;
 }
+.custom-vln-2 {
+    width: 20%;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+}
+.custom-vln-2 .tar {
+    margin-right: 10px;
+    color: #fbbc05;
+}
 .tar {
     text-align: center !important;}
+.group-name{
+    font-size: 20px!important;padding: 10px 0; line-height: 47px;
+}
+.circlebtn {
+    position: fixed;
+    right: 20px;
+    bottom: 60px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fbbc05;
+    text-align: center;
+    color: #fff;
+    line-height: 50px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.popup-vertical-buttons .popup-buttons {
+  display: block;
+}
+.popup-vertical-buttons .popup-buttons .button{
+  display:block;
+  min-width: 100% !important;
+  margin-top: 10px;
+}
 
 span.badge{
     float: right;

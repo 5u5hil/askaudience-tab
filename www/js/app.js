@@ -132,6 +132,24 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                             }
                         }
                     })
+                    .state('app.group', {
+                        url: '/group',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/group.html',
+                                controller: 'groupCtrl'
+                            }
+                        }
+                    })
+                    .state('app.create-group', {
+                        url: '/create-group/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/create-group.html',
+                                controller: 'createGroupCtrl'
+                            }
+                        }
+                    })
 
 
             // if none of the above states are matched, use this as the fallback

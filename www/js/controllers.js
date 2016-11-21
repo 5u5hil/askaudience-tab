@@ -416,17 +416,84 @@ angular.module('askaudience.controllers', [])
 
             }
         ])
+        .controller('createGroupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
+            function ($scope, APIFactory, Loader, $rootScope) {
+
+            }
+        ])
+        
+        .controller('groupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ionicPopup', '$state',
+            function ($scope, APIFactory, Loader, $rootScope, $ionicPopup, $state) {
+                $scope.groups = {};
+                $scope.creatGroupPopup = function () {
+                    $scope.myPopup = $ionicPopup.alert({
+                        //template: '<ion-list><ion-item ng-click="createGroup()"><i class="ion-plus-circled"></i> Create New Group</ion-item><ion-item ng-click="joinGroup()"><i class="ion-android-person-add"></i> Join Existing Group</ion-item></ion-list>',
+                        scope: $scope,
+                        title: 'Add Group',
+                        cssClass: 'popup-vertical-buttons',
+                        buttons: [{
+                                text: 'Create New Group',
+                                type: 'button-positive',
+                                onTap: function (e) {
+                                    $scope.createGroup();
+                                }
+                            },
+                            {
+                                text: 'Join Existing Group',
+                                type: 'button-balanced',
+                                onTap: function (e) {
+                                }
+                            },
+                            {
+                                text: 'Cancel',
+                                type: 'button-default',
+                                onTap: function (e) {
+                                }
+                            }
+                        ]
+                    });
+                }
+                $scope.createGroup = function () {
+                    $scope.myPopup2 = $ionicPopup.alert({
+                        template: '<ion-list><ion-item><input id="my_group_name" type="text" name="group_name" placeholder="Enter Group Name" /></ion-item><ion-item><input type="file" name="group_image" placeholder="Enter Group Name" /></ion-item></ion-list>',
+                        scope: $scope,
+                        title: 'Create New Group',
+                        buttons: [{
+                                text: 'Next',
+                                type: 'button-positive',
+                                onTap: function (e) {
+                                    console.log(jQuery('#my_group_name').val());
+                                    if (jQuery('#my_group_name').val()) {
+                                        /////////// save group
+                                        ///////// redirect with response ID
+                                        $state.go('app.create-group',{id:01});
+                                    } else {
+                                        $scope.createGroup();
+                                    }
+                                }
+                            },
+                            {
+                                text: 'Cancel',
+                                type: 'button-default',
+                                onTap: function (e) {
+                                }
+                            }
+                        ]
+                    });
+                }
+            }
+        ])
 
         .controller('userProfileCtrl', ['$ionicTabsDelegate', '$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
             function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
                 $scope.canLoadMore = true;
                 Loader.show();
-     
-                var getUid="";
-                if(typeof($stateParams.uid)!=='undefined'){
-                   getUid=$stateParams.uid;
-                }else{
-                    getUid=LSFactory.get('user').ID;
+
+                var getUid = "";
+                if (typeof ($stateParams.uid) !== 'undefined') {
+                    getUid = $stateParams.uid;
+                } else {
+                    getUid = LSFactory.get('user').ID;
                 }
                 console.log(getUid);
                 $scope.activePanCat = 'polls';
@@ -437,7 +504,7 @@ angular.module('askaudience.controllers', [])
                 $scope.friends = 'No';
                 $scope.friend_requested = 'No';
                 $scope.getReveal = $stateParams.reveal;
-                
+
                 if (!$rootScope.isLoggedIn)
                     $scope.cid = -1;
                 else
