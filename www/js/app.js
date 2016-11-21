@@ -20,7 +20,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                 };
 
                 window.plugins.OneSignal
-                        .startInit("YOUR_APPID", "YOUR_GOOGLE_PROJECT_NUMBER_IF_ANDROID")
+                        .startInit("575bde50-33c9-469b-8fa3-7988fbac18f3", "1000785893673")
                         .handleNotificationOpened(notificationOpenedCallback)
                         .endInit();
 
