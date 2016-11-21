@@ -202,12 +202,23 @@
         <div class="voteOption{{poll.id}}" ng-if="isLoggedIn && (!(Number(poll.participants.indexOf(uid)) < 0))">
             <ul class="options">
 
-                <li ng-repeat="opt in poll.options">          
+                <li class="nlist" ng-repeat="opt in poll.options">     
+
+                 <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url" ng-click="imageView(opt.image.url)"></div>
+
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" ng-click="vote()">
-                            <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}">{{(opt.number_of_votes / poll.participants.length)*100 || 0 | number:0}}%</div>
-                            <span class="poll-option">{{ opt.option}}</span>
+                        <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0" >
+                       
+                             <div class="Nproressbar"  ng-click="vote()">
+                            <span class="poll-option ptitle">{{ opt.option}}</span>
+                            <span class="poll-option pers">{{((opt.number_of_votes) / poll.participants.length) * 100 || 0 | number:0}}%</span>
+
+
+
+                            <div class="clr"></div>
+
                             <div class="progress-bar-wrap"><div class="progress-bar" ng-style="{width:{{(opt.number_of_votes / poll.participants.length) * 100}} +  '%'}" ></div></div>
+                            </div>
                         </ion-item>
                     </label>
                 </li>
