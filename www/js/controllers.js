@@ -367,8 +367,8 @@ angular.module('askaudience.controllers', [])
                         var myPopup = $ionicPopup.show({
                             template: '<div class="list">' +
                                     ' <div class="item item-avatar"  ng-repeat="follwerUsers in repostedPost">' +
-                                    '<img ng-src="{{follwerUsers.img}}" ui-sref="app.user({id:follwerUsers.ID, reveal : 1})">' +
-                                    ' <h2 ui-sref="app.user({id:follwerUsers.ID, reveal : 1})">{{::follwerUsers.display_name}}</h2>' +
+                                    '<img ng-src="{{follwerUsers.img}}" ui-sref="app.user({id:follwerUsers.ID, reveal : 1,uid:follwerUsers.ID})">' +
+                                    ' <h2 ui-sref="app.user({id:follwerUsers.ID, reveal : 1,uid:follwerUsers.ID})">{{::follwerUsers.display_name}}</h2>' +
                                     ' </div>' +
                                     ' </div>',
                             title: 'Reposted By:',
