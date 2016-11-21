@@ -15,16 +15,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                 // Enable to debug issues.
                 // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-                var notificationOpenedCallback = function (jsonData) {
-                    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-                };
 
-
-                window.plugins.OneSignal.init("575bde50-33c9-469b-8fa3-7988fbac18f3", {
-                    googleProjectNumber: "1000785893673",
-                    autoRegister: true
-                },
-                notificationOpenedCallback);
                 // Sync hashed email if you have a login system or collect it.
                 //   Will be used to reach the user at the most optimal time of day.
                 // window.plugins.OneSignal.syncHashedEmail(userEmail);
