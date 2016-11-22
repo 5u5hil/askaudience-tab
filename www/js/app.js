@@ -26,26 +26,33 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     } catch (e) {
                     }
                 }, 4000);
-                
-                
-                
+
+
+
                 if (window.cordova && window.cordova.plugins.Keyboard) {
                     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                     cordova.plugins.Keyboard.disableScroll(true);
-                    
-                    
-                    console.log('run');
-       var notificationOpenedCallback = function(jsonData) {
-      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-    };
 
-    // TODO: Update with your OneSignal AppId and googleProjectNumber before running.
-    window.plugins.OneSignal
-      .startInit("575bde50-33c9-469b-8fa3-7988fbac18f3", "1000785893673")
-      .handleNotificationOpened(notificationOpenedCallback)
-      .endInit();
-                    
-                    
+
+                    console.log('run');
+                    var notificationOpenedCallback = function (jsonData) {
+                        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+                    };
+
+                    // TODO: Update with your OneSignal AppId and googleProjectNumber before running.
+                    window.plugins.OneSignal
+                            .startInit("575bde50-33c9-469b-8fa3-7988fbac18f3", "1000785893673")
+                            .handleNotificationOpened(notificationOpenedCallback)
+                            .endInit();
+
+
+
+                    window.plugins.OneSignal.getIds(function (ids) {
+                        //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+                        //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+                      console.log(JSON.stringify(ids['userId']));
+                    });
+
                 }
                 try {
                     if (window.StatusBar) {
