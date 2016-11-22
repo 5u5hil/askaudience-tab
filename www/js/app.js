@@ -52,6 +52,10 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
                         playerId = JSON.stringify(ids['userId']);
                         console.log(JSON.stringify(ids['userId']));
+                        console.log('user Id');
+                        console.log(ids['userId']);
+                        console.log('all Id');
+                        console.log(ids);
                     });
 
 
