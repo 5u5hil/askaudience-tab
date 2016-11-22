@@ -50,12 +50,10 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     window.plugins.OneSignal.getIds(function (ids) {
                         //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
                         //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
-                        playerId = JSON.stringify(ids['userId']);
-                        console.log(JSON.stringify(ids['userId']));
-                        console.log('user Id');
-                        console.log(ids['userId']);
-                        console.log('all Id');
-                        console.log(ids);
+                        if (typeof (ids['userId']) !== 'undefined') {
+                            playerId = ids['userId'];
+                            console.log(JSON.stringify(ids['userId']));
+                        }
                     });
 
 
