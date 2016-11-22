@@ -1,5 +1,6 @@
 // Ionic askaudience App
 var domain = 'http://www.askaudience.com/api/?method=';
+var playerId = '';
 //var domain = 'http://ask-audience.cruxservers.in/api/?method=';
 angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'ngTagsInput', 'ion-autocomplete'])
 
@@ -49,7 +50,8 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     window.plugins.OneSignal.getIds(function (ids) {
                         //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
                         //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
-                      console.log(JSON.stringify(ids['userId']));
+                        playerId = JSON.stringify(ids['userId']);
+                        console.log(JSON.stringify(ids['userId']));
                     });
 
 
