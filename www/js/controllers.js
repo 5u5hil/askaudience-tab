@@ -114,25 +114,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 $scope.authUser = function (data) {
                     Loader.show('Authenticating');
 
-                    var notificationOpenedCallback = function (jsonData) {
-                        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-                    };
-
-                    // TODO: Update with your OneSignal AppId and googleProjectNumber before running.
-                    window.plugins.OneSignal
-                            .startInit("575bde50-33c9-469b-8fa3-7988fbac18f3", "1000785893673")
-                            .handleNotificationOpened(notificationOpenedCallback)
-                            .endInit();
-
-
-                    window.plugins.OneSignal.getIds(function (ids) {
-                        //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
-                        //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
-                        if (typeof (ids['userId']) !== 'undefined') {
-                            playerId = ids['userId'];
-                            console.log(JSON.stringify(ids['userId']));
-                        }
-                    });
+        
 
                     APIFactory.authUser(data).then(function (response) {
                         if (response.data.error) {
