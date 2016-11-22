@@ -419,49 +419,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
 
             }
         ])
-
-
-        .controller('groupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ionicPopup', '$state',
-            function ($scope, APIFactory, Loader, $rootScope, $ionicPopup, $state) {
-                $scope.groups = {};
-                $scope.creatGroupPopup = function () {
-                    $scope.myPopup = $ionicPopup.alert({
-                        //template: '<ion-list><ion-item ng-click="createGroup()"><i class="ion-plus-circled"></i> Create New Group</ion-item><ion-item ng-click="joinGroup()"><i class="ion-android-person-add"></i> Join Existing Group</ion-item></ion-list>',
-                        scope: $scope,
-                        title: 'Add Group',
-                        cssClass: 'popup-vertical-buttons',
-                        buttons: [{
-                                text: 'Create New Group',
-                                type: 'button-positive',
-                                onTap: function (e) {
-                                    $state.go('app.create-group');
-                                }
-                            },
-                            {
-                                text: 'Join Existing Group',
-                                type: 'button-balanced',
-                                onTap: function (e) {
-                                }
-                            },
-                            {
-                                text: 'Cancel',
-                                type: 'button-default',
-                                onTap: function (e) {
-                                }
-                            }
-                        ]
-                    });
-                }
-
-            }
-        ])
-
-        .controller('createGroupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
-            function ($scope, APIFactory, Loader, $rootScope) {
-                $scope.acitveTab = 'tab1';
-            }
-        ])
-
+        
         .controller('userProfileCtrl', ['$ionicTabsDelegate', '$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
             function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
                 $scope.canLoadMore = true;

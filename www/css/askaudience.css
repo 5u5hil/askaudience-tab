@@ -2353,23 +2353,23 @@ a.button.cat-button:hover {
 .Nproressbar .poll-option, .Nproressbar .progress-bar-wrap{margin-left: 0;}
 .Nproressbar .poll-option{display:block; float: left;}
 .Nproressbar .poll-option.ptitle{width:80%;
-                                white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+                                 white-space: nowrap;
+                                 overflow: hidden;
+                                 text-overflow: ellipsis;
 }
 .Nproressbar .poll-option.pers{width:20%; text-align: right; float:right}
 .clr{clear: both; padding: 0; margin: 0;}
 
 .nlist{position: relative;}
 .nlist .circle-result{    z-index: 9999;
-    top: 20px;
-    left: 5px;     background-size: contain;}
+                          top: 20px;
+                          left: 5px;     background-size: contain;}
 
-   .nlist .circle-result.withoutvote{top: 10px;}
+.nlist .circle-result.withoutvote{top: 10px;}
 .transparentbg{background: rgba(0,0,0,0.7);}
 .zoimg{background-position: center center;
-background-size: contain;
-background-repeat: no-repeat;
+       background-size: contain;
+       background-repeat: no-repeat;
 }
 .zclose{position: absolute; cursor: pointer; z-index: 99; color: #fff; font-size: 25px; top: 15px; right: 15px;}
 .minust10{margin-top: -10px !important;}
@@ -2552,12 +2552,12 @@ background-repeat: no-repeat;
 }
 
 .popup-vertical-buttons .popup-buttons {
-  display: block;
+    display: block;
 }
 .popup-vertical-buttons .popup-buttons .button{
-  display:block;
-  min-width: 100% !important;
-  margin-top: 10px;
+    display:block;
+    min-width: 100% !important;
+    margin-top: 10px;
 }
 
 span.badge{
@@ -2679,7 +2679,7 @@ input.ion-autocomplete[readonly] {
 .button.button-positive, .button.button-positive:hover, .button.button-positive:focus {
     border-color: transparent;
     background-color: #fbbc05 ;
-   // color: #fff;
+    // color: #fff;
 }
 .reposts-icon {
     padding-top: 1px;
@@ -2750,4 +2750,25 @@ textarea.pollquestion {
 }
 .title.title-left.header-item{
     left: 35px !important;
+}
+
+.user-searchbox{
+    width: 100%;
+    padding: 0px 20px 0px 40px!important;
+    height: 50px!important;
+}
+.search-icon{
+    font-size: 25px;
+    color: #4c4c4c;
+    position: absolute;
+    line-height: 50px;
+    padding: 0px 10px;
+}
+
+.user-list .user-b{
+        padding: 9px;
+        border-bottom: 1px solid #ccc;
+}
+.user-add-icon{
+    position: absolute;right: 25px;margin: auto;
 }

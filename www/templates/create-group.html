@@ -16,42 +16,42 @@
 
         <input type='hidden' name='userId' value="{{userId}}" />
 
-        <div class="tab1" ng-show="acitveTab == 'tab1'">
-            <form class="createGroup" >
-                <ul class="list">
-                    <li>
-                        <label class="item item-input">
-                            <div class="input-label">
-                                Group Name*  
-                            </div>         
-                            <input type="text" placeholder="Group Name" name="group_name" ng-model="newGroup.name" style="float: right;">
-                        </label>
-                    </li>
-                    <li>
-                        <label class="item item-input">
-                            <div class="input-label">
-                                Group Image  
-                            </div> 
-                            <input type="file" placeholder="Image" name="group_image" ng-model="newGroup.image" style="float: right;">
-                        </label>
-                    </li>
-                </ul>
-                <button class="button button-balanced button-block poll-btn" ng-disabled="!newGroup.name" type="button" ng-click="createNewGroup(newGroup)">Next</button>
-            </form>
-        </div>
-        <div class="tab2" ng-show="acitveTab == 'tab2'">
-            <form class="updateGroup" >
-                <li>
-                    <label class="item item-input">
-                        <div class="input-label">
-                            Group Name*  
-                        </div>         
-                        <input type="text" placeholder="Group Name" name="group_name" ng-model="newGroup.name" style="float: right;">
-                    </label>
+        <form class="createGroup" style="font-size: 17px;">
+            <div class="padding" style="border: 1px solid #ccc;margin: 5px;">
+            <ul class="list" style="margin-bottom: 0px;">
+                <li><div class="search-icon"><i class="icon ion-search"></i></div>                            
+                    <input type="text" placeholder="Search User" name="group_name" class="user-searchbox">
                 </li>
-                <button class="button button-balanced button-block poll-btn" ng-disabled="!(pollquest)" ng-click="updateGroup()">Submit Poll</button>
-            </form>
-        </div>
+
+            </ul>
+            <div class="user-list"> 
+                <div class="user-b"><div class="user-add-icon"><i class="ion-plus"></i></div><div>absdgsdgfc</div></div>
+                <div class="user-b"><div class="user-add-icon"><i class="ion-plus"></i></div><div>abcdfhfghfghfgh</div></div>
+                <div class="user-b"><div class="user-add-icon"><i class="ion-plus"></i></div><div>sdfsd  sdfs abc</div></div>
+
+            </div>
+            </div>
+            <div class="padding">
+                <h4>Group Members</h4>
+                <div class="user-list " style="border: 1px solid #ccc;"> 
+                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsdgfc</div></div>
+                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgasfsdgfc</div></div>
+                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsadfasdfsdgfc</div></div>
+                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsdgfc</div></div>
+                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsasfasfdgfc</div></div>
+
+
+                </div>
+            </div>
+
+            
+
+            <button class="button button-balanced button-block poll-btn" type="button" ng-click="createNewGroup(newGroup)">Update Members</button>
+            <div class="padding" style="text-align: center;">
+                <button class="button button-stable">Invite</button>
+            </div>
+        </form>
+
     </ion-content>
 
 
