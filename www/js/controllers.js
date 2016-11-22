@@ -2,413 +2,434 @@ var a;
 var ptype;
 var app = angular.module('askaudience.controllers', []);
 app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover', 'APIFactory', 'Loader', '$rootScope', 'LSFactory', '$ionicActionSheet',
-            '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing',
-            function ($scope, $ionicModal, $timeout, $ionicPopover, APIFactory, Loader, $rootScope, LSFactory, $ionicActionSheet, $cordovaOauth, $ionicPopup,
-                    $state, $ionicHistory, $http, CommonFactory, $cordovaSocialSharing) {
+    '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing',
+    function ($scope, $ionicModal, $timeout, $ionicPopover, APIFactory, Loader, $rootScope, LSFactory, $ionicActionSheet, $cordovaOauth, $ionicPopup,
+            $state, $ionicHistory, $http, CommonFactory, $cordovaSocialSharing) {
 
-                $rootScope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"];
+        $rootScope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"];
 
-                $rootScope.socialShare = function (message, subject, file) {
-                    var link = domain + "socialshare";
-                    $cordovaSocialSharing.share(message, subject, file, link) // Share via native share sheet
-                            .then(function (result) {
+        $rootScope.socialShare = function (message, subject, file) {
+            var link = domain + "socialshare";
+            $cordovaSocialSharing.share(message, subject, file, link) // Share via native share sheet
+                    .then(function (result) {
 
-                            }, function (err) {
-
-
-                            });
-                }
-                $scope.clickButton = function () {
-                    var ionAutocompleteElement = document.getElementsByClassName("ion-autocomplete");
-                    angular.element(ionAutocompleteElement).controller('ionAutocomplete').fetchSearchQuery("", true);
-                    angular.element(ionAutocompleteElement).controller('ionAutocomplete').showModal();
-                }
-                var getView = "";
-                $ionicModal.fromTemplateUrl('zoomimg.html', {
-                    scope: $scope
-                }).then(function (imview) {
-                    getView = imview;
-                    $rootScope.imview = imview;
-                });
-
-                $scope.imageView = function (img) {
-                    console.log(getView);
-                    getView.show();
-                    $scope.magnImage = img;
-                };
-
-                $scope.imageViewClose = function () {
-                    $rootScope.imview.hide();
-
-                }
+                    }, function (err) {
 
 
-                $scope.getTestItems = function (query, isInitializing) {
-                    if (isInitializing) {
-                        return {
-                            items: []
-                        }
-                    } else {
-
-                        if (query) {
-                            return {
-                                items: $scope.filterData(query)
-                            };
-                        }
-                        return {
-                            items: []
-                        };
-                        $scope.$apply;
-                    }
-                }
-                $scope.clickedMethod = function (callback) {
-                    $state.go('app.user', {id: callback.item.ID, reveal: 1});
-                }
-                $scope.filterData = function (data) {
-
-                    APIFactory.searchUser({sterm: data}).then(function (response) {
-                        $scope.found = response.data;
-                    }, function (error) {
-                        $scope.found = [];
                     });
-                    return $scope.found;
+        }
+        $scope.clickButton = function () {
+            var ionAutocompleteElement = document.getElementsByClassName("ion-autocomplete");
+            angular.element(ionAutocompleteElement).controller('ionAutocomplete').fetchSearchQuery("", true);
+            angular.element(ionAutocompleteElement).controller('ionAutocomplete').showModal();
+        }
+        var getView = "";
+        $ionicModal.fromTemplateUrl('zoomimg.html', {
+            scope: $scope
+        }).then(function (imview) {
+            getView = imview;
+            $rootScope.imview = imview;
+        });
+
+        $scope.imageView = function (img) {
+            console.log(getView);
+            getView.show();
+            $scope.magnImage = img;
+        };
+
+        $scope.imageViewClose = function () {
+            $rootScope.imview.hide();
+
+        }
+
+
+        $scope.getTestItems = function (query, isInitializing) {
+            if (isInitializing) {
+                return {
+                    items: []
                 }
+            } else {
 
-                $scope.updateUser = function () {
-                    if (LSFactory.get('user')) {
-                        $rootScope.isLoggedIn = true;
-                        $rootScope.user = LSFactory.get('user');
-                        $timeout(function () {
-                            $rootScope.isLoggedIn = true;
-                        }, 200);
-                    } else {
-                        $rootScope.isLoggedIn = false;
-                        $rootScope.user = {};
-                        $timeout(function () {
-                            $rootScope.isLoggedIn = false;
-                        }, 200);
-                    }
-                };
-
-                $scope.updateUser();
-
-
-                $rootScope.$on('showLoginModal', function ($event, scope, cancelCallback, callback) {
-                    $scope.showLogin = true;
-                    $scope.registerToggle = function () {
-                        $scope.showLogin = !$scope.showLogin;
-                    }
-                    $scope = scope || $scope;
-                    $scope.viewLogin = true;
-                    $ionicModal.fromTemplateUrl('templates/login.html', {
-                        scope: $scope
-                    }).then(function (modal) {
-                        $scope.loginModal = modal;
-                        $scope.loginModal.show();
-                        $scope.hide = function () {
-                            $scope.loginModal.hide();
-                            if (typeof cancelCallback === 'function') {
-                                cancelCallback();
-                            }
-                        }
-                        $scope.authUser = function (data) {
-                            Loader.show('Authenticating')
-                            APIFactory.authUser(data).then(function (response) {
-                                if (response.data.error) {
-                                    Loader.toggleLoadingWithMessage('Invalid Username or Password', 2000);
-                                } else if (response.data) {
-                                    Loader.toggleLoadingWithMessage('Logged In Successfully', 2000);
-                                    $scope.loginModal.hide();
-                                    LSFactory.set('user', response.data);
-                                    $scope.updateUser();
-                                    if (typeof callback === 'function') {
-                                        callback();
-                                    }
-                                } else {
-                                    Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try again', 2000);
-                                }
-                            }, function (error) {
-                                console.error(error)
-                            })
-                        }
-                        $scope.registerUser = function (user) {
-
-                            var data = new FormData(jQuery("form.manualRegistration")[0]);
-                            Loader.show('Registering ...');
-                            APIFactory.registerUser(data).then(function (response) {
-
-                                if (response.data.error) {
-                                    Loader.toggleLoadingWithMessage(response.data.error, 2000);
-                                } else {
-                                    Loader.toggleLoadingWithMessage('Registration Successful', 2000);
-                                    var cred = {
-                                        logusername: user.useremail,
-                                        logpassword: user.password
-                                    };
-                                    $scope.authUser(cred);
-                                }
-                            }, function (error) {
-
-                            })
-                        }
-                    });
-                    $scope.facebookLogin = function () {
-                        Loader.show();
-                        $cordovaOauth.facebook("1756468014619886", ["email", "public_profile"], {
-                            redirect_uri: "http://localhost/callback"
-                        }).then(function (result) {
-                            $http.get("https://graph.facebook.com/v2.2/me", {
-                                params: {
-                                    access_token: result.access_token,
-                                    fields: "name,first_name,last_name,location,picture,email",
-                                    format: "json"
-                                }
-                            }).then(function (result) {
-                                $scope.params = {
-                                    firstName: result.data.first_name,
-                                    lastName: result.data.last_name,
-                                    regEmail: result.data.email,
-                                    regUserID: result.data.id,
-                                    source: 'Facebook'
-
-                                };
-                                APIFactory.socialRegister($scope.params).then(function (response) {
-                                    $scope.loginModal.hide();
-                                    Loader.hide();
-                                    Loader.toast('Logged in successfully');
-                                    LSFactory.set('user', response.data)
-                                    $scope.updateUser();
-                                    if (typeof callback === 'function') {
-                                        callback();
-                                    }
-                                }, function (error) {
-                                    Loader.hide();
-                                })
-                            }, function (error) {
-                                Loader.hide();
-                            });
-                        }, function (error) {
-                            Loader.hide();
-                        });
-                    } //end fb login
-                    $scope.linkedinLogin = function () {
-                        $cordovaOauth.linkedin("817xf6qi41k61f", "i8IMiB94NqXcBeJY", ["r_basicprofile", "r_emailaddress"], "cnHKSsf5fc5n").then(
-                                function (result) {
-                                    Loader.show();
-                                    $scope.param = {
-                                        client_id: '817xf6qi41k61f',
-                                        client_secret: 'i8IMiB94NqXcBeJY',
-                                        redirect_uri: 'http://localhost/callback',
-                                        grant_type: 'authorization_code',
-                                        code: result
-                                    }
-                                    APIFactory.linkedinToken($scope.param)
-                                            .success(function (result) {
-                                                var access_token = result.access_token;
-                                                var expire_date = result.expires_in;
-                                                APIFactory.linkedInLogin(access_token).then(function (result) {
-                                                    $scope.params = {
-                                                        firstName: result.data.firstName,
-                                                        lastName: result.data.lastName,
-                                                        regEmail: result.data.emailAddress,
-                                                        regUserID: result.data.id,
-                                                        source: 'LinkedIn'
-                                                    };
-                                                    APIFactory.socialRegister($scope.params).then(function (response) {
-                                                        $scope.loginModal.hide();
-                                                        Loader.hide();
-                                                        Loader.toast('Logged in successfully');
-                                                        LSFactory.set('user', response.data)
-                                                        $scope.updateUser();
-                                                        if (typeof callback === 'function') {
-                                                            callback();
-                                                        }
-                                                    }, function (error) {
-                                                        Loader.hide();
-                                                    });
-                                                }, function (error) {
-                                                    Loader.hide();
-                                                });
-                                            });
-                                },
-                                function (error) {
-                                });
+                if (query) {
+                    return {
+                        items: $scope.filterData(query)
                     };
-                });
-                $scope.resetPwd = function () {
-                    $scope.data = {}
-                    // An elaborate, custom popup
-                    var myPopup = $ionicPopup.show({
-                        template: '<input type="email" ng-model="data.userLogin" placeholder="Enter you email" class="padding">',
-                        title: 'Enter your email address',
-                        subTitle: 'You will get a link to reset password',
-                        scope: $scope,
-                        buttons: [{
-                                text: 'Cancel',
-                                type: 'fs12 reset-btn'
-                            }, {
-                                text: 'Submit',
-                                type: 'button-balanced fs12 reset-btn',
-                                onTap: function (e) {
-                                    if (!$scope.data.userLogin) {
-                                        //don't allow the user to close unless he enters wifi password
-                                        e.preventDefault();
-                                    } else {
-                                        return $scope.data;
-                                    }
-                                }
-                            }, ]
-                    });
-                    myPopup.then(function (data) {
-                        if (!data) {
-                            return false;
+                }
+                return {
+                    items: []
+                };
+                $scope.$apply;
+            }
+        }
+        $scope.clickedMethod = function (callback) {
+            $state.go('app.user', {id: callback.item.ID, reveal: 1});
+        }
+        $scope.filterData = function (data) {
+
+            APIFactory.searchUser({sterm: data}).then(function (response) {
+                $scope.found = response.data;
+            }, function (error) {
+                $scope.found = [];
+            });
+            return $scope.found;
+        }
+
+        $scope.updateUser = function () {
+            if (LSFactory.get('user')) {
+                $rootScope.isLoggedIn = true;
+                $rootScope.user = LSFactory.get('user');
+                $timeout(function () {
+                    $rootScope.isLoggedIn = true;
+                }, 200);
+            } else {
+                $rootScope.isLoggedIn = false;
+                $rootScope.user = {};
+                $timeout(function () {
+                    $rootScope.isLoggedIn = false;
+                }, 200);
+            }
+        };
+
+        $scope.updateUser();
+
+
+        $rootScope.$on('showLoginModal', function ($event, scope, cancelCallback, callback) {
+            $scope.showLogin = true;
+            $scope.registerToggle = function () {
+                $scope.showLogin = !$scope.showLogin;
+            }
+            $scope = scope || $scope;
+            $scope.viewLogin = true;
+            $ionicModal.fromTemplateUrl('templates/login.html', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.loginModal = modal;
+                $scope.loginModal.show();
+                $scope.hide = function () {
+                    $scope.loginModal.hide();
+                    if (typeof cancelCallback === 'function') {
+                        cancelCallback();
+                    }
+                }
+                $scope.authUser = function (data) {
+                    Loader.show('Authenticating');
+
+                    var notificationOpenedCallback = function (jsonData) {
+                        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+                    };
+
+                    // TODO: Update with your OneSignal AppId and googleProjectNumber before running.
+                    window.plugins.OneSignal
+                            .startInit("575bde50-33c9-469b-8fa3-7988fbac18f3", "1000785893673")
+                            .handleNotificationOpened(notificationOpenedCallback)
+                            .endInit();
+
+
+                    window.plugins.OneSignal.getIds(function (ids) {
+                        //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+                        //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+                        if (typeof (ids['userId']) !== 'undefined') {
+                            playerId = ids['userId'];
+                            console.log(JSON.stringify(ids['userId']));
                         }
-                        Loader.show();
-                        APIFactory.resetPwd(data).then(function (response) {
-                            console.log(response.data);
-                            if (response.data.errorType == 'success') {
-                                console.log(response.data.errorType);
-                                Loader.hide();
-                                Loader.toggleLoadingWithMessage('Your password reset link has been sent to your email Id', 2000);
-                            } else {
-                                Loader.hide();
-                                Loader.toggleLoadingWithMessage('This Email Id is not registered', 2000);
+                    });
+
+                    APIFactory.authUser(data).then(function (response) {
+                        if (response.data.error) {
+                            Loader.toggleLoadingWithMessage('Invalid Username or Password', 2000);
+                        } else if (response.data) {
+                            Loader.toggleLoadingWithMessage('Logged In Successfully', 2000);
+                            $scope.loginModal.hide();
+                            LSFactory.set('user', response.data);
+                            $scope.updateUser();
+                            if (typeof callback === 'function') {
+                                callback();
+                            }
+                        } else {
+                            Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try again', 2000);
+                        }
+                    }, function (error) {
+                        console.error(error)
+                    })
+                }
+                $scope.registerUser = function (user) {
+
+                    var data = new FormData(jQuery("form.manualRegistration")[0]);
+                    Loader.show('Registering ...');
+                    APIFactory.registerUser(data).then(function (response) {
+
+                        if (response.data.error) {
+                            Loader.toggleLoadingWithMessage(response.data.error, 2000);
+                        } else {
+                            Loader.toggleLoadingWithMessage('Registration Successful', 2000);
+                            var cred = {
+                                logusername: user.useremail,
+                                logpassword: user.password
+                            };
+                            $scope.authUser(cred);
+                        }
+                    }, function (error) {
+
+                    })
+                }
+            });
+            $scope.facebookLogin = function () {
+                Loader.show();
+                $cordovaOauth.facebook("1756468014619886", ["email", "public_profile"], {
+                    redirect_uri: "http://localhost/callback"
+                }).then(function (result) {
+                    $http.get("https://graph.facebook.com/v2.2/me", {
+                        params: {
+                            access_token: result.access_token,
+                            fields: "name,first_name,last_name,location,picture,email",
+                            format: "json"
+                        }
+                    }).then(function (result) {
+                        $scope.params = {
+                            firstName: result.data.first_name,
+                            lastName: result.data.last_name,
+                            regEmail: result.data.email,
+                            regUserID: result.data.id,
+                            source: 'Facebook'
+
+                        };
+                        APIFactory.socialRegister($scope.params).then(function (response) {
+                            $scope.loginModal.hide();
+                            Loader.hide();
+                            Loader.toast('Logged in successfully');
+                            LSFactory.set('user', response.data)
+                            $scope.updateUser();
+                            if (typeof callback === 'function') {
+                                callback();
                             }
                         }, function (error) {
-                            console.error(error);
-                            Loader.toggleLoadingWithMessage('Somwthing went wrong. Please try later');
-                        })
-                    });
-                };
-                $scope.loginFromMenu = function () {
-                    $rootScope.$broadcast('showLoginModal', $scope, null, function () {
-                        if ($state.is('app.home')) {
-                            try {
-                                $scope.$broadcast('refreshHomeData'); //get data using UserID
-                            } catch (e) {
-                                // statements
-                            }
-                        }
-                        ;
-                    });
-                };
-                $scope.logout = function () {
-                    var hideSheet = $ionicActionSheet.show({
-                        destructiveText: 'Logout',
-                        titleText: 'Are you sure you want to logout?',
-                        cancelText: 'Cancel',
-                        cancel: function () {
-                        },
-                        buttonClicked: function (index) {
-                            return true;
-                        },
-                        destructiveButtonClicked: function () {
-                            Loader.show();
-                            LSFactory.delete('user');
-                            hideSheet();
-                            $scope.updateUser();
-                            if ($state.is('app.polls')) {
-                                try {
-                                    $scope.$broadcast('refreshHomeData');
-                                } catch (e) {
-                                }
-                            } else {
-                                $ionicHistory.nextViewOptions({
-                                    disableBack: true,
-                                    historyRoot: true
-                                });
-                                $state.go('app.polls');
-                            }
-                            Loader.toast('Logged out successfully')
                             Loader.hide();
-                        }
-                    });
-                };
-                $scope.toggleGroup = function (group) {
-                    if ($scope.isGroupShown(group)) {
-                        $scope.shownGroup = null;
-                    } else {
-                        $scope.shownGroup = group;
-                    }
-                };
-                $scope.isGroupShown = function (group) {
-                    return $scope.shownGroup === group;
-                };
-
-                function follow(data, e) {
-                    APIFactory.follow(data).then(function (response) {
-                        Loader.hide();
-                        if (response.data.error) {
-                            Loader.toast(response.data.error);
-                        } else if (response.data.success) {
-                            angular.element(e.target).text(response.data.success);
-                        } else {
-                            Loader.toast('Oops! something went wrong. Please try following again')
-                        }
-                    },
-                            function (error) {
-                                Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try following again');
-                            });
-                }
-                $scope.openLink = function (link, e) {
-                    e.preventDefault();
-                    CommonFactory.inAppLink(link).then(function (response) {
+                        })
                     }, function (error) {
-                    })
-                };
-                $scope.getRepostedBy = function (pollid) {
-                    APIFactory.getRepostedBy({pollId: pollid}).then(function (response) {
                         Loader.hide();
-                        $scope.repostedPost = response.data;
-                        $scope.data = [1, 2, 3]
-
-                        // An elaborate, custom popup
-
-                        var myPopup = $ionicPopup.show({
-                            template: '<div class="list">' +
-                                    ' <div class="item item-avatar"  ng-repeat="follwerUsers in repostedPost">' +
-                                    '<img ng-src="{{follwerUsers.img}}" ui-sref="app.user({id:follwerUsers.ID, reveal : 1,uid:follwerUsers.ID})">' +
-                                    ' <h2 ui-sref="app.user({id:follwerUsers.ID, reveal : 1,uid:follwerUsers.ID})">{{::follwerUsers.display_name}}</h2>' +
-                                    ' </div>' +
-                                    ' </div>',
-                            title: 'Reposted By:',
-                            cssClass: 'reponstedby-popup',
-                            buttons: [
-                                {text: 'Ok', type: 'button-energized'}
-
-                            ],
-                            scope: $scope
-
+                    });
+                }, function (error) {
+                    Loader.hide();
+                });
+            } //end fb login
+            $scope.linkedinLogin = function () {
+                $cordovaOauth.linkedin("817xf6qi41k61f", "i8IMiB94NqXcBeJY", ["r_basicprofile", "r_emailaddress"], "cnHKSsf5fc5n").then(
+                        function (result) {
+                            Loader.show();
+                            $scope.param = {
+                                client_id: '817xf6qi41k61f',
+                                client_secret: 'i8IMiB94NqXcBeJY',
+                                redirect_uri: 'http://localhost/callback',
+                                grant_type: 'authorization_code',
+                                code: result
+                            }
+                            APIFactory.linkedinToken($scope.param)
+                                    .success(function (result) {
+                                        var access_token = result.access_token;
+                                        var expire_date = result.expires_in;
+                                        APIFactory.linkedInLogin(access_token).then(function (result) {
+                                            $scope.params = {
+                                                firstName: result.data.firstName,
+                                                lastName: result.data.lastName,
+                                                regEmail: result.data.emailAddress,
+                                                regUserID: result.data.id,
+                                                source: 'LinkedIn'
+                                            };
+                                            APIFactory.socialRegister($scope.params).then(function (response) {
+                                                $scope.loginModal.hide();
+                                                Loader.hide();
+                                                Loader.toast('Logged in successfully');
+                                                LSFactory.set('user', response.data)
+                                                $scope.updateUser();
+                                                if (typeof callback === 'function') {
+                                                    callback();
+                                                }
+                                            }, function (error) {
+                                                Loader.hide();
+                                            });
+                                        }, function (error) {
+                                            Loader.hide();
+                                        });
+                                    });
+                        },
+                        function (error) {
                         });
-                        myPopup.then(function (res) {
-
-                        });
-                        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                            myPopup.close();
-                        });
-                    },
-                            function (error) {
-                                Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try following again');
-                            });
+            };
+        });
+        $scope.resetPwd = function () {
+            $scope.data = {}
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+                template: '<input type="email" ng-model="data.userLogin" placeholder="Enter you email" class="padding">',
+                title: 'Enter your email address',
+                subTitle: 'You will get a link to reset password',
+                scope: $scope,
+                buttons: [{
+                        text: 'Cancel',
+                        type: 'fs12 reset-btn'
+                    }, {
+                        text: 'Submit',
+                        type: 'button-balanced fs12 reset-btn',
+                        onTap: function (e) {
+                            if (!$scope.data.userLogin) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.data;
+                            }
+                        }
+                    }, ]
+            });
+            myPopup.then(function (data) {
+                if (!data) {
+                    return false;
                 }
-                $scope.participate = function (event, id, options) {
-                    if (jQuery('.ion-arrow-up-c').attr('data-ref') != id) {
-                        var refId = jQuery('.ion-arrow-up-c').attr('data-ref');
-                        jQuery('[data-toggle=' + refId + ']').slideToggle();
-                        jQuery('[data-ref=' + refId + ']').text('Vote');
-                        jQuery('[data-ref=' + refId + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
-                    }
-                    jQuery('[data-toggle=' + id + ']').slideToggle();
-                    if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
-                        jQuery('[data-ref=' + id + ']').text('Hide');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
-
+                Loader.show();
+                APIFactory.resetPwd(data).then(function (response) {
+                    console.log(response.data);
+                    if (response.data.errorType == 'success') {
+                        console.log(response.data.errorType);
+                        Loader.hide();
+                        Loader.toggleLoadingWithMessage('Your password reset link has been sent to your email Id', 2000);
                     } else {
-                        jQuery('[data-ref=' + id + ']').text('Vote');
-                        jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+                        Loader.hide();
+                        Loader.toggleLoadingWithMessage('This Email Id is not registered', 2000);
+                    }
+                }, function (error) {
+                    console.error(error);
+                    Loader.toggleLoadingWithMessage('Somwthing went wrong. Please try later');
+                })
+            });
+        };
+        $scope.loginFromMenu = function () {
+            $rootScope.$broadcast('showLoginModal', $scope, null, function () {
+                if ($state.is('app.home')) {
+                    try {
+                        $scope.$broadcast('refreshHomeData'); //get data using UserID
+                    } catch (e) {
+                        // statements
                     }
                 }
-            }])
+                ;
+            });
+        };
+        $scope.logout = function () {
+            var hideSheet = $ionicActionSheet.show({
+                destructiveText: 'Logout',
+                titleText: 'Are you sure you want to logout?',
+                cancelText: 'Cancel',
+                cancel: function () {
+                },
+                buttonClicked: function (index) {
+                    return true;
+                },
+                destructiveButtonClicked: function () {
+                    Loader.show();
+                    LSFactory.delete('user');
+                    hideSheet();
+                    $scope.updateUser();
+                    if ($state.is('app.polls')) {
+                        try {
+                            $scope.$broadcast('refreshHomeData');
+                        } catch (e) {
+                        }
+                    } else {
+                        $ionicHistory.nextViewOptions({
+                            disableBack: true,
+                            historyRoot: true
+                        });
+                        $state.go('app.polls');
+                    }
+                    Loader.toast('Logged out successfully')
+                    Loader.hide();
+                }
+            });
+        };
+        $scope.toggleGroup = function (group) {
+            if ($scope.isGroupShown(group)) {
+                $scope.shownGroup = null;
+            } else {
+                $scope.shownGroup = group;
+            }
+        };
+        $scope.isGroupShown = function (group) {
+            return $scope.shownGroup === group;
+        };
+
+        function follow(data, e) {
+            APIFactory.follow(data).then(function (response) {
+                Loader.hide();
+                if (response.data.error) {
+                    Loader.toast(response.data.error);
+                } else if (response.data.success) {
+                    angular.element(e.target).text(response.data.success);
+                } else {
+                    Loader.toast('Oops! something went wrong. Please try following again')
+                }
+            },
+                    function (error) {
+                        Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try following again');
+                    });
+        }
+        $scope.openLink = function (link, e) {
+            e.preventDefault();
+            CommonFactory.inAppLink(link).then(function (response) {
+            }, function (error) {
+            })
+        };
+        $scope.getRepostedBy = function (pollid) {
+            APIFactory.getRepostedBy({pollId: pollid}).then(function (response) {
+                Loader.hide();
+                $scope.repostedPost = response.data;
+                $scope.data = [1, 2, 3]
+
+                // An elaborate, custom popup
+
+                var myPopup = $ionicPopup.show({
+                    template: '<div class="list">' +
+                            ' <div class="item item-avatar"  ng-repeat="follwerUsers in repostedPost">' +
+                            '<img ng-src="{{follwerUsers.img}}" ui-sref="app.user({id:follwerUsers.ID, reveal : 1,uid:follwerUsers.ID})">' +
+                            ' <h2 ui-sref="app.user({id:follwerUsers.ID, reveal : 1,uid:follwerUsers.ID})">{{::follwerUsers.display_name}}</h2>' +
+                            ' </div>' +
+                            ' </div>',
+                    title: 'Reposted By:',
+                    cssClass: 'reponstedby-popup',
+                    buttons: [
+                        {text: 'Ok', type: 'button-energized'}
+
+                    ],
+                    scope: $scope
+
+                });
+                myPopup.then(function (res) {
+
+                });
+                $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                    myPopup.close();
+                });
+            },
+                    function (error) {
+                        Loader.toggleLoadingWithMessage('Oops! something went wrong. Please try following again');
+                    });
+        }
+        $scope.participate = function (event, id, options) {
+            if (jQuery('.ion-arrow-up-c').attr('data-ref') != id) {
+                var refId = jQuery('.ion-arrow-up-c').attr('data-ref');
+                jQuery('[data-toggle=' + refId + ']').slideToggle();
+                jQuery('[data-ref=' + refId + ']').text('Vote');
+                jQuery('[data-ref=' + refId + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+            }
+            jQuery('[data-toggle=' + id + ']').slideToggle();
+            if (jQuery('[data-ref=' + id + ']').text() == 'Vote') {
+                jQuery('[data-ref=' + id + ']').text('Hide');
+                jQuery('[data-ref=' + id + ']').removeClass('ion-android-checkmark-circle').addClass('ion-arrow-up-c');
+
+            } else {
+                jQuery('[data-ref=' + id + ']').text('Vote');
+                jQuery('[data-ref=' + id + ']').removeClass('ion-arrow-up-c').addClass('ion-android-checkmark-circle');
+            }
+        }
+    }])
 
         .controller('HomeCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
             function ($scope, APIFactory, Loader, $rootScope) {
