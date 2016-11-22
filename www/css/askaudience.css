@@ -2364,13 +2364,16 @@ a.button.cat-button:hover {
 .nlist .circle-result{    z-index: 9999;
     top: 20px;
     left: 5px;     background-size: contain;}
+
+   .nlist .circle-result.withoutvote{top: 10px;}
 .transparentbg{background: rgba(0,0,0,0.7);}
 .zoimg{background-position: center center;
 background-size: contain;
 background-repeat: no-repeat;
 }
 .zclose{position: absolute; cursor: pointer; z-index: 99; color: #fff; font-size: 25px; top: 15px; right: 15px;}
-
+.minust10{margin-top: -10px !important;}
+.circleimg{border-radius: 50% !important;}
 /* end of NG */
 
 .notification-icon {
