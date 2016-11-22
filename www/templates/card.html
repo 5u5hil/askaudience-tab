@@ -49,9 +49,9 @@
 
                     <!--    when not loggedin -->
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" >
+                        <ion-item class="item {{ opt.image ? 'item-avatar' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll, $parent.$parent.$index)">
                             
-                            <div class="Nproressbar" ng-click="vote(poll.id, opt.id, poll, $parent.$parent.$index)">
+                            <div class="Nproressbar" >
                             <span class="poll-option ptitle">{{ opt.option}}</span>
 
                               </div>

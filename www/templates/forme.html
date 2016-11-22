@@ -63,9 +63,9 @@
 <div class="circle-result withoutvote" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url" ng-click="imageView(opt.image.url)"  ></div>
 
                     <label class="checkbox custom-checkbox w100">
-                        <ion-item class="item {{ opt.image ? 'item-avatar pr60' : ''}} ion-item-custom mt0">
+                        <ion-item class="item {{ opt.image ? 'item-avatar pr60' : ''}} ion-item-custom mt0" ng-click="vote(poll.id, opt.id, poll)">
                             <!-- <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img " /> -->
-                            <div class="Nproressbar" ng-click="vote(poll.id, opt.id, poll)">
+                            <div class="Nproressbar" >
                             <span class="poll-option ptitle">{{ opt.option}}</span>
                             </div>
                             <input type="radio" name="options[]" value="{{ opt.id}}" class="option-checkbox toggle-energized minust10">
