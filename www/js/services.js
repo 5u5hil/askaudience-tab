@@ -80,8 +80,7 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     authUser: function (data) {
-                        console.log("Player Id : "+playerId);
-                        data.push({'playerId':playerId});
+                        data.playerId=playerId;
                         var req = {method: 'POST', url: domain + 'login', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
