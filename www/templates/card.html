@@ -62,11 +62,11 @@
 
                 
 
-                <li ng-repeat="opt in poll.options">    
-                <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url" ng-click="imageView()"  ></div>
+                <li class="nlist" ng-repeat="opt in poll.options">    
+                <div class="circle-result" ng-style="{'background-image': 'url({{opt.image.url}})'}" ng-if="opt.image.url" ng-click="imageView(opt.image.url)"  ></div>
 
 
-                    <label class="nlist" class="checkbox custom-checkbox w100">
+                    <label  class="checkbox custom-checkbox w100">
                         <ion-item class="item {{ opt.image ? 'item-avatar image-avatar-option' : ''}} ion-item-custom mt0">
                             
                             <div class="Nproressbar" ng-click="vote()">
