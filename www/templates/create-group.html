@@ -1,20 +1,58 @@
 <ion-view  hide-menu-button="true">
     <ion-nav-title>
-        Ask Audience
+        Create Group
     </ion-nav-title>
     <ion-nav-buttons side="right"> 
         <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
         </button> 
-<!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
-        </button> -->
+        <!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
+                </button> -->
         <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
                 <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
             </button> -->
 
     </ion-nav-buttons> 
-    <ion-content class="has-footer  listing-content">
-        Create Group Here
+    <ion-content class="has-footer">
+
+        <input type='hidden' name='userId' value="{{userId}}" />
+
+        <div class="tab1" ng-show="acitveTab == 'tab1'">
+            <form class="createGroup" >
+                <ul class="list">
+                    <li>
+                        <label class="item item-input">
+                            <div class="input-label">
+                                Group Name*  
+                            </div>         
+                            <input type="text" placeholder="Group Name" name="group_name" ng-model="newGroup.name" style="float: right;">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="item item-input">
+                            <div class="input-label">
+                                Group Image  
+                            </div> 
+                            <input type="file" placeholder="Image" name="group_image" ng-model="newGroup.image" style="float: right;">
+                        </label>
+                    </li>
+                </ul>
+                <button class="button button-balanced button-block poll-btn" ng-disabled="!newGroup.name" type="button" ng-click="createNewGroup(newGroup)">Next</button>
+            </form>
+        </div>
+        <div class="tab2" ng-show="acitveTab == 'tab2'">
+            <form class="updateGroup" >
+                <li>
+                    <label class="item item-input">
+                        <div class="input-label">
+                            Group Name*  
+                        </div>         
+                        <input type="text" placeholder="Group Name" name="group_name" ng-model="newGroup.name" style="float: right;">
+                    </label>
+                </li>
+                <button class="button button-balanced button-block poll-btn" ng-disabled="!(pollquest)" ng-click="updateGroup()">Submit Poll</button>
+            </form>
+        </div>
     </ion-content>
 
-   
+
 </ion-view>

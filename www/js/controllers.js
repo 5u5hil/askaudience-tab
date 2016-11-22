@@ -416,12 +416,8 @@ angular.module('askaudience.controllers', [])
 
             }
         ])
-        .controller('createGroupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
-            function ($scope, APIFactory, Loader, $rootScope) {
 
-            }
-        ])
-        
+
         .controller('groupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ionicPopup', '$state',
             function ($scope, APIFactory, Loader, $rootScope, $ionicPopup, $state) {
                 $scope.groups = {};
@@ -435,7 +431,7 @@ angular.module('askaudience.controllers', [])
                                 text: 'Create New Group',
                                 type: 'button-positive',
                                 onTap: function (e) {
-                                    $scope.createGroup();
+                                    $state.go('app.create-group');
                                 }
                             },
                             {
@@ -453,34 +449,13 @@ angular.module('askaudience.controllers', [])
                         ]
                     });
                 }
-                $scope.createGroup = function () {
-                    $scope.myPopup2 = $ionicPopup.alert({
-                        template: '<ion-list><ion-item><input id="my_group_name" type="text" name="group_name" placeholder="Enter Group Name" /></ion-item><ion-item><input type="file" name="group_image" placeholder="Enter Group Name" /></ion-item></ion-list>',
-                        scope: $scope,
-                        title: 'Create New Group',
-                        buttons: [{
-                                text: 'Next',
-                                type: 'button-positive',
-                                onTap: function (e) {
-                                    console.log(jQuery('#my_group_name').val());
-                                    if (jQuery('#my_group_name').val()) {
-                                        /////////// save group
-                                        ///////// redirect with response ID
-                                        $state.go('app.create-group',{id:01});
-                                    } else {
-                                        $scope.createGroup();
-                                    }
-                                }
-                            },
-                            {
-                                text: 'Cancel',
-                                type: 'button-default',
-                                onTap: function (e) {
-                                }
-                            }
-                        ]
-                    });
-                }
+
+            }
+        ])
+
+        .controller('createGroupCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
+            function ($scope, APIFactory, Loader, $rootScope) {
+                $scope.acitveTab = 'tab1';
             }
         ])
 

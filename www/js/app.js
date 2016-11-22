@@ -174,7 +174,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.create-group', {
-                        url: '/create-group/:id',
+                        url: '/create-group',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/create-group.html',
