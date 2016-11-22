@@ -46,6 +46,13 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                             .endInit();
 
 
+                    window.plugins.OneSignal.getIds(function (ids) {
+                        //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+                        //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+                      console.log(JSON.stringify(ids['userId']));
+                    });
+
+
                 }
                 try {
                     if (window.StatusBar) {
