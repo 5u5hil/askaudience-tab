@@ -62,3 +62,11 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
 
             }
         ])
+        .controller('grpInfoCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
+            function ($scope, APIFactory, Loader, $rootScope) {
+                $scope.activePan = 'members';
+                $scope.updatePan = function (tab) {
+                    $scope.activePan = tab;                    
+                }
+            }
+        ])

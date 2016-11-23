@@ -2766,9 +2766,15 @@ textarea.pollquestion {
 }
 
 .user-list .user-b{
-        padding: 9px;
-        border-bottom: 1px solid #ccc;
+    padding: 9px;
+    border-bottom: 1px solid #ccc;
 }
 .user-add-icon{
     position: absolute;right: 25px;margin: auto;
+}
+
+.tab-half-width{
+    width: 49%;
+    float: left;
+    text-align: center;
 }

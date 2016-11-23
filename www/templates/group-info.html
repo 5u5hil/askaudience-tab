@@ -1,0 +1,74 @@
+<ion-view>
+    <ion-nav-title>
+        Group Name
+    </ion-nav-title>
+
+    <ion-content class="has-footer">
+        <div class="cover-item-wrapper cover-detail-wrapper">
+            <div class="cover-item-detail profile-bg">
+                <div class=" ">
+                    <div class="row mb15">
+                        <div class="celeb-img-detail profile-img-detail col-25 ">
+                            <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
+                        </div>
+                        <div class="celeb-img-detail  txt-left  col-75 ">
+
+                            <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
+                                Group Name ddf d                                
+                            </h2>                            
+                        </div>
+                    </div>                    
+                    <div class="row connections mt10" ng-if="uid != cid">
+                        <div class="col">
+                            <button ng-if="following == 'No'" class="button w100 button-small poll-btn" ng-click="follow()">Follow</button>
+                            <button ng-if="following == 'Yes'" class="button  w100 button-small poll-btn" ng-click="unfollow()">Following</button>
+                        </div>
+                        <div class="col">
+                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="w100 button-small poll-btn button addfriendclass" ng-click="friendRequest(uid, $index)">Add Friend</button>
+                            <button ng-if="friends == 'No' && friend_requested == 'Yes'" class="button w100 button-small poll-btn" > Friend Requested</button>
+                            <button ng-if="friends == 'Yes'" class="button w100 button-small poll-btn unfriendClass" ng-click="unFriend(uid, $index)">Unfriend</button>
+                        </div>
+                    </div> 
+                    <div style="text-align: center;">
+                        <h5>Created By</h5>
+                        <div>ABc asfasf</div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div>
+            <ion-scroll direction="x" class="">
+                <span class="tab-half-width" ng-class="activePan == 'members' ? 'active-item' : 'sub-menu-item'" 
+                      ng-click="updatePan('members')">Members</span>
+
+                <span class="tab-half-width" ng-class="activePan == 'requests' ? 'active-item' : 'sub-menu-item'"   
+                      ng-click="updatePan('requests')">Requests</span>
+            </ion-scroll>
+        </div>
+
+        <div ng-if="(activePan == 'members')" class="listing-content">            
+            <div class="list">                
+                <div class="item item-avatar">
+                    <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">usersfdsf sdf</h2> 
+                    <p class="mt10"> <input type="button" value="Remove" class=" button action-button button-positive"> </p>
+                </div>
+                <div class="no-result" ng-if="!group.members.length && false">No pending request(s)</div>
+            </div> 
+        </div>
+        <div ng-if="activePan == 'requests'">
+
+        </div>
+
+    </ion-content>
+    <script id="zoomimg.html" type="text/ng-template">
+        <ion-modal-view class="transparentbg">
+
+        <div class="zclose" ng-click="imageViewClose()">X</div>
+        <ion-content style="background-image: url({{magnImage}});" class="zoimg">
+
+
+        </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

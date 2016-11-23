@@ -188,6 +188,15 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                             }
                         }
                     })
+                    .state('app.groupinfo', {
+                        url: '/groupinfo/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/group-info.html',
+                                controller: 'grpInfoCtrl'
+                            }
+                        }
+                    })
                     .state('app.create-group', {
                         url: '/create-group',
                         views: {
