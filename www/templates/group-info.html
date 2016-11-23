@@ -2,7 +2,8 @@
     <ion-nav-title>
         Group Name
     </ion-nav-title>
-
+<ion-nav-buttons side="right"> 
+</ion-nav-buttons>
     <ion-content class="has-footer">
         <div class="cover-item-wrapper cover-detail-wrapper">
             <div class="cover-item-detail profile-bg">
@@ -37,7 +38,7 @@
             </div>
         </div> 
         <div>
-            <ion-scroll direction="x" class="">
+            <ion-scroll direction="x" class="ion-sc" style="height: 49px;">
                 <span class="tab-half-width" ng-class="activePan == 'members' ? 'active-item' : 'sub-menu-item'" 
                       ng-click="updatePan('members')">Members</span>
 
@@ -47,20 +48,60 @@
         </div>
 
         <div ng-if="(activePan == 'members')" class="listing-content">            
-            <div class="list">                
+            <div class="list grp-member-list">                
                 <div class="item item-avatar">
-                    <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">usersfdsf sdf</h2> 
+                    <p class="mt10"> <input type="button" value="Remove" class=" button action-button button-positive"> </p>
+                </div>
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">ussadfg fgf</h2> 
+                    <p class="mt10"> <input type="button" value="Remove" class=" button action-button button-positive"> </p>
+                </div>
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">uytit rr</h2> 
+                    <p class="mt10"> <input type="button" value="Remove" class=" button action-button button-positive"> </p>
+                </div>
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">us hfsf sdf</h2> 
                     <p class="mt10"> <input type="button" value="Remove" class=" button action-button button-positive"> </p>
                 </div>
                 <div class="no-result" ng-if="!group.members.length && false">No pending request(s)</div>
             </div> 
         </div>
         <div ng-if="activePan == 'requests'">
-
+            <div class="list grp-member-list">                
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">usegkg tf sdf</h2> 
+                    <p class="mt10"> <input type="button" value="Accept" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-assertive"> </p>
+                </div>
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">uaastr essadfg fgf</h2> 
+                    <p class="mt10"> <input type="button" value="Accept" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-assertive"></p>
+                </div>
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">uysdf gvtit rr</h2> 
+                    <p class="mt10"> <input type="button" value="Accept" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-assertive"></p>
+                </div>
+                <div class="item item-avatar">
+                    <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">usadfs hfsf sdf</h2> 
+                    <p class="mt10"> <input type="button" value="Accept" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-assertive"></p>
+                </div>
+                <div class="no-result" ng-if="!group.members.length && false">No pending request(s)</div>
+            </div> 
         </div>
 
     </ion-content>
+    <div class="fix-bottom">
+        <button class="button button-balanced button-block" type="button" ng-click="exitGroup(newGroup)">Exit Group</button>
+    </div>
     <script id="zoomimg.html" type="text/ng-template">
         <ion-modal-view class="transparentbg">
 
