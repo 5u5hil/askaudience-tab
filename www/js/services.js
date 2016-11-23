@@ -143,8 +143,11 @@ angular.module('askaudience.services', [])
                     },
                     getGroup: function (uid) {
                         return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: domain + "mygroup&uid=" + uid, data: {}})
-                    }
-
+                    },
+                    createGroup: function (data) {
+                        var req = {method: 'POST', url: domain + 'group',  headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
+                    },
                 };
                 return api;
             }])

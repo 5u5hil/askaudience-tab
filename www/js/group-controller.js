@@ -37,17 +37,41 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         }
         $scope.createGroup = function () {
             $scope.myPopup2 = $ionicPopup.alert({
-                template: '<ion-list><ion-item><input id="my_group_name" type="text" name="group_name" placeholder="Enter Group Name" /></ion-item><ion-item><input type="file" name="group_image" placeholder="Enter Group Name" /></ion-item></ion-list>',
+                template: '<form id="createForm"  enctype="multipart/form-data"><ion-list><ion-item><input id="my_group_name" ng-model="group.groupName" type="text" name="group_name" placeholder="Enter Group Name" /></ion-item><ion-item><input type="file" id="group_image" ng-model="group.groupImg" name="group_image" placeholder="Enter Group Name" /></ion-item></ion-list></form>',
                 scope: $scope,
                 title: 'Create New Group',
                 buttons: [{
                         text: 'Next',
                         type: 'button-positive',
                         onTap: function (e) {
+                            Loader.show();
                             if (jQuery('#my_group_name').val()) {
+
+                                var groupImg = jQuery('#group_image').prop('files')[0];
+                                var groupName = jQuery('#my_group_name').val();
+                                var groupForm = new FormData();
+                                groupForm.append('groupImg', groupImg);
+                                groupForm.append('groupName', groupName);
+                                groupForm.append('userId', LSFactory.get('user').ID);
+                                APIFactory.createGroup(groupForm).then(function (response) {
+                                    if (response.data.errorType == 'success') {
+                                        Loader.hide();
+                                        $state.go('app.create-group', {id: 01});
+                                    } else {
+                                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                                    }
+
+                                }, function (error) {
+                                    // $scope.found = [];
+                                });
+
+
+
+
+
                                 /////////// save group
                                 ///////// redirect with response ID
-                                $state.go('app.create-group', {id: 01});
+                                //$state.go('app.create-group', {id: 01});
                             } else {
                                 $scope.createGroup();
                             }
@@ -79,13 +103,13 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         ])
 
 
-        .controller('groupPollListingCtrl', ['$ionicNavBarDelegate', '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup','$stateParams',
-            function ($ionicNavBarDelegate, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup,$stateParams) {
+        .controller('groupPollListingCtrl', ['$ionicNavBarDelegate', '$scope', '$state', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicScrollDelegate', '$ionicPopup', '$stateParams',
+            function ($ionicNavBarDelegate, $scope, $state, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicScrollDelegate, $ionicPopup, $stateParams) {
                 $scope.pageNumber = 1;
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
                 $scope.myPopup = '';
-console.log($stateParams.cid);
+                console.log($stateParams.cid);
                 $scope.showPopup = function () {
                     $scope.data = {};
 
@@ -160,9 +184,9 @@ console.log($stateParams.cid);
                     } else {
                         $scope.userId = null;
                     }
-                    var cid=$stateParams.cid;
-                 
-                    APIFactory.getPollsGroup($scope.filters, $scope.pageNumber, $scope.orderBy, $scope.userId,'groupPolls',cid).then(function (response) {
+                    var cid = $stateParams.cid;
+
+                    APIFactory.getPollsGroup($scope.filters, $scope.pageNumber, $scope.orderBy, $scope.userId, 'groupPolls', cid).then(function (response) {
                         if ($scope.pageNumber > 1) {
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;
