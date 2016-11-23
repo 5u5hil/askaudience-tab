@@ -2,11 +2,11 @@
 var domain = 'http://www.askaudience.com/api/?method=';
 var playerId = '';
 //var domain = 'http://ask-audience.cruxservers.in/api/?method=';
-angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'ngTagsInput', 'ion-autocomplete'])
+angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 'askaudience.services', 'askaudience.directives', 'ion-datetime-picker', 'ngTagsInput', 'ion-autocomplete','ui.route'])
 
 
 
-        .run(function ($ionicPlatform, $cordovaStatusbar) {
+        .run(function ($ionicPlatform, $cordovaStatusbar,$state) {
 
 
 
@@ -37,10 +37,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
 
                     console.log('run');
                     var notificationOpenedCallback = function (jsonData) {
-                        console.log(jsonData);
-                        console.log('above data 1');
-                        console.log(jsonData.notification);
-                        console.log('above data 2');
+                        $state.go(jsonData.notification.payload.additionalData.url);
                         console.log(jsonData.notification.payload.additionalData.url);
                         console.log('above data 3');
                         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
