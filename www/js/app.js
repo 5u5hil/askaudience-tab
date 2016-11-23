@@ -9,7 +9,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
         .run(function ($ionicPlatform, $cordovaStatusbar, $state) {
 
 
-             
+
 
             $ionicPlatform.ready(function () {
                 // Enable to debug issues.
@@ -206,7 +206,15 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                             }
                         }
                     })
-
+                    .state('app.groupPollListing', {
+                        url: '/poll-group/:cid',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/poll-group.html',
+                                controller: 'groupPollListingCtrl'
+                            }
+                        }
+                    })
 
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/app/polls');

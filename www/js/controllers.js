@@ -1896,3 +1896,4 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
 
 
 
+

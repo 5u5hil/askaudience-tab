@@ -41,8 +41,12 @@ angular.module('askaudience.services', [])
                         var req = {method: 'GET', url: domain + 'getInterests', headers: {'Content-Type': 'application/x-www-form-urlencoded'}};
                         return $http(req);
                     },
-                    getPolls: function (filters, pageNo, orderBy, userId) {
-                        var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId};
+                    getPolls: function (filters, pageNo, orderBy, userId, groupPolls, cId) {
+                        var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId + '&type=' + groupPolls + '&cid=' + cId};
+                        return $http(req);
+                    },
+                    getPollsGroup: function (filters, pageNo, orderBy, userId, groupPolls, cId) {
+                        var req = {method: 'GET', url: domain + 'getGroupPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId + '&type=' + groupPolls + '&cid=' + cId};
                         return $http(req);
                     },
                     getPollsByType: function (data) {
@@ -73,14 +77,14 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'updateUserProfile', headers: {'Content-Type': undefined}, cache: $templateCache, data: data};
                         return $http(req);
                     },
-                    updateUserPassword: function (uId,password) {
+                    updateUserPassword: function (uId, password) {
                         console.log(uId);
                         console.log(password);
-                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'uId': uId,'password':password})};
+                        var req = {method: 'POST', url: domain + 'updateUserPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, cache: $templateCache, data: jQuery.param({'uId': uId, 'password': password})};
                         return $http(req);
                     },
                     authUser: function (data) {
-                        data.playerId=playerId;
+                        data.playerId = playerId;
                         var req = {method: 'POST', url: domain + 'login', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
@@ -136,7 +140,11 @@ angular.module('askaudience.services', [])
                     },
                     linkedinToken: function (data) {
                         return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: $httpParamSerializer(data)})
+                    },
+                    getGroup: function (uid) {
+                        return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: domain + "mygroup&uid=" + uid, data: {}})
                     }
+
                 };
                 return api;
             }])
