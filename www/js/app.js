@@ -9,10 +9,9 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
         .run(function ($ionicPlatform, $cordovaStatusbar, $state) {
 
 
-
+             
 
             $ionicPlatform.ready(function () {
-
                 // Enable to debug issues.
                 // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
@@ -39,7 +38,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     var notificationOpenedCallback = function (jsonData) {
                         var url = jsonData.notification.payload.additionalData.url;
                         var userId = jsonData.notification.payload.additionalData.userId;
-                        $state.go(url, {'userId': userId});
+                        $state.go(url, {'id': userId});
                         console.log(jsonData.notification.payload.additionalData.url);
                         console.log('above data 3');
                         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
