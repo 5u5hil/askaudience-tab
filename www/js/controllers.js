@@ -114,7 +114,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 $scope.authUser = function (data) {
                     Loader.show('Authenticating');
 
-        
+
 
                     APIFactory.authUser(data).then(function (response) {
                         if (response.data.error) {
@@ -419,7 +419,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
 
             }
         ])
-        
+
         .controller('userProfileCtrl', ['$ionicTabsDelegate', '$scope', '$state', '$stateParams', '$timeout', 'APIFactory', 'LSFactory', '$rootScope', 'Loader', '$ionicHistory', '$ionicModal', '$ionicPopover', '$ionicPopup',
             function ($ionicTabsDelegate, $scope, $state, $stateParams, $timeout, APIFactory, LSFactory, $rootScope, Loader, $ionicHistory, $ionicModal, $ionicPopover, $ionicPopup) {
                 $scope.canLoadMore = true;
@@ -486,10 +486,12 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                             } catch (err) {
 
                             }
+                            Loader.hide();
 
-
+                        } else {
+                            Loader.hide();
                         }
-                        Loader.hide();
+
 
 
                     }, function (data) {
@@ -619,7 +621,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
 
                             });
                         }
-                        Loader.hide();
+                        // Loader.hide();
                     }, function (data) {
                         Loader.hide();
                         Loader.toast('Oops! something went wrong');
