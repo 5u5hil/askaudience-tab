@@ -15,25 +15,14 @@
                         <div class="celeb-img-detail  txt-left  col-75 ">
 
                             <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
-                                Group Name ddf d                                
-                            </h2>                            
+                                Group Name ddf d      
+                                <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span>
+                            </h2>                             
+                            <div class="grp-subheading">Created By: ABc asfasf, 28 Jul 2016</div>
                         </div>
                     </div>                    
-                    <div class="row connections mt10" ng-if="uid != cid">
-                        <div class="col">
-                            <button ng-if="following == 'No'" class="button w100 button-small poll-btn" ng-click="follow()">Follow</button>
-                            <button ng-if="following == 'Yes'" class="button  w100 button-small poll-btn" ng-click="unfollow()">Following</button>
-                        </div>
-                        <div class="col">
-                            <button ng-if="friends == 'No' && friend_requested == 'No'" class="w100 button-small poll-btn button addfriendclass" ng-click="friendRequest(uid, $index)">Add Friend</button>
-                            <button ng-if="friends == 'No' && friend_requested == 'Yes'" class="button w100 button-small poll-btn" > Friend Requested</button>
-                            <button ng-if="friends == 'Yes'" class="button w100 button-small poll-btn unfriendClass" ng-click="unFriend(uid, $index)">Unfriend</button>
-                        </div>
-                    </div> 
-                    <div style="text-align: center;">
-                        <h5>Created By</h5>
-                        <div>ABc asfasf</div>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div> 

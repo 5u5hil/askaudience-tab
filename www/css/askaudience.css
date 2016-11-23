@@ -2593,7 +2593,7 @@ input.ion-google-place[readonly]{
     cursor: text;
 }
 .profile-name {
-    line-height: 73px;
+    line-height: 43px;
     padding-left: 15px;
 }
 .txt-left {
@@ -2786,4 +2786,9 @@ textarea.pollquestion {
     margin: auto;
     width: 100%;
     bottom: 40px;
+}
+
+.grp-subheading{
+   padding-left: 15px;
+   color:#848484;
 }
