@@ -37,6 +37,10 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
 
                     console.log('run');
                     var notificationOpenedCallback = function (jsonData) {
+                        console.log(jsonData);
+                        console.log('above data 1');
+                        console.log(jsonData.notificationOpenedCallback.notification.payload.additionalData.url)
+                        console.log('above data 2');
                         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
                     };
 
