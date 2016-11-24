@@ -157,17 +157,14 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 }
 
                 $scope.selectAction = function (user) {
-                    console.log(user);
                     $scope.members.push(user.item);
                 }
 
                 $scope.removeMember = function (key) {
-                    console.log($scope.members);
                     delete $scope.members[key];
                     $timeout(function () {
                         $scope.$apply();
                     }, 300);
-                    console.log($scope.members);
                 }
 
                 $scope.invitToGroup = function () {
@@ -181,7 +178,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 }
                 
                 $scope.saveGroup = function(data){
-                    
+                    console.log(data);
                 }
 
             }
