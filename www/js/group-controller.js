@@ -136,12 +136,17 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         }
     }
 ])
-        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$stateParams',
-            function ($scope, APIFactory, Loader, $rootScope, $stateParams) {
+        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$stateParams', '$timeout', '$cordovaSocialSharing',
+            function ($scope, APIFactory, Loader, $rootScope, $stateParams, $timeout, $cordovaSocialSharing) {
                 $scope.members = [];
-                console.log($stateParams.id);
+                $scope.groupinfo = {};
+                Loader.show();
                 APIFactory.getGroupById($stateParams.id).then(function (response) {
-                    console.log(response);
+                    $scope.groupinfo = response.data;
+                    jQuery.each($scope.groupinfo.members, function (key, member) {
+                        $scope.members.push(member);
+                    });
+                    Loader.hide();
                 }, function (error) {
                     // $scope.found = [];
                 });
@@ -152,11 +157,31 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 }
 
                 $scope.selectAction = function (user) {
+                    console.log(user);
                     $scope.members.push(user.item);
                 }
 
                 $scope.removeMember = function (key) {
-                    console.log(key);
+                    console.log($scope.members);
+                    delete $scope.members[key];
+                    $timeout(function () {
+                        $scope.$apply();
+                    }, 300);
+                    console.log($scope.members);
+                }
+
+                $scope.invitToGroup = function () {
+                    $cordovaSocialSharing
+                            .share('', '', '', '') 
+                            .then(function (result) {
+                                
+                            }, function (err) {
+                               
+                            });
+                }
+                
+                $scope.saveGroup = function(data){
+                    
                 }
 
             }

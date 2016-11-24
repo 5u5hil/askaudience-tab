@@ -2797,7 +2797,16 @@ textarea.pollquestion {
     height: 40px; 
     width: 40px;
     vertical-align: middle;
+    border-radius: 50%;
+}
+.profile-icon-small{
+    height: 25px; width: 25px;vertical-align: text-top;
+    border-radius: 50%;
 }
 .search-items{
     font-size: 20px!important;
+}
+
+.group-title{
+    text-align: center;padding-top: 10px;color:#737373;
 }

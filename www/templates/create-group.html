@@ -13,8 +13,9 @@
 
     </ion-nav-buttons> 
     <ion-content class="has-footer">
+        
         <div style="text-align: center;">
-            <button class="button button-block">Invite</button>
+            <button class="button button-block" ng-click="invitToGroup()">Invite</button>
         </div>
         <div class="list" style="text-align: center">                    
             <button class="button button-block" ng-click="userSearch()"><i class="icon ion-search"></i> Search Users </button>
@@ -24,14 +25,12 @@
             <div class="padding" style="">
                 <h4>Members</h4>
                 <div class="user-list"> 
-                    <div class="user-b" ng-repeat="(key, member) in members">
-                        <div class="user-add-icon"><i ng-click="removeMember(key)" class="ion-close-circled" ></i></div><div>{{member.display_name}}</div>
-                            
+                    <div ng-show="member && groupinfo.author_id != member.ID" class="user-b" ng-repeat="member in members track by $index">
+                        <div class="user-add-icon"><i ng-click="removeMember($index)" class="ion-close-circled" ></i></div><div><img src="{{member.img ? member.img : 'img/user-icon.png'}}" class="profile-icon-small" /> {{member.display_name}}</div>
                     </div>
-                    
-                </div>                
+                </div>                 
             </div>
-            <button class="button button-balanced button-block poll-btn" type="button" ng-click="createNewGroup(newGroup)">Update Members</button>
+            <button class="button button-balanced button-block poll-btn" type="button" ng-click="saveGroup(members)">Update Members</button>
         </form>
     </ion-content>
 </ion-view>
