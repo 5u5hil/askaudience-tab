@@ -146,9 +146,9 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 text: 'Next',
                                 type: 'button-positive',
                                 onTap: function (e) {
-                                    Loader.show();
+                                    
                                     if (jQuery('#my_group_name').val()) {
-
+                                        Loader.show();
                                         var groupImg = jQuery('#group_image').prop('files')[0];
                                         var groupName = jQuery('#my_group_name').val();
                                         var groupForm = new FormData();
