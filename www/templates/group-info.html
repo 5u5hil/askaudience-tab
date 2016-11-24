@@ -16,7 +16,7 @@
 
                             <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
                                 Group Name ddf d      
-                                <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span>
+                                <span class="icon ion-edit edit-icon"  ng-click="editGroup(group.id)"></span>
                             </h2>                             
                             <div class="grp-subheading">Created By: ABc asfasf, 28 Jul 2016</div>
                         </div>
@@ -89,7 +89,7 @@
 
     </ion-content>
     <div class="fix-bottom">
-        <button class="button button-balanced button-block" type="button" ng-click="exitGroup(newGroup)">Exit Group</button>
+        <button class="button button-assertive button-block" type="button" ng-click="exitGroup(newGroup)">Exit Group</button>
     </div>
     <script id="zoomimg.html" type="text/ng-template">
         <ion-modal-view class="transparentbg">
