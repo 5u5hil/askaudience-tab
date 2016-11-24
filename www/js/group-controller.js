@@ -44,7 +44,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         text: 'Next',
                         type: 'button-positive',
                         onTap: function (e) {
-                            Loader.show();
+                            Loader.show();  //uncomment
                             if (jQuery('#my_group_name').val()) {
 
                                 var groupImg = jQuery('#group_image').prop('files')[0];
@@ -88,8 +88,34 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         }
     }
 ])
-        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
-            function ($scope, APIFactory, Loader, $rootScope) {
+
+        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ionicPopup', '$state', 'LSFactory',
+            function ($scope, APIFactory, Loader, $rootScope, $ionicPopup, $state, LSFactory) {
+                $scope.getFriends = [];
+                $scope.addFriends = [];
+                ;
+                APIFactory.getUser(LSFactory.get('user').ID).then(function (response) {
+                    // console.log(response.data.friends);
+                    angular.forEach(response.data.friends, function (element, index) {
+                        $scope.getFriends.push(element);
+                    });
+
+                }, function (error) {
+                    // $scope.found = [];
+                });
+
+
+                $scope.addToGroup = function (uid, fullName) {
+                    $scope.addFriends.push({'uid': uid, 'fullname': fullName});
+                }
+
+                $scope.removeFromList = function (index) {
+                    console.log(index);
+                    // console.log($scope.addFriends[index]);
+                    delete $scope.addFriends[index];
+                    $scope.addFriends = angular.copy($scope.addFriends);
+                    console.log($scope.addFriends);
+                }
 
             }
         ])

@@ -18,33 +18,28 @@
 
         <form class="createGroup" style="font-size: 17px;">
             <div class="padding" style="border: 1px solid #ccc;margin: 5px;">
-            <ul class="list" style="margin-bottom: 0px;">
-                <li><div class="search-icon"><i class="icon ion-search"></i></div>                            
-                    <input type="text" placeholder="Search User" name="group_name" class="user-searchbox">
-                </li>
+                <ul class="list" style="margin-bottom: 0px;">
+                    <li><div class="search-icon"><i class="icon ion-search"></i></div>
+                        <input type="text" placeholder="Search User" name="group_name" class="user-searchbox">
+                    </li>
 
-            </ul>
-            <div class="user-list"> 
-                <div class="user-b"><div class="user-add-icon"><i class="ion-plus"></i></div><div>absdgsdgfc</div></div>
-                <div class="user-b"><div class="user-add-icon"><i class="ion-plus"></i></div><div>abcdfhfghfghfgh</div></div>
-                <div class="user-b"><div class="user-add-icon"><i class="ion-plus"></i></div><div>sdfsd  sdfs abc</div></div>
+                </ul>
 
-            </div>
-            </div>
-            <div class="padding">
                 <h4>Group Members</h4>
                 <div class="user-list " style="border: 1px solid #ccc;"> 
-                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsdgfc</div></div>
-                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgasfsdgfc</div></div>
-                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsadfasdfsdgfc</div></div>
-                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsdgfc</div></div>
-                    <div class="user-b"><div class="user-add-icon"><i class="ion-close-circled"></i></div><div>absdgsasfasfdgfc</div></div>
-
+                    <div class="user-b"  ng-repeat="friends in addFriends"><div class="user-add-icon"><i class="ion-close-circled" ng-click="removeFromList($index)"></i></div><div>  {{friends.fullname}}</div></div>
+                    <div class="user-b"  ><div class="user-add-icon"><i class="ion-close-circled" ></i></div><div> Name 1</div></div>
 
                 </div>
+                <!--                <div class="user-list"> 
+                                    <div class="user-b" ng-repeat="getUsers in getFriends"><div class="user-add-icon"><i class="ion-plus" ng-click="addToGroup(getUsers.ID,getUsers.user_firstname+' '+getUsers.user_lastname)"></i></div><div>{{getUsers.user_firstname}} {{getUsers.user_lastname}} 
+                                        </div></div>
+                
+                                </div>-->
             </div>
 
-            
+
+
 
             <button class="button button-balanced button-block poll-btn" type="button" ng-click="createNewGroup(newGroup)">Update Members</button>
             <div class="padding" style="text-align: center;">
