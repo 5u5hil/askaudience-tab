@@ -1791,7 +1791,11 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                             $scope.acitveTab = 'tab2';
                         } else if ($scope.acitveTab == 'tab2') {
                             $scope.acitveTab = 'tab3';
-                            jQuery('#pollquestion').focus();
+                           jQuery("#pollquestion").one("click", function () {
+                                jQuery("#pollquestion").get(0).setSelectionRange(0, 0);
+                            });
+                            //jQuery('#pollquestion').focus();
+
                         }
                     }
                     $ionicScrollDelegate.scrollTop();

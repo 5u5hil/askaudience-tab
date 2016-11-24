@@ -2067,10 +2067,11 @@ a.button.cat-button:hover {
 
 .poll-question-text {
     color: #222;
-    font-size: 24px !important;
+    font-size: 23px !important;
     padding-left: 6px;
     font-weight: normal;
     line-height: 30px;
+    text-align: center;
 }
 
 .poll-answer-options .item-avatar img {
