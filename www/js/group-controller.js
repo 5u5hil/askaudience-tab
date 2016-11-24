@@ -105,6 +105,23 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 }).then(function () {
                                     $scope.joinGroup();
                                 });
+
+                            } else {
+                                var groupId = jQuery('#group_id').val();
+                                var groupForm = new FormData();
+                                groupForm.append('groupId', groupId);
+                                groupForm.append('userId', LSFactory.get('user').ID);
+                                APIFactory.joinGroup(groupForm).then(function (response) {
+                                    if (response.data.errorType == 'success') {
+                                        console.log(response.data);
+                                        Loader.hide();
+                                    } else {
+                                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                                    }
+
+                                }, function (error) {
+                                    // $scope.found = [];
+                                });
                             }
                         }
                     },
