@@ -45,7 +45,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         text: 'Next',
                         type: 'button-positive',
                         onTap: function (e) {
-                            
+
                             if (jQuery('#my_group_name').val()) {
                                 Loader.show();
                                 var groupImg = jQuery('#group_image').prop('files')[0];
@@ -76,11 +76,11 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             } else {
                                 $ionicPopup.alert({
                                     template: 'Please Enter Group Name',
-                                    title: 'Group Name Required',                                   
-                                }).then(function(){
-                                     $scope.createGroup();
+                                    title: 'Group Name Required',
+                                }).then(function () {
+                                    $scope.createGroup();
                                 });
-                               
+
                             }
                         }
                     },
@@ -106,11 +106,27 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             if (!jQuery('#group_id').val()) {
                                 $ionicPopup.alert({
                                     template: 'Please try again',
-                                    title: 'Invalid Group Id',                                   
-                                }).then(function(){
+                                    title: 'Invalid Group Id',
+                                }).then(function () {
                                     $scope.joinGroup();
                                 });
-                                
+
+                            } else {
+                                var groupId = jQuery('#group_id').val();
+                                var groupForm = new FormData();
+                                groupForm.append('groupId', groupId);
+                                groupForm.append('userId', LSFactory.get('user').ID);
+                                APIFactory.joinGroup(groupForm).then(function (response) {
+                                    if (response.data.errorType == 'success') {
+                                        console.log(response.data);
+                                        Loader.hide();
+                                    } else {
+                                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                                    }
+
+                                }, function (error) {
+                                    // $scope.found = [];
+                                });
                             }
                         }
                     },
@@ -146,7 +162,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 text: 'Next',
                                 type: 'button-positive',
                                 onTap: function (e) {
-                                    
+
                                     if (jQuery('#my_group_name').val()) {
                                         Loader.show();
                                         var groupImg = jQuery('#group_image').prop('files')[0];
