@@ -3,8 +3,8 @@
         Create Group
     </ion-nav-title>
     <ion-nav-buttons side="right"> 
-        <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
-        </button> 
+<!--        <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
+        </button> -->
         <!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
                 </button> -->
         <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
@@ -13,41 +13,25 @@
 
     </ion-nav-buttons> 
     <ion-content class="has-footer">
-
-        <input type='hidden' name='userId' value="{{userId}}" />
-
+        <div style="text-align: center;">
+            <button class="button button-block">Invite</button>
+        </div>
+        <div class="list" style="text-align: center">                    
+            <button class="button button-block" ng-click="userSearch()"><i class="icon ion-search"></i> Search Users </button>
+            <input ion-autocomplete type="text"   class="get-users"  items-method-value-key="items" items-method="getTestItems(query)"  autocomplete="off" ng-model="sterm" item-view-value-key="display_name" items-clicked-method="selectAction(callback)"  manage-externally="true" ng-show="false" max-selected-items="1" required loading-icon="ios-small"/>
+        </div>
         <form class="createGroup" style="font-size: 17px;">
-            <div class="padding" style="border: 1px solid #ccc;margin: 5px;">
-                <ul class="list" style="margin-bottom: 0px;">
-                    <li><div class="search-icon"><i class="icon ion-search"></i></div>
-                        <input type="text" placeholder="Search User" name="group_name" class="user-searchbox">
-                    </li>
-
-                </ul>
-
-                <h4>Group Members</h4>
-                <div class="user-list " style="border: 1px solid #ccc;"> 
-                    <div class="user-b"  ng-repeat="friends in addFriends"><div class="user-add-icon"><i class="ion-close-circled" ng-click="removeFromList($index)"></i></div><div>  {{friends.fullname}}</div></div>
-                    <div class="user-b"  ><div class="user-add-icon"><i class="ion-close-circled" ></i></div><div> Name 1</div></div>
-
-                </div>
-                <!--                <div class="user-list"> 
-                                    <div class="user-b" ng-repeat="getUsers in getFriends"><div class="user-add-icon"><i class="ion-plus" ng-click="addToGroup(getUsers.ID,getUsers.user_firstname+' '+getUsers.user_lastname)"></i></div><div>{{getUsers.user_firstname}} {{getUsers.user_lastname}} 
-                                        </div></div>
-                
-                                </div>-->
+            <div class="padding" style="">
+                <h4>Members</h4>
+                <div class="user-list"> 
+                    <div class="user-b" ng-repeat="(key, member) in members">
+                        <div class="user-add-icon"><i ng-click="removeMember(key)" class="ion-close-circled" ></i></div><div>{{member.display_name}}</div>
+                            
+                    </div>
+                    
+                </div>                
             </div>
-
-
-
-
             <button class="button button-balanced button-block poll-btn" type="button" ng-click="createNewGroup(newGroup)">Update Members</button>
-            <div class="padding" style="text-align: center;">
-                <button class="button button-stable">Invite</button>
-            </div>
         </form>
-
     </ion-content>
-
-
 </ion-view>

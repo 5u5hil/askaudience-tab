@@ -198,7 +198,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.create-group', {
-                        url: '/create-group',
+                        url: '/create-group/:id',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/create-group.html',
@@ -217,7 +217,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     })
 
             // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('/app/polls');
+            $urlRouterProvider.otherwise('/app/create-group/670');
         })
 
 function downscaleImage(dataUrl, newWidth) {

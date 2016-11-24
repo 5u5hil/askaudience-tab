@@ -2792,3 +2792,12 @@ textarea.pollquestion {
    padding-left: 15px;
    color:#848484;
 }
+
+.profile-icon{
+    height: 40px; 
+    width: 40px;
+    vertical-align: middle;
+}
+.search-items{
+    font-size: 20px!important;
+}

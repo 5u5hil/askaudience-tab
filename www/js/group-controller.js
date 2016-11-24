@@ -45,7 +45,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         text: 'Next',
                         type: 'button-positive',
                         onTap: function (e) {
-                            
+
                             if (jQuery('#my_group_name').val()) {
                                 Loader.show();
                                 var groupImg = jQuery('#group_image').prop('files')[0];
@@ -55,9 +55,10 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 groupForm.append('groupName', groupName);
                                 groupForm.append('userId', LSFactory.get('user').ID);
                                 APIFactory.createGroup(groupForm).then(function (response) {
+                                    console.log(response);
                                     if (response.data.errorType == 'success') {
                                         Loader.hide();
-                                        $state.go('app.create-group', {id: 01});
+                                        $state.go('app.create-group', {id: response.data.groupInfo});
                                     } else {
                                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                                     }
@@ -65,22 +66,16 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 }, function (error) {
                                     // $scope.found = [];
                                 });
-
-
-
-
-
                                 /////////// save group
                                 ///////// redirect with response ID
                                 //$state.go('app.create-group', {id: 01});
                             } else {
                                 $ionicPopup.alert({
                                     template: 'Please Enter Group Name',
-                                    title: 'Group Name Required',                                   
-                                }).then(function(){
-                                     $scope.createGroup();
+                                    title: 'Group Name Required',
+                                }).then(function () {
+                                    $scope.createGroup();
                                 });
-                               
                             }
                         }
                     },
@@ -106,11 +101,10 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             if (!jQuery('#group_id').val()) {
                                 $ionicPopup.alert({
                                     template: 'Please try again',
-                                    title: 'Invalid Group Id',                                   
-                                }).then(function(){
+                                    title: 'Invalid Group Id',
+                                }).then(function () {
                                     $scope.joinGroup();
                                 });
-                                
                             }
                         }
                     },
@@ -125,8 +119,28 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         }
     }
 ])
-        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
-            function ($scope, APIFactory, Loader, $rootScope) {
+        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$stateParams',
+            function ($scope, APIFactory, Loader, $rootScope, $stateParams) {
+                $scope.members = [];
+                console.log($stateParams.id);
+                APIFactory.getGroupById($stateParams.id).then(function (response) {
+                    console.log(response);
+                }, function (error) {
+                    // $scope.found = [];
+                });
+                $scope.userSearch = function () {
+                    var ionAutocompleteElement = document.getElementsByClassName("get-users");
+                    angular.element(ionAutocompleteElement).controller('ionAutocomplete').fetchSearchQuery("", true);
+                    angular.element(ionAutocompleteElement).controller('ionAutocomplete').showModal();
+                }
+
+                $scope.selectAction = function (user) {
+                    $scope.members.push(user.item);
+                }
+
+                $scope.removeMember = function (key) {
+                    console.log(key);
+                }
 
             }
         ])
@@ -146,7 +160,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 text: 'Next',
                                 type: 'button-positive',
                                 onTap: function (e) {
-                                    
+
                                     if (jQuery('#my_group_name').val()) {
                                         Loader.show();
                                         var groupImg = jQuery('#group_image').prop('files')[0];
@@ -166,11 +180,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                         }, function (error) {
                                             // $scope.found = [];
                                         });
-
-
-
-
-
                                         /////////// save group
                                         ///////// redirect with response ID
                                         //$state.go('app.create-group', {id: 01});
@@ -202,32 +211,22 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 console.log($stateParams.cid);
                 $scope.showPopup = function () {
                     $scope.data = {};
-
                     // An elaborate, custom popup
                     $scope.myPopup = $ionicPopup.alert({
                         template: '<ion-list><ion-item ng-click="invokeSort()"><i class="ion-arrow-swap"></i> Sort Latest Polls</ion-item><ion-item ng-click="openFilters()"><i class="ion-funnel"></i> Filter Latest Polls</ion-item></ion-list>',
                         scope: $scope,
                         title: 'Select An Action',
                     });
-
-
-
-
                 };
-
                 $scope.filters = '';
                 $scope.orderBy = '';
-
                 $scope.$on('$ionicView.enter', function (e) {
                     $ionicNavBarDelegate.showBar(true);
                 });
-
                 $scope.getPollsFilters = function () {
                     Loader.show();
-
                     APIFactory.getInterests().then(function (response) {
                         $scope.interests = response.data;
-
                     }, function (error) {
 
                         Loader.toast('Oops! something went wrong. Please try later again');
@@ -241,12 +240,9 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     });
                 }
                 $scope.getPollsFilters();
-
                 $scope.isScroll = 0;
-
                 $scope.getPolls = function (type) {
                     Loader.show();
-
                     if (type == 'infScr') {
                         $scope.pageNumber = $scope.pageNumber + 1;
                     }
@@ -275,7 +271,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         $scope.userId = null;
                     }
                     var cid = $stateParams.cid;
-
                     APIFactory.getPollsGroup($scope.filters, $scope.pageNumber, $scope.orderBy, $scope.userId, 'groupPolls', cid).then(function (response) {
                         if ($scope.pageNumber > 1) {
                             if (!response.data.length) {
@@ -308,7 +303,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     });
                 }
                 $scope.getPolls('onLoad');
-
                 $scope.getFilteredPolls = function () {
                     Loader.show();
                     $scope.pageNumber = 1;
@@ -323,7 +317,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     $scope.pageNumber = 1;
                     $scope.filters = '';
                     $scope.getPolls();
-
                 }
                 $scope.invokeSort = function () {
                     $scope.myPopup.close();
@@ -347,7 +340,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             }
                         ]
                     });
-
                 }
 
 
@@ -386,7 +378,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         }
                     }
                 };
-
                 function likePoll(pollid) {
                     var data = {pollid: pollid, userId: LSFactory.get('user').ID};
                     Loader.show();
@@ -399,7 +390,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             $scope.pollLiked = !$scope.pollLiked;
                             $scope.getPolls();
                             $scope.popover.hide();
-
                         }
                     });
                 }
@@ -444,7 +434,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             $scope.popover.hide();
                             $scope.getPolls();
                             $scope.pollLiked = !$scope.pollLiked;
-
                         }
                     });
                 }
@@ -460,8 +449,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
                             $scope.popover.hide();
                             $scope.pollNotify = !$scope.pollNotify;
-
-
                         }
                     });
                 }
@@ -477,8 +464,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
                             $scope.popover.hide();
                             $scope.pollNotify = !$scope.pollNotify;
-
-
                         }
                     });
                 }
@@ -494,7 +479,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         vote(pid, oid, index, getIndex);
                     }
                 };
-
                 function vote(pid, oid, poll, getIndex) {
                     var index = $scope.polls.indexOf(poll);
                     var data = new FormData(jQuery("form.vote" + pid)[0]);
@@ -509,7 +493,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             console.log(getIndex);
                             $scope.polls[getIndex].options = response.data;
                             $scope.polls[getIndex].participants.push($scope.uid);
-
                         }
                     });
                 }
@@ -548,7 +531,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         }
                     });
                 };
-
                 $scope.closeParticipate = function () {
                     $scope.modal.hide();
                 };
@@ -561,12 +543,10 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 $scope.openFilters = function () {
                     $scope.myPopup.close();
                     $scope.modal.show();
-
                 };
                 $scope.closeFilters = function () {
                     $scope.modal.hide();
                 };
-
                 $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
                     angular.forEach($scope.polls, function (element, index) {
                         jQuery('#' + element.id).countdowntimer({
