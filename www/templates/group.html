@@ -5,31 +5,33 @@
     <ion-nav-buttons side="right"> 
         <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
         </button> 
-<!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
-        </button> -->
+        <!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
+                </button> -->
         <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
                 <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
             </button> -->
 
     </ion-nav-buttons> 
     <ion-content class="has-footer  listing-content">
-               
+
         <div class="card" ng-repeat="getGroup in getGroupDetails" on-finish-render="ngRepeatFinished">
-                <div style="width: 80%;" class="item item-avatar custom-item pull-left" ui-sref="app.groupPollListing({cid:getGroup.author.ID})">
-                    <img ng-src="{{getGroup.img!=null?getGroup.img:'img/user-icon.png'}}">
-                    <h2 class="group-name"> {{getGroup.title}}</h2>
+            <div style="width: 80%;" class="item item-avatar custom-item pull-left" ui-sref="app.groupPollListing({cid:getGroup.author.ID})">
+                <img ng-src="{{getGroup.img!=null?getGroup.img:'img/user-icon.png'}}">
+                <h2 class="group-name"> {{getGroup.title}}</h2>
+            </div>
+            <div class="tags custom-vln-2  tar row" style="padding: 25px 0;width: 20%">
+                <div ui-sref="app.groupinfo({gid:getGroup.id})" class="custom-vln tar">
+                    <div style="font-size: 30px;"><span class="fz21 ion ion-information-circled" ></span></div>
                 </div>
-                <div class="tags custom-vln-2  tar row" style="padding: 25px 0;width: 20%">
-                    <div ui-sref="app.groupinfo({gid:getGroup.id})" class="custom-vln tar">
-                        <div style="font-size: 30px;"><span class="fz21 ion ion-information-circled" ></span></div>
-                    </div>
-                    <div class="custom-vln tar">
-                        <div style="font-size: 30px;"><span class="no-border icon ion-stats-bars"></span></div>
-                    </div>
+                <div class="custom-vln tar">
+                    <div style="font-size: 30px;"><span class="no-border icon ion-stats-bars"></span></div>
                 </div>
+            </div>
         </div>
-   
-        
+    
+
+
+
     </ion-content>
     <div class="circlebtn" ng-click="creatGroupPopup()"><i class="ion-plus"></i></div>
 
