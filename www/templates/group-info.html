@@ -41,7 +41,7 @@
                 <div class="item item-avatar" ng-repeat="getMembers in members">
                     <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">{{getMembers.user_firstname}} {{getMembers.user_lastname}}</h2> 
-                    <p class="mt10"> <input type="button" value="Remove" class=" button action-button button-positive"> </p>
+                    <p class="mt10"> <input ng-click="removeMembers(groupinfo.id,getMembers.ID)" type="button" value="Remove" class=" button action-button button-positive"> </p>
                 </div>
               
             
@@ -54,7 +54,8 @@
                 <div class="item item-avatar">
                     <img ng-src="img/user-icon.png" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
                     <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">{{getMembersRequest.user_firstname}} {{getMembersRequest.user_lastname}}</h2> 
-                    <p class="mt10"> <input type="button" value="Accept" class=" button action-button button-positive"> <input type="button" value="Reject" class=" button action-button button-assertive"> </p>
+                    <p class="mt10"> <input type="button" value="Accept" ng-click="memberAccept(groupinfo.id,getMembersRequest.ID)" class=" button action-button button-positive"> 
+                        <input type="button" value="Reject" ng-click="memberReject(groupinfo.id,getMembersRequest.ID)" class=" button action-button button-assertive"> </p>
                 </div>
               
                 <div class="no-result" ng-if="!group.members.length && false">No pending request(s)</div>

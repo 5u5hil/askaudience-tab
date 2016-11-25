@@ -155,6 +155,18 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'joinGroup', headers: {'Content-Type': undefined}, cache: undefined, data: data};
                         return $http(req);
                     },
+                    memberAccept: function (data) {
+                        var req = {method: 'POST', url: domain + 'acceptMembers', headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
+                    },
+                    rejectMembers: function (data) {
+                        var req = {method: 'POST', url: domain + 'rejectMembers', headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
+                    },
+                    removeMembers: function (data) {
+                        var req = {method: 'POST', url: domain + 'removeMembers', headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
+                    }
                 };
                 return api;
             }])

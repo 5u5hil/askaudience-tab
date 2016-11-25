@@ -2,7 +2,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
     function ($scope, APIFactory, Loader, $rootScope, $ionicPopup, $state, LSFactory) {
 
         APIFactory.getGroup(LSFactory.get('user').ID).then(function (response) {
-            console.log(response.data);
             $scope.getGroupDetails = response.data;
         }, function (error) {
             // $scope.found = [];
@@ -55,7 +54,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 groupForm.append('groupName', groupName);
                                 groupForm.append('userId', LSFactory.get('user').ID);
                                 APIFactory.createGroup(groupForm).then(function (response) {
-                                    console.log(response);
                                     if (response.data.errorType == 'success') {
                                         Loader.hide();
                                         $state.go('app.create-group', {id: response.data.groupInfo});
@@ -178,7 +176,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 }
 
                 $scope.saveGroup = function (data) {
-                    console.log(data);
+
                 }
 
             }
@@ -191,10 +189,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 $scope.updatePan = function (tab) {
                     $scope.activePan = tab;
                 }
-                console.log($stateParams.gid);
                 APIFactory.getGroupById($stateParams.gid).then(function (response) {
                     $scope.groupinfo = response.data;
-                    console.log(response.data);
                     jQuery.each($scope.groupinfo.members, function (key, member) {
                         $scope.members.push(member);
                     });
@@ -207,6 +203,47 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     // $scope.found = [];
                 });
 
+                $scope.memberAccept = function (gid, uid) {
+                    Loader.show();
+                    var membersForm = new FormData();
+                    membersForm.append('groupId', gid);
+                    membersForm.append('uid', uid);
+                    APIFactory.memberAccept(membersForm).then(function (response) {
+                        $scope.members = response.data.details.members;
+                        $scope.members_request = response.data.details.members_request;
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                    }, function (error) {
+                        // $scope.found = [];
+                    });
+                }
+
+                $scope.memberReject = function (gid, uid) {
+                    Loader.show();
+                    var membersForm = new FormData();
+                    membersForm.append('groupId', gid);
+                    membersForm.append('uid', uid);
+                    APIFactory.rejectMembers(membersForm).then(function (response) {
+                        // $scope.members = response.data.details.members;
+                        $scope.members_request = response.data.details.members_request;
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                    }, function (error) {
+                        // $scope.found = [];
+                    });
+                }
+
+                $scope.removeMembers = function (gid, uid) {
+                    Loader.show();
+                    var membersForm = new FormData();
+                    membersForm.append('groupId', gid);
+                    membersForm.append('uid', uid);
+                    APIFactory.removeMembers(membersForm).then(function (response) {
+                        // $scope.members = response.data.details.members;
+                        $scope.members = response.data.details.members;
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                    }, function (error) {
+                        // $scope.found = [];
+                    });
+                }
 
 
                 $scope.editGroup = function (gid) {
@@ -268,7 +305,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 $scope.canLoadMore = false;
                 $scope.morePolls = true;
                 $scope.myPopup = '';
-                console.log($stateParams.cid);
                 $scope.showPopup = function () {
                     $scope.data = {};
                     // An elaborate, custom popup
@@ -549,8 +585,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
-                            console.log(response.data);
-                            console.log(getIndex);
                             $scope.polls[getIndex].options = response.data;
                             $scope.polls[getIndex].participants.push($scope.uid);
                         }

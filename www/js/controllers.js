@@ -32,7 +32,6 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
         });
 
         $scope.imageView = function (img) {
-            console.log(getView);
             getView.show();
             $scope.magnImage = img;
         };
@@ -268,9 +267,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 }
                 Loader.show();
                 APIFactory.resetPwd(data).then(function (response) {
-                    console.log(response.data);
                     if (response.data.errorType == 'success') {
-                        console.log(response.data.errorType);
                         Loader.hide();
                         Loader.toggleLoadingWithMessage('Your password reset link has been sent to your email Id', 2000);
                     } else {
@@ -431,7 +428,6 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 } else {
                     getUid = LSFactory.get('user').ID;
                 }
-                console.log(getUid);
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;
@@ -1290,8 +1286,6 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage('Voted Successfully', 1000);
-                            console.log(response.data);
-                            console.log(getIndex);
                             $scope.polls[getIndex].options = response.data;
                             $scope.polls[getIndex].participants.push($scope.uid);
 
