@@ -247,14 +247,26 @@ function downscaleImage(dataUrl, newWidth) {
     return newDataUrl;
 }
 
-var loadFile = function (event) {
-    console.log(event.target.name);
-    var reader = new FileReader();
-    reader.onload = function () {
-        var output = document.getElementById('output');
-        var newurl = downscaleImage(reader.result, 500);
-        jQuery("[type='hidden'][name='" + event.target.name + "']").val(newurl);
+var loadFile = function (e) {
 
-    };
-    reader.readAsDataURL(event.target.files[0]);
+    var file = e.target.files[0];
+
+
+    // CANVAS RESIZING
+    canvasResize(file, {
+        width: 800,
+        height: 0,
+        crop: false,
+        quality: 80,
+        rotate: 0,
+        callback: function (data, width, height) {
+
+
+            $("#hidden").attr('value', data);
+            $(this).append(data);
+
+
+        }
+    });
+
 };
