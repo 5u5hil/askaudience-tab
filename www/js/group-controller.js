@@ -134,8 +134,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         }
     }
 ])
-        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$stateParams', '$timeout', '$cordovaSocialSharing',
-            function ($scope, APIFactory, Loader, $rootScope, $stateParams, $timeout, $cordovaSocialSharing) {
+        .controller('createGrpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$stateParams', '$timeout', '$cordovaSocialSharing', 'LSFactory',
+            function ($scope, APIFactory, Loader, $rootScope, $stateParams, $timeout, $cordovaSocialSharing, LSFactory) {
                 $scope.members = [];
                 $scope.groupinfo = {};
                 Loader.show();
@@ -176,14 +176,14 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 }
 
                 $scope.saveGroup = function (data) {
+                    var members = JSON.stringify(data);
+
                     Loader.show();
                     createForm = new FormData();
                     createForm.append('pid', $stateParams.id);
-                    createForm.append('members', data);
+                    createForm.append('members', members);
+                    createForm.append('userId', LSFactory.get('user').ID);
                     APIFactory.updateMembers(createForm).then(function (response) {
-                        console.log(response.data);
-                        //$scope.members = response.data.details.members;
-                        //$scope.members_request = response.data.details.members_request;
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     }, function (error) {
                         // $scope.found = [];
