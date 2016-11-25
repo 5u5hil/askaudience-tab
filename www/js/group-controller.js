@@ -176,6 +176,18 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 }
 
                 $scope.saveGroup = function (data) {
+                    Loader.show();
+                    createForm = new FormData();
+                    createForm.append('pid', $stateParams.id);
+                    createForm.append('members', data);
+                    APIFactory.updateMembers(createForm).then(function (response) {
+                        console.log(response.data);
+                        //$scope.members = response.data.details.members;
+                        //$scope.members_request = response.data.details.members_request;
+                        Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                    }, function (error) {
+                        // $scope.found = [];
+                    });
 
                 }
 

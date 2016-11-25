@@ -166,6 +166,10 @@ angular.module('askaudience.services', [])
                     removeMembers: function (data) {
                         var req = {method: 'POST', url: domain + 'removeMembers', headers: {'Content-Type': undefined}, cache: undefined, data: data};
                         return $http(req);
+                    },
+                    updateMembers: function (data) {
+                        var req = {method: 'POST', url: domain + 'updateMembers', headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
                     }
                 };
                 return api;
