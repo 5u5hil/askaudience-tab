@@ -189,7 +189,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.groupinfo', {
-                        url: '/groupinfo/:id',
+                        url: '/groupinfo/:gid',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/group-info.html',

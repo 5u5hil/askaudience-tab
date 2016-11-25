@@ -169,28 +169,48 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
 
                 $scope.invitToGroup = function () {
                     $cordovaSocialSharing
-                            .share('', '', '', '') 
+                            .share('', '', '', '')
                             .then(function (result) {
-                                
+
                             }, function (err) {
-                               
+
                             });
                 }
-                
-                $scope.saveGroup = function(data){
+
+                $scope.saveGroup = function (data) {
                     console.log(data);
                 }
 
             }
         ])
-        .controller('grpInfoCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ionicPopup',
-            function ($scope, APIFactory, Loader, $rootScope, $ionicPopup) {
+        .controller('grpInfoCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ionicPopup', '$stateParams', 'LSFactory', '$state',
+            function ($scope, APIFactory, Loader, $rootScope, $ionicPopup, $stateParams, LSFactory, $state) {
                 $scope.activePan = 'members';
+                $scope.members = [];
+                $scope.members_request = [];
                 $scope.updatePan = function (tab) {
                     $scope.activePan = tab;
                 }
+                console.log($stateParams.gid);
+                APIFactory.getGroupById($stateParams.gid).then(function (response) {
+                    $scope.groupinfo = response.data;
+                    console.log(response.data);
+                    jQuery.each($scope.groupinfo.members, function (key, member) {
+                        $scope.members.push(member);
+                    });
+                    jQuery.each($scope.groupinfo.members_request, function (key, member) {
+                        $scope.members_request.push(member);
+                    });
 
-                $scope.editGroup = function (id) {
+                    Loader.hide();
+                }, function (error) {
+                    // $scope.found = [];
+                });
+
+
+
+                $scope.editGroup = function (gid) {
+
                     $scope.myPopup2 = $ionicPopup.alert({
                         template: '<form id="createForm"  enctype="multipart/form-data"><ion-list><ion-item><input id="my_group_name" ng-model="group.groupName" type="text" name="group_name" placeholder="Enter Group Name" /></ion-item><ion-item><input type="file" id="group_image" ng-model="group.groupImg" name="group_image" placeholder="Enter Group Name" /></ion-item></ion-list></form>',
                         scope: $scope,
@@ -208,10 +228,11 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                         groupForm.append('groupImg', groupImg);
                                         groupForm.append('groupName', groupName);
                                         groupForm.append('userId', LSFactory.get('user').ID);
+                                        groupForm.append('gid', gid);
                                         APIFactory.createGroup(groupForm).then(function (response) {
                                             if (response.data.errorType == 'success') {
                                                 Loader.hide();
-                                                $state.go('app.create-group', {id: 01});
+                                                $state.go('app.create-group', {id: gid});
                                             } else {
                                                 Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                                             }
