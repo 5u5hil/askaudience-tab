@@ -153,6 +153,10 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                     if (typeof (user.handle) === 'undefined') {
                         user.handle = "";
                     }
+                    if (typeof (user.lastname) === 'undefined') {
+                        user.lastname = "";
+                    }
+
                     var data = new FormData(user);
                     data.append('firstname', user.firstname);
                     data.append('lastname', user.lastname);
@@ -647,7 +651,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                                 $scope.polls.push(element);
                             });
                         }
-                       // Loader.hide();
+                        // Loader.hide();
                     }, function (data) {
                         Loader.hide();
                         Loader.toast('Oops! something went wrong');

@@ -9,9 +9,9 @@
                 </button>
             </ion-nav-buttons>
             <ion-nav-buttons side="right">
-                <!--                <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
+                             <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
                                     <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
-                                </button>-->
+                                </button>
             </ion-nav-buttons>
         </ion-nav-bar>
         <input ion-autocomplete type="text"   class="ion-autocomplete"  items-method-value-key="items" items-method="getTestItems(query)"  autocomplete="off" ng-model="sterm" item-view-value-key="display_name" items-clicked-method="clickedMethod

@@ -84,8 +84,8 @@
                     </label> 
                     <label class="item item-register item-floating-label">
                         <span class="input-label ">Email*</span>
-                        <input type="email" class=" transparent-label registerEmail" name="useremail" ng-model="userRegister.useremail" placeholder="Enter your Email*" required>
-                        <p class="error-text" ng-show="registrationForm.useremail.$error.email && registrationForm.useremail.$dirty">Please enter valid Email Id</p>
+                        <input type="email" class=" transparent-label registerEmail" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" name="useremail" ng-model="userRegister.useremail" placeholder="Enter your Email*" required>
+                        <p class="error-text" ng-show=" registrationForm.useremail.$error.pattern && registrationForm.useremail.$dirty">Please enter valid Email Id</p>
                     </label>
                     <label class="item item-register item-floating-label">
                         <span class="input-label ">Password*</span>
