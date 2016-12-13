@@ -29,11 +29,7 @@
 
             <div class="wrapper-login-offer">
                 <div class="row login-pad ">
-                    <div class="col">
-                        <a class="" ng-click="registerToggle()">
-                            Create An Account 
-                        </a>
-                    </div>
+                    
                     <div class="col txt-right">
                         <a class="" ng-click="resetPwd()">
                             Forgot Password? 
@@ -42,6 +38,9 @@
                 </div>
             </div>
             <div class="txt-center or-text ">OR</div>
+            <div class="list txt-center">
+                <a class="button register-btn" ng-click="registerToggle()">Create An Account</a>
+            </div>
             <div class="list txt-center">
                 <button class="button radiuz-btn icon-left ion-social-facebook facebook-background button-dark  facebook-sign-in" ng-click="facebookLogin()">LOG IN WITH FACEBOOK</button>
             </div>
@@ -60,7 +59,7 @@
             </div>
         </ion-header-bar>
         <ion-content class="login-bg" >
-            <div class="list txt-center mb10">
+            <div style="margin-top: 20px;" class="list txt-center mb10">
                 <button class="button radiuz-btn icon-left ion-social-facebook facebook-background button-dark  facebook-sign-in" ng-click="facebookLogin()">SIGN UP WITH FACEBOOK</button>
             </div>
             <div class="list txt-center">
@@ -69,29 +68,35 @@
             <div class="txt-center pb0   ">OR</div>
             <form class="margin30 manualRegistration" name="registrationForm" ng-submit="registerUser(userRegister)" enctype="multipart/form-data">
                 <div class="list">
-                    <label class="item border-tn item-register item-input item-floating-label">
+                    <label class="item border-tn item-register item-floating-label">
                         <span class="input-label ">First Name*</span>
-                        <input type="text" class=" transparent-label" name="firstname" ng-model="userRegister.firstname"  placeholder="Enter your  First Name*" required>
+                        <input type="text" class=" transparent-label registerFName" name="firstname" ng-model="userRegister.firstname"  placeholder="Enter your  First Name*" required>
                         <p class="error-text" ng-show="registrationForm.firstname.$error.required && registrationForm.firstname.$touched">Please enter First Name</p>
                     </label> 
-                    <label class="item item-register item-input item-floating-label">
+                    <label class="item item-register item-floating-label">
                         <span class="input-label ">Last Name</span>
-                        <input type="text" class=" transparent-label" name="lastname" ng-model="userRegister.lastname" placeholder="Enter your Last Name*" >
+                        <input type="text" class=" transparent-label registerLName" name="lastname" ng-model="userRegister.lastname" placeholder="Enter your Last Name*" >
                     </label> 
-                    <label class="item item-register item-input item-floating-label">
+                    <label class="item item-register item-floating-label">
+                        <span class="input-label ">Handle*</span>
+                        <input type="text" class=" transparent-label" name="handle" ng-model="userRegister.handle" ng-pattern="/^[a-zA-Z0-9_.]*$/" placeholder="Handle*" required >
+                        <p class="error-text" ng-show="  registrationForm.handle.$error.pattern && registrationForm.handle.$dirty">Please use numbers and letters only</p>
+                    </label> 
+                    <label class="item item-register item-floating-label">
                         <span class="input-label ">Email*</span>
-                        <input type="email" class=" transparent-label" name="useremail" ng-model="userRegister.useremail" placeholder="Enter your Email*" required>
+                        <input type="email" class=" transparent-label registerEmail" name="useremail" ng-model="userRegister.useremail" placeholder="Enter your Email*" required>
                         <p class="error-text" ng-show="registrationForm.useremail.$error.email && registrationForm.useremail.$dirty">Please enter valid Email Id</p>
                     </label>
-                    <label class="item item-register item-input item-floating-label">
+                    <label class="item item-register item-floating-label">
                         <span class="input-label ">Password*</span>
-                        <input type="password" class=" transparent-label" name="password" ng-model="userRegister.password" ng-minlength="6" placeholder="Enter your password*" required>
+                        <input type="password" class=" transparent-label registerPassword" name="password" ng-model="userRegister.password" ng-minlength="6" placeholder="Enter your password*" required>
                         <p class="error-text" ng-show="registrationForm.password.$error.minlength && registrationForm.password.$dirty">Password cannot be less than 6 characters</p>
                     </label>
-<!--                    <label class="item item-register item-input item-floating-label">
+                    <label class="item item-register item-floating-label">
                         <span class="input-label ">Profile Pic</span>
-                        <input type="file" class=" transparent-label" name="profilepic" >
-                    </label>-->
+                        <input type='hidden' ng-model="userRegister.profilepic" class="profilePicVal" value='' name='profilepic' />
+                        <input type="file"  onchange="loadFile(event)" class=" transparent-label" name="profilepic" >
+                    </label>
                     <div class="txt-center">
                         <button class="button button-small mt25 button-block button-dark btn-login radiuz-btn" type="submit" ng-disabled="registrationForm.$invalid">
                             Register

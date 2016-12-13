@@ -311,8 +311,6 @@
                     var y = size.cropped === 'w' ? (width - height) * .5 : 0;
                     newctx = newcanvas.getContext('2d');
                     newctx.drawImage(canvas, x, y, width, height);
-
-                    console.log(file, file.type);
                     if (file.type === "image/png") {
                         var data = newcanvas.toDataURL(file.type);
                     } else {

@@ -45,8 +45,12 @@ angular.module('askaudience.services', [])
                         var req = {method: 'GET', url: domain + 'getPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId + '&type=' + groupPolls + '&cid=' + cId};
                         return $http(req);
                     },
-                    getPollsGroup: function (filters, pageNo, orderBy, userId, groupPolls, cId) {
-                        var req = {method: 'GET', url: domain + 'getGroupPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId + '&type=' + groupPolls + '&cid=' + cId};
+                    getPollById: function (pollId) {
+                        var req = {method: 'GET', url: domain + 'getPolls&search_by=2&sterm=' + pollId};
+                        return $http(req);
+                    },
+                    getPollsGroup: function (filters, pageNo, orderBy, userId, groupPolls, gId, cId) {
+                        var req = {method: 'GET', url: domain + 'getGroupPolls&' + filters + '&pageNo=' + pageNo + '&orderby=' + orderBy + '&userId=' + userId + '&type=' + groupPolls + '&gid=' + gId + '&cid=' + cId};
                         return $http(req);
                     },
                     getPollsByType: function (data) {
@@ -141,8 +145,8 @@ angular.module('askaudience.services', [])
                     linkedinToken: function (data) {
                         return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: "https://www.linkedin.com/uas/oauth2/accessToken", data: $httpParamSerializer(data)})
                     },
-                    getGroup: function (uid) {
-                        return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: domain + "mygroup&uid=" + uid, data: {}})
+                    getGroup: function (uid, getPage, checkPaginate) {
+                        return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: domain + "mygroup&uid=" + uid + "&pageNo=" + getPage + "&checkPaginate" + checkPaginate, data: {}})
                     },
                     createGroup: function (data) {
                         var req = {method: 'POST', url: domain + 'group', headers: {'Content-Type': undefined}, cache: undefined, data: data};
@@ -170,6 +174,17 @@ angular.module('askaudience.services', [])
                     updateMembers: function (data) {
                         var req = {method: 'POST', url: domain + 'updateMembers', headers: {'Content-Type': undefined}, cache: undefined, data: data};
                         return $http(req);
+                    },
+                    memberExit: function (data) {
+                        var req = {method: 'POST', url: domain + 'memberExit', headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
+                    },
+                    deleteGroup: function (data) {
+                        var req = {method: 'POST', url: domain + 'deleteGroup', headers: {'Content-Type': undefined}, cache: undefined, data: data};
+                        return $http(req);
+                    },
+                    logout: function (uid) {
+                        return $http({method: "post", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, url: domain + "logout&uid=" + uid, data: {}})
                     }
                 };
                 return api;

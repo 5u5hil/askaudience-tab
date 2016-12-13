@@ -6,12 +6,10 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
 
 
 
-        .run(function ($ionicPlatform, $cordovaStatusbar, $state) {
-
-
-
+        .run(function ($ionicPlatform, $cordovaStatusbar, $state, $q) {
 
             $ionicPlatform.ready(function () {
+
                 // Enable to debug issues.
                 // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
@@ -25,12 +23,75 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         navigator.splashscreen.hide();
                     } catch (e) {
                     }
-                }, 4000);
+                }, 2000);
 
+
+                function check3DTouchAvailability() {
+                    return $q(function (resolve, reject) {
+                        if (window.ThreeDeeTouch) {
+                            window.ThreeDeeTouch.isAvailable(function (available) {
+                                resolve(available);
+                            });
+                        } else {
+                            reject();
+                        }
+                    });
+                }
+
+                check3DTouchAvailability().then(function (available) {
+
+                    if (available) {    // Comment out this check if testing in simulator
+
+                        // Configure Quick Actions
+                        window.ThreeDeeTouch.configureQuickActions([
+                            {
+                                type: 'polls',
+                                title: 'Latest Polls',
+                                subtitle: '',
+                                iconType: 'Love'
+                            },
+                            {
+                                type: 'createPoll',
+                                title: 'Create Poll',
+                                subtitle: '',
+                                iconType: 'compose'
+                            },
+                            {
+                                type: 'formePoll',
+                                title: 'Polls for Me',
+                                subtitle: '',
+                                iconType: 'Favorite'
+                            },
+                            {
+                                type: 'groups',
+                                title: 'My Groups',
+                                subtitle: '',
+                                iconType: 'Home'
+                            }
+
+                        ]);
+
+                        // Set event handler to check which Quick Action was pressed
+                        window.ThreeDeeTouch.onHomeIconPressed = function (payload) {
+                            if (payload.type == 'createPoll') {
+                                window.location.href = "#app/create-poll";
+                            }
+                            if (payload.type == 'formePoll') {
+                                window.location.href = "#app/forme";
+                            }
+                            if (payload.type == 'groups') {
+                                window.location.href = "#app/group";
+                            }
+                            if (payload.type == 'polls') {
+                                window.location.href = "#app/polls";
+                            }
+                        };
+                    }
+                })
 
 
                 if (window.cordova && window.cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
                     cordova.plugins.Keyboard.disableScroll(true);
 
 
@@ -38,7 +99,15 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     var notificationOpenedCallback = function (jsonData) {
                         var url = jsonData.notification.payload.additionalData.url;
                         var userId = jsonData.notification.payload.additionalData.userId;
-                        $state.go(url, {'id': userId});
+                        var gid = jsonData.notification.payload.additionalData.gid;
+                        var type = jsonData.notification.payload.additionalData.type;
+                        if (type === 'groupinfo') {
+                            $state.go(url, {'gid': gid, 'cid': userId});
+
+                        } else {
+                            $state.go(url, {'id': userId, 'reveal': 1, 'gid': gid, 'type': type});
+
+                        }
                         console.log(jsonData.notification.payload.additionalData.url);
                         console.log('above data 3');
                         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
@@ -87,6 +156,16 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         templateUrl: 'templates/menu.html',
                         controller: 'AppCtrl'
                     })
+
+                    .state('app.polldetails', {
+                        url: '/polldetails/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/polldetails.html',
+                                controller: 'pollDetailsCtrl'
+                            }
+                        }
+                    })
                     .state('app.polls', {
                         url: '/polls',
                         views: {
@@ -117,15 +196,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
 
-                    .state('app.polldetails', {
-                        url: '/polldetails/:id',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'templates/polldetails.html',
-                                controller: 'pollDetailsCtrl'
-                            }
-                        }
-                    })
+
                     .state('app.createpoll', {
                         url: '/create-poll',
                         views: {
@@ -135,20 +206,22 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                             }
                         }
                     })
+
+                    .state('app.my-profile', {
+                        url: '/my-profile/:id/:reveal/:type',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/my-profile.html',
+                                controller: 'userProfileCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.user', {
                         url: '/user/:id/:reveal/:uid',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/user-profile.html',
-                                controller: 'userProfileCtrl'
-                            }
-                        }
-                    })
-                    .state('app.my-profile', {
-                        url: '/my-profile/:id/:reveal',
-                        views: {
-                            'menuContent': {
-                                templateUrl: 'templates/my-profile.html',
                                 controller: 'userProfileCtrl'
                             }
                         }
@@ -180,7 +253,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.group', {
-                        url: '/group',
+                        url: '/group/:join',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/group.html',
@@ -189,7 +262,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.groupinfo', {
-                        url: '/groupinfo/:gid',
+                        url: '/groupinfo/:gid/:type',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/group-info.html',
@@ -207,7 +280,7 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         }
                     })
                     .state('app.groupPollListing', {
-                        url: '/poll-group/:cid',
+                        url: '/poll-group/:gid/:cid',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/poll-group.html',
@@ -217,40 +290,13 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                     })
 
             // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('/app/create-group/670');
+            $urlRouterProvider.otherwise('/app/polls');
         })
 
-function downscaleImage(dataUrl, newWidth) {
-    "use strict";
-    var image, oldWidth, oldHeight, newHeight, canvas, ctx, newDataUrl, imageType, imageArguments;
 
-    // Provide default values
-    imageType = "image/jpeg";
-    imageArguments = 0.9;
-
-    // Create a temporary image so that we can compute the height of the downscaled image.
-    image = new Image();
-    image.src = dataUrl;
-    oldWidth = image.width;
-    oldHeight = image.height;
-    newHeight = Math.floor(oldHeight / oldWidth * newWidth)
-
-    // Create a temporary canvas to draw the downscaled image on.
-    canvas = document.createElement("canvas");
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-    var ctx = canvas.getContext("2d");
-
-    // Draw the downscaled image on the canvas and return the new data URL.
-    ctx.drawImage(image, 0, 0, newWidth, newHeight);
-    newDataUrl = canvas.toDataURL(imageType, imageArguments);
-    return newDataUrl;
-}
 
 var loadFile = function (e) {
-
     var file = e.target.files[0];
-
 
     // CANVAS RESIZING
     canvasResize(file, {
@@ -261,12 +307,19 @@ var loadFile = function (e) {
         rotate: 0,
         callback: function (data, width, height) {
 
-
-            $("#hidden").attr('value', data);
-            $(this).append(data);
-
+            jQuery("[type='hidden'][name='" + e.target.name + "']").val(data);
+            jQuery("[data-id='" + e.target.name + "']").attr("src", data);
 
         }
     });
 
 };
+
+function handleOpenURL(url) {
+    url = url.replace("askaudience://", "");
+    if (url.length > 0) {
+        window.location.href = '#' + url;
+    }
+}
+
+ 

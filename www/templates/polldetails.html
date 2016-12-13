@@ -1,55 +1,18 @@
 <ion-view hide-menu-button="true">
     <ion-nav-title>
-        Participate
+        
     </ion-nav-title>
     <ion-content class="has-footer">
-        <div class="card custom-poll-card card-polls">
-            <div  ng-if="poll.posted_as != 4" class="item item-avatar" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
-                <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
-                <h2 class="pull-left" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
-                <h2 class="pull-left" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
-                <p class="pull-right">{{poll.date}}</p>
-            </div>
-            <div  ng-if="poll.posted_as == 4" class="item item-avatar">
-                <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}" class="poll-img" >
-                <h2 class="pull-left">Anonymous</h2>
-                <p class="pull-right">{{poll.date}}</p>
-            </div>
-            <div class="item item-body p0">
-
-                <div class="poll-img-wrapper" ng-if="poll.img != ''"><img ng-src="{{poll.img}}" class="full-image" alt=""></div>
-                <p class="poll-question bold" ng-bind-html="poll.title"></p>
-
-                <form class="vote" ng-if="participated == 'No'">
-
-                    <ul class="options">
-
-                        <li ng-repeat="opt in poll.options">
-                            <label class="checkbox w100">
-                                <ion-item class="item {{ opt.image ? 'item-avatar' : ''}}">
-                                    <img ng-src="{{opt.image.url}}" ng-if="opt.image" class="thumbnail-image item-checkbox-img "/> {{ opt.option}}
-                                    <input type="{{poll.multiple_answers == '0' ? 'radio' : 'checkbox'}}" name="options[]" value="{{ opt.id}}" class="option-checkbox">
-                                </ion-item>
-
-                            </label>
-
-                        </li>
-                    </ul>
-                    <input type="hidden" name="pollid" value="{{ poll.id}}" />
-                    <div class="padding-top txt-center">
-                        <button class="button button-balanced" ng-click="vote()">Submit</button>
-
-                    </div>
-                </form>
-
-                <pie-chart data="chart" id="chart" options="options"></pie-chart>
-            </div>
-            <div class="item tabs tabs-secondary tabs-icon-left action-button-wrapper">
-                <a class="tab-item" href="#" ng-click="socialShare(poll.title, poll.title, poll.img)">
-                    <i class="icon ion-share"></i>
-                    Share
-                </a>
-            </div>
-        </div>
+        <div class="card card-polls" ng-include src="'templates/card.html'"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished"></div>
     </ion-content>
+    <script id="zoomimg.html" type="text/ng-template">
+        <ion-modal-view class="transparentbg">
+        <div class="zclose" ng-click="imageViewClose()">X</div>
+        <ion-content class="" scroll="false">          
+          <ion-scroll zooming="true" overflow-scroll="false" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">   
+            <img ng-src="{{magnImage}}">
+        </ion-scroll>          
+        </ion-content>        
+        </ion-modal-view>
+    </script>
 </ion-view>

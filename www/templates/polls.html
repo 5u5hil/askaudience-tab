@@ -3,9 +3,10 @@
         Ask Audience
     </ion-nav-title>
     <ion-nav-buttons side="right"> 
-        <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
+        
+        <button class="button button-icon button-clear ion-arrow-swap" ng-click="invokeSort()" >
         </button> 
-        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
+        <button class="button button-icon button-clear ion-funnel" ng-click="openFilters()" >
         </button> 
         <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
                 <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
@@ -25,8 +26,11 @@
     <script id="zoomimg.html" type="text/ng-template">
         <ion-modal-view class="transparentbg">
         <div class="zclose" ng-click="imageViewClose()">X</div>
-        <ion-content style="background-image: url({{magnImage}});" class="zoimg">
-        </ion-content>
+        <ion-content class="" scroll="false">          
+          <ion-scroll zooming="true" overflow-scroll="false" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">   
+            <img src="{{magnImage}}">
+        </ion-scroll>          
+        </ion-content>        
         </ion-modal-view>
     </script>
 </ion-view>

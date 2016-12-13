@@ -61,23 +61,7 @@
  
   
 </div>
- <div class="list poll-type">
- 
 
-  <div class="item title pt0">
-    Interest Areas
-  </div>
-              <li class="item item-input item-stacked-label">
-                      
-                        <input type="text"  ng-model="search" class="textbox-css" placeholder="Search Interest Area" />
-                       
-                    </li> 
-
-  <ion-checkbox ng-repeat="interest in interests | filter:search"  name="interests[{{interest.term_id}}]" ng-value=" interest.term_id ">
-    <span class="label vlm" ng-bind-html="interest.name"> </span> </ion-checkbox> 
-             
-  
-</div>
       
         </div>
         </form>

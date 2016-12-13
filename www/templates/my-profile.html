@@ -1,6 +1,6 @@
 <ion-view>
     <ion-nav-title>
-        {{ reveal == 1 ? userInfo.first_name : (reveal == 3 ? userInfo.first_name : 'Anonymous')}}'s Profiles
+        {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.display_name : 'Anonymous')}}'s Profile
     </ion-nav-title>
 
     <ion-content class="has-footer">
@@ -9,16 +9,17 @@
                 <div class=" ">
                     <div class="row mb15">
                         <div class="celeb-img-detail profile-img-detail col-25 ">
-                            <img ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
+                            <img ng-click="imageView(userInfo.img)" ng-src="{{reveal != 1 ? 'img/user-icon.png' : userInfo.img}}">
                         </div>
                         <div class="celeb-img-detail  txt-left  col-75 ">
 
                             <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
-                                {{userInfo.display_name}} ({{userInfo.user_nicename}})
+                                {{userInfo.display_name}} ({{userInfo.pin}})
                                 <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span> 
                             </h2>
+                            <p style="padding-left: 13px" >@{{userInfo.user_login}}</p>
                             <h2 class="mb0 fs20 profile-name" ng-if="uid != cid">                            
-                                {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.user_nicename : 'Anonymous')}} 
+                                {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.pin : 'Anonymous')}} 
 
                             </h2>
                         </div>
@@ -133,41 +134,33 @@
         </div>
         <div ng-if="(activePan == 'openPolls') || (activePan == 'privatePolls') || (activePan == 'Anonymous') || (activePan == 'pinRevealed') || (activePan == 'closedPolls') || (activePan == 'myVoted')" class="listing-content">
 
-            <div class="card card-polls" ng-init="sectionIndex = $index"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
+<!--            <div class="card card-polls" ng-init="sectionIndex = $index"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
                 <div ng-class="!poll.img ? 'text-poll' : 'img-poll'" >
                     <div class="top-bar-wrapper">
                         <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as})">
                             <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
                             <h2 class=" poll-name-user" ng-if="poll.posted_as == 1 || poll.posted_as == 2">{{ poll.author.display_name}}</h2>
-                            <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.user_nicename}}</h2>
-
+                            <h2 class=" poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.pin}}</h2>
+                            <p class="msg-header-username" ng-if="poll.posted_as == 1">@{{ poll.author.user_login}}</p>
                         </div>
                         <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as == 4" >
-                            <img ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+                            <img ng-src="{{poll.posted_as != 1 ? 'img/user_anonymous_icon.png' : poll.author.img}}">
                             <h2 class=" poll-name-user">Anonymous</h2>
                         </div>
-
-                        <!-- ng-if="poll.is_explicit || poll.is_mature" -->
+                        
                         <div class="tags custom-vln  tar row">
-                            <div class="custom-vln tar" ng-click="openPopover($event, poll, $index)"  ng-if="activePan != 'closedPolls'">
-                                <h2><span class="fz21 ion-android-more-vertical" ></span></h2>
-                            </div>
-                            <div class="custom-vln tar" ng-if="poll.reposts != ''" ng-click="getRepostedBy(poll.id)">
-                                <h2 class=" no-border reposts-icon"><span class="ion-ios-loop-strong icon  "></span></h2>
-                            </div>
-                            <div class="custom-vln tar" ng-if="poll.is_explicit == 1 || poll.is_mature == 1">
+                            <div class="tar" ng-if="poll.is_explicit == 1 || poll.is_mature == 1">
                                 <h2 class="tag-text">18+</h2>
                             </div>
-
                         </div>
-                        <!--   <div class="poll-separator-ver pull-right"></div>  -->
+                           <div class="poll-separator-ver pull-right"></div>  
                     </div>
                     <div class="poll-separator"></div>
                     <div class="clear-fix"></div>
-                    <div class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title"  ng-click="participate($event, poll.id, poll.options)">
+                    <div ui-sref-opts="{reload: false, notify: true, cache: false}" ui-sref="app.polldetails({id:poll.id})" class="item item-text-wrap padding10 poll-question-text" ng-bind-html="poll.title">
                     </div>
                     <div class="item item-text-wrap poll-image p0 pb0">
-                        <img ng-src="{{poll.img}}" alt="" ng-if="poll.img"  ng-click="participate($event, poll.id, poll.options)">
+                        <img ng-src="{{poll.img}}" alt="" ng-if="poll.img"  ng-click="imageView(poll.img)">
                     </div>
                     <div class="item poll-topbar padding10">
                         <div class="poll-id pull-left not-link">#{{poll.id}}</div>
@@ -175,7 +168,7 @@
 
                     </div>
 
-                    <div class="item item-text-wrap p0 poll-answer-options hidden" data-toggle="{{poll.id}}"> 
+                    <div class="item item-text-wrap p0 poll-answer-options" data-toggle="{{poll.id}}"> 
                         <form class="vote{{poll.id}}" ng-if="(Number(poll.participants.indexOf(uid)) < 0) || !(poll.participants.length)"> 
                             <ul class="options">
                                 <li class="nlist" ng-repeat="opt in poll.options">
@@ -228,16 +221,19 @@
 
                     </div>
                     <div class="item item-text-wrap padding10 row poll-action-panel" ng-if="activePan != 'closedPolls'">
-
-                        <a class="button poll-option-btn ion-android-checkmark-circle button-clear button-dark black fz20 col" data-ref="{{poll.id}}" ng-click="participate($event, poll.id, poll.options)"><span class="vlm">Vote</span></a>
-
-                        <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img)"><span class="vlm">Share</span></a>
+                        <a class="button poll-option-btn ion-ios-heart-outline icon-red button-clear button-dark black fz20 col" ng-show="!isLike(poll)" ng-click="performTask('like',poll.id, $index)"><span class="vlm">Like</span></a>
+                        <a class="button poll-option-btn ion-ios-heart button-clear icon-red button-dark black fz20 col" ng-show="isLike(poll)" ng-click="performTask('unlike', poll.id, $index)"><span class="vlm">Unlike</span></a>
+                        <a class="button poll-option-btn ion-android-share-alt button-clear button-dark black fz20 col" ng-click="socialShare(poll.title, poll.title, poll.img,poll.id)"><span class="vlm">Share</span></a>
                         <a class="button poll-option-btn ion-ios-loop-strong button-clear button-dark black fz20 col" ng-click="performTask('repost', poll.id)"><span class="vlm">Re-Post</span></a>
+                    
+                        <a class="button poll-option-btn ion-ios-more button-clear button-dark black fz20 col" ng-click="openPopover($event, poll, $index)"></a>
                     </div>
                 </div>
 
-            </div>
-            <div ng-if="!polls.length" class="no-polls-msg">No poll Found</div>
+            </div>-->
+<div class="card card-polls" ng-include src="'templates/card.html'"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
+        </div>
+            <div ng-if="!polls.length" class="no-polls-msg">No Poll Found</div>
 
             <ion-infinite-scroll class="white-bg" on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
         </div>
@@ -249,10 +245,10 @@
 
 
             <div class="list">
-
+                
                 <div class="item item-avatar" role="link" ng-repeat="followingUsers in userInfo.following">
-                    <img ng-src="{{followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1})">{{::followingUsers.user.display_name| capitalize}}</h2>
+                    <img ng-src="{{followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1, uid: followingUsers.user.ID})">
+                    <h2 ui-sref="app.user({id:followingUsers.user.ID, reveal : 1, uid: followingUsers.user.ID})">{{::followingUsers.user.display_name| capitalize}}</h2>
                     <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.user.ID)" class=" button poll-btn action-button button-positive"> </p> 
                 </div>
                 <div class="no-result" ng-if="!userInfo.following.length">No following</div>
@@ -265,8 +261,8 @@
             <div class="list">
 
                 <div class="item item-avatar"  ng-repeat="follwerUsers in userInfo.followers">
-                    <img ng-src="{{follwerUsers.user.img}}" ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1})">{{::follwerUsers.user.display_name}}</h2>
+                    <img ng-src="{{follwerUsers.user.img}}" ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1, uid:follwerUsers.user.ID})">
+                    <h2 ui-sref="app.user({id:follwerUsers.user.ID, reveal : 1,  uid:follwerUsers.user.ID})">{{::follwerUsers.user.display_name}}</h2>
 
                 </div>
                 <div class="no-result" ng-if="!userInfo.followers.length">No follower(s)</div>
@@ -277,8 +273,8 @@
             <div class="list">
 
                 <div class="item item-avatar" ng-repeat="friend in userInfo.friends">
-                    <img ng-src="{{friend.img}}" ui-sref="app.user({id:friend.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:friend.ID, reveal : 1})">{{friend.display_name}}</h2>
+                    <img ng-src="{{friend.img}}" ui-sref="app.user({id:friend.ID, reveal : 1, uid:friend.ID})">
+                    <h2 ui-sref="app.user({id:friend.ID, reveal : 1,uid:friend.ID})">{{friend.display_name}}</h2>
                     <p class="mt10"> <input type="button" value="Unfriend" ng-click="unFriend(friend.ID, $index)" class=" button action-button button-positive"> </p>
 
                 </div>
@@ -289,8 +285,8 @@
             <div class="list">
 
                 <div class="item item-avatar" ng-repeat="friendPending in userInfo.friend_requests_received">
-                    <img ng-src="{{friendPending.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">{{friendPending.display_name}}</h2> 
+                    <img ng-src="{{friendPending.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1, uid:friendPending.ID})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1,uid:friendPending.ID})">{{friendPending.display_name}}</h2> 
                     <p class="mt10"> <input type="button" value="Confirm Friend" ng-click="friendRequestAccept(friendPending.ID, $index)" class=" button action-button button-positive"> <input type="button" value="Reject" ng-click="friendRequestReject(friendPending.ID, $index)" class=" button action-button button-stable"> </p>
 
                 </div>
@@ -302,8 +298,8 @@
             <div class="list">
 
                 <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
-                    <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1})">{{friendSent.display_name}}</h2> 
+                    <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendSent.ID, reveal : 1, uid:friendSent.ID})">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1,uid:friendSent.ID})">{{friendSent.display_name}}</h2> 
                     <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-positive"> </p>
 
                 </div>
@@ -326,21 +322,24 @@
                         <span class="input-label fz14">Last Name</span>
                         <input type="text" ng-model="userInfo.last_name"  name="last_name" >
                     </label>
+                                <label class="item item-input item-stacked-label">
+                        <span class="input-label fz14">Handle</span>
+                        <input type="text" class=" transparent-label" name="handle" ng-model="userInfo.handle" ng-pattern="/^[a-zA-Z0-9_.]*$/" placeholder="Handle"  >
+                        <p class="error-text" ng-show="userInfo.handle.$error.pattern">Please use numbers and letters only</p>
+
+                    </label>
                     <label class="item item-input item-stacked-label">
                         <span class="input-label fz14">Email*</span>
                         <input type="email" ng-model="userInfo.user_email" readonly="true" required name="user_email" ng-class="userProfile.user_email.$touched && userProfile.user_email.$invalid ? 'error-border' : ''"  placeholder="Enter valid Email">
                     </label>
                     <label class="item item-input " ng-if="userInfo.source != 'Facebook' && userInfo.source != 'LinkedIn'">
                         <span class="mr10">Profile Image</span>
-
-                          <input type="file" name="userImg"  style="float: right;" class="custom-file-input"   >
+                        <input type='hidden' ng-model="userInfo.userImg" class="profilePicVal" value='' name='userImg' />
+                        <input type="file"  onchange="loadFile(event)"  name="userImg"  style="float: right;" class="custom-file-input">
 
       
                     </label>
-                    <label class="item item-input item-stacked-label hide">
-                        <span class="input-label fz14">Address</span>
-                        <input type="text" ng-model="userInfo.address"  name="address"  placeholder="Enter Address">
-                    </label>
+             
                 </div>
 
                 <div class="row">
@@ -361,9 +360,9 @@
                         <input type="hidden" ng-model="password.userProfile" value="{{userInfo}}" />
                     </label>
                 </div>
-                <span ng-show="password.repass != password.pass" class="validation-error">Passwords do not match.</span> 
+                <span ng-show="password.repass != password.pass" class="validation-error">New Password and Confirm Password does not match</span> 
                 <div class="row">
-                    <button class="button  w100 radiuz-primary line-h50" ng-disabled="changePwdForm.$invalid" >Change Password</button>
+                    <button class="button  w100 radiuz-primary line-h50" ng-disabled="changePwdForm.$invalid || password.repass != password.pass" >Change Password</button>
                 </div> 
             </form>
         </div>
@@ -372,12 +371,12 @@
     
      <script id="zoomimg.html" type="text/ng-template">
         <ion-modal-view class="transparentbg">
-
-            <div class="zclose" ng-click="imageViewClose()">X</div>
-            <ion-content style="background-image: url({{magnImage}});" class="zoimg">
-            
-               
-            </ion-content>
+        <div class="zclose" ng-click="imageViewClose()">X</div>
+        <ion-content class="" scroll="false">          
+          <ion-scroll zooming="true" overflow-scroll="false" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">   
+            <img src="{{magnImage}}">
+        </ion-scroll>          
+        </ion-content>        
         </ion-modal-view>
     </script>
 </ion-view>

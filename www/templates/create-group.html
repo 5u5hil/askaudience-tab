@@ -1,10 +1,9 @@
 <ion-view  hide-menu-button="true">
     <ion-nav-title>
-        Create Group
+        Update Members
     </ion-nav-title>
     <ion-nav-buttons side="right"> 
-<!--        <button class="button button-icon button-clear ion-search" ng-click="clickButton()">
-        </button> -->
+        
         <!--        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="showPopup($event)" >
                 </button> -->
         <!--     <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
@@ -13,9 +12,9 @@
 
     </ion-nav-buttons> 
     <ion-content class="has-footer">
-        
+
         <div style="text-align: center;">
-            <button class="button button-block" ng-click="invitToGroup()">Invite</button>
+            <button class="button button-block" ng-click="groupShare(groupinfo.id, groupinfo.title, groupinfo.img)">Invite</button>
         </div>
         <div class="list" style="text-align: center">                    
             <button class="button button-block" ng-click="userSearch()"><i class="icon ion-search"></i> Search Users </button>
@@ -24,6 +23,7 @@
         <form class="createGroup" style="font-size: 17px;">
             <div class="padding" style="">
                 <h4>Members</h4>
+                <p ng-if="members.length<=1">No members found</p>
                 <div class="user-list"> 
                     <div ng-show="member && groupinfo.author_id != member.ID" class="user-b" ng-repeat="member in members track by $index">
                         <div class="user-add-icon"><i ng-click="removeMember($index)" class="ion-close-circled" ></i></div><div><img src="{{member.img ? member.img : 'img/user-icon.png'}}" class="profile-icon-small" /> {{member.display_name}}</div>

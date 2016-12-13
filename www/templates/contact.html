@@ -10,19 +10,19 @@
           <div class="list">
   <label class="item item-input item-stacked-label">
     <span class="input-label fz14"> Name*</span>
-    <input type="text" name="pname" required="required" ng-class="contact.pname.$touched && contact.pname.$invalid ? 'error-border' : ''" ng-model="message.pname" placeholder="Enter Name">
+    <input type="text" name="pname" required="required"  ng-model="message.pname" placeholder="Enter Name">
   </label> 
   <label class="item item-input item-stacked-label">
     <span class="input-label fz14">Email*</span>
-    <input type="email" name="email" required="required" ng-class="contact.email.$touched && contact.email.$invalid ? 'error-border' : ''" ng-model="message.email" placeholder="Enter valid Email">
+    <input type="email" name="email" required="required"  ng-model="message.email" placeholder="Enter valid Email">
   </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label fz14">Mobile</span>
-    <input type="text" name="phone"  ng-class="contact.phone.$touched && contact.phone.$invalid ? 'error-border' : ''" ng-model="message.phone" placeholder="Enter valid Mobile Number">
+    <input type="text" name="phone" ng-model="message.phone" placeholder="Enter valid Mobile Number">
   </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label fz14">Message*</span>
-    <textarea placeholder="Your Message" required="required" ng-class="contact.message.$touched && contact.message.$invalid ? 'error-border' : ''" ng-model="message.message" name="message" class="textarea-height"></textarea>
+    <textarea placeholder="Your Message" required="required" ng-model="message.message" name="message" class="textarea-height"></textarea>
   </label> 
 </div>
 
