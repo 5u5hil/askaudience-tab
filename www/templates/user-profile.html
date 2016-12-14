@@ -17,7 +17,7 @@
 
                             <h2 class="mb0 fs20 profile-name" ng-if="uid == cid">                            
                                 {{userInfo.display_name}} ( {{userInfo.pin}} )
-                                <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span> 
+<!--                                <span class="icon ion-edit edit-icon"  ng-click="updatePan('profile')"></span> -->
                             </h2>
                             <h2 class="mb0 fs20 profile-name" ng-if="uid != cid">                            
                                 {{ reveal == 1 ? userInfo.display_name : (reveal == 3 ? userInfo.pin : 'Anonymous')}} 

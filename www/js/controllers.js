@@ -461,6 +461,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 $scope.canLoadMore = true;
                 Loader.show();
                 var getUid = "";
+               $scope.checkIfNotMyProfile=$state.includes('app.user');
                 if (typeof ($stateParams.uid) !== 'undefined') {
                     getUid = $stateParams.uid;
                 } else {
