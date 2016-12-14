@@ -651,7 +651,9 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                                 $scope.polls.push(element);
                             });
                         }
-                        // Loader.hide();
+                        if (typeof (type) !== 'undefined') {
+                            Loader.hide();
+                        }
                     }, function (data) {
                         Loader.hide();
                         Loader.toast('Oops! something went wrong');
