@@ -5,7 +5,6 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
         $scope.pageNumber = 1;
         $scope.moreGroups = true;
         $scope.getGroupDetails = {};
-        $scope.loginUser = LSFactory.get('user').ID;
 
         if (!$rootScope.isLoggedIn) {
             $rootScope.$broadcast('showLoginModal', $scope, function () {
@@ -14,6 +13,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 getGroups();
             });
         } else {
+            $scope.loginUser = LSFactory.get('user').ID;
             getGroups();
         }
         var ignoreList = LSFactory.get('Ignore');
@@ -277,19 +277,19 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
 
                 $scope.saveGroup = function (data) {
                     var members = JSON.stringify(data);
-                    
+
                     Loader.show();
                     createForm = new FormData();
                     createForm.append('pid', $stateParams.id);
                     createForm.append('members', members);
                     createForm.append('userId', LSFactory.get('user').ID);
                     APIFactory.updateMembers(createForm).then(function (response) {
-                        if(response.data.errorType == 'success'){
-                        Loader.toggleLoadingWithMessage("Group updated successfully!", 2000);
-                        setTimeout(function () {
-                            $state.go('app.groupinfo',{'gid':$stateParams.id});
-                        }, 2000);                        
-                    }else{
+                        if (response.data.errorType == 'success') {
+                            Loader.toggleLoadingWithMessage("Group updated successfully!", 2000);
+                            setTimeout(function () {
+                                $state.go('app.groupinfo', {'gid': $stateParams.id});
+                            }, 2000);
+                        } else {
                             Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                         }
                     }, function (error) {
