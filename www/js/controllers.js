@@ -461,13 +461,13 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 $scope.canLoadMore = true;
                 Loader.show();
                 var getUid = "";
-               $scope.checkIfNotMyProfile=$state.includes('app.user');
+                $scope.checkIfNotMyProfile = $state.includes('app.user');
                 if (typeof ($stateParams.uid) !== 'undefined') {
                     getUid = $stateParams.uid;
                 } else {
                     getUid = LSFactory.get('user').ID;
                 }
-                $scope.userId = LSFactory.get('user').ID;
+
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;
@@ -476,11 +476,13 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 $scope.friends = 'No';
                 $scope.friend_requested = 'No';
                 $scope.getReveal = $stateParams.reveal;
-                if (!$rootScope.isLoggedIn)
+                if (!$rootScope.isLoggedIn) {
                     $scope.cid = -1;
-                else
+                }
+                else {
+                    $scope.userId = LSFactory.get('user').ID;
                     $scope.cid = LSFactory.get('user').ID;
-
+                }
                 console.log($scope.uid);
                 $scope.getAllInfo = function () {
                     Loader.show();
