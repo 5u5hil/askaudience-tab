@@ -465,6 +465,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 } else {
                     getUid = LSFactory.get('user').ID;
                 }
+                $scope.userId= LSFactory.get('user').ID;
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;

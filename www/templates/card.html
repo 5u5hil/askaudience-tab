@@ -1,6 +1,14 @@
 <div ng-class="!poll.img ? 'text-poll' : 'img - poll'" >
     <div class="top-bar-wrapper">
-        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as,uid:poll.author.ID})">
+        <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4 && userId!=poll.author.ID" ui-sref="app.user({id:poll.author.ID, reveal : poll.posted_as,uid:poll.author.ID})">
+            <img ng-if="poll.posted_as != 3" ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
+            <img ng-if="poll.posted_as == 3" ng-src="img/pin_reaveal_icon.png">
+            <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
+            <h2 class="poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.pin}}</h2>
+            <p class="msg-header-username" ng-if="poll.posted_as == 1">@{{ poll.author.user_login}}</p>
+
+        </div>
+               <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as != 4 && userId==poll.author.ID" ui-sref="app.my-profile({id:poll.author.ID, reveal : poll.posted_as})">
             <img ng-if="poll.posted_as != 3" ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
             <img ng-if="poll.posted_as == 3" ng-src="img/pin_reaveal_icon.png">
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
