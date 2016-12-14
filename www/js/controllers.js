@@ -108,7 +108,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
         };
         $scope.updateUser();
         $rootScope.$on('showLoginModal', function ($event, scope, cancelCallback, callback) {
-            console.log('Login');
+
             $scope.showLogin = true;
             $scope.registerToggle = function () {
 
@@ -117,9 +117,12 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
             $scope = scope || $scope;
             $scope.viewLogin = true;
 
+
+
             $ionicModal.fromTemplateUrl('templates/login.html', {
                 scope: $scope
             }).then(function (modal) {
+                console.log('Login');
                 $scope.loginModal = modal;
                 $scope.loginModal.show();
                 $scope.hide = function () {
