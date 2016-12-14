@@ -393,6 +393,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
             })
         };
         $scope.getRepostedBy = function (pollid) {
+            Loader.show();
             APIFactory.getRepostedBy({pollId: pollid}).then(function (response) {
                 Loader.hide();
                 $scope.repostedPost = response.data;
@@ -465,7 +466,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 } else {
                     getUid = LSFactory.get('user').ID;
                 }
-                $scope.userId= LSFactory.get('user').ID;
+                $scope.userId = LSFactory.get('user').ID;
                 $scope.activePanCat = 'polls';
                 $scope.activePan = 'openPolls';
                 $scope.reveal = $stateParams.reveal;
