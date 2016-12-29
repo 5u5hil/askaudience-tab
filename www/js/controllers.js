@@ -11,6 +11,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
 
         $rootScope.socialShare = function (message, subject, file, id) {
             var link = 'askaudience://app/polldetails/' + id;
+            message = 'Hi, I found this interesting Poll on Ask Audience App:\n Poll Question:' + message;
             $cordovaSocialSharing.share(message, subject, file, link) // Share via native share sheet
                     .then(function (result) {
 
@@ -23,8 +24,8 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
         LSFactory.set('Ignore', []);
         $rootScope.groupShare = function (id, title, file, link) {
             var link = encodeURI('askaudience://app/group/' + id);
-            var message = 'Invite to join  a group \'' + title + '\' with ID : ' + id + ' on Ask Audience'
-            var subject = 'Invite to join  a group \'' + title + '\' with ID : ' + id + ' on Ask Audience'
+            var message = 'Invite to join a group \'' + title + '\' with ID: ' + id + ' on Ask Audience'
+            var subject = 'Invite to join a group \'' + title + '\' with ID: ' + id + ' on Ask Audience'
             $cordovaSocialSharing.share(message, subject, file, link) // Share via native share sheet
                     .then(function (result) {
 
@@ -1037,7 +1038,10 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                             disableBack: true,
                             historyRoot: true
                         });
-                        $state.go('app.home');
+                        setTimeout(function () {
+                            $state.go('app.polls')
+                        }, 2000);
+                        // $state.go('app.polls');
                     }, function (error) {
                         Loader.hide();
                         Loader.toast('Oops! something went wrong. Please try later again');
@@ -1421,7 +1425,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 }
                 $scope.invokeSort = function () {
                     //$scope.myPopup.close();
-                    $scope.newitem = {}
+                    $scope.newitem = {new : ""}
 
                     var myPopup = $ionicPopup.show({
                         title: 'Sort By',
@@ -1435,6 +1439,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                                 text: '<b>Sort</b>',
                                 type: 'button-positive',
                                 onTap: function (e) {
+                                    console.log($scope.newitem);
                                     $scope.orderBy = jQuery("input[name=borderBy]:checked", "#ex").val();
                                     $scope.getFilteredPolls();
                                 }
@@ -2237,7 +2242,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                         template: '<div>\n\
 <div style="text-align:center;font-size:17px; font-weight:bold;">' + jQuery('#pollquestion').val() + '</div>\n\
 <div style="margin-top:10px;"><b>Poll type:</b> ' + jQuery('select[name="posted_as"] option:selected').text() + '<div>\n\
-<div><b>Poll closes on:</b> ' + jQuery('input[name="valid_till"]').val() + '</div>\n\
+<div><b>Poll closes on:</b> ' + moment(jQuery('input[name="valid_till"]').val()).format('DD MMM YY') + '</div>\n\
 <div><b>Post to a Group Only:</b> ' + jQuery('select[name="is_group"] option:selected').text() + '</div>\n\
 ' + group + '\n\
 <div><b>Explicit Content:</b> ' + (jQuery('input[name="is_explicit"]').val() == 'true' ? 'Yes' : 'No') + '</div>\n\

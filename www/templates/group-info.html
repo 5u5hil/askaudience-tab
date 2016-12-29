@@ -44,7 +44,7 @@
                 <div class="item item-avatar" ng-repeat="getMembers in members">
                     <img ng-src="{{getMembers.img!=null?getMembers.img:'img/user-icon.png'}} " ui-sref="app.user({id: getMembers.ID, reveal : 1, uid: getMembers.ID})">
                     <h2 ui-sref="app.user({id: getMembers.ID, reveal : 1, uid: getMembers.ID})">{{getMembers.user_firstname}} {{getMembers.user_lastname}}</h2> 
-                    <p class="mt10" ng-hide="groupAdmin !== loginUser"> <input ng-click="removeMembers(groupinfo.id, getMembers.ID)" type="button" value="Remove" class=" button action-button  button-positive"> </p>
+                    <p class="mt10" ng-hide="getMembers.ID == loginUser"> <input ng-click="removeMembers(groupinfo.id, getMembers.ID)" type="button" value="Remove" class=" button action-button  button-positive"> </p>
                 </div>
 
 

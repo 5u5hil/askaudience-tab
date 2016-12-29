@@ -8,11 +8,7 @@
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
                 </button>
             </ion-nav-buttons>
-            <ion-nav-buttons side="right">
-                             <button class="button button-icon button-clear ion-android-person-add" ng-if='isLoggedIn' ui-sref='app.friendrequests' ui-sref-opts="{cache: false}">
-                                    <span class="badge badge-assertive" ng-if='user.friend_requests_received.length > 0'>{{ user.friend_requests_received.length >100 ? '99+' : user.friend_requests_received.length }}</span>
-                                </button>
-            </ion-nav-buttons>
+            
         </ion-nav-bar>
         <input ion-autocomplete type="text"   class="ion-autocomplete"  items-method-value-key="items" items-method="getTestItems(query)"  autocomplete="off" ng-model="sterm" item-view-value-key="display_name" items-clicked-method="clickedMethod
                (callback)"  manage-externally="true" ng-show="false" max-selected-items="1" required loading-icon="ios-small"/>
@@ -49,7 +45,7 @@
         <ion-content>
             <ion-list class="menu-list">
                 <a ui-sref="app.polls"  nav-clear menu-close  class="item menu-item item-icon-left ">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-help"></i>
 
                     Latest Polls
                 </a>
@@ -60,21 +56,21 @@
                                     My Profile
                                 </a>  -->
                 <a ng-click="clickButton()" nav-clear  menu-close class="item menu-item item-icon-left ">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-ios-people"></i>
                     Search Users
                 </a>
                 <a ui-sref="app.about" ng-click="closePopover()" nav-clear menu-close class="item menu-item item-icon-left ">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-information"></i>
 
                     About  ASK AUDIENCE
                 </a>
                 <a ui-sref="app.terms" nav-clear menu-close class="item menu-item item-icon-left ">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-ios-copy"></i>
 
                     Terms and Conditions
                 </a>
                 <a ui-sref="app.contact" nav-clear menu-close class="item menu-item item-icon-left ">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-email"></i>
 
                     Contact
                 </a>
@@ -84,12 +80,12 @@
                            Poll Creation new UX
                        </a> -->
                 <a role="link" class="item menu-item item-icon-left " nav-clear menu-close ng-click="loginFromMenu()" ng-if="!isLoggedIn">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-log-in"></i>
 
                     Login
                 </a>
                 <a role="link" class="item menu-item item-icon-left " nav-clear menu-close ng-click="logout()" ng-if="isLoggedIn">
-                    <i class="icon ion-chevron-right"></i>
+                    <i class="icon ion-log-out"></i>
 
                     Logout
                 </a>

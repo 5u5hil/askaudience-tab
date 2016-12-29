@@ -1,6 +1,6 @@
 <ion-view  hide-menu-button="true">
     <ion-nav-title>
-        Ask Audience
+        Groups
     </ion-nav-title>
     <ion-nav-buttons side="right"> 
         
@@ -26,9 +26,7 @@
                 <div ui-sref="app.groupinfo({gid:getGroup.id})" class="custom-vln tar">
                     <div style="font-size: 30px;"><span class="fz21 groupfz21 ion ion-information-circled" ></span></div>
                 </div>
-                <div ui-sref="app.groupPollListing({gid:getGroup.id,cid:getGroup.author.ID})" class="custom-vln tar">
-                    <div style="font-size: 30px;"><span class="no-border icon ion-stats-bars"></span></div>
-                </div>
+                
             </div>
         </div>
         <ion-infinite-scroll on-infinite="getPolls('infScr')" ng-if="canLoadMore" immediate-check="false" distance="1%"></ion-infinite-scroll>

@@ -21,8 +21,17 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
             $ionicPopup.alert({
                 template: 'Please confirm to join the group',
                 title: 'Join Group',
-                cssClass: 'popup-vertical-buttons',
+//                cssClass: 'popup-vertical-buttons',
                 buttons: [{
+                        text: 'Cancel',
+                        type: 'button-default',
+                        onTap: function (e) {
+                            var ignore = LSFactory.get('Ignore');
+                            ignore.push($stateParams.join);
+                            LSFactory.set('Ignore', ignore);
+                        }
+                    },
+                    {
                         text: 'Confirm',
                         type: 'button-positive',
                         onTap: function (e) {
@@ -46,16 +55,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
 
                             });
                         }
-                    },
-                    {
-                        text: 'Cancel',
-                        type: 'button-default',
-                        onTap: function (e) {
-                            var ignore = LSFactory.get('Ignore');
-                            ignore.push($stateParams.join);
-                            LSFactory.set('Ignore', ignore);
-                        }
                     }
+
                 ]
             });
 
@@ -140,7 +141,14 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 template: '<form id="createForm"  enctype="multipart/form-data"><ion-list><ion-item><input id="my_group_name" ng-model="group.groupName" type="text" name="group_name" placeholder="Enter Group Name" /></ion-item><ion-item><input type="hidden" value="" id="group_image" name="group_image"/><input type="file" name="group_image" onchange="loadFile(event)" ng-model="group.groupImg" name="group_image" placeholder="Enter Group Name" /></ion-item></ion-list></form>',
                 scope: $scope,
                 title: 'Create New Group',
-                buttons: [{
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        type: 'button-default',
+                        onTap: function (e) {
+                        }
+                    },
+                    {
                         text: 'Next',
                         type: 'button-positive',
                         onTap: function (e) {
@@ -176,25 +184,26 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 });
                             }
                         }
-                    },
-                    {
-                        text: 'Cancel',
-                        type: 'button-default',
-                        onTap: function (e) {
-                        }
                     }
+
                 ]
             });
         }
         $scope.joinGroup = function () {
             $scope.myPopup = $ionicPopup.alert({
                 scope: $scope,
-                template: '<form id="joinForm"  enctype="multipart/form-data"><ion-list><ion-item><input id="group_id" ng-model="group.groupId" type="text" name="group_id" placeholder="Enter Group Id" /></ion-item></ion-list></form>',
+                template: '<form id="joinForm"  enctype="multipart/form-data"><ion-list><ion-item><input id="group_id" ng-model="group.groupId" type="number" name="group_id" placeholder="Enter Group Id" /></ion-item></ion-list></form>',
                 title: 'Join Group',
                 buttons: [
                     {
+                        text: 'Cancel',
+                        type: 'button-default',
+                        onTap: function (e) {
+                        }
+                    },
+                    {
                         text: 'Join',
-                        type: 'button-balanced',
+                        type: 'button-positive',
                         onTap: function (e) {
                             if (!jQuery('#group_id').val()) {
                                 $ionicPopup.alert({
@@ -222,13 +231,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                 });
                             }
                         }
-                    },
-                    {
-                        text: 'Cancel',
-                        type: 'button-default',
-                        onTap: function (e) {
-                        }
                     }
+
                 ]
             });
         }
@@ -285,7 +289,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     createForm.append('userId', LSFactory.get('user').ID);
                     APIFactory.updateMembers(createForm).then(function (response) {
                         if (response.data.errorType == 'success') {
-                            Loader.toggleLoadingWithMessage("Group updated successfully!", 2000);
+                            Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                             setTimeout(function () {
                                 $state.go('app.groupinfo', {'gid': $stateParams.id});
                             }, 2000);
@@ -381,9 +385,17 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
 
                 $scope.memberExit = function (gid, uid) {
                     $ionicPopup.alert({
-                        template: 'Are you sure you want to exit from this Group??',
-                        title: 'Exit Group',
-                        buttons: [{
+                        template: 'Are you sure you want to exit from this Group?',
+                        title: 'Exit Group?',
+                        buttons: [
+                            {
+                                text: 'Cancel',
+                                type: 'button-default',
+                                onTap: function (e) {
+
+                                }
+                            },
+                            {
                                 text: 'Exit',
                                 type: 'button-positive',
                                 onTap: function (e) {
@@ -399,14 +411,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                         Loader.hide();
                                     });
                                 }
-                            },
-                            {
-                                text: 'Cancel',
-                                type: 'button-default',
-                                onTap: function (e) {
-
-                                }
                             }
+
                         ]
                     });
 
@@ -415,8 +421,15 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                 $scope.deleteGroup = function (gid) {
                     $ionicPopup.alert({
                         template: 'Are you sure you want to delete this Group?',
-                        title: 'Delete',
+                        title: 'Delete Group',
                         buttons: [{
+                                text: 'Cancel',
+                                type: 'button-default',
+                                onTap: function (e) {
+
+                                }
+                            },
+                            {
                                 text: 'Delete',
                                 type: 'button-positive',
                                 onTap: function (e) {
@@ -430,14 +443,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                         Loader.hide();
                                     });
                                 }
-                            },
-                            {
-                                text: 'Cancel',
-                                type: 'button-default',
-                                onTap: function (e) {
-
-                                }
                             }
+
                         ]
                     });
 
@@ -486,6 +493,12 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         scope: $scope,
                         title: 'Edit Group',
                         buttons: [{
+                                text: 'Cancel',
+                                type: 'button-default',
+                                onTap: function (e) {
+                                }
+                            },
+                            {
                                 text: 'Update',
                                 type: 'button-positive',
                                 onTap: function (e) {
@@ -517,13 +530,8 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                                         $scope.createGroup();
                                     }
                                 }
-                            },
-                            {
-                                text: 'Cancel',
-                                type: 'button-default',
-                                onTap: function (e) {
-                                }
                             }
+
                         ]
                     });
                 }
