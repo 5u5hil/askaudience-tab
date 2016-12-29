@@ -251,7 +251,7 @@
             <div class="list">
 
                 <div class="item item-avatar" role="link" ng-repeat="followingUsers in userInfo.following">
-                    <img ng-src="{{followingUsers.following==1? 'img/pin_reaveal_icon.png': followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1, uid: followingUsers.user.ID})">
+                    <img ng-src="{{followingUsers.following==1? 'img/pin_reaveal_icon.png': followingUsers.user.img}}" ui-sref="app.user({id:followingUsers.user.ID, reveal : followingUsers.following==1 ? 3 : 1 , uid: followingUsers.user.ID})">
                     <h2 ng-if="followingUsers.following==2" ui-sref="app.user({id:followingUsers.user.ID, reveal : 1, uid: followingUsers.user.ID})">{{::followingUsers.user.display_name| capitalize}}</h2>
                     <h2 ng-if="followingUsers.following==1" ui-sref="app.user({id:followingUsers.user.ID, reveal : 3, uid: followingUsers.user.ID})">{{::followingUsers.user.pin| capitalize}}</h2>
                     <p class="mt10"> <input type="button" value="Unfollow" ng-click="unFollowUser(followingUsers.user.ID)" class=" button poll-btn action-button button-positive"> </p> 

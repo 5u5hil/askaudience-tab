@@ -123,8 +123,16 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
             }
         };
         $scope.updateUser();
-        $rootScope.$on('showLoginModal', function ($event, scope, cancelCallback, callback) {
+        var isModal = 1;
 
+
+        $rootScope.$on('showLoginModal', function ($event, scope, cancelCallback, callback) {
+            if (isModal == 1) {
+
+                console.log(isModal);
+
+            }
+            isModal = 0;
             $scope.showLogin = true;
             $scope.registerToggle = function () {
 
@@ -133,19 +141,18 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
             $scope = scope || $scope;
             $scope.viewLogin = true;
 
-
-
             $ionicModal.fromTemplateUrl('templates/login.html', {
                 scope: $scope
             }).then(function (modal) {
-                console.log('Login');
                 $scope.loginModal = modal;
                 $scope.loginModal.show();
                 $scope.hide = function () {
+
                     $scope.loginModal.hide();
                     if (typeof cancelCallback === 'function') {
                         cancelCallback();
                     }
+                    // jQuery('.modal').hide();
                 }
 
                 $scope.authUser = function (data) {
@@ -155,6 +162,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                             Loader.toggleLoadingWithMessage('Invalid Username or Password', 2000);
                         } else if (response.data) {
                             Loader.toggleLoadingWithMessage('Logged In Successfully', 2000);
+                            //jQuery('.modal').hide();
                             $scope.loginModal.hide();
                             LSFactory.set('user', response.data);
                             $scope.updateUser();
@@ -329,8 +337,9 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 })
             });
         };
-        $scope.loginFromMenu = function () {
 
+        $scope.loginFromMenu = function () {
+            console.log('login for my profile');
             $rootScope.$broadcast('showLoginModal', $scope, null, function () {
                 if ($state.is('app.home')) {
                     try {
@@ -465,7 +474,27 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
         }
     }
 ])
+        .controller('AppCtrl1', ['$scope', '$ionicModal', '$timeout', '$ionicPopover', 'APIFactory', 'Loader', '$rootScope', 'LSFactory', '$ionicActionSheet',
+            '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing', '$ionicScrollDelegate',
+            function ($scope, $ionicModal, $timeout, $ionicPopover, APIFactory, Loader, $rootScope, LSFactory, $ionicActionSheet, $cordovaOauth, $ionicPopup,
+                    $state, $ionicHistory, $http, CommonFactory, $cordovaSocialSharing, $ionicScrollDelegate) {
+               $scope.imageView = function (img) {
+            jQuery('.image-zooming-box img').attr('src', img)
+            jQuery('.image-zooming-box').show();
+            console.log($ionicScrollDelegate.$getByHandle('zoom-pane').getScrollPosition());
 
+
+        };
+        $scope.imageViewClose = function () {
+            jQuery('.image-zooming-box img').attr('src', '');
+            console.log($ionicScrollDelegate.$getByHandle('zoom-pane').resize());
+            $ionicScrollDelegate.$getByHandle('zoom-pane').zoomTo(1);
+            jQuery('.image-zooming-box').hide();
+
+
+        }
+            
+            }])
         .controller('HomeCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope',
             function ($scope, APIFactory, Loader, $rootScope) {
 
