@@ -3,7 +3,7 @@
         Ask Audience
     </ion-nav-title>
     <ion-nav-buttons side="right"> 
-        
+
         <button class="button button-icon button-clear ion-arrow-swap" ng-click="invokeSort()" >
         </button> 
         <button class="button button-icon button-clear ion-funnel" ng-click="openFilters()" >
@@ -27,10 +27,12 @@
         <ion-modal-view class="transparentbg">
         <div class="zclose" ng-click="imageViewClose()">X</div>
         <ion-content class="" scroll="false">          
-          <ion-scroll zooming="true" overflow-scroll="false" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">   
-            <img src="{{magnImage}}">
+        <ion-scroll zooming="true" overflow-scroll="false" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">   
+        <img src="{{magnImage}}">
         </ion-scroll>          
         </ion-content>        
         </ion-modal-view>
     </script>
 </ion-view>
+
+

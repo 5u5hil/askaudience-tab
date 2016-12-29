@@ -3062,6 +3062,7 @@ h2.tag-text{
 }
 .addedHeight{
     height:   50px;
+    background: #fff;
 }
 .mr5 {
     margin-right: 5px;
@@ -3073,4 +3074,25 @@ h2.tag-text{
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+.text-middle{
+    padding-top: 9px;
+    overflow: visible!important;
+}
+
+.image-zooming-box{
+    position: fixed;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(64, 64, 64, 0.74);
+    
+}
+.image-zooming-box img{
+    width: 100%
 }

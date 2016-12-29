@@ -3,15 +3,15 @@ var ptype;
 var createPollRedirect = "";
 var app = angular.module('askaudience.controllers', []);
 app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover', 'APIFactory', 'Loader', '$rootScope', 'LSFactory', '$ionicActionSheet',
-    '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing',
+    '$cordovaOauth', '$ionicPopup', '$state', '$ionicHistory', '$http', 'CommonFactory', '$cordovaSocialSharing', '$ionicScrollDelegate',
     function ($scope, $ionicModal, $timeout, $ionicPopover, APIFactory, Loader, $rootScope, LSFactory, $ionicActionSheet, $cordovaOauth, $ionicPopup,
-            $state, $ionicHistory, $http, CommonFactory, $cordovaSocialSharing) {
+            $state, $ionicHistory, $http, CommonFactory, $cordovaSocialSharing, $ionicScrollDelegate) {
 
         $rootScope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"];
 
         $rootScope.socialShare = function (message, subject, file, id) {
             var link = 'askaudience://app/polldetails/' + id;
-            message = 'Hi, I found this interesting Poll on Ask Audience App:\n Poll Question:' + message;
+            message = 'Hi, I found this interesting Poll on Ask Audience App.\n Poll Question: ' + message;
             $cordovaSocialSharing.share(message, subject, file, link) // Share via native share sheet
                     .then(function (result) {
 
@@ -49,15 +49,30 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
             getView = imview;
             $rootScope.imview = imview;
         });
+//        $scope.imageView = function (img) {
+//            if (img) {
+//                getView.show();
+//                $scope.magnImage = img;
+//            }
+//        };
         $scope.imageView = function (img) {
-            if (img) {
-                getView.show();
-                $scope.magnImage = img;
-            }
+            jQuery('.image-zooming-box img').attr('src', img)
+            jQuery('.image-zooming-box').show();
+            console.log($ionicScrollDelegate.$getByHandle('zoom-pane').getScrollPosition());
+
+
         };
         $scope.imageViewClose = function () {
-            $rootScope.imview.hide();
+            jQuery('.image-zooming-box img').attr('src', '');
+            console.log($ionicScrollDelegate.$getByHandle('zoom-pane').resize());
+            $ionicScrollDelegate.$getByHandle('zoom-pane').zoomTo(1);
+            jQuery('.image-zooming-box').hide();
+
+
         }
+//        $scope.imageViewClose = function () {
+//            $rootScope.imview.hide();
+//        }
 
 
         $scope.getTestItems = function (query, isInitializing) {
@@ -673,6 +688,9 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 }
                 $scope.getPollsByType();
                 $scope.updatePan = function (tab, type, cat) {
+                    console.log(tab);
+                    console.log(type);
+                    console.log(cat);
                     $scope.activePan = tab;
                     $scope.type = type;
                     if (cat == 'polls') {
@@ -1008,6 +1026,9 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                     APIFactory.updateUserProfile(data).then(function (response) {
                         $scope.userInfo = response.data.data;
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                        $scope.activePan = 'openPolls';
+                        $scope.activePanCat = 'polls';
+                        window.scrollTo(0, 0);
                     });
                 }
                 $scope.changePassword = function (password) {
@@ -1015,6 +1036,8 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                     var uId = LSFactory.get('user').ID;
                     APIFactory.updateUserPassword(uId, password).then(function (response) {
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
+                        $scope.activePan = 'openPolls';
+                        $scope.activePanCat = 'polls';
                     });
                 }
 
@@ -2278,9 +2301,11 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                             Loader.toggleLoadingWithMessage(response.data.error, 2000);
                         } else {
                             Loader.toggleLoadingWithMessage(response.data.success, 2000);
+                            console.log(createPollRedirect);
+                            console.log(LSFactory.get('user').ID);
                             $timeout(function () {
                                 if (createPollRedirect !== "" && createPollRedirect !== null) {
-                                    $state.go('app.groupPollListing', {'gid': createPollRedirect, 'cid': LSFactory.get('user').ID}, {reload: true});
+                                    $state.go('app.groupPollListing', {'gid': createPollRedirect, 'cid': LSFactory.get('user').ID});
                                 } else {
                                     $state.go('app.polls', {}, {reload: true});
 

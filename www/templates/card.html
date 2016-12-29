@@ -4,7 +4,7 @@
             <img ng-if="poll.posted_as != 3" ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
             <img ng-if="poll.posted_as == 3" ng-src="img/pin_reaveal_icon.png">
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
-            <h2 class="poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.pin}}</h2>
+            <h2 class="poll-name-user text-middle" ng-if="poll.posted_as == 3" style="text-transform: none;">{{ poll.author.pin}}</h2>
             <p class="msg-header-username" ng-if="poll.posted_as == 1">@{{ poll.author.user_login}}</p>
 
         </div>
@@ -12,13 +12,13 @@
             <img ng-if="poll.posted_as != 3" ng-src="{{poll.posted_as != 1 ? 'img/user-icon.png' : poll.author.img}}">
             <img ng-if="poll.posted_as == 3" ng-src="img/pin_reaveal_icon.png">
             <h2 class=" poll-name-user" ng-if="poll.posted_as == 1">{{ poll.author.display_name}}</h2>
-            <h2 class="poll-name-user" ng-if="poll.posted_as == 3">{{ poll.author.pin}}</h2>
+            <h2 class="poll-name-user text-middle" ng-if="poll.posted_as == 3" style="text-transform: none;">{{ poll.author.pin}}</h2>
             <p class="msg-header-username" ng-if="poll.posted_as == 1">@{{ poll.author.user_login}}</p>
 
         </div>
         <div class="item item-avatar custom-item pull-left col-66" ng-if="poll.posted_as == 4" >
             <img ng-src="{{poll.posted_as != 1 ? 'img/user_anonymous_icon.png' : poll.author.img}}">
-            <h2 class=" poll-name-user">Anonymous</h2>
+            <h2 class=" poll-name-user text-middle">Anonymous</h2>
 
         </div> 
                 <!-- ng-if="poll.is_explicit || poll.is_mature" -->
@@ -112,4 +112,6 @@
         <a class="button poll-option-btn ion-ios-more button-clear button-dark black fz20 col" ng-click="openPopover($event, poll, $index)"></a>
     </div>
 </div>
+
+
 
