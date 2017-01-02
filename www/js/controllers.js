@@ -1477,7 +1477,7 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                 }
                 $scope.invokeSort = function () {
                     //$scope.myPopup.close();
-                    $scope.newitem = {new : ""}
+                    $scope.newitem = {new :  $scope.orderBy}
 
                     var myPopup = $ionicPopup.show({
                         title: 'Sort By',
@@ -1491,7 +1491,6 @@ app.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', '$ionicPopover',
                                 text: '<b>Sort</b>',
                                 type: 'button-positive',
                                 onTap: function (e) {
-                                    console.log($scope.newitem);
                                     $scope.orderBy = jQuery("input[name=borderBy]:checked", "#ex").val();
                                     $scope.getFilteredPolls();
                                 }
