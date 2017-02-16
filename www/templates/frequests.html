@@ -8,8 +8,9 @@
         
      
          <div class="item item-avatar" ng-repeat="friendPending in user.friend_requests_received">
-                    <img ng-src="{{friendPending.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1})">
-                    <h2 ui-sref="app.user({id:friendPending.user.ID, reveal : 1})">{{friendPending.display_name}}</h2> 
+    
+             <img ng-src="{{friendPending.img}}" ui-sref="app.user({id:friendPending.ID, reveal : 1,uid:friendPending.ID}) ">
+                    <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1,uid:friendPending.ID})">{{friendPending.display_name}}</h2> 
                     <p class="mt10"> <input type="button" value="Confirm Friend" ng-click="friendRequestAccept(friendPending.ID, $index)" class=" button action-button button-positive"> <input type="button" value="Reject" ng-click="friendRequestReject(friendPending.ID, $index)" class=" button action-button button-stable"> </p>
 
                 </div>

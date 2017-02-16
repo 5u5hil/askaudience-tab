@@ -88,8 +88,8 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         };
                     }
                 })
-
-
+          
+  
                 if (window.cordova && window.cordova.plugins.Keyboard) {
                     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
                     cordova.plugins.Keyboard.disableScroll(true);
@@ -103,14 +103,15 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                         var type = jsonData.notification.payload.additionalData.type;
                         if (type === 'groupinfo') {
                             $state.go(url, {'gid': gid, 'cid': userId});
-
-                        } else {
-                            $state.go(url, {'id': userId, 'reveal': 1, 'gid': gid,'uid':userId, 'type': type});
+                        }
+                        else if (type === 'closedPoll') {
+                            window.location.href = "#app/closed_polldetails/" + userId;
 
                         }
-                        console.log(jsonData.notification.payload.additionalData.url);
-                        console.log('above data 3');
-                        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+                        else {
+                            $state.go(url, {'id': userId, 'reveal': 1, 'gid': gid, 'uid': userId, 'type': type});
+
+                        }
                     };
 
                     // TODO: Update with your OneSignal AppId and googleProjectNumber before running.
@@ -152,7 +153,6 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
             $stateProvider
                     .state('app', {
                         url: '/app',
-                        abstract: true,
                         templateUrl: 'templates/menu.html',
                         controller: 'AppCtrl'
                     })
@@ -163,6 +163,15 @@ angular.module('askaudience', ['ionic', 'ngCordova', 'askaudience.controllers', 
                             'menuContent': {
                                 templateUrl: 'templates/polldetails.html',
                                 controller: 'pollDetailsCtrl'
+                            }
+                        }
+                    })
+                    .state('app.closed_polldetails', {
+                        url: '/closed_polldetails/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/polldetails_closed.html',
+                                controller: 'closedPollDetailsCtrl'
                             }
                         }
                     })

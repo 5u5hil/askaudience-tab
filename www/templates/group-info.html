@@ -10,7 +10,7 @@
                 <div class=" ">
                     <div class="row mb15">
                         <div class="celeb-img-detail profile-img-detail col-25 ">
-                            <img ng-click="imageView(groupinfo.img)" ng-src="{{groupinfo.img==null? 'img/user-icon.png' : groupinfo.img}}">
+                            <img ng-click="imageView(groupinfo.img==null? 'img/user-icon.png' : groupinfo.img)" ng-src="{{groupinfo.img==null? 'img/user-icon.png' : groupinfo.img}}">
                         </div>
                         <div class="celeb-img-detail  txt-left  col-75 ">
 
@@ -34,7 +34,7 @@
                       ng-click="updatePan('members')">Members</span>
 
                 <span class="tab-half-width requestsHide" ng-class="activePan == 'requests' ? 'active-item' : 'sub-menu-item'"   
-                      ng-click="updatePan('requests')">Requests</span>
+                      ng-click="updatePan('requests')">Requests {{groupinfo.members_request_count}}</span>
 
             </ion-scroll>
         </div>
@@ -44,7 +44,7 @@
                 <div class="item item-avatar" ng-repeat="getMembers in members">
                     <img ng-src="{{getMembers.img!=null?getMembers.img:'img/user-icon.png'}} " ui-sref="app.user({id: getMembers.ID, reveal : 1, uid: getMembers.ID})">
                     <h2 ui-sref="app.user({id: getMembers.ID, reveal : 1, uid: getMembers.ID})">{{getMembers.user_firstname}} {{getMembers.user_lastname}}</h2> 
-                    <p class="mt10" ng-hide="getMembers.ID == loginUser"> <input ng-click="removeMembers(groupinfo.id, getMembers.ID)" type="button" value="Remove" class=" button action-button  button-positive"> </p>
+                    <p class="mt10" ng-hide="getMembers.ID == loginUser"> <input ng-click="removeMembers(groupinfo.id, getMembers.ID)" type="button" value="Remove" class=" button action-button removeButton  button-positive" ng-if="isAdmin!=='No'"> </p>
                 </div>
 
 

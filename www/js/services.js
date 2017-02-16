@@ -13,6 +13,11 @@ angular.module('askaudience.services', [])
                         var req = {method: 'POST', url: domain + 'pollDetails', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
+                    closed_polldetails: function (data) {
+ 
+                        var req = {method: 'POST', url: domain + 'pollDetailsClosed&pid='+data, headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
                     follow: function (data) {
                         var req = {method: 'POST', url: domain + 'follow', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
@@ -27,6 +32,10 @@ angular.module('askaudience.services', [])
                     },
                     friendRequestReject: function (data) {
                         var req = {method: 'POST', url: domain + 'freject', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
+                        return $http(req);
+                    },
+                    friendRequestCancel: function (data) {
+                        var req = {method: 'POST', url: domain + 'fCancelRequest', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};
                         return $http(req);
                     },
                     unFriend: function (data) {
@@ -125,7 +134,7 @@ angular.module('askaudience.services', [])
                         return $http(req);
                     },
                     linkedInLogin: function (access_token) {
-                        return $http.get('https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name)?format=json&oauth2_access_token=' + access_token);
+                        return $http.get('https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name,picture-url)?format=json&oauth2_access_token=' + access_token);
                     },
                     resetPwd: function (data) {
                         var req = {method: 'POST', url: domain + 'forgotPassword', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, data: $httpParamSerializer(data)};

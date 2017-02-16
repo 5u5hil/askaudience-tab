@@ -327,11 +327,13 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                         $scope.groupAdmin = response.data.author.ID;
                         $scope.loginUser = LSFactory.get('user').ID;
                         if (response.data.author.ID !== LSFactory.get('user').ID) {
+                            $scope.isAdmin = "No";
                             console.log('yes');
                             jQuery('.ion-edit').hide();
                             jQuery('.requestsHide').hide();
 
                         } else {
+                            $scope.isAdmin = "Yes";
                             console.log('no');
                             jQuery('.requestsHide').show();
                             jQuery('.ion-edit').show();
@@ -364,6 +366,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     APIFactory.memberAccept(membersForm).then(function (response) {
                         $scope.members = response.data.details.members;
                         $scope.members_request = response.data.details.members_request;
+                        $scope.groupinfo.members_request_count = response.data.details.members_request_count;
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     }, function (error) {
                         // $scope.found = [];
@@ -377,6 +380,7 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     membersForm.append('uid', uid);
                     APIFactory.rejectMembers(membersForm).then(function (response) {
                         $scope.members_request = response.data.details.members_request;
+                        $scope.groupinfo.members_request_count= response.data.details.members_request_count;
                         Loader.toggleLoadingWithMessage(response.data.msg, 2000);
                     }, function (error) {
                         // $scope.found = [];
@@ -609,7 +613,11 @@ app.controller('grpCtrl', ['$scope', 'APIFactory', 'Loader', '$rootScope', '$ion
                     }
                     var gid = $stateParams.gid;
                     var cid = $stateParams.cid;
+                    APIFactory.getGroupById($stateParams.gid).then(function (response) {
+                        $scope.groupTitle = response.data.title;
+                    });
                     APIFactory.getPollsGroup($scope.filters, $scope.pageNumber, $scope.orderBy, $scope.userId, 'groupPolls', gid, cid).then(function (response) {
+                        console.log(response.data);
                         if ($scope.pageNumber > 1) {
                             if (!response.data.length) {
                                 $scope.canLoadMore = false;

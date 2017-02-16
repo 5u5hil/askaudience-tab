@@ -235,8 +235,8 @@
                             </div>
             
                         </div>-->
-            <div class="card card-polls" ng-include src="'templates/card.html'"  ng-repeat="poll in polls" on-finish-render="ngRepeatFinished">
-            </div>
+            <div class="card card-polls" ng-include src="'templates/card.html'"  ng-repeat="poll in polls" ng-if="activePan!='closedPolls'" on-finish-render="ngRepeatFinished"> </div>
+            <div class="card card-polls" ng-include src="'templates/card_userprofile.html'"  ng-repeat="poll in polls" ng-if="activePan=='closedPolls'" on-finish-render="ngRepeatFinished"> </div>
             <div ng-if="!polls.length" class="no-polls-msg">No Poll Found</div>
 
             <ion-infinite-scroll class="white-bg" on-infinite=" getPollsByType(type, pollsPara.pageNo+1 )"  ng-if="canLoadMore"   immediate-check="false" distance="1%"></ion-infinite-scroll>
@@ -305,7 +305,7 @@
                 <div class="item item-avatar" ng-repeat="friendSent in userInfo.friend_requests_sent">
                     <img ng-src="{{friendSent.img}}" ui-sref="app.user({id:friendSent.ID, reveal : 1, uid:friendSent.ID})">
                     <h2 ui-sref="app.user({id:friendPending.ID, reveal : 1,uid:friendSent.ID})">{{friendSent.display_name}}</h2> 
-                    <p class="mt10"> <input type="button" value="Cancel Request" class=" button action-button button-positive"> </p>
+                    <p class="mt10"> <input type="button" value="Cancel Request" ng-click="friendRequestCancel(friendSent.ID, $index)" class=" button action-button button-positive"> </p>
 
                 </div>
                 <div class="no-result" ng-if="!userInfo.friend_requests_sent.length">No pending request(s)</div>
